@@ -1,0 +1,380 @@
+<!doctype html>
+<html><head>
+<meta charset="utf8">
+
+</head><body>
+<h1>cheap 3d affine transforms</h1>
+<p>f(x,y) { return <input type="text" size=80 value="x*x + y*y" id="cheapInput">; }<br>
+x angle: <input id="xAngle" type=number value=330> |
+y angle: <input id="yAngle" type=number value=220> |
+z angle: <input id="zAngle" type=number value=90> |<br>
+x unit: <input step=0.1 id="xUnit" type=number value=25> |
+y unit: <input step=0.1 id="yUnit" type=number value=20> |
+z unit: <input step=0.1 id="zUnit" type=number value=4> |<br>
+zoom <input id="cheapZoom" type=number value=1> | <s>Front height: <input id="frontHeightInput" type=number value=1.5>, Back height: <input id="backHeightInput" type=number value=0.5></s><br>
+range [-x,x] [<input id="xStart" type=number  max=0 value=-4>,<input id="xStop" min=0 type=number value=7>] |<br>
+range [-y,y] [<input id="yStart" type=number  max=0 value=-4>,<input id="yStop" min=0 type=number value=7>] |<br>
+R^3 Origin (Ox,Oy,Oz): (<input step=1 id="xOrigin3" type=number value=0>,
+<input step=1 id="yOrigin3" type=number value=0>,
+<input step=1 id="zOrigin3" type=number value=0>)<br>
+Rotate Surface (x,y,z): (<input step=1 id="xRot" type=number value=0>,
+<input step=1 id="yRot" type=number  value=0>,
+<input step=1 id="zRot" type=number  value=0>)<br>
+Translate Surface (Tx,Ty,Tz): (<input step=1 id="xTranslateObj" type=number value=0>,
+<input step=1 id="yTranslateObj" type=number value=0>,
+<input step=1 id="zTranslateObj" type=number value=0>)<br>
+R^2 Origin (Ox',Oy'):
+(<input step=1 id="xOrigin2" type=number value=0>,
+<input step=1 id="yOrigin2" type=number value=0>)<br>
+
+
+
+<button id="cheapSubmit">draw Surface</button></p>
+<canvas width="640" height="500" style="border: 1px solid black" id="cheap3d"></canvas>
+<div style="float:right;font-size:0.6em;">
+    Cheap 3-D to 2-D Projection Matrix<br>
+    <br>
+    <br>
+	Alle drei Winkel starten bei 0<br>
+	&alpha; := x-Axis Angle<br>
+	&beta; := y-Axis Angle<br>
+	&gamma; := z-Axis Angle<br>
+	u<sub>{x,y,z}</sub> := Einheit (Laenge) des Basisvektors<br>
+	
+    <br>
+    Es handelt sich um eine 2x3 Matrix.<br>
+    Jede Spalte hält einen<br> Einheitsvektor [l*cos(w); l*sin(w)].<br>
+	<br>
+    P = <br>
+    	
+    <table>
+	<tr>
+	<td>u<sub>x</sub>*Math.cos(&alpha;)
+	<td>u<sub>y</sub>*Math.cos(&beta;)
+	<td>u<sub>z</sub>*Math.cos(&gamma;)
+	</tr>
+	<tr>
+	
+	<td>u<sub>x</sub>*Math.sin(&alpha;)
+	<td>u<sub>y</sub>*Math.sin(&beta;)
+	<td>u<sub>z</sub>*Math.sin(&gamma;)
+	</tr>
+	
+    </table>
+    
+    <br>
+    x = Ux + Tx + points[i]<br>
+    y = Uy + Ty + points[i+1]<br>
+    z = Uz + Tz + points[i+2]<br>
+    U = Ursprung, T = Translation<br>
+    <br>
+    <br>
+    Jetzt Rotation auf den 3-D Punkten durchfuehren.<br>
+    <br>
+    Wenn man die 3-D Koordinaten nun mit P<br>
+    multipliziert,<br>
+    kriegt man die Bildschirmkoordinaten<br>
+    <br>
+    P*[x;y;z;] = [x';y']<br>
+    <br>
+    Das gibt bis hierhin
+    <br>
+    <table>
+	<tr>
+	
+	<td>
+	x' = x*u<sub>x</sub>*Math.cos(&alpha;)<br>
+	+ y*u<sub>y</sub>*Math.cos(&beta;)<br>
+	+ z*u<sub>z</sub>*Math.cos(&gamma;)<br>
+	</tr>
+	<tr>
+	<td>
+	y' = x*u<sub>x</sub>*Math.sin(&alpha;)<br>
+	+ y*u<sub>y</sub>*Math.sin(&beta;)<br>
+	+ z*u<sub>z</sub>*Math.sin(&gamma;)<br>
+	</tr>
+	
+    </table>
+
+    <br>
+    Noch Ursprung vor die (x',y') in 2-D<br>
+    
+    <br>
+    Der Code dieser Version is am nachmittag<br>
+    kurz hingeschmiert worden.<br>
+	
+    <br>
+</div>
+<br style="clear:both">
+<script>
+
+"use strict";
+
+window.addEventListener("DOMContentLoaded", function(e) {
+    
+    var context = document.getElementById("cheap3d").getContext("2d");
+    context.translate(context.canvas.width/2, context.canvas.height/2);    
+
+    var cheapInput = document.getElementById("cheapInput");
+    var cheapSubmit = document.getElementById("cheapSubmit");
+    var cheapZoom = document.getElementById("cheapZoom");
+    cheapSubmit.addEventListener("click", drawFunctionFromForm);
+    
+    var xAngleInput = document.getElementById("xAngle");
+    var yAngleInput = document.getElementById("yAngle");
+    var zAngleInput = document.getElementById("zAngle");
+    
+    var xUnitInput = document.getElementById("xUnit");
+    var yUnitInput = document.getElementById("yUnit");
+    var zUnitInput = document.getElementById("zUnit");
+    
+    var xOrigin3Input = document.getElementById("xOrigin3");
+    var yOrigin3Input = document.getElementById("yOrigin3");
+    var zOrigin3Input = document.getElementById("zOrigin3");
+    
+    var xOrigin2Input = document.getElementById("xOrigin2");
+    var yOrigin2Input = document.getElementById("yOrigin2");
+    
+    var xTranslateInput = document.getElementById("xTranslateObj");
+    var yTranslateInput = document.getElementById("yTranslateObj");
+    var zTranslateInput = document.getElementById("zTranslateObj");
+    
+    var xRotInput = document.getElementById("xRot");
+    var yRotInput = document.getElementById("yRot");
+    var zRotInput = document.getElementById("zRot");
+    
+    var xStartInput = document.getElementById("xStart");
+    var yStartInput = document.getElementById("yStart");
+    var xStopInput = document.getElementById("xStop");
+    var yStopInput = document.getElementById("yStop");
+    
+    var frontHeightInput = document.getElementById("frontHeightInput");
+    var backHeightInput = document.getElementById("backHeightInput");
+    
+    xStartInput.onchange = function () { cheapSubmit.click(); };
+    yStartInput.onchange = function () { cheapSubmit.click(); };
+    xStopInput.onchange = function () { cheapSubmit.click(); };
+    yStopInput.onchange = function () { cheapSubmit.click(); };    
+    xAngleInput.onchange = function () { cheapSubmit.click(); };
+    yAngleInput.onchange = function () { cheapSubmit.click(); };
+    zAngleInput.onchange = function () { cheapSubmit.click(); };
+    xUnitInput.onchange = function () { cheapSubmit.click(); };
+    yUnitInput.onchange = function () { cheapSubmit.click(); };
+    zUnitInput.onchange = function () { cheapSubmit.click(); };
+    
+    xOrigin3Input.onchange = function () { cheapSubmit.click(); };
+    yOrigin3Input.onchange = function () { cheapSubmit.click(); };
+    zOrigin3Input.onchange = function () { cheapSubmit.click(); };
+    
+    
+    xOrigin2Input.onchange = function () { cheapSubmit.click(); };
+    yOrigin2Input.onchange = function () { cheapSubmit.click(); };
+
+    xRotInput.onchange = function () { cheapSubmit.click(); };
+    yRotInput.onchange = function () { cheapSubmit.click(); };
+    zRotInput.onchange = function () { cheapSubmit.click(); };
+
+    xTranslateInput.onchange = function () { cheapSubmit.click(); };
+    yTranslateInput.onchange = function () { cheapSubmit.click(); };
+    zTranslateInput.onchange = function () { cheapSubmit.click(); };
+
+    
+    var isAxis = false;        
+    
+    frontHeightInput.onchange = function () { cheapSubmit.click(); };
+    backHeightInput.onchange = function () { cheapSubmit.click(); };
+    cheapZoom.onchange = function () { cheapSubmit.click(); };
+    cheapSubmit.click();
+    
+function drawFunctionFromForm(e) {
+
+    var scale = Number(cheapZoom.value);
+    var code = cheapInput.value;
+    var xStart =Number(xStartInput.value);
+    var yStart =Number(yStartInput.value);
+    var xStop = Number(xStopInput.value);
+    var yStop = Number(yStopInput.value);    
+    
+    var f = new Function("x,y,z", "return ("+code+");");
+    context.clearRect(-context.canvas.width, -context.canvas.height, context.canvas.width*2, context.canvas.height*2);
+
+    isAxis = true;
+    axes(scale);
+    isAxis = false;
+	    
+    var tmp;
+    // can´t hang a weak loop (didn´t myself)
+    if (xStart > xStop) {
+	tmp = xStart;
+	xStart = xStop;
+	xStop = tmp;
+    }
+    if (yStart > yStop) {
+	tmp = yStart;
+	yStart = yStop;
+	yStop = tmp;
+    }
+    // if type=number max=0 and min=0 fail
+    
+    plot({
+	f: f,
+	X: [xStart,xStop], // x-Intervall
+	dX: 0.2,	// Abstand der Linien
+    	Y: [yStart,yStop], // y-Intervall
+	dY: 0.2,	// Abstand der Linien
+    	scale: scale,
+	xcolor: "darkblue",
+    	ycolor: "purple"
+    });	
+}
+
+function rad(dg) {
+    return Math.PI/180*dg;
+}
+
+function axes(scale) {
+    scale || 1; // now follows zoom factor, too (visual irritation else)
+    var X=[];
+    for (var x = -10; x < 10; x+=1) X.push(x,0,0);
+    var Y=[];
+    for (var y = -10; y < 10; y+=1) Y.push(0,y,0);
+    var Z=[];
+    for (var z = -10; z < 10; z+=1) Z.push(0,0,z);
+    draw(X, {
+	color: "red",
+	scale: scale 
+    });
+    draw(Y, {
+	color: "yellow",
+	scale: scale 
+    });
+    draw(Z, {
+	color: "green", 
+	scale: scale 
+    });
+}
+
+function plot(op) {
+    var IX = op.X;
+    var IY = op.Y;
+    var u = op.f;
+    var XP, YP;
+    var x = IX[0];
+    var x_1 = IX[1];
+    var delta_x = op.dX || 1;
+    var y = IY[0];
+    var y_1 = IY[1];
+    var delta_y = op.dY || 1;
+    for (y=IY[0];y<=y_1;y+=delta_y) {
+	XP = [];
+	for (x=IX[0];x<=x_1;x+=delta_x) {
+	    var z = u(x,y);
+	    XP.push(x,y,z);
+	}
+	draw(XP, {
+	    color: op.xcolor,
+	    scale: op.scale,
+	    line: 0.5
+	});
+    }
+    for (x=IX[0];x<=x_1;x+=delta_x) {
+	YP = [];
+	for (y=IY[0];y<=y_1;y+=delta_y) {
+	    var z = u(x,y);
+	    YP.push(x,y,z);
+	}
+	draw(YP, {
+	    color: op.ycolor,
+	    scale: op.scale,
+	    line: 0.5
+        });
+    }
+}
+
+
+function trafo(points, scale) {
+
+    var newPoints = [];
+    var x,y,z;
+    var u,w,v;
+    var x1, y1;
+    var xAngle = rad(Number(xAngleInput.value));
+    var yAngle = rad(Number(yAngleInput.value));
+    var zAngle = rad(Number(zAngleInput.value));
+    var xUnit = Number(xUnitInput.value);
+    var yUnit = Number(yUnitInput.value);
+    var zUnit = Number(zUnitInput.value);
+    var xOrigin3 = Number(xOrigin3Input.value);
+    var yOrigin3 = Number(yOrigin3Input.value);
+    var zOrigin3 = Number(zOrigin3Input.value);
+
+    var xTranslate = Number(xTranslateInput.value);
+    var yTranslate = Number(yTranslateInput.value);
+    var zTranslate = Number(zTranslateInput.value);
+
+    if (isAxis) {
+	xTranslate = yTranslate = zTranslate = 0;
+    }
+    var xOrigin2 = Number(xOrigin2Input.value);
+    var yOrigin2 = Number(yOrigin2Input.value);
+    var rotX = rad(Number(xRotInput.value));
+    var rotY = rad(Number(yRotInput.value));
+    var rotZ = rad(Number(zRotInput.value));
+    var ex = [xUnit*Math.cos(xAngle), xUnit*Math.sin(xAngle)];
+    var ey = [yUnit*Math.cos(yAngle), yUnit*Math.sin(yAngle)];
+    var ez = [zUnit*Math.cos(zAngle), zUnit*Math.sin(zAngle)];
+    for (var i = 0; i < points.length; i+=3) {
+	u = x = xOrigin3 + xTranslate + points[i];
+	v = y = yOrigin3 + yTranslate + points[i+1];
+	w = z = zOrigin3 + zTranslate + points[i+2];  
+	y = v * Math.cos(rotX) - w * Math.sin(rotX);
+	z = v * Math.sin(rotX) + w * Math.cos(rotX);
+	u = x, v = y, w = z;
+	x = u * Math.cos(rotY) + w * Math.sin(rotY);
+	z = -u * Math.sin(rotY) + w * Math.cos(rotY);
+	u = x, v = y, w = z;
+	x = u * Math.cos(rotZ) - v * Math.sin(rotZ);
+	y = u * Math.sin(rotZ) + v * Math.cos(rotZ);
+	x1 = x * ex[0] + y * ey[0] + z * ez[0];
+	y1 = x * ex[1] + y * ey[1] + z * ez[1];
+	if (scale > 0) { x1*=scale, y1*=scale; }
+	if (scale < 0) { x1*=1/Math.abs(scale), y1*=1/Math.abs(scale); } // corrected the zoom (negative value would flip graph mul´plying only)
+	// can use the scale code for the per object scale (affine trafo)
+	newPoints.push(xOrigin2 + x1, yOrigin2 + y1);
+    }
+    return newPoints;
+}
+
+function draw(points, op) {
+    op = op || {};
+    var newPoints;
+    var scale = 2.3;
+    newPoints = trafo(points, op.scale);
+    context.save();
+    context.beginPath();
+    context.moveTo(-x,-y);
+    if (op) {
+	if (op.scale) scale = op.scale;
+	if (op.color) context.strokeStyle = op.color;
+	if (op.fill) context.fillStyle = op.fill;
+	if (op.line) context.lineWidth = op.line;
+	if (op.compo) context.globalAlphaComposition = op.compo;
+	if (op.alpha) context.globalAlpha = op.alpha;
+    }
+    var i = 0;
+    var x = newPoints[i], 
+	y=  newPoints[i+1];
+    var y_1,x_1;
+    for (var i = 0; i < newPoints.length; i+=2) {
+	x = newPoints[i];
+	y = newPoints[i+1];
+	context.lineTo(-x,-y);
+    }
+    if (op.fill) context.fill();
+    if (op.color) context.stroke();
+    context.closePath();
+    context.restore();    
+}
+});
+
+</script>
