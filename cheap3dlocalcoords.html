@@ -3,7 +3,7 @@
 <meta charset="utf8">
 
 </head><body>
-<h1>cheap 3d local units</h1>
+<h1>cheap 3d local coords</h1>
 <p>f(x,y) { return <input type="text" size=80 value="x*x + y*y" id="cheapInput">; }<br>
 x angle: <input id="xAngle" type=number value=330> |
 y angle: <input id="yAngle" type=number value=220> |
@@ -47,10 +47,12 @@ R^2 Origin (Ox',Oy'):
     to the right spot, like on a piece of paper.<br>
     <br>
     A 2-D ijk-Picture of a 3-D graph can be found<br>
-    in the calc3book.pdf from mecmath.net. That made me think.<br>
+    in the calc3book.pdf from mecmath.net.<br>
+    That had let me think how to do that on the screen.<br>
     <br>
-    This here covers most of the steps i figured out<br>
-    already. <br>
+    The following algorithm covers most of<br>
+    the steps i figured out already to do the standard<br>
+    transforms before projecting with this nice formula.<br>
     <br>
     <br>
 	All three angles start at 0
@@ -371,8 +373,7 @@ function trafo(points, op) {
     
     // TODO:
     // move the dom element stuff out of this function
-    // and let this function take an object with the
-    // data, that it can handle any point/base/xform mesh.
+    // and let this function take an object with the transform data each
     
     // The angle of the projection axis
     var xAngle = rad(Number(xAngleInput.value));
@@ -408,14 +409,7 @@ function trafo(points, op) {
     var rotY = rad(Number(yRotInput.value));
     var rotZ = rad(Number(zRotInput.value));
     
-    // i think i´ve got to let xyzUnit slide for perspective
-    // local Units do the coordinate unit change per objet
-    // to preserve rotation size. Well, i rename and clean
-    // this up
-    
-    // the 3-D to 2-D Vector Base
-    // can take off the array and just use the values
-
+    // the 3-D to 2-D Vector Base (The Gerhold Projection Matrix)
     var 
     xBaseX = xUnit*Math.cos(xAngle),
     xBaseY = xUnit*Math.sin(xAngle),
@@ -424,24 +418,19 @@ function trafo(points, op) {
     zBaseX = zUnit*Math.cos(zAngle),
     zBaseY = zUnit*Math.sin(zAngle);
     
-    // perspective interpolating the unit soon
-    // means taking the unit away from the front doing the one
-    // multiplication also in the loop to change for perspective
-    
     // rotation precalculation of cos/sin terms
     var rotxcos = Math.cos(rotX),  rotxsin = Math.sin(rotX);
     var rotycos = Math.cos(rotY),  rotysin = Math.sin(rotY);
     var rotzcos = Math.cos(rotZ),  rotzsin = Math.sin(rotZ);
     
-    // local coordinates
-    var xLocal = Number(xLocalInput.value) || 1;
-    var yLocal = Number(yLocalInput.value) || 1;
-    var zLocal = Number(zLocalInput.value) || 1;
-    
-    
     var preTranslateX = 0;
     var preTranslateY = 0;
     var preTranslateZ = 0;
+
+    // the x,y,z unit lengths for the object
+    var xLocal = Number(xLocalInput.value) || 1;
+    var yLocal = Number(yLocalInput.value) || 1;
+    var zLocal = Number(zLocalInput.value) || 1;
 
     // this is the place for the local 3x3 coordinate base
     var xLocalX = xLocal,
@@ -460,11 +449,6 @@ function trafo(points, op) {
     
     for (var i = 0; i < points.length; i+=3) {
 	
-	// get coords multiplied by local unit length 
-	// (a local base xform could replace this, means three lines of multiplication to apply a 3x3 local base), 
-	
-	// set origin, translate and 
-
 	x = points[i];
 	y = points[i+1];
 	z = points[i+2];
@@ -482,6 +466,7 @@ function trafo(points, op) {
 	
 	// (i found variations of rotating around the world and the own base)
 	// this rotates around with the whole stuff in the picture
+	// ok, this is the "small application growing out of it´s shoes" effect
 	u = x, v = y, w = z;
 	y = v * rotxcos - w * rotxsin
 	z = v * rotxsin + w * rotxcos
@@ -497,6 +482,7 @@ function trafo(points, op) {
 	z = zOrigin3 + zTranslate + z;
 	
 	// 3-d to 2-d of the coords
+	// i´ve searched many years for this simple formula.
 	x1 = x * xBaseX + y * yBaseX + z * zBaseX;
 	y1 = x * xBaseY + y * yBaseY + z * zBaseY;
 	
