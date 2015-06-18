@@ -1,0 +1,545 @@
+<!doctype html>
+<html><head>
+<meta charset="utf8">
+
+</head><body>
+<h1>cheap 3d local units</h1>
+<p>f(x,y) { return <input type="text" size=80 value="x*x + y*y" id="cheapInput">; }<br>
+x angle: <input id="xAngle" type=number value=330> |
+y angle: <input id="yAngle" type=number value=220> |
+z angle: <input id="zAngle" type=number value=90> |<br>
+x unit: <input step=0.1 id="xUnit" type=number value=1> |
+y unit: <input step=0.1 id="yUnit" type=number value=1> |
+z unit: <input step=0.1 id="zUnit" type=number value=1> |<br>
+x obj unit: <input step=0.1 id="xLocal" type=number value=25> |
+y obj unit: <input step=0.1 id="yLocal" type=number value=20> |
+z obj unit: <input step=0.1 id="zLocal" type=number value=4> |<br>
+zoom <input id="cheapZoom" type=number value=1> | <s>Front height: <input id="frontHeightInput" type=number value=1.5>, Back height: <input id="backHeightInput" type=number value=0.5></s><br>
+range [-x,x] [<input id="xStart" type=number  max=0 value=-4>,<input id="xStop" min=0 type=number value=4>] |<br>
+range [-y,y] [<input id="yStart" type=number  max=0 value=-4>,<input id="yStop" min=0 type=number value=4>] |<br>
+R^3 Origin (Ox,Oy,Oz): (<input step=1 id="xOrigin3" type=number value=0>,
+<input step=1 id="yOrigin3" type=number value=0>,
+<input step=1 id="zOrigin3" type=number value=0>)<br>
+Rotate Surface (x,y,z): (<input step=1 id="xRot" type=number value=0>,
+<input step=1 id="yRot" type=number  value=0>,
+<input step=1 id="zRot" type=number  value=0>)<br>
+Translate Surface (Tx,Ty,Tz): (<input step=1 id="xTranslateObj" type=number value=0>,
+<input step=1 id="yTranslateObj" type=number value=0>,
+<input step=1 id="zTranslateObj" type=number value=0>)<br>
+R^2 Origin (Ox',Oy'):
+(<input step=1 id="xOrigin2" type=number value=0>,
+<input step=1 id="yOrigin2" type=number value=0>)<br>
+
+
+
+<button id="cheapSubmit">draw Surface</button></p>
+<canvas width="640" height="500" style="border: 1px solid black" id="cheap3d"></canvas>
+<div style="float:right;font-size:0.6em;">
+    Cheap 3-D to 2-D Projection Matrix<br>
+    <br>
+    Paper-Pen-3D<br>
+    <br>
+    Or the Gerhold Projection<br>
+    <br>
+    I show you how to multiply <br>
+    three coordinates with three 2-d bases to move <br>
+    left and right with cosine and up and down with sine<br>
+    to the right spot, like on a piece of paper.<br>
+    <br>
+    A 2-D ijk-Picture of a 3-D graph can be found<br>
+    in the calc3book.pdf from mecmath.net. That made me think.<br>
+    <br>
+    This here covers most of the steps i figured out<br>
+    already. <br>
+    <br>
+    <br>
+	All three angles start at 0
+	&alpha; := x-Axis Angle<br>
+	&beta; := y-Axis Angle<br>
+	&gamma; := z-Axis Angle<br>
+	u<sub>{x,y,z}</sub> := Unit of the vectors<br>
+	of the projection base.<br>
+	should all have same size, .<br>
+	else the thing stretch to a side<br>
+	when rotating<br>
+	
+    <br>
+    The projection is a 2x3 matrix.<br>
+    I had the idea to use three two dimensional vectors.<br>
+    The idea came from orthogonal bases and<br>
+    the memory of the ijk-Notation Picture<br>
+    showing the three base vectors on the axes.<br>
+    <br>
+    Each column holds a base vector for x,y or z.<br>
+    [len*cos({x,y,z}angle), len*sin({x,y,z}angle)]<br>
+    Instead of taking numbers i took the unit circle<br>
+    and angles.<br>
+	<br>
+    P = <br>
+    	
+    <table>
+	<tr>
+	<td>u<sub>x</sub>*Math.cos(&alpha;)
+	<td>u<sub>y</sub>*Math.cos(&beta;)
+	<td>u<sub>z</sub>*Math.cos(&gamma;)
+	</tr>
+	<tr>
+	
+	<td>u<sub>x</sub>*Math.sin(&alpha;)
+	<td>u<sub>y</sub>*Math.sin(&beta;)
+	<td>u<sub>z</sub>*Math.sin(&gamma;)
+	</tr>
+	
+    </table>
+    
+    <br>
+    
+    x = points[i]<br>
+    y = points[i+1]<br>
+    z = points[i+2]<br>
+
+    Apply a local 3x3 base 
+    <br>
+    x = x*XBx+y*XBy+z*XBz<br>
+    y = x*YBx+y*YBy+z*YBz<br>
+    z = x*ZBx+y*ZBy+z*ZBz<br>
+    <br>
+    
+    <br>Rotate the object<br>
+    <br>
+    Do local translation to origin<br>
+    <br>
+    x = Ox + Tx + x<br>
+    y = Oy + Ty + y <br>
+    z = Oz + Tz + z <br>
+    U = Origin, T = Translation<br>
+    
+    <br>
+    
+    Rotate the object around the world.<br>
+    
+    <br>
+    Maybe i have rendered the perspective<br>
+    here already. <br>
+    <br>
+    
+    If i multiply the 3-D coordinates now<br>
+    with P, i get the correct x' and y' for<br>
+    the 2-D screen.<br>
+    <br>
+    <br>
+    P*[x;y;z] = [x';y']<br>
+    <br>
+    Ok, i have figured out transforms above, to<br>
+    prove the work.<br>
+    This here is the projection onto the screen:<br>
+    <br>
+    <table>
+	<tr>
+	
+	<td>
+	x' = x*u<sub>x</sub>*Math.cos(&alpha;)<br>
+	+ y*u<sub>y</sub>*Math.cos(&beta;)<br>
+	+ z*u<sub>z</sub>*Math.cos(&gamma;)<br>
+	</tr>
+	<tr>
+	<td>
+	y' = x*u<sub>x</sub>*Math.sin(&alpha;)<br>
+	+ y*u<sub>y</sub>*Math.sin(&beta;)<br>
+	+ z*u<sub>z</sub>*Math.sin(&gamma;)<br>
+	</tr>
+	
+    </table>
+
+    <br>
+    Now i can shift the picture on the 2-D screen<br>
+    by adding x' = origin2x + x' and<br>
+    y' = origin2y + y'<br>
+    <br>
+    Could apply the 2-D stuff on the image now.<br>
+    <br>
+    The text of this document is not very good,<br>
+    but i hope you get the point until here.<br>
+    <br>
+    Will rewrite it technically.<br>
+    <br>
+</div>
+<br style="clear:both">
+<script>
+
+"use strict";
+
+window.addEventListener("DOMContentLoaded", function(e) {
+    
+    var context = document.getElementById("cheap3d").getContext("2d");
+    context.translate(context.canvas.width/2, context.canvas.height/2);    
+
+    var cheapInput = document.getElementById("cheapInput");
+    var cheapSubmit = document.getElementById("cheapSubmit");
+    var cheapZoom = document.getElementById("cheapZoom");
+    cheapSubmit.addEventListener("click", drawFunctionFromForm);
+    
+    var xAngleInput = document.getElementById("xAngle");
+    var yAngleInput = document.getElementById("yAngle");
+    var zAngleInput = document.getElementById("zAngle");
+    
+    var xUnitInput = document.getElementById("xUnit");
+    var yUnitInput = document.getElementById("yUnit");
+    var zUnitInput = document.getElementById("zUnit");
+    
+    var xOrigin3Input = document.getElementById("xOrigin3");
+    var yOrigin3Input = document.getElementById("yOrigin3");
+    var zOrigin3Input = document.getElementById("zOrigin3");
+    
+    var xOrigin2Input = document.getElementById("xOrigin2");
+    var yOrigin2Input = document.getElementById("yOrigin2");
+    
+    var xTranslateInput = document.getElementById("xTranslateObj");
+    var yTranslateInput = document.getElementById("yTranslateObj");
+    var zTranslateInput = document.getElementById("zTranslateObj");
+    
+    
+    var xLocalInput = document.getElementById("xLocal");
+    var yLocalInput = document.getElementById("yLocal");
+    var zLocalInput = document.getElementById("zLocal");
+    
+    var xRotInput = document.getElementById("xRot");
+    var yRotInput = document.getElementById("yRot");
+    var zRotInput = document.getElementById("zRot");
+    
+    var xStartInput = document.getElementById("xStart");
+    var yStartInput = document.getElementById("yStart");
+    var xStopInput = document.getElementById("xStop");
+    var yStopInput = document.getElementById("yStop");
+    
+    var frontHeightInput = document.getElementById("frontHeightInput");
+    var backHeightInput = document.getElementById("backHeightInput");
+    
+    xStartInput.onchange = function () { cheapSubmit.click(); };
+    yStartInput.onchange = function () { cheapSubmit.click(); };
+    xStopInput.onchange = function () { cheapSubmit.click(); };
+    yStopInput.onchange = function () { cheapSubmit.click(); };    
+    xAngleInput.onchange = function () { cheapSubmit.click(); };
+    yAngleInput.onchange = function () { cheapSubmit.click(); };
+    zAngleInput.onchange = function () { cheapSubmit.click(); };
+    xUnitInput.onchange = function () { cheapSubmit.click(); };
+    yUnitInput.onchange = function () { cheapSubmit.click(); };
+    zUnitInput.onchange = function () { cheapSubmit.click(); };
+
+    xLocalInput.onchange = function () { cheapSubmit.click(); };
+    yLocalInput.onchange = function () { cheapSubmit.click(); };
+    zLocalInput.onchange = function () { cheapSubmit.click(); };
+
+    
+    xOrigin3Input.onchange = function () { cheapSubmit.click(); };
+    yOrigin3Input.onchange = function () { cheapSubmit.click(); };
+    zOrigin3Input.onchange = function () { cheapSubmit.click(); };
+    
+    
+    xOrigin2Input.onchange = function () { cheapSubmit.click(); };
+    yOrigin2Input.onchange = function () { cheapSubmit.click(); };
+
+    xRotInput.onchange = function () { cheapSubmit.click(); };
+    yRotInput.onchange = function () { cheapSubmit.click(); };
+    zRotInput.onchange = function () { cheapSubmit.click(); };
+
+    xTranslateInput.onchange = function () { cheapSubmit.click(); };
+    yTranslateInput.onchange = function () { cheapSubmit.click(); };
+    zTranslateInput.onchange = function () { cheapSubmit.click(); };
+
+    
+    var isAxis = false;        
+    
+    frontHeightInput.onchange = function () { cheapSubmit.click(); };
+    backHeightInput.onchange = function () { cheapSubmit.click(); };
+    cheapZoom.onchange = function () { cheapSubmit.click(); };
+    cheapSubmit.click();
+    
+function drawFunctionFromForm(e) {
+
+    var scale = Number(cheapZoom.value);
+    var code = cheapInput.value;
+    var xStart =Number(xStartInput.value);
+    var yStart =Number(yStartInput.value);
+    var xStop = Number(xStopInput.value);
+    var yStop = Number(yStopInput.value);    
+    
+    var f = new Function("x,y,z", "return ("+code+");");
+    context.clearRect(-context.canvas.width, -context.canvas.height, context.canvas.width*2, context.canvas.height*2);
+
+    isAxis = true;
+    axes(scale);
+    isAxis = false;
+	    
+    var tmp;
+    // can´t hang a weak loop (didn´t myself)
+    if (xStart > xStop) {
+	tmp = xStart;
+	xStart = xStop;
+	xStop = tmp;
+    }
+    if (yStart > yStop) {
+	tmp = yStart;
+	yStart = yStop;
+	yStop = tmp;
+    }
+    // if type=number max=0 and min=0 fail
+    
+    plot({
+	f: f,
+	X: [xStart,xStop], // x-Intervall
+	dX: 0.2,	// Abstand der Linien
+    	Y: [yStart,yStop], // y-Intervall
+	dY: 0.2,	// Abstand der Linien
+    	scale: scale,
+	xcolor: "darkblue",
+    	ycolor: "purple"
+    });	
+}
+
+function rad(dg) {
+    return Math.PI/180*dg;
+}
+
+function axes(scale) {
+    scale || 1; // now follows zoom factor, too (visual irritation else)
+    var X=[];
+    for (var x = -10; x < 10; x+=1) X.push(x,0,0);
+    var Y=[];
+    for (var y = -10; y < 10; y+=1) Y.push(0,y,0);
+    var Z=[];
+    for (var z = -10; z < 10; z+=1) Z.push(0,0,z);
+    draw(X, {
+	color: "red",
+	scale: scale 
+    });
+    draw(Y, {
+	color: "yellow",
+	scale: scale 
+    });
+    draw(Z, {
+	color: "green", 
+	scale: scale 
+    });
+}
+
+function plot(op) {
+    var IX = op.X;
+    var IY = op.Y;
+    var u = op.f;
+    var XP, YP;
+    var x = IX[0];
+    var x_1 = IX[1];
+    var delta_x = op.dX || 1;
+    var y = IY[0];
+    var y_1 = IY[1];
+    var delta_y = op.dY || 1;
+    for (y=IY[0];y<=y_1;y+=delta_y) {
+	XP = [];
+	for (x=IX[0];x<=x_1;x+=delta_x) {
+	    var z = u(x,y);
+	    XP.push(x,y,z);
+	}
+	draw(XP, {
+	    color: op.xcolor,
+	    scale: op.scale,
+	    line: 0.5
+	});
+    }
+    for (x=IX[0];x<=x_1;x+=delta_x) {
+	YP = [];
+	for (y=IY[0];y<=y_1;y+=delta_y) {
+	    var z = u(x,y);
+	    YP.push(x,y,z);
+	}
+	draw(YP, {
+	    color: op.ycolor,
+	    scale: op.scale,
+	    line: 0.5
+        });
+    }
+}
+
+
+function trafo(points, op) {
+
+    var scale = op.scale || 1;
+    var newPoints = [];
+    var x,y,z;
+    var u,w,v;
+    var x1, y1;
+    
+    // TODO:
+    // move the dom element stuff out of this function
+    // and let this function take an object with the
+    // data, that it can handle any point/base/xform mesh.
+    
+    // The angle of the projection axis
+    var xAngle = rad(Number(xAngleInput.value));
+    var yAngle = rad(Number(yAngleInput.value));
+    var zAngle = rad(Number(zAngleInput.value));
+    
+    // The unit of the projection vectors
+    var xUnit = Number(xUnitInput.value);
+    var yUnit = Number(yUnitInput.value);
+    var zUnit = Number(zUnitInput.value);
+    
+    // The R^3 Origin could be moved away from 0,0,0
+    var xOrigin3 = Number(xOrigin3Input.value);
+    var yOrigin3 = Number(yOrigin3Input.value);
+    var zOrigin3 = Number(zOrigin3Input.value);
+
+    // objects local translation
+    var xTranslate = Number(xTranslateInput.value);
+    var yTranslate = Number(yTranslateInput.value);
+    var zTranslate = Number(zTranslateInput.value);
+
+    // will be changed by using the op argument next
+    if (isAxis) {
+	xTranslate = yTranslate = zTranslate = 0;
+    }
+    
+    // R^2 Center
+    var xOrigin2 = Number(xOrigin2Input.value);
+    var yOrigin2 = Number(yOrigin2Input.value);
+    
+    // rotation angles 
+    var rotX = rad(Number(xRotInput.value));
+    var rotY = rad(Number(yRotInput.value));
+    var rotZ = rad(Number(zRotInput.value));
+    
+    // i think i´ve got to let xyzUnit slide for perspective
+    // local Units do the coordinate unit change per objet
+    // to preserve rotation size. Well, i rename and clean
+    // this up
+    
+    // the 3-D to 2-D Vector Base
+    // can take off the array and just use the values
+
+    var 
+    xBaseX = xUnit*Math.cos(xAngle),
+    xBaseY = xUnit*Math.sin(xAngle),
+    yBaseX = yUnit*Math.cos(yAngle),
+    yBaseY = yUnit*Math.sin(yAngle),
+    zBaseX = zUnit*Math.cos(zAngle),
+    zBaseY = zUnit*Math.sin(zAngle);
+    
+    // perspective interpolating the unit soon
+    // means taking the unit away from the front doing the one
+    // multiplication also in the loop to change for perspective
+    
+    // rotation precalculation of cos/sin terms
+    var rotxcos = Math.cos(rotX),  rotxsin = Math.sin(rotX);
+    var rotycos = Math.cos(rotY),  rotysin = Math.sin(rotY);
+    var rotzcos = Math.cos(rotZ),  rotzsin = Math.sin(rotZ);
+    
+    // local coordinates
+    var xLocal = Number(xLocalInput.value) || 1;
+    var yLocal = Number(yLocalInput.value) || 1;
+    var zLocal = Number(zLocalInput.value) || 1;
+    
+    
+    var preTranslateX = 0;
+    var preTranslateY = 0;
+    var preTranslateZ = 0;
+
+    // this is the place for the local 3x3 coordinate base
+    var xLocalX = xLocal,
+	xLocalY = 0,
+	xLocalZ = 0,
+    
+	yLocalX = 0,
+	yLocalY = yLocal,
+	yLocalZ = 0,
+	
+	zLocalX = 0,
+	zLocalY = 0,
+	zLocalZ = zLocal;
+    
+    // almost the smallest transformation in the world yet :-)
+    
+    for (var i = 0; i < points.length; i+=3) {
+	
+	// get coords multiplied by local unit length 
+	// (a local base xform could replace this, means three lines of multiplication to apply a 3x3 local base), 
+	
+	// set origin, translate and 
+
+	x = points[i];
+	y = points[i+1];
+	z = points[i+2];
+	
+	// Apply a whole 3x3 base to the object
+	u = x*xLocalX + y*xLocalY + z*xLocalZ;
+	v = x*yLocalX + y*yLocalY + z*yLocalZ;
+	w = x*zLocalX + y*zLocalY + z*zLocalZ;
+	x = u, y = v, z = w;
+
+	// translate before rotation
+	x = preTranslateX + x
+	y = preTranslateY + y
+	z = preTranslateZ + z
+	
+	// (i found variations of rotating around the world and the own base)
+	// this rotates around with the whole stuff in the picture
+	u = x, v = y, w = z;
+	y = v * rotxcos - w * rotxsin
+	z = v * rotxsin + w * rotxcos
+	u = x, v = y, w = z;
+	x = u * rotycos + w * rotysin;
+	z = -u * rotysin + w * rotycos;
+	u = x, v = y, w = z;
+	x = u * rotzcos - v * rotzsin;
+	y = u * rotzsin + v * rotzcos;
+	
+	x = xOrigin3 + xTranslate + x;
+	y = yOrigin3 + yTranslate + y;
+	z = zOrigin3 + zTranslate + z;
+	
+	// 3-d to 2-d of the coords
+	x1 = x * xBaseX + y * yBaseX + z * zBaseX;
+	y1 = x * xBaseY + y * yBaseY + z * zBaseY;
+	
+	// apply zoom to 2-d result
+	if (scale > 0) { x1*=scale, y1*=scale; }
+	if (scale < 0) { x1*=1/Math.abs(scale), y1*=1/Math.abs(scale); }
+
+	// add 2-d origin and push new points
+	newPoints.push(xOrigin2 + x1, yOrigin2 + y1);
+    }
+    return newPoints;
+}
+
+function draw(points, op) {
+    op = op || {};
+    var newPoints;
+    var scale = 2.3;
+    newPoints = trafo(points, op);
+    context.save();
+    context.beginPath();
+    context.moveTo(-x,-y);
+    if (op) {
+	if (op.scale) scale = op.scale;
+	if (op.color) context.strokeStyle = op.color;
+	if (op.fill) context.fillStyle = op.fill;
+	if (op.line) context.lineWidth = op.line;
+	if (op.compo) context.globalAlphaComposition = op.compo;
+	if (op.alpha) context.globalAlpha = op.alpha;
+    }
+    var i = 0;
+    var x = newPoints[i], 
+	y=  newPoints[i+1];
+    var y_1,x_1;
+    for (var i = 0; i < newPoints.length; i+=2) {
+	x = newPoints[i];
+	y = newPoints[i+1];
+	context.lineTo(-x,-y);
+    }
+    if (op.fill) context.fill();
+    if (op.color) context.stroke();
+    context.closePath();
+    context.restore();    
+}
+});
+
+</script>
