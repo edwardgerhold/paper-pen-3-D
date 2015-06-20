@@ -4,16 +4,16 @@
 
 </head><body>
 <h1>cheap 3d local rotate</h1>
-<p>f(x,y) { return <input type="text" size=80 value="x*x + y*y" id="cheapInput">; }<br>
+<p>f(x,y) { return <input type="text" size=80 value="x*x - y*y" id="cheapInput">; }<br>
 x angle: <input id="xAngle" type=number value=330> |
-y angle: <input id="yAngle" type=number value=220> |
+y angle: <input id="yAngle" type=number value=210> |
 z angle: <input id="zAngle" type=number value=90> |<br>
-x unit: <input step=0.1 id="xUnit" type=number value=1> |
-y unit: <input step=0.1 id="yUnit" type=number value=1> |
-z unit: <input step=0.1 id="zUnit" type=number value=1> |<br>
-x obj unit: <input step=0.1 id="xLocal" type=number value=25> |
-y obj unit: <input step=0.1 id="yLocal" type=number value=20> |
-z obj unit: <input step=0.1 id="zLocal" type=number value=4> |<br>
+x unit: <input step=0.5 id="xUnit" type=number value=1> |
+y unit: <input step=0.5 id="yUnit" type=number value=1> |
+z unit: <input step=0.5 id="zUnit" type=number value=1> |<br>
+x obj unit: <input step=1 id="xLocal" type=number value=25> |
+y obj unit: <input step=1 id="yLocal" type=number value=20> |
+z obj unit: <input step=1 id="zLocal" type=number value=4> |<br>
 zoom <input id="cheapZoom" type=number value=1> | <s>Front height: <input id="frontHeightInput" type=number value=1.5>, Back height: <input id="backHeightInput" type=number value=0.5></s><br>
 range [-x,x] [<input id="xStart" type=number  max=0 value=-4>,<input id="xStop" min=0 type=number value=4>] |<br>
 range [-y,y] [<input id="yStart" type=number  max=0 value=-4>,<input id="yStop" min=0 type=number value=4>] |<br>
@@ -136,7 +136,6 @@ R^2 Origin (Ox',Oy'):
     <br>
     <table>
 	<tr>
-	
 	<td>
 	x' = x*u<sub>x</sub>*Math.cos(&alpha;)<br>
 	+ y*u<sub>y</sub>*Math.cos(&beta;)<br>
@@ -196,7 +195,6 @@ window.addEventListener("DOMContentLoaded", function(e) {
     var yTranslateInput = document.getElementById("yTranslateObj");
     var zTranslateInput = document.getElementById("zTranslateObj");
     
-    
     var xLocalInput = document.getElementById("xLocal");
     var yLocalInput = document.getElementById("yLocal");
     var zLocalInput = document.getElementById("zLocal");
@@ -212,7 +210,8 @@ window.addEventListener("DOMContentLoaded", function(e) {
     
     var frontHeightInput = document.getElementById("frontHeightInput");
     var backHeightInput = document.getElementById("backHeightInput");
-    
+
+    cheapInput.onchange = function () { cheapSubmit.click(); };    
     xStartInput.onchange = function () { cheapSubmit.click(); };
     yStartInput.onchange = function () { cheapSubmit.click(); };
     xStopInput.onchange = function () { cheapSubmit.click(); };
@@ -297,13 +296,11 @@ function drawFunctionFromForm(e) {
 
     var f = new Function("x,y,z", "return ("+code+");");
     context.clearRect(-context.canvas.width, -context.canvas.height, context.canvas.width*2, context.canvas.height*2);
-    
 
     axes({
     	base2: [ xBaseX, xBaseY, yBaseX, yBaseY, zBaseX, zBaseY ],
     	origin2: [xOrigin2, yOrigin2],
 	origin3: [xOrigin3, yOrigin3, zOrigin3],	
-	// no longer "isAxis" just no rotation and no translation. Only the "base" in the demo.
 	scale: scale
     });
 
@@ -319,7 +316,6 @@ function drawFunctionFromForm(e) {
 	yStart = yStop;
 	yStop = tmp;
     }
-    
     
     plot({
 	f: f,
@@ -454,10 +450,11 @@ function plot(op) {
 }
 
 
-function trafo(points, op) {
+function trafo(op) {
 
-    var scale = op.scale || 1;
+    var points = op.points;
     var newPoints = [];
+    var scale = op.scale || 1;
     var x,y,z;
     var u,w,v;
     var x1, y1;
@@ -512,7 +509,6 @@ function trafo(points, op) {
 	yBaseZ *= zUnit;
     }
     
-    
     var preTranslateX = 0;
     var preTranslateY = 0;
     var preTranslateZ = 0;
@@ -521,7 +517,6 @@ function trafo(points, op) {
 	preTranslateX = op.pretranslate;
 	preTranslateY = op.pretranslate;
 	preTranslateZ = op.pretranslate;
-    
     }
 
     if (op.unit3) {
@@ -552,7 +547,7 @@ function trafo(points, op) {
 	v = y = points[i+1];
 	w = z = points[i+2];
 	
-	if (op.base3) {
+	if (op.base3) { // could remove "op." but not today.
 	    u = x*xLocalX + y*xLocalY + z*xLocalZ;
 	    v = x*yLocalX + y*yLocalY + z*yLocalZ;
 	    w = x*zLocalX + y*zLocalY + z*zLocalZ;
@@ -583,6 +578,7 @@ function trafo(points, op) {
 	    y = yOrigin3 + y;
 	    z = zOrigin3 + z;
 	}
+	
 	if (op.translate) {
 	    x = xTranslate + x;
 	    y = yTranslate + y;
@@ -608,10 +604,10 @@ function draw(op) {
     op = op || {};
     var newPoints;
     var scale = 2.3;
-    newPoints = trafo(op.points, op);
+    newPoints = trafo(op);
     context.save();
     context.beginPath();
-    context.moveTo(-x,-y);
+    context.moveTo(x,-y);
     if (op) {
 	if (op.scale) scale = op.scale;
 	if (op.color) context.strokeStyle = op.color;
