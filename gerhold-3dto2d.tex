@@ -1,8 +1,7 @@
+\begin{document}
 Three dimensional coordinates into two dimensional coordinates conversion
 
 Written by Edward Gerhold
-http://linux-swt.de
-email:edward.gerhold@googlemail.com
 
 Definitions
 
@@ -12,7 +11,7 @@ into three directions]
 Let phin be the set of axis angles, one for each axis. The angles start
 at the same place, at the number zero, you have to arrange the x, y, and
 z axes like on a piece of paper around the unit circle by giving them the
-appropriate angles.
+appropriate angles. All three angles start at the default at zero
 
 phin = { phix, phiy, phiz }
 
@@ -21,7 +20,7 @@ ey and ez, they point on the two dimensional plane into three directions
 and represent the axes of the three dimensional coordinate system.
 
 en = { ex, ey, ez }
-
+ 
 To guess no numbers, it´s easier for us, to go around the unit circle by
 the angles of the unit vectors, and to use cosine and sine for the correct
 x-distance and y-distance. For help, you should remember this parametrization
@@ -36,16 +35,23 @@ ex = (r*cos(phix), r*sin(phix) )T
 ey = (r*cos(phiy), r*sin(phiy) )T
 ez = (r*cos(phiz), r*sin(phiz) )T
 
+The other help we take is from the orthogonal base formula.
+The sum of the basis multiplied with the coordinates is nothing
+new. But literature explains only how to multiply square matrices
+or coordinates and bases with equal dimensions.
+
+x' = sigma en*xn
+
 To make it short, each x,y,z coordinate has to be multiplied for the new x' and
-the new y' coordinate with it´s correspondin term of the unit vector. That means,
-to summarize the cos terms for x' and to summarize the sin terms for y'.
+the new y' coordinate with it´s corresponding term of the unit vector. That means,
+to sum the cos terms up for x' and to sum the sin terms up for y'.
 
 x' = x*r*cos(phix) + y*r*cos(phiy) + z*r*cos(phiz)
 y' = x*r*sin(phix) + y*r*sin(phiy) + z*r*sin(phiz)
 
 Let A be the matrix containing the three unit vectors in order, one each
 column. You get a 2x3 matrix, which i call the Gerhold Matrix to distinguish 
-it from other matrices. 
+it from other matrices.
 
 A = (ex, ey, ez) 
   = (r*cos(phix), r*cos(phiy), r*cos(phiz);
@@ -54,11 +60,19 @@ A = (ex, ey, ez)
 Theorem (Fundamental Theorem of converting 3-D Points into 2-D Points)
 
 If you multiply the matrix containing the three two-dimensional unit vectors
-with the three coordinate points (x,y,z), the result is a two coordinate point,
-which is the correct point on the two dimensional plane representing the point
+with the three coordinate points (x,y,z), the result is a two coordinate point, 
+(x',y'), which is the correct point on the two dimensional plane representing the point
 in the three dimensional coordinate system we display.
 
 A(x,y,z) = (x',y')
+
+in other words
+
+x' = x*r*cos(phix) + y*r*cos(phiy) + z*r*cos(phiz)
+y' = x*r*sin(phix) + y*r*sin(phiy) + z*r*sin(phiz)
+
+Proof:
+[example calculation or higher math variable proof]
 
 Corollary (Converting more Dimensions)
 
@@ -66,4 +80,10 @@ The theorem can be extended to more dimensions, for example can four two-dimensi
 vectors represent a 4-D space on the 2-D plane. They get converted into the correct
 2-D points. For Example, if you use a 2x4 matrix and convert all points at each 
 instance of t you have a moving object into the direction of the fourth vector. 
+
+A = (ex, ey, ez) 
+  = (r*cos(phix), r*cos(phiy), r*cos(phiz), r*cos(phit);
+     r*sin(phix), r*sin(phiy), r*sin(phiz), r*sin(phit))
+
 A(x,y,z,t)=(x',y')
+\end{document}
