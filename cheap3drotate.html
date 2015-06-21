@@ -243,7 +243,6 @@ window.addEventListener("DOMContentLoaded", function(e) {
     xTranslateInput.onchange = function () { cheapSubmit.click(); };
     yTranslateInput.onchange = function () { cheapSubmit.click(); };
     zTranslateInput.onchange = function () { cheapSubmit.click(); };
-
     
     frontHeightInput.onchange = function () { cheapSubmit.click(); };
     backHeightInput.onchange = function () { cheapSubmit.click(); };
@@ -413,7 +412,7 @@ function plot(op) {
 	    points: XP,
 	    color: op.xcolor,
 	    scale: op.scale,
-	    line: 0.5,
+	    line: 1,
 	    base2: op.base2,
 	    base3: op.base3,
     	    unit2: op.unit2,
@@ -435,7 +434,7 @@ function plot(op) {
 	    points: YP,
 	    color: op.ycolor,
 	    scale: op.scale,
-	    line: 0.5,
+	    line: 1,
 	    base2: op.base2,
 	    base3: op.base3,
 	    unit2: op.unit2,
@@ -458,13 +457,6 @@ function trafo(op) {
     var x,y,z;
     var u,w,v;
     var x1, y1;
-
-    /*if (op.angle) { uhm, the base just has been passed. we´ll see how to code this.
-        var xAngle = op.angle[0];
-        var yAngle = op.angle[1];
-        var zAngle = op.angle[2];
-    }*/
-    
     if (op.origin3) {
         var xOrigin3 = op.origin3[0];
 	var yOrigin3 = op.origin3[1];
@@ -489,14 +481,30 @@ function trafo(op) {
 	var rotzcos = Math.cos(rotZ),  rotzsin = Math.sin(rotZ);
     }
 
-    var 
-    xBaseX = op.base2[0],
-    xBaseY = op.base2[1],
-    yBaseX = op.base2[2],
-    yBaseY = op.base2[3],
-    zBaseX = op.base2[4],
-    zBaseY = op.base2[5];
-    
+    // i can pass the whole base as matrix
+    if (op.base2) {
+    var xBaseX = op.base2[0],
+	xBaseY = op.base2[1],
+	yBaseX = op.base2[2],
+	yBaseY = op.base2[3],
+	zBaseX = op.base2[4],
+	zBaseY = op.base2[5];
+    }
+
+    // or i can pass the angles
+    if (op.angles) {
+        var xAngle = op.angle[0];
+        var yAngle = op.angle[1];
+        var zAngle = op.angle[2];
+        xBaseX = Math.cos(xAngle);
+        yBaseX = Math.cos(yAngle);
+        zBaseX = Math.cos(zAngle);
+        xBaseX = Math.cos(xAngle);
+        yBaseY = Math.cos(yAngle);
+        zBaseZ = Math.cos(zAngle);
+    }
+
+    // if i add
     if (op.unit2) {
 	var xUnit = op.unit2[0];
 	var yUnit = op.unit2[1];
@@ -623,7 +631,7 @@ function draw(op) {
     for (var i = 0; i < newPoints.length; i+=2) {
 	x = newPoints[i];
 	y = newPoints[i+1];
-	context.lineTo(-x,-y);
+	context.lineTo(x,-y);
     }
     if (op.fill) context.fill();
     if (op.color) context.stroke();
