@@ -1,4 +1,6 @@
+\documentclass{article}
 \begin{document}
+\section
 Three dimensional coordinates into two dimensional coordinates conversion
 
 Written by Edward Gerhold
@@ -9,81 +11,98 @@ Definitions
 into three directions]
 
 Let phin be the set of axis angles, one for each axis. The angles start
-at the same place, at the number zero, you have to arrange the x, y, and
-z axes like on a piece of paper around the unit circle by giving them the
-appropriate angles. All three angles start at the default at zero
+at the same place, at the number zero, you have to arrange the $x$, $y$, and
+$z$ axes like on a piece of paper around the unit circle by giving them the
+appropriate angles. All three angles start at the default at zero.
 
-phin = { phix, phiy, phiz }
+$\phi_n := { \phi_x, \phi_y, \phi_z }$
 
-Let en be the set of three two dimensional unit base vectors, namely ex,
-ey and ez, they point on the two dimensional plane into three directions
+Let $e_n$ be the set of three two dimensional unit base vectors, namely ex,
+$e_y$ and $e_z$, they point on the two dimensional plane into three directions
 and represent the axes of the three dimensional coordinate system.
 
-en = { ex, ey, ez }
+$e_n := { e_x, e_y, e_z }$
  
 To guess no numbers, it´s easier for us, to go around the unit circle by
 the angles of the unit vectors, and to use cosine and sine for the correct
-x-distance and y-distance. For help, you should remember this parametrization
-of x and y from the unit circle.
+$x$-distance and $y$-distance. For help, you should remember this parametrization
+of $x$ and $y$ from the unit circle.
 
-x = r cos phi
-y = r sin phi
+$x = r cos \phi$
+$y = r sin \phi$
 
-Modeling the three two dimensional base vectors after this we get the following
+Modeling the three two dimensional base vectors with this information,
+we get the following three two dimensional base vectors. 
 
-ex = (r*cos(phix), r*sin(phix) )T
-ey = (r*cos(phiy), r*sin(phiy) )T
-ez = (r*cos(phiz), r*sin(phiz) )T
+$e_x := (r_xcos(\phi_x), r_xsin(\phi_x) )^T$
+$e_y := (r_ycos(\phi_y), r_ysin(\phi_y) )^T$
+$e_z := (r_zcos(\phi_z), r_zsin(\phi_z) )^T$
+
+Commentary One for each component of $(x,y,z)$ By multiplying with, we move the 
+points into their directions for the unit of the $(x,y,z)$ components.
+The values of $r_x, r_y$ and $r_z$ decide, how long one unit into each
+direction is. To preserve affine graphical transformations all three
+axes should have the same unit length, which can generally be enlarged
+or smaller than unit length. By default the cos and sin Terms have unit 
+length, if you don´t multiply with $r_x, r_y$ and $r_z$.
 
 The other help we take is from the orthogonal base formula.
 The sum of the basis multiplied with the coordinates is nothing
 new. But literature explains only how to multiply square matrices
 or coordinates and bases with equal dimensions.
 
-x' = sigma en*xn
+$x' = \displaystyle\sum^{n} e_nx_n$
 
-To make it short, each x,y,z coordinate has to be multiplied for the new x' and
-the new y' coordinate with it´s corresponding term of the unit vector. That means,
-to sum the cos terms up for x' and to sum the sin terms up for y'.
+To make it short, each $(x,y,z)$ coordinate has to be multiplied for the new $(x',y')$
+with it´s corresponding term of the unit vectors in the matrix. That means,
+to sum the products with $(x,y,z)$ and the cos terms up for $x'$ and to sum the products
+of $(x,y,z)$ and the sin terms up for $y'$. This is the same as imagining walkin left and
+right with cos and up and down with sine. Or mathematically adding positive or negative values.
 
-x' = x*r*cos(phix) + y*r*cos(phiy) + z*r*cos(phiz)
-y' = x*r*sin(phix) + y*r*sin(phiy) + z*r*sin(phiz)
+$x' = xr_xcos(\phi_x) + yr_ycos(\phi_y) + zr_zcos(\phi_z)$
+$y' = xr_xsin(\phi_x) + yr_ysin(\phi_y) + zr_zsin(\phi_z)$
 
 Let A be the matrix containing the three unit vectors in order, one each
 column. You get a 2x3 matrix, which i call the Gerhold Matrix to distinguish 
 it from other matrices.
 
-A = (ex, ey, ez) 
-  = (r*cos(phix), r*cos(phiy), r*cos(phiz);
-     r*sin(phix), r*sin(phiy), r*sin(phiz))
+$A := (e_x, e_y, e_z)$
+$  = (r_xcos(\phi_x), r_ycos(\phi_y), r_zcos(\phi_z);$
+$     r_xsin(\phi_x), r_ysin(\phi_y), r_zsin(\phi_z))$
 
-Theorem (Fundamental Theorem of converting 3-D Points into 2-D Points)
+Theorem (Fundamental Theorem of converting 3-D Points into 2-D Points):
 
 If you multiply the matrix containing the three two-dimensional unit vectors
-with the three coordinate points (x,y,z), the result is a two coordinate point, 
-(x',y'), which is the correct point on the two dimensional plane representing the point
-in the three dimensional coordinate system we display.
+with the three coordinate points $(x,y,z)$, the result is a two coordinate point, 
+$(x',y')$. This point $(x',y')$ is the correct point on the two dimensional plane,
+representing the point from the three dimensional coordinate system we display.
 
-A(x,y,z) = (x',y')
+$A(x,y,z) = (x',y')$
 
 in other words
 
-x' = x*r*cos(phix) + y*r*cos(phiy) + z*r*cos(phiz)
-y' = x*r*sin(phix) + y*r*sin(phiy) + z*r*sin(phiz)
+$x' = xr_xcos(\phi_x) + yr_ycos(\phi_y) + zr_zcos(\phi_z)$
+$y' = xr_xsin(\phi_x) + yr_ysin(\phi_y) + zr_zsin(\phi_z)$
 
 Proof:
 [example calculation or higher math variable proof]
 
-Corollary (Converting more Dimensions)
+$x' = xr_xcos(\phi_x) + yr_ycos(\phi_y) + zr_zcos(\phi_z)$
+$y' = xr_xsin(\phi_x) + yr_ysin(\phi_y) + zr_zsin(\phi_z)$
+
+Corollary (Converting any Dimensions down to less dimensions)
 
 The theorem can be extended to more dimensions, for example can four two-dimensional
 vectors represent a 4-D space on the 2-D plane. They get converted into the correct
 2-D points. For Example, if you use a 2x4 matrix and convert all points at each 
 instance of t you have a moving object into the direction of the fourth vector. 
 
-A = (ex, ey, ez) 
-  = (r*cos(phix), r*cos(phiy), r*cos(phiz), r*cos(phit);
-     r*sin(phix), r*sin(phiy), r*sin(phiz), r*sin(phit))
+$A := (e_x, e_y, e_z, e_t)$
+$  = (r_xcos(\phi_x), r_ycos(\phi_y), r_zcos(\phi_z), r_tcos(\phi_t),$
+$     r_xsin(\phi_x), r_ysin(\phi_y), r_zsin(\phi_z), r_tsin(\phi_t))$
 
-A(x,y,z,t)=(x',y')
+$A(x,y,z,t)=(x',y')$
+
+The same method can be used to convert any other number of dimensions to the $xy$-plane.
+If you know the base vectors for the other dimensions you can convert them as well.
 \end{document}
