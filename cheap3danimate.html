@@ -545,10 +545,10 @@
                 var zUnit = op.unit2[2];
                 xBaseX *= xUnit;
                 yBaseX *= xUnit;
+                zBaseX *= yUnit;
                 xBaseY *= yUnit;
-                yBaseY *= yUnit;
-                xBaseZ *= zUnit;
-                yBaseZ *= zUnit;
+                yBaseY *= zUnit;
+                zBaseY *= zUnit;
             }
 
             var preTranslateX = 0;
