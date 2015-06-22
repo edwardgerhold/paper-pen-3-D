@@ -1,16 +1,19 @@
-\documentclass{article}
+\documentclass{letter}
 \begin{document}
-\section
-Three dimensional coordinates into two dimensional coordinates conversion
+\begin{center}
+\Large{\texbf{Three dimensional coordinates into two dimensional coordinates conversion}}
+\end{center}
 
 Written by Edward Gerhold
+
+Version 0.1 (draft paper)
 
 Definitions
 
 [Picture of a 3-D coordinate system with ijk-vectors on the axes pointing
-into three directions]
+into three Directions]
 
-Let phin be the set of axis angles, one for each axis. The angles start
+Let $\phi_n$ be the set of axis angles, one for each axis. The angles start
 at the same place, at the number zero, you have to arrange the $x$, $y$, and
 $z$ axes like on a piece of paper around the unit circle by giving them the
 appropriate angles. All three angles start at the default at zero.
@@ -28,23 +31,25 @@ the angles of the unit vectors, and to use cosine and sine for the correct
 $x$-distance and $y$-distance. For help, you should remember this parametrization
 of $x$ and $y$ from the unit circle.
 
-$x = r cos \phi$
-$y = r sin \phi$
+$x = r \cos \phi$
+$y = r \sin \phi$
 
 Modeling the three two dimensional base vectors with this information,
 we get the following three two dimensional base vectors. 
 
-$e_x := (r_xcos(\phi_x), r_xsin(\phi_x) )^T$
-$e_y := (r_ycos(\phi_y), r_ysin(\phi_y) )^T$
-$e_z := (r_zcos(\phi_z), r_zsin(\phi_z) )^T$
 
-Commentary One for each component of $(x,y,z)$ By multiplying with, we move the 
+$e_x := (r_x\cos(\phi_x), r_x\sin(\phi_x) )^T$
+$e_y := (r_y\cos(\phi_y), r_y\sin(\phi_y) )^T$
+$e_z := (r_z\cos(\phi_z), r_z\sin(\phi_z) )^T$
+
+
+Remark. One for each component of $(x,y,z)$ By multiplying with, we move the 
 points into their directions for the unit of the $(x,y,z)$ components.
 The values of $r_x, r_y$ and $r_z$ decide, how long one unit into each
 direction is. To preserve affine graphical transformations all three
 axes should have the same unit length, which can generally be enlarged
-or smaller than unit length. By default the cos and sin Terms have unit 
-length, if you don´t multiply with $r_x, r_y$ and $r_z$.
+or made smaller than unit length. By default the resulting vector of the cos 
+and sin Terms has unit length, if you don´t multiply with $r_x, r_y$ and $r_z$. 
 
 The other help we take is from the orthogonal base formula.
 The sum of the basis multiplied with the coordinates is nothing
@@ -59,36 +64,41 @@ to sum the products with $(x,y,z)$ and the cos terms up for $x'$ and to sum the 
 of $(x,y,z)$ and the sin terms up for $y'$. This is the same as imagining walkin left and
 right with cos and up and down with sine. Or mathematically adding positive or negative values.
 
-$x' = xr_xcos(\phi_x) + yr_ycos(\phi_y) + zr_zcos(\phi_z)$
-$y' = xr_xsin(\phi_x) + yr_ysin(\phi_y) + zr_zsin(\phi_z)$
+
+$x' = xr_x\cos(\phi_x) + yr_y\cos(\phi_y) + zr_z\cos(\phi_z)$
+$y' = xr_x\sin(\phi_x) + yr_y\sin(\phi_y) + zr_z\sin(\phi_z)$
+
 
 Let A be the matrix containing the three unit vectors in order, one each
 column. You get a 2x3 matrix, which i call the Gerhold Matrix to distinguish 
 it from other matrices.
 
 $A := (e_x, e_y, e_z)$
-$  = (r_xcos(\phi_x), r_ycos(\phi_y), r_zcos(\phi_z);$
-$     r_xsin(\phi_x), r_ysin(\phi_y), r_zsin(\phi_z))$
+$  = (r_x\cos(\phi_x), r_y\cos(\phi_y), r_z\cos(\phi_z);$
+$     r_x\sin(\phi_x), r_y\sin(\phi_y), r_z\sin(\phi_z))$
+
 
 Theorem (Fundamental Theorem of converting 3-D Points into 2-D Points):
+
 
 If you multiply the matrix containing the three two-dimensional unit vectors
 with the three coordinate points $(x,y,z)$, the result is a two coordinate point, 
 $(x',y')$. This point $(x',y')$ is the correct point on the two dimensional plane,
 representing the point from the three dimensional coordinate system we display.
 
+
 $A(x,y,z) = (x',y')$
 
 in other words
 
-$x' = xr_xcos(\phi_x) + yr_ycos(\phi_y) + zr_zcos(\phi_z)$
-$y' = xr_xsin(\phi_x) + yr_ysin(\phi_y) + zr_zsin(\phi_z)$
+$x' = xr_x\cos(\phi_x) + yr_y\cos(\phi_y) + zr_z\cos(\phi_z)$
+$y' = xr_x\sin(\phi_x) + yr_y\sin(\phi_y) + zr_z\sin(\phi_z)$
 
 Proof:
 [example calculation or higher math variable proof]
 
-$x' = xr_xcos(\phi_x) + yr_ycos(\phi_y) + zr_zcos(\phi_z)$
-$y' = xr_xsin(\phi_x) + yr_ysin(\phi_y) + zr_zsin(\phi_z)$
+$x' = xr_x\cos(\phi_x) + yr_y\cos(\phi_y) + zr_z\cos(\phi_z)$
+$y' = xr_x\sin(\phi_x) + yr_y\sin(\phi_y) + zr_z\sin(\phi_z)$
 
 Corollary (Converting any Dimensions down to less dimensions)
 
@@ -98,8 +108,8 @@ vectors represent a 4-D space on the 2-D plane. They get converted into the corr
 instance of t you have a moving object into the direction of the fourth vector. 
 
 $A := (e_x, e_y, e_z, e_t)$
-$  = (r_xcos(\phi_x), r_ycos(\phi_y), r_zcos(\phi_z), r_tcos(\phi_t),$
-$     r_xsin(\phi_x), r_ysin(\phi_y), r_zsin(\phi_z), r_tsin(\phi_t))$
+$  = (r_x\cos(\phi_x), r_y\cos(\phi_y), r_z\cos(\phi_z), r_t\cos(\phi_t),$
+$     r_x\sin(\phi_x), r_y\sin(\phi_y), r_z\sin(\phi_z), r_t\sin(\phi_t))$
 
 $A(x,y,z,t)=(x',y')$
 
