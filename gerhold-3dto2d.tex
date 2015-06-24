@@ -1,118 +1,133 @@
-\documentclass{letter}
+\documentclass{article}
 \begin{document}
 \begin{center}
-\Large{\texbf{Three dimensional coordinates into two dimensional coordinates conversion}}
+\Large{\texbf{Three dimensional coordinates into two dimensional coordinates conversion}}\\
+\tiny
+Written by Edward Gerhold\\
+
+Version 0.1.3 (very draft paper)\\
+(will definitly be rewritten)\\
+
+June 24, 2015\\
 \end{center}
 
-Written by Edward Gerhold
-
-Version 0.1 (draft paper)
-
-Definitions
+\texbf{Definitions}
 
 [Picture of a 3-D coordinate system with ijk-vectors on the axes pointing
-into three Directions]
+into three Directions]\\
 
-Let $\phi_n$ be the set of axis angles, one for each axis. The angles start
-at the same place, at the number zero, you have to arrange the $x$, $y$, and
+Let $\varphi_n$ be the set of axis angles, one for each axis. The angles start
+at the same place, at the number zero. You have to arrange the $x$, $y$, and
 $z$ axes like on a piece of paper around the unit circle by giving them the
-appropriate angles. All three angles start at the default at zero.
+appropriate angles. All three angles start at the default at zero.\\
 
-$\phi_n := { \phi_x, \phi_y, \phi_z }$
+$\varphi_n := \{\varphi_x, \varphi_y, \varphi_z\}$\\
 
 Let $e_n$ be the set of three two dimensional unit base vectors, namely ex,
-$e_y$ and $e_z$, they point on the two dimensional plane into three directions
-and represent the axes of the three dimensional coordinate system.
+$\vec{e}_y$ and $e_z$, they point on the two dimensional plane into three directions
+and represent the axes of the three dimensional coordinate system.\\
 
-$e_n := { e_x, e_y, e_z }$
+$e_n := \{\vec{e}_x, \vec{e}_y, \vec{e}_z\}$\\
  
 To guess no numbers, it´s easier for us, to go around the unit circle by
 the angles of the unit vectors, and to use cosine and sine for the correct
 $x$-distance and $y$-distance. For help, you should remember this parametrization
-of $x$ and $y$ from the unit circle.
+of $x$ and $y$ from the unit circle.\\
 
-$x = r \cos \phi$
-$y = r \sin \phi$
+$x = r \cos \varphi$\\
+$y = r \sin \varphi$\\
 
 Modeling the three two dimensional base vectors with this information,
-we get the following three two dimensional base vectors. 
+we get the following three two dimensional base vectors.\\
 
+$\vec{e}_x := (r_x\cos(\varphi_x), r_x\sin(\varphi_x) )^T$\\
+$\vec{e}_y := (r_y\cos(\varphi_y), r_y\sin(\varphi_y) )^T$\\
+$\vec{e}_z := (r_z\cos(\varphi_z), r_z\sin(\varphi_z) )^T$\\
 
-$e_x := (r_x\cos(\phi_x), r_x\sin(\phi_x) )^T$
-$e_y := (r_y\cos(\phi_y), r_y\sin(\phi_y) )^T$
-$e_z := (r_z\cos(\phi_z), r_z\sin(\phi_z) )^T$
+One for each component of $(x,y,z)$ By multiplying with, we move the 
+points into their directions for the unit of the $(x,y,z)$ components.\\
 
-
-Remark. One for each component of $(x,y,z)$ By multiplying with, we move the 
-points into their directions for the unit of the $(x,y,z)$ components.
-The values of $r_x, r_y$ and $r_z$ decide, how long one unit into each
+\texbf{Remark}.The values of $r_x, r_y$ and $r_z$ decide, how long one unit into each
 direction is. To preserve affine graphical transformations all three
 axes should have the same unit length, which can generally be enlarged
 or made smaller than unit length. By default the resulting vector of the cos 
-and sin Terms has unit length, if you don´t multiply with $r_x, r_y$ and $r_z$. 
+and sin Terms has unit length, if you don´t multiply with $r_x, r_y$ and $r_z$. \\
 
 The other help we take is from the orthogonal base formula.
 The sum of the basis multiplied with the coordinates is nothing
 new. But literature explains only how to multiply square matrices
-or coordinates and bases with equal dimensions.
+or coordinates and bases with equal dimensions.\\
 
-$x' = \displaystyle\sum^{n} e_nx_n$
+\vec{\overline{x}} = \displaystyle\sum_{n} \vec{e}_n\vec{x}_n$\\
 
-To make it short, each $(x,y,z)$ coordinate has to be multiplied for the new $(x',y')$
+To make it short, each $(x,y,z)$ coordinate has to be multiplied for the new $(\overline{x},\overline{y})$
 with it´s corresponding term of the unit vectors in the matrix. That means,
-to sum the products with $(x,y,z)$ and the cos terms up for $x'$ and to sum the products
-of $(x,y,z)$ and the sin terms up for $y'$. This is the same as imagining walkin left and
-right with cos and up and down with sine. Or mathematically adding positive or negative values.
+to sum the products with $(x,y,z)$ and the cos terms up for $\overline{x}$ and to sum the products
+of $(x,y,z)$ and the sin terms up for $\overline{y}$. This is the same as imagining walkin left and
+right with cos and up and down with sine. Or mathematically adding positive or negative values.\\
 
+$\overline{x} = xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)$\\
+$\overline{y} = xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)$\\
 
-$x' = xr_x\cos(\phi_x) + yr_y\cos(\phi_y) + zr_z\cos(\phi_z)$
-$y' = xr_x\sin(\phi_x) + yr_y\sin(\phi_y) + zr_z\sin(\phi_z)$
-
-
-Let A be the matrix containing the three unit vectors in order, one each
+Let A be the matrix containing the three two dimensional unit vectors in order, one each
 column. You get a 2x3 matrix, which i call the Gerhold Matrix to distinguish 
 it from other matrices.
 
-$A := (e_x, e_y, e_z)$
-$  = (r_x\cos(\phi_x), r_y\cos(\phi_y), r_z\cos(\phi_z);$
-$     r_x\sin(\phi_x), r_y\sin(\phi_y), r_z\sin(\phi_z))$
+$A := \left(
+    \begin{array}{111}\vec{e}_x & \vec{e}_y & \vec{e}_z
+    \end{array}\right) = \\
+\left(
+    \begin{array}{111}
+    r_x\cos(\varphi_x) & r_y\cos(\varphi_y) & r_z\cos(\varphi_z) \\
+    r_x\sin(\varphi_x) & r_y\sin(\varphi_y) & r_z\sin(\varphi_z)) \\
+    \end{array}
+\right)$
 
-
-Theorem (Fundamental Theorem of converting 3-D Points into 2-D Points):
-
+\texbf{Theorem} \emph{(Fundamental Theorem of converting 3-D Points into 2-D Points)}:\\
 
 If you multiply the matrix containing the three two-dimensional unit vectors
 with the three coordinate points $(x,y,z)$, the result is a two coordinate point, 
-$(x',y')$. This point $(x',y')$ is the correct point on the two dimensional plane,
-representing the point from the three dimensional coordinate system we display.
+$(\overline{x},\overline{y})$. This point $(\overline{x},\overline{y})$ is the correct point on the two dimensional plane,
+representing the point from the three dimensional coordinate system we display.\\
 
 
-$A(x,y,z) = (x',y')$
+$A(x,y,z) = (\overline{x},\overline{y})$\\
 
-in other words
+Applying the operator performs the following operation\\
 
-$x' = xr_x\cos(\phi_x) + yr_y\cos(\phi_y) + zr_z\cos(\phi_z)$
-$y' = xr_x\sin(\phi_x) + yr_y\sin(\phi_y) + zr_z\sin(\phi_z)$
+$\overline{x} = xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)$\\
+$\overline{y} = xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)$\\
 
-Proof:
-[example calculation or higher math variable proof]
+\texbf{Proof};
+$A(x,y,z) = (\overline{x},\overline{y})$\\
+$\overline{x} = xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)$\\
+$\overline{y} = xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)$\\
 
-$x' = xr_x\cos(\phi_x) + yr_y\cos(\phi_y) + zr_z\cos(\phi_z)$
-$y' = xr_x\sin(\phi_x) + yr_y\sin(\phi_y) + zr_z\sin(\phi_z)$
 
-Corollary (Converting any Dimensions down to less dimensions)
+\texbf{Corollary} \emph{(Converting any Dimensions down to less dimensions)}:
 
 The theorem can be extended to more dimensions, for example can four two-dimensional
 vectors represent a 4-D space on the 2-D plane. They get converted into the correct
 2-D points. For Example, if you use a 2x4 matrix and convert all points at each 
 instance of t you have a moving object into the direction of the fourth vector. 
 
-$A := (e_x, e_y, e_z, e_t)$
-$  = (r_x\cos(\phi_x), r_y\cos(\phi_y), r_z\cos(\phi_z), r_t\cos(\phi_t),$
-$     r_x\sin(\phi_x), r_y\sin(\phi_y), r_z\sin(\phi_z), r_t\sin(\phi_t))$
+$A := (\vec{e}_x, \vec{e}_y, \vec{e}_z, \vec{e}_t)$\\
+$  = (r_x\cos(\varphi_x), r_y\cos(\varphi_y), r_z\cos(\varphi_z), r_t\cos(\varphi_t),$\\
+$     r_x\sin(\varphi_x), r_y\sin(\varphi_y), r_z\sin(\varphi_z), r_t\sin(\varphi_t))$\\
 
-$A(x,y,z,t)=(x',y')$
+$A(x,y,z,t) = (\overline{x},\overline{y}) = \sum_{n} \vec{e}_n\vec{x}_n$\\
+
+Proof:
+
+$\overline{x} = xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z) + zr_t\cos(\varphi_t)$\\
+$\overline{y} = xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z) + zr_t\sin(\varphi_t)$\\
 
 The same method can be used to convert any other number of dimensions to the $xy$-plane.
-If you know the base vectors for the other dimensions you can convert them as well.
+If you know the base vectors for the other dimensions you can convert them as well.\\
+
+
+
+References:
+
+
 \end{document}
