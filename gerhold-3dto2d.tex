@@ -1,9 +1,10 @@
 \documentclass{article}
+\usepackage[hmargin=1in, vmargin=1in]{geometry}
 \usepackage{makeidx}
-#\usepackage{fancyhdr}
-#\pagestyle{fancy}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
 \usepackage[pdftex]{graphicx}
-
+\makeindex
 \begin{document}
 \begin{center}
 \title{Three dimensional coordinates into two dimensional coordinates transformation}\\
@@ -11,10 +12,10 @@
 \date{\today}
 \maketitle
 
-Version 0.1.5 (very drafty paper)\\
+Version 0.1.6 (very drafty paper)\\
 
-The formulas are correct. 
-But the text itself is in the first stage.
+The formulas are correct.
+The text itself is in the first stage.
 And i have to learn \LaTeX{} for the first time.
 
 }\\
@@ -27,7 +28,7 @@ directions in space. In reality these vectors are two dimensional. Because
 they point into three directions on the paper, and not into the real space.\\
 
 [Picture of a 3-D coordinate system with ijk-vectors on the axis pointing
-into three Directions]\\
+into three directions. See \cite{[Corr09]} for introduction]\\
 
 In this document we will design a basis for the coordinate transformation. A
 basis is multiplied with the value of the coordinate to move to the correct new point.\\
@@ -35,7 +36,6 @@ In the case of cosines and sines, we move left and right and up and down, to
 tell you directly, what happens, when we multiply the coordinates with the matrix.\\
 
 The quick overview may move to the back as summarization.\\
-
 \texbf{Quick overview}
 \begin{enumerate}
 \item Lay out the three base vectors around a circle and write down the angles $\varphi_n$.
@@ -59,12 +59,12 @@ appropriate angles. All three angles start at the default at zero.\\
 \texbf{Example}
 The function rad converts degrees to radians, it´s useful for computer functions taking radians.
 \begin{displaymath}
-\text{rad } \phi := \frac{\pi}{180} \times \phi, \phi \element \Real
+\text{rad}(\phi) := \frac{\pi}{180} \times \phi, \phi \elem \mathbb{R}
 \end{displaymath}
 Here is an example of three angles. The three axis have an angle of 120 degrees beetween each.
 \begin{displaymath}
-\varphi_x = \text{rad 210} ,
-\varphi_y = \text{rad 330} ,
+\varphi_x = \text{rad 210},&&
+\varphi_y = \text{rad 330},&&
 \varphi_z = \text{rad 90} 
 \end{displaymath}
 \end{example}
@@ -83,7 +83,8 @@ e_n := \{\vec{e}_x, \vec{e}_y, \vec{e}_z\}\\
 This is the set of three unit vectors in set notation. To guess no numbers, it´s easier for us, 
 for each vector, to go around the unit circle by the angles we already defined and to use cosine 
 and sine for the correct $x$-distance and $y$-distance. For help, you should remember this parametrization 
-of $x$ and $y$ from the unit circle.\\
+of $x$ and $y$ from the unit circle. \footnote{Interested people can read about parametrization of x and y, 
+the unit circle, polar coordinates and cosine and sine for example in the books of \cite{[Corr09]}.}
 
 \begin{displaymath}
 \left(\begin{array}{1}x\\y\end{array}\right) = \left(\begin{array}{1}r \cos \varphi\\ r \sin \varphi\end{array}\right)\\
@@ -93,7 +94,7 @@ of $x$ and $y$ from the unit circle.\\
 \end{displaymath}
 
 \begin{center}
-\includegraphics[scale=1]{unitcircle.png}
+\includegraphics[scale=2]{unitcircle.png}
 \end{center}
 
 \texbf{Definition}
@@ -133,8 +134,12 @@ new. But Literature and lecture scripts just tell how to multiply
 same dimensions, giving no clue about the easy 3-D to 2-D conversions.
 
 \begin{displaymath}
-\vec{v} = \displaystyle\sum_{n} \vec{e}_n\vec{x}_n
+\vec{v} = \displaystyle\sum_{i=1}^{n} \vec{x}_i\vec{e}_i
 \end{displaymath}
+
+With $\vec{x}_i$ as the coordinate components and $\vec{e}_i$ as the corresponding base vector component and $\vec{v}$ as the resulting new vector.\\
+
+Finishing\\
 
 Each $(x,y,z)$ coordinate has to be multiplied for the new $(x',y')$
 with it´s corresponding term of the unit vectors in the matrix. That means,
@@ -148,10 +153,12 @@ xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right)\\
 \end{displaymath}
 
+\section{Theorem}
+
 \texbf{Definition} Let A be the matrix containing the three two dimensional unit vectors in order, one each
-column. You get a 2x3 matrix $\boldsymbol{A}: \Real^{3} \rightarrow \Real^{2}$.\footnote{A 2x3 Matrix, which i call the
-Gerhold Projection Matrix to distinguish it from other matrices, making sure it contains the three two dimensional base vectors.
- for each of source coordinate components inside.} With the base vectors $\left(\begin{array}{1}\cos \varphi_n\\\sin \varphi_n\end{array}\right)$ in the three columns. 
+column. You get a 2x3 matrix\footnote{A 2x3 Matrix, which i call the
+Gerhold Projection Matrix to distinguish it from other matrices, making sure it contains the three two dimensional and trigonometric base vectors.
+} $\boldsymbol{A}: \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$. With the base vectors $\left(\begin{array}{1}\cos \varphi_n\\\sin \varphi_n\end{array}\right)$ in the three columns. 
 
 \begin{displaymath}
 \boldsymbol{A} := \left(
@@ -165,19 +172,19 @@ Gerhold Projection Matrix to distinguish it from other matrices, making sure it 
 \right)\\
 \end{displaymath}
 
-\section{Theorem}
+
 \texbf{Theorem} \emph{(Fundamental Theorem of converting 3-D Points into 2-D Points)}:\\
 
 If you multiply  \boldsymbol{A}, the matrix of the three two-dimensional unit vectors,
 with the three-coordinate points $(x,y,z)$, the result is a two coordinate point, 
 $(x',y')$. This point $(x',y')$ is the correct point on the two dimensional plane,
-representing the point from the three dimensional coordinate system, we would like to display.\\
+representing the point from the three dimensional coordinate system, you would like to display.\\
 
 \begin{displaymath}
 \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}
 
-Applying the operator\footnote{The \emph{Gerholdian} operator is my favorite nickname for this matrix} performs the following operation\\
+Applying the operator\footnote{The \emph{Gerholdian operator} is my favorite nickname for this matrix} performs the following operation\\
 
 \begin{displaymath}
 \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = x\vec{e}_x + y\vec{e}_y + z\vec{e}_z\\
@@ -254,15 +261,16 @@ If you know the base vectors for the other dimensions you can convert down to ot
 
 \begin{thebibliography}
     \bibitem{[Corr09]} \textit{Michael Corral, Schoolcraft College},
-		    Vector Calculus, http://mecmath.net,
-		    
+		    Vector Calculus, GNU Free Documentation License, http://mecmath.net
+    \bibitem{[Corr09]} \textit{Michael Corral, Schoolcraft College},
+		    Trigonometry, GNU Free Documentation License, http://mecmath.net
 \end{thebibliography}
 
+Will be updated after importing a few official theorems, like for the orthogonal basis, 
+plus the generic mxn case of the "http://de.wikipedia.org/wiki/Abbildungsmatrix" i found lately after beginning this document.
+If you read the latter, you may find it not obvious, that you can transform the coordinates with that rule, too.
+I didn´t notice before.
 
-Will be updated after importing a few theorems, like the unit circle and the orthogonal basis vectors,
-plus the generic mxn case of the "Abbildungsmatrix" i found lately after beginning this document.
-Plus the free book containing the ijk-Picture which i used in mind to think about "how to project".\\
 
-\makeindex
 \printindex
 \end{document}
