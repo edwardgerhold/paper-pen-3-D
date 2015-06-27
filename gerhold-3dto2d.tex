@@ -1,22 +1,28 @@
 \documentclass{article}
+\usepackage{makeidx}
+#\usepackage{fancyhdr}
+#\pagestyle{fancy}
+\usepackage[pdftex]{graphicx}
 
 \begin{document}
 \begin{center}
-\Large{\texbf{Three dimensional coordinates into two dimensional coordinates conversion}}\\
-\small{
-Written by Edward Gerhold\\
-}
-Version 0.1.4 (very drafty paper)\\
+\title{Three dimensional coordinates into two dimensional coordinates transformation}\\
+\author{Edward Gerhold}
+\date{\today}
+\maketitle
+
+Version 0.1.5 (very drafty paper)\\
 
 The formulas are correct. 
 But the text itself is in the first stage.
+And i have to learn \LaTeX{} for the first time.
 
 }\\
 
 June 25, 2015\\
 \end{center}
 
-\texbf{Lemma} On a piece of paper you see three coordinate axis pointing into three
+\texbf{Remark} On a piece of paper you see three coordinate axis pointing into three
 directions in space. In reality these vectors are two dimensional. Because
 they point into three directions on the paper, and not into the real space.\\
 
@@ -25,14 +31,20 @@ into three Directions]\\
 
 In this document we will design a basis for the coordinate transformation. A
 basis is multiplied with the value of the coordinate to move to the correct new point.\\
+In the case of cosines and sines, we move left and right and up and down, to 
+tell you directly, what happens, when we multiply the coordinates with the matrix.\\
+
+The quick overview may move to the back as summarization.\\
 
 \texbf{Quick overview}
 \begin{enumerate}
 \item Lay out the three base vectors around a circle and write down the angles $\varphi_n$.
 \item Write down the base vectors $\vec{e}_n$ as $\cos \varphi$ and $\sin \varphi$ (two dimensional) with a unit length of $1$, or multiplied with $r_n \ne 1$.
-\item Put the three base vectors $\vec{e}_n$ into a matrix. Programmers can directly code the two lines multiplication and forget the formal rest.
-\item Iterate over your points and multiply each $(x,y,z)$ with the linear operator \boldsymbol{A} and put $(x',y')$ into your new set.
+\item Put the three base vectors $\vec{e}_n$ into a matrix \bigsymbol{A}. Programmers can directly code the two lines multiplication and forget the formal rest.
+\item Iterate over your points and multiply each $(x,y,z)$ with the linear operator, the matrix \boldsymbol{A}, and put $(x',y')$ into your new set.
 \end{enumerate}
+
+\section{Definitions}
 
 \texbf{Definition} Let $\varphi_n$ be the set of axis angles, one for each axis. The angles start
 at the same place, at the number zero. You have to arrange the $x$, $y$, and
@@ -47,7 +59,7 @@ appropriate angles. All three angles start at the default at zero.\\
 \texbf{Example}
 The function rad converts degrees to radians, it´s useful for computer functions taking radians.
 \begin{displaymath}
-\text{rad } \phi := \frac{\pi}{180} \times \phi
+\text{rad } \phi := \frac{\pi}{180} \times \phi, \phi \element \Real
 \end{displaymath}
 Here is an example of three angles. The three axis have an angle of 120 degrees beetween each.
 \begin{displaymath}
@@ -62,8 +74,7 @@ Here is an example of three angles. The three axis have an angle of 120 degrees 
 picture of the coordinate system mentioned. The three vectors point into the three directions
 of the three axis. On a piece of paper they are two dimensional, because they point into three
 directions on the paper. The space being shown is what our brain completes, seeing three correct
-axis. The three base vectors represent exactly one unit of each axis. That is, why these vectors
-are called the unit vectors. They denote the unit of the local coordinate system.\\
+axis. The three base vectors represent exactly one unit of each axis. \\
 
 \begin{displaymath}
 e_n := \{\vec{e}_x, \vec{e}_y, \vec{e}_z\}\\
@@ -138,8 +149,10 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right
 \end{displaymath}
 
 \texbf{Definition} Let A be the matrix containing the three two dimensional unit vectors in order, one each
-column. You get a 2x3 matrix. With the bases in the colums. A 2x3 Matrix, which i call a 
-Gerhold Projection Matrix to distinguish it from other matrices, making sure it has three times $\cos \varphi_n$ and $\sin \varphi_n$ inside.
+column. You get a 2x3 matrix $\boldsymbol{A}: \Real^{3} \rightarrow \Real^{2}$.\footnote{A 2x3 Matrix, which i call the
+Gerhold Projection Matrix to distinguish it from other matrices, making sure it contains the three two dimensional base vectors.
+ for each of source coordinate components inside.} With the base vectors $\left(\begin{array}{1}\cos \varphi_n\\\sin \varphi_n\end{array}\right)$ in the three columns. 
+
 \begin{displaymath}
 \boldsymbol{A} := \left(
     \begin{array}{111}\vec{e}_x & \vec{e}_y & \vec{e}_z
@@ -152,9 +165,10 @@ Gerhold Projection Matrix to distinguish it from other matrices, making sure it 
 \right)\\
 \end{displaymath}
 
+\section{Theorem}
 \texbf{Theorem} \emph{(Fundamental Theorem of converting 3-D Points into 2-D Points)}:\\
 
-If you multiply the matrix of the three two-dimensional unit vectors
+If you multiply  \boldsymbol{A}, the matrix of the three two-dimensional unit vectors,
 with the three-coordinate points $(x,y,z)$, the result is a two coordinate point, 
 $(x',y')$. This point $(x',y')$ is the correct point on the two dimensional plane,
 representing the point from the three dimensional coordinate system, we would like to display.\\
@@ -163,7 +177,7 @@ representing the point from the three dimensional coordinate system, we would li
 \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}
 
-Applying the \emph{Gerholdian} operator performs the following operation\\
+Applying the operator\footnote{The \emph{Gerholdian} operator is my favorite nickname for this matrix} performs the following operation\\
 
 \begin{displaymath}
 \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = x\vec{e}_x + y\vec{e}_y + z\vec{e}_z\\
@@ -183,18 +197,16 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \left(\begin{array}{1}x'\\y'\end{array}\right) = \left(\begin{array}{1}
 xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right)
-\end{displaymath}
+\end{displaymath}\\
 
-
+\texbf{Example}\\
 \begin{example}
-
-The following is an EcmaScript 6 (JavaScript) Arrow Function returning the new point.\\
-
+The following is an EcmaScript 6 (JavaScript) Arrow Function returning the new point. It is not optimized for speed. Means, to repeat the sin and cosine calls.\\
 \texbf{Example for Programmers}
-
-\text{let projection \= \(x,y,z\) \=\> \[x*r*Math.cos(xAxisAngle) + y*r*Math.cos(yAxisAngle) + z*r*Math.cos(zAxisAngle),x*r*Math.cos(xAxisAngle) + y*r*Math.sin(yAxisAngle) + z*r*Math.cos(zAxisAngle)\]\;\\\}
-
+\mbox{ let projection = ([x,y,z]) => [x*r*Math.cos(xAxisAngle) + y*r*Math.cos(yAxisAngle) + z*r*Math.cos(zAxisAngle),x*r*Math.cos(xAxisAngle) + y*r*Math.sin(yAxisAngle) + z*r*Math.cos(zAxisAngle)]; }
 \end{example}
+
+\section{Corollary}
 
 The theorem can be extended into more dimension to go down to any other dimension.
 The generic case is known to linear algebra, i found it lately after beginning this
@@ -236,14 +248,21 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)+ zr_t\sin(\varph
 \end{displaymath}
 
 The same method can be used to convert any other number of dimensions to the $xy$-plane.
-If you know the base vectors for the other dimensions you can convert them down as well.\\
+If you know the base vectors for the other dimensions you can convert down to other dimensions as well.\\
 
 \texbf{References}:\\
 
-Will be updated after importing a few theorems, like the unit circe and the orthogonal basis vectors,
-plus the generic nxm case of the "abbildungsmatrix" i found lately after beginning this document.
-Plus the free book containing the ijk-Picture which i used in mind to think about "how to project".
+\begin{thebibliography}
+    \bibitem{[Corr09]} \textit{Michael Corral, Schoolcraft College},
+		    Vector Calculus, http://mecmath.net,
+		    
+\end{thebibliography}
 
 
+Will be updated after importing a few theorems, like the unit circle and the orthogonal basis vectors,
+plus the generic mxn case of the "Abbildungsmatrix" i found lately after beginning this document.
+Plus the free book containing the ijk-Picture which i used in mind to think about "how to project".\\
 
+\makeindex
+\printindex
 \end{document}
