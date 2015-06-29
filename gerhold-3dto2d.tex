@@ -133,7 +133,7 @@ Now about the multiplication of the coordinates with the basis.\\
 \emph{The other help we take} The other lemma we need is the theorem for 
 multiplying with the orthogonal basis.\\
 
-In our case the 90°-orthogonality rules don´t count, we arrange for example with about 120° beetween each around the origin on a a plane. The point is, the generic formula still holds.\\
+In our case the 90°-orthogonality rules don´t count, we arrange for example with about 120° beetween each around the origin on a plane. The point is, the generic formula still holds.\\
 
 \texbf{Remark} The sum of the basis multiplied with the coordinates is nothing
 new. But literature and lecture scripts just tell how to multiply
@@ -249,7 +249,7 @@ y\_ = x*r*sin(alpha) + y*r*sin(beta) + z*r*sin(gamma)$\\
 \begin{example}
 The following is an EcmaScript 6 Arrow Function returning the new point. It is not optimized for speed. Means, to repeat the sin and cosine calls.\\
 \texbf{Example for Programmers}
-\mbox\parbox{ let projection = ([x,y,z]) =\rangle [x*r*Math.cos(xAxisAngle) + y*r*Math.cos(yAxisAngle) + z*r*Math.cos(zAxisAngle),x*r*Math.cos(xAxisAngle) + y*r*Math.sin(yAxisAngle) + z*r*Math.cos(zAxisAngle)]; 
+\mbox\parbox{ let projection = ([x,y,z]) =\rangle [x*r*Math.cos(xAxisAngle) + y*r*Math.cos(yAxisAngle) + z*r*Math.cos(zAxisAngle),x*r*Math.sin(xAxisAngle) + y*r*Math.sin(yAxisAngle) + z*r*Math.sin(zAxisAngle)]; 
 }
 }
 \end{example}
@@ -322,10 +322,11 @@ About the word \emph{unit}. I am not really sure, if i have to use \emph{base ve
             Calculus. MIT OpenCourseWare Supplemental Resources. http://ocw.mit.edu    
     \bibitem{Corral3} \textit{Michael Corral, Schoolcraft College},
             Latex Mini Tutorial, http://mecmath.net            
-    \bibitem{Jürgens,Feuerstack} \textit{Manuela J\"urgens, Thomas Feuerstack}
+    \bibitem{Jürgens,Feuerstack} \textit{Manuela J\"urgens, Thomas Feuerstack},
             LaTeX, eine Einf\"uhrung und ein bisschen mehr..., Fernuniversit\"at Hagen, a026\_latex\_einf.pdf
-    \bibitem{Rudl} \textit{Dr.Jan Rudl} 
+    \bibitem{Rudl} \textit{Dr.Jan Rudl},
             Einf\"uhrung in LaTeX, Technische Universit\"at Dresden, Fachbereich Mathematik, LaTeX-Kurs.pdf            
+
 \end{thebibliography}
 \printindex
 \end{document}
