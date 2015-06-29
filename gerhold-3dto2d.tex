@@ -104,8 +104,8 @@ we get the following three two dimensional basis vectors.\\
 \vec{e}_z := (r_z\cos(\varphi_z), r_z\sin(\varphi_z) )^T = \left(\begin{array}{1}r_z\cos(\varphi_z)\\r_z\sin(\varphi_z) \end{array}\right)\\
 \end{displaymath}
 
-One for each component of $(x,y,z)$ By multiplying with, we move the 
-points into the right pieces of direction. On the plane we use to point into three directions.\\
+One for each component of $(x,y,z)$ By multiplying with, we move by the 
+points into the right directions. On the plane we use to point into three directions. This means that each component contributes a move. And the final position is the right one of the new coordinate.\\
 
 \begin{center}
 \includegraphics[scale=1]{unitvectors.png}
@@ -118,20 +118,20 @@ which can generally be enlarged or made smaller than \emph{unit length}, which i
 By default the resulting vector of the cosine and sine Components has \emph{unit length}, 
 if you don´t multiply the cosine and the sine with $r_x, r_y$ and $r_z$ in each basis vector. \\
 
-\texbf{Remark} On the other side, the length of $r$ can be determined from existing basis vectors, 
-by pulling the square root out of the sum of the squares of the vector components.
+\texbf{Remark} On the other side, the length of $r$ can be determined from existing basis vectors.
+By pulling the square root out of the sum of the squares of the vector components.
 This is also known as euclidean norm, or the root of the inner product of the vector with itself.
 Like real fans of sines and cosines, we know that $\sin^2 \varphi + \cos^2 \varphi = 1$ and what the root of 1 is.
 If we pull the root out of the products of cosine and sine multiplied with $r \ne 1$ , we get the length of $r$ again. 
-$r = \sqrt{\vec{x} \dotproduct \vec{x}}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{1}{2}}$.\\
+$r = \sqrt{\vec{x} \dotproduct \vec{x}}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{1}{2}}$ = $\|\vec{x}\|$\\
 
 
 Now about the multiplication of the coordinates with the basis.\\
 
-\emph{The other help we take} The other lemma we need is the theorem for 
+\emph{The other help we take} \\The other lemma we need is the theorem for 
 multiplying with the orthogonal basis.\\
 
-In our case the 90°-orthogonality rules don´t count, we arrange for example with about 120° beetween each around the origin on a plane. The point is, the generic formula still holds.\\
+In our case the orthogonality by 90 degree rules of perpendicular basis vectors don not count. We arrange for example with about 120 degrees beetween each around the origin on a plane. The point is, the generic formula still holds.\\
 
 \texbf{Remark} The sum of the basis multiplied with the coordinates is nothing
 new. But literature and lecture scripts just tell how to multiply
@@ -239,18 +239,17 @@ xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right)
 \end{displaymath}\\
 
+\begin{example}
 \texbf{Example}\\
 The following is example code for varius computer systems.\\
 $x\_ = x*r*cos(alpha) + y*r*cos(beta) + z*r*cos(gamma)\\
 y\_ = x*r*sin(alpha) + y*r*sin(beta) + z*r*sin(gamma)$\\
-
-\texbf{Example}\\
+\end{example}
 
 \begin{example}
-The following is an EcmaScript 6 Arrow Function returning the new point. It is not optimized for speed. Means, to repeat the sin and cosine calls.\\
+\texbf{Example}\\And this is some EcmaScript 6 Arrow Function returning the new point. It is not optimized for speed. Means, to repeat the sin and cosine calls.\\
 
 let projection = ([x,y,z]) =\rangle [x*r*Math.cos(xAxisAngle) + y*r*Math.cos(yAxisAngle) + z*r*Math.cos(zAxisAngle),x*r*Math.sin(xAxisAngle) + y*r*Math.sin(yAxisAngle) + z*r*Math.sin(zAxisAngle)]; \\
-
 \end{example}
 
 \section{Corollary}
