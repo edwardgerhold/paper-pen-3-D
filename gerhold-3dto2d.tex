@@ -12,7 +12,7 @@
 \date{\today}
 \maketitle
 
-Version 0.1.8 (very drafty paper)\\
+Version 0.1.9 (very drafty paper)\\
 
 The formulas are correct.
 The text itself is in the first stage.
@@ -159,7 +159,8 @@ This is also equal to
 \end{displaymath}
 
 what also explains, what the ijk-Notation means. If you don´t use it already for determining determinants for
-calculating cross products. It´s for describing a vector.Don´t forget, our $i, j, k$ is two dimensional, because we draw on the screen or the paper. \\
+calculating cross products. It´s for describing a vector. Don´t forget, our $i, j, k$ basis is two dimensional, 
+because we draw on a 2-D plane like the computer screen or a piece of paper. \\
 
 With a 3x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is equal to \left(\begin{array}{1}x'\\y'\\z'\end{array}\right)$. But with a 2x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is becoming  \left(\begin{array}{1}x'\\y'\end{array}\right)$\\
 
@@ -183,7 +184,7 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right
 \begin{Definition}
 Let \boldsymbol{A} be the matrix containing the three two dimensional unit vectors in order, one each
 column. You get a 2x3 matrix\footnote{A 2x3 Matrix, which i proudly gave the nickname
-Gerhold Projection Matrix to distinguish it from other matrices, making sure it contains the three two dimensional and trigonometric basis vectors, which allow arranging the projection vectors just by going around the circle instead of.
+Gerhold Projection Matrix to distinguish it from other matrices, making sure it contains the three two dimensional and trigonometric basis vectors, which allow arranging the projection vectors just by going around the circle instead of guessing wild numbers.
 } $\boldsymbol{A} \in \mathbb{R}^{2x3}: \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$. With the basis vectors $\left(\begin{array}{1}r_n \cos \varphi_n\\r_n \sin \varphi_n\end{array}\right)$ in the three columns. 
 
 \begin{displaymath}
@@ -200,13 +201,13 @@ Gerhold Projection Matrix to distinguish it from other matrices, making sure it 
 \end{Definition}
 
 \index{Theorem}
-\newtheorem{Theorem}{Theorem (The Fundamental Theorem of converting 3-D Points into 2-D Points)}
+\newtheorem{Theorem}{Theorem (The Fundamental Theorem of transforming 3-D Points into 2-D Points)}
 \begin{Theorem} \emph{}:\\
 
 If you multiply  \boldsymbol{A}, the matrix of the three two-dimensional unit vectors,
 with the three-coordinate points $(x,y,z)$, the result is a two coordinate point, 
 $(x',y')$. This point $(x',y')$ is the correct point on the two dimensional plane,
-representing the point from the three dimensional coordinate system, you would like to display.\\
+representing the point from the three dimensional coordinate system, you would like to transform.\\
 
 \begin{displaymath}
 \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
@@ -292,7 +293,6 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)+ zr_t\sin(\varph
 &= x\vec{e}_x + y\vec{e}_y + z\vec{e}_z + t\vec{e}_t &= \sum_{n} \vec{e}_n\vec{x}_n &= \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}
 
-
 The same method can be used to convert any other number of dimensions to the $xy$-plane. But it can also be
 used in a generic m by n case\footnote{http://de.wikipedia.org/wiki/Abbildungsmatrix, also found in lecture scripts, but not anyone explaining me this matrix here or the topic of the from-three-to-two-points conversion. Is it too obvious? Or isn´t it obvious?}, to convert from n dimension down to m, if you know the basis for the destination.
 
@@ -307,21 +307,22 @@ used in a generic m by n case\footnote{http://de.wikipedia.org/wiki/Abbildungsma
 \end{enumerate}
 
 \texbf{Remark}\\
-About the word \emph{unit}. I am not really sure, if i have to use \emph{base vector} for a vector of any length and \emph{unit vector}only for the \emph{unit length} of $1$. Because of the misleading mismatch with the \emph{unit} of the thought \emph{coordinate axes}, which the \emph{base vector} defines, i tend in the first versions to misuse the word \emph{unit vector} for both. If you find this, or any other formal mistake, be sure, it is not wanted :-) I will try to remove more of these spelling errors in the next versions.
+About the word \emph{unit}. I am not really sure, if i have to use \emph{base vector} for a vector of any length and \emph{unit vector} only for the \emph{unit length} of $1$. Because of the misleading mismatch with the \emph{unit} of the thought \emph{coordinate axes}, which the \emph{base vector} defines, i tend in the first versions to misuse the word \emph{unit vector} for both. If you find this, or any other formal mistake, be sure, it is not wanted :-) I will try to remove more of these spelling errors in the next versions.
 
-\begin{thebibliography}
-    
+\begin{thebibliography}    
 
     \bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
 		    Vector Calculus, GNU Free Documentation License, http://mecmath.net 
     \bibitem{Corral2} \textit{Michael Corral, Schoolcraft College},
-		    Trigonometry, GNU Free Documentation License, http://mecmath.net 
+		    Trigonometry, GNU Free Documentation License, http://mecmath.net     
     \bibitem{Corral3} \textit{Michael Corral, Schoolcraft College},
             Latex Mini Tutorial, http://mecmath.net
     \bibitem{Strang1} \textit{Gilbert Strang, MIT},
-		    Linear Algebra and it´s Applications. 
+		    Linear Algebra and it´s Applications. Fourth Edition.
     \bibitem{Strang2} \textit{Gilbert Strang, MIT},
-            Calculus. MIT OpenCourseWare Supplemental Resources. http://ocw.mit.edu
+            Calculus. MIT OpenCourseWare Supplemental Resources. http://ocw.mit.edu    
+    \bibitem{Jürgens,Feuerstack} \textit{Manuela J\"urgens, Thomas Feuerstack}
+            LaTeX, eine Einf\"uhrung und ein bisschen mehr..., Fernuniversit\"at Hagen, a026\_latex\_einf.pdf
 \end{thebibliography}
 \printindex
 \end{document}
