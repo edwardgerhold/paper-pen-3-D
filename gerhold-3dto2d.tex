@@ -1,4 +1,4 @@
-\documentclass[fleqn]{article}
+\documentclass{article}
 \usepackage[hmargin=1in, vmargin=1in]{geometry}
 \usepackage{makeidx}
 \usepackage{fancyhdr}
@@ -13,13 +13,12 @@
 \date{\today}
 \maketitle
 
-Version 0.1.9 (very drafty paper)\\
+Version 0.1.10 (very drafty paper)\\
 
 The formulas are correct.
 The text itself is in the first stage.
 And i have to learn \LaTeX{} for the first time.
 Has to be overworked a few more times.
-
 }\\
 June 25, 2015\\
 \end{center}
@@ -38,7 +37,6 @@ tell you directly, what happens, when we multiply the coordinates with the matri
 
 \section{Definitions}
 
-
 \texbf{Definition} Let $\varphi_n$ be the set of axis angles, one for each axis. The angles start
 at the same place, at the number zero. You have to arrange the $x$, $y$, and
 $z$ axes like on a piece of paper around the unit circle by giving them the
@@ -56,14 +54,14 @@ The function rad converts degrees to radians, it´s useful for computer function
 \end{displaymath}
 Here is an example of three angles. The three axes have an angle of 120 degrees beetween each.
 \begin{displaymath}
-\varphi_x = \text{rad 210},&&
-\varphi_y = \text{rad 330},&&
-\varphi_z = \text{rad 90} 
+\varphi_x = \text{rad(210)},&&
+\varphi_y = \text{rad(330)},&&
+\varphi_z = \text{rad(90)} 
 \end{displaymath}
 \end{example}
 
 \texbf{Definition} Let $e_n$ be the set of three two dimensional basis vectors, namely 
-\vec{e}_x, $\vec{e}_y$ and $e_z$. Other names are $i$, $j$ or $k$ for example, like on the
+\vec{e}_x, $\vec{e}_y$ and $\vec{e}_z$. Other names are $\vec{i}$, $\vec{j}$ or $\vec{k}$ for example, like on the
 picture of the coordinate system mentioned. The three vectors point into the three directions
 of the three axes. On a piece of paper they are two dimensional, because they point into three
 directions on the paper. The space being shown is what our brain completes, seeing three correct
@@ -144,14 +142,15 @@ transformation and computer graphics went another, more complicated way, over
 homogeneous coordinates, 4 by 4 matrices and a final viewport division, to get
 the points back to two dimensions.\\
 
-The formula for multiplying a vector with a base to get a new vector is this. \\
+The formula for multiplying a vector with a base to get a new vector is this.\footnote{The formula can be found in many mathematics and physics lecture scripts, and a good introduction is \cite{Strang1}.\\}
 
 \begin{displaymath}
 \vec{v} = \displaystyle\sum_{i=1}^{n} \vec{x}_i\vec{e}_i
 \end{displaymath}
 
-It is done componentwise for each row of the vector.\\
-With $\vec{x}_i$ as the coordinate components and $\vec{e}_i$ as the corresponding basis vector component and $\vec{v}$ as the resulting new vector.\\
+It is done componentwise for each row of the vector. $n$ is the number of the target dimensions. In our case it is 2. And we are
+doing it for three components.\\
+With $\vec{x}_i$ as the coordinate components and $\vec{e}_i$ as the corresponding basis vector component and $\vec{v}$ as the resulting new vector. $n$ is the target dimension. In our case it is $n = 2$. And we sum three components up.
 
 This is also equal to
 
@@ -160,7 +159,7 @@ This is also equal to
 \end{displaymath}
 
 what also explains, what the ijk-Notation means. If you don´t use it already for determining determinants for
-calculating cross products. It´s for describing a vector. Don´t forget, our $i, j, k$ basis is two dimensional, 
+calculating cross products. It is for describing a vector. Don´t forget, our $i, j, k$ basis is two dimensional, 
 because we draw on a 2-D plane like the computer screen or a piece of paper. \\
 
 With a 3x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is equal to \left(\begin{array}{1}x'\\y'\\z'\end{array}\right)$. But with a 2x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is becoming  \left(\begin{array}{1}x'\\y'\end{array}\right)$\\
@@ -246,12 +245,12 @@ $x\_ = x*r*cos(alpha) + y*r*cos(beta) + z*r*cos(gamma)\\
 y\_ = x*r*sin(alpha) + y*r*sin(beta) + z*r*sin(gamma)$\\
 
 \texbf{Example}\\
+
 \begin{example}
 The following is an EcmaScript 6 Arrow Function returning the new point. It is not optimized for speed. Means, to repeat the sin and cosine calls.\\
-\texbf{Example for Programmers}
-\mbox\parbox{ let projection = ([x,y,z]) =\rangle [x*r*Math.cos(xAxisAngle) + y*r*Math.cos(yAxisAngle) + z*r*Math.cos(zAxisAngle),x*r*Math.sin(xAxisAngle) + y*r*Math.sin(yAxisAngle) + z*r*Math.sin(zAxisAngle)]; 
-}
-}
+
+let projection = ([x,y,z]) =\rangle [x*r*Math.cos(xAxisAngle) + y*r*Math.cos(yAxisAngle) + z*r*Math.cos(zAxisAngle),x*r*Math.sin(xAxisAngle) + y*r*Math.sin(yAxisAngle) + z*r*Math.sin(zAxisAngle)]; \\
+
 \end{example}
 
 \section{Corollary}
@@ -295,7 +294,7 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)+ zr_t\sin(\varph
 \end{displaymath}
 
 The same method can be used to convert any other number of dimensions to the $xy$-plane. But it can also be
-used in a generic m by n case\footnote{http://de.wikipedia.org/wiki/Abbildungsmatrix, also found in lecture scripts, but not anyone explaining me this matrix here or the topic of the from-three-to-two-points conversion. Is it too obvious? Or isn´t it obvious?}, to convert from n dimension down to m, if you know the basis for the destination.
+used in a generic m by n case\footnote{http://de.wikipedia.org/wiki/Abbildungsmatrix, also found in lecture scripts, but not anyone explaining me this matrix here or the topic of the from-three-to-two-points conversion. Is it too obvious? Or isn´t it obvious?}, to convert from n dimension down to m, if you know the basis for the destination.\\
 
 \section{Summary}
 
