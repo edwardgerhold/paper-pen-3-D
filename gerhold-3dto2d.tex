@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[fleqn]{article}
 \usepackage[hmargin=1in, vmargin=1in]{geometry}
 \usepackage{makeidx}
 \usepackage{fancyhdr}
@@ -183,7 +183,7 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right
 \index{Definition}
 \newtheorem{Definition}{Definition}
 \begin{Definition}
-Let \boldsymbol{A} be the matrix containing the three two dimensional unit vectors in order, one each
+Let \boldsymbol{A} be the matrix containing the three two dimensional basis vectors in order, one each
 column. You get a 2x3 matrix\footnote{A 2x3 Matrix, which i proudly gave the nickname
 Gerhold Projection Matrix to distinguish it from other matrices, making sure it contains the three two dimensional and trigonometric basis vectors, which allow arranging the projection vectors just by going around the circle instead of guessing wild numbers.
 } $\boldsymbol{A} \in \mathbb{R}^{2x3}: \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$. With the basis vectors $\left(\begin{array}{1}r_n \cos \varphi_n\\r_n \sin \varphi_n\end{array}\right)$ in the three columns. 
@@ -205,7 +205,7 @@ Gerhold Projection Matrix to distinguish it from other matrices, making sure it 
 \newtheorem{Theorem}{Theorem (The Fundamental Theorem of transforming 3-D Points into 2-D Points)}
 \begin{Theorem}\\
 
-If you multiply \boldsymbol{A}, the matrix of the three two-dimensional unit vectors,
+If you multiply \boldsymbol{A}, the matrix of the three two-dimensional basis vectors,
 with the three-coordinate point $(x,y,z)$, the result is a two coordinate point, 
 $(x',y')$. This point $(x',y')$ is the correct point on the two dimensional plane,
 representing the point from the three dimensional coordinate system, you are transforming.\\
@@ -264,7 +264,7 @@ document and will include the information within the next versions.\\
 
 The theorem can be extended to more dimensions, for example can four two-dimensional
 vectors represent a 4-D space on the 2-D plane. They get converted into the correct
- 2-D points. For Example, if you use a 2x4 matrix and convert all points at each 
+2-D points. For Example, if you use a 2x4 matrix and convert all points at each 
 instance of $t$ you have a moving object into the direction of the fourth basis vector. \\
 
 \begin{displaymath}
