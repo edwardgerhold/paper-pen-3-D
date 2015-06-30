@@ -124,7 +124,7 @@ One for each component of $(x,y,z)$ By multiplying with, we move by the
 points into the right directions. On the plane we use to point into three directions. This means that each component contributes a move. And the final position is the right position of the new coordinate.\\
 
 \begin{center}
-\includegraphics[scale=1]{unitvectors.png}
+\includegraphics[scale=2]{unitvectors.png}
 \end{center}
 
 \textbf{Remark}.The values of $r_x, r_y$ and $r_z$ decide, how long one unit into each
@@ -145,8 +145,12 @@ $r = \sqrt{\vec{x}\vec{x}}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{
 
 The one lemma we need is the generic theorem for multiplying a vector with some orthogonal basis for some coordinate system.\\
 
-In our case the orthogonality by 90 degrees rules of perpendicular basis vectors do not count. We arrange for example with about 120 degrees between each around the origin on a plane. The point is, the generic formula still holds.\\
+In our case the orthogonality by 90 degrees rules do not count. The basis vectors are no longer perpendicular. Or in other words
+$\neg \left( \vec{e}_i \perp \vec{e}_j \right)$ with $i,j \in \{x,y,z\}$ where $i \neq j$. \\
 
+The plane gives us two degrees of freedom, to go horizontal or vertical. And in a cartesian coordinate system with infinite points, we can choose any direction around a point (x,y).
+Any not straight move will go horizontally or vertically by componentwise amounts. Any straight move will go by one of the components only.
+We arrange for example with about 120 degrees\footnote{The angle between $e_x$ and $e_y$ can be a little bigger, if $e_z$ points up. I have noticed this on pictures} between each axis around the origin on a plane. The point is, the generic formula still holds.\\
 The formula for multiplying a vector with a base to get a new vector is this.\footnote{The formula can be found in many mathematics and physics lecture scripts, and a good introduction is \cite{Strang1}.\\}
 
 \begin{displaymath}
@@ -384,17 +388,23 @@ About the word \emph{unit}. I am not really sure, if i have to use \emph{base ve
 \begin{thebibliography}    
 
     \bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
-		    Vector Calculus, GNU Free Documentation License, http://mecmath.net 
+	    Vector Calculus, GNU Free Documentation License, http://mecmath.net 
+	    
     \bibitem{Corral2} \textit{Michael Corral, Schoolcraft College},
-		    Trigonometry, GNU Free Documentation License, http://mecmath.net         
+	    Trigonometry, GNU Free Documentation License, http://mecmath.net         
+	    
     \bibitem{Strang1} \textit{Gilbert Strang, MIT},
-		    Linear Algebra and it´s Applications. Fourth Edition.
+	    Linear Algebra and it´s Applications. Fourth Edition.
+	    
     \bibitem{Strang2} \textit{Gilbert Strang, MIT},
             Calculus. MIT OpenCourseWare Supplemental Resources. http://ocw.mit.edu    
+            
     \bibitem{Corral3} \textit{Michael Corral, Schoolcraft College},
             Latex Mini Tutorial, http://mecmath.net            
+            
     \bibitem{Jürgens,Feuerstack} \textit{Manuela J\"urgens, Thomas Feuerstack},
             LaTeX, eine Einf\"uhrung und ein bisschen mehr..., Fernuniversit\"at Hagen, a026\_latex\_einf.pdf
+            
     \bibitem{Rudl} \textit{Dr.Jan Rudl},
             Einf\"uhrung in LaTeX, Technische Universit\"at Dresden, Fachbereich Mathematik, LaTeX-Kurs.pdf            
 
