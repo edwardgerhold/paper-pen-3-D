@@ -145,7 +145,7 @@ $r = \sqrt{\vec{x}\vec{x}}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{
 
 The one lemma we need is the generic theorem for multiplying a vector with some orthogonal basis for some coordinate system.\\
 
-In our case the orthogonality by 90 degrees rules of perpendicular basis vectors do not count. We arrange for example with about 120 degrees between each around the origin on a plane. The point is, the generic formula still holds.\\
+OAIn our case the orthogonality by 90 degrees rules of perpendicular basis vectors do not count. We arrange for example with about 120 degrees between each around the origin on a plane. The point is, the generic formula still holds.\\
 
 The formula for multiplying a vector with a base to get a new vector is this.\footnote{The formula can be found in many mathematics and physics lecture scripts, and a good introduction is \cite{Strang1}.\\}
 
@@ -153,9 +153,10 @@ The formula for multiplying a vector with a base to get a new vector is this.\fo
 \vec{v} = \displaystyle\sum_{i=1}^{n} \vec{x}_i\vec{e}_i
 \end{displaymath}
 
-It is done componentwise for each row of the vector. $n$ is the number of the target dimensions. In our case it is 2. And we are
-doing it for three components. Our old $\vec{x}$ is a $\vec{x} \in \mathbb{R}^3$.\\
-With $\vec{x}_i$ as the coordinate components and $\vec{e}_i$ as the corresponding basis vector component and $\vec{v}$ as the resulting new vector. $n$ is the target dimension. In our case it is $n = 2$. And we sum three components up. The new vector $\vec{v}$ is a $\vec{v} \in \mathbb{R}^2$.\\
+It is done componentwise for each row of the vector. $n$ is the number of the source dimensions. In our case it is $n = 3$. 
+We are summing three products for each component of the new vector. Our old $\vec{x}$ is a $\vec{x} \in \mathbb{R}^3$.\\
+With $\vec{x}_i$ as the coordinate component and $\vec{e}_i$ as the corresponding basis vector and the current component. $\vec{v}$ is the resulting new vector. 
+The new vector $\vec{v}$ is a $\vec{v} \in \mathbb{R}^2$.\\
 
 This is also equal to
 
