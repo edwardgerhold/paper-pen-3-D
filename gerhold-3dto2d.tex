@@ -64,7 +64,7 @@ The function rad converts degrees to radians, it´s useful for computer function
 \begin{displaymath}
 \text{rad}(\phi) := \frac{\pi}{180} \times \phi, \phi \in \mathbb{R}
 \end{displaymath}
-Here is an example of three angles. The three axes have an angle of 120 degrees beetween each.
+Here is an example of three angles. The three axes have an angle of 120 degrees between each.
 \begin{displaymath}
 \varphi_x = \text{rad(210)},&&
 \varphi_y = \text{rad(330)},&&
@@ -128,7 +128,7 @@ direction is. To preserve affine graphical transformations all three
 axes should have the same length, to represent same distance for each coordinate unit. 
 The units can generally be enlarged or made smaller than \emph{unit length}, which is a length of $1$. 
 By default the resulting vectors with the cosine for $x$ and sine for $y$ components have \emph{unit length}, 
-if you don´t multiply the cosine and the sine with $r_x, r_y$ and $r_z$, which represent the length of the hypotenuse or the new radius of the circle around, in each basis vector. \\
+if you don´t multiply the cosine and the sine in each basis vector with $r_x, r_y$ and $r_z$. The $r_n$ represent the lengths of the hypotenuses or the new radius of the circle around the origin described by the vectors. \\
 
 \texbf{Remark} On the other side, the length of $r$ can be determined from existing basis vectors.
 By pulling the square root out of the sum of the squares of the vector components.
@@ -141,7 +141,7 @@ $r = \sqrt{\vec{x} \dotproduct \vec{x}}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\r
 
 The other lemma we need is the generic theorem for multiplying a vector with some orthogonal basis for some coordinate system.\\
 
-In our case the orthogonality by 90 degrees rules of perpendicular basis vectors do not count. We arrange for example with about 120 degrees beetween each around the origin on a plane. The point is, the generic formula still holds.\\
+In our case the orthogonality by 90 degrees rules of perpendicular basis vectors do not count. We arrange for example with about 120 degrees between each around the origin on a plane. The point is, the generic formula still holds.\\
 
 \texbf{Remark} The sum of the basis multiplied with the coordinates is nothing
 new. But literature and lecture scripts just tell how to multiply
@@ -266,7 +266,7 @@ let projection = ([x,y,z]) =\rangle [x*r*Math.cos(xAxisAngle) + y*r*Math.cos(yAx
 
 \section{Corollary}
 
-The theorem can be extended into more dimension to go down to any other dimension.
+The theorem can be extended into more dimensions to go down to any other dimension.
 The generic case is known to linear algebra, i found it lately after beginning this
 document and will include the information within the next versions.\\
 
