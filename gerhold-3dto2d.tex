@@ -14,17 +14,14 @@
 \date{\today}
 \maketitle
 
-Version 0.1.10 (very drafty paper)\\
+Version 0.1.11 (the very a draft paper)\\
+Has to be ordered again. But is a work in progress.
 
-The formulas are correct.
-The text itself is in the first stage.
-And i have to learn \LaTeX{} for the first time.
-Has to be overworked a few more times.
 }\\
-June 25, 2015\\
+
 \end{center}
 
-\texbf{Remark} On a piece of paper you see three coordinate axes pointing into three
+\textbf{Remark} On a piece of paper you see three coordinate axes pointing into three
 directions in space. In reality these vectors are two dimensional. Because
 they point into three directions on the paper, and not into the real space.\\
 
@@ -36,7 +33,7 @@ basis is multiplied with the value of the coordinate to move to the correct new 
 In the case of cosines and sines, we move left and right and up and down, to 
 tell you directly, what happens, when we multiply the coordinates with the matrix.\\
 
-What we will do in the next paragraphs\\
+\textbf{What we will do in the document}
 
 \begin{enumerate}
 \item Choose angles for our coordinate axes around the unit circle to lay out three axes.
@@ -48,7 +45,7 @@ What we will do in the next paragraphs\\
 
 \section{Definitions}
 
-\texbf{Definition} Let $\varphi_n$ be the set of axis angles, one for each axis. The angles start
+\textbf{Definition} Let $\varphi_n$ be the set of axis angles, one for each axis. The angles start
 at the same place, at the number zero. You have to arrange the $x$, $y$, and
 $z$ axes like on a piece of paper around the unit circle by giving them the
 appropriate angles. All three angles start at the default at zero at the horizontal axis of the plane.
@@ -59,7 +56,7 @@ appropriate angles. All three angles start at the default at zero at the horizon
 \end{displaymath}
 
 \begin{example}
-\texbf{Example}
+\textbf{Example}
 The function rad converts degrees to radians, it´s useful for computer functions taking radians.
 \begin{displaymath}
 \text{rad}(\phi) := \frac{\pi}{180} \times \phi, \phi \in \mathbb{R}
@@ -72,7 +69,7 @@ Here is an example of three angles. The three axes have an angle of 120 degrees 
 \end{displaymath}
 \end{example}
 
-\texbf{Definition} Let $e_n$ be the set of three two dimensional basis vectors, namely 
+\textbf{Definition} Let $e_n$ be the set of three two dimensional basis vectors, namely 
 \vec{e}_x, $\vec{e}_y$ and $\vec{e}_z$. Other names are $\vec{i}$, $\vec{j}$ or $\vec{k}$ for example, like on the
 picture of the coordinate system mentioned. The three vectors point into the three directions
 of the three axes. On a piece of paper they are two dimensional, because they point into three
@@ -90,18 +87,21 @@ and sine for the correct $x$-distance and $y$-distance. For help, you should rem
 of $x$ and $y$ from the unit circle. \footnote{Interested people can read about parametrization of x and y, 
 the unit circle, polar coordinates and cosine and sine for example in the books \cite{Corral1}, \cite{Corral2}, \cite{Strang2}.}
 
+\mbox{
 \begin{displaymath}
 \left(\begin{array}{1}x\\y\end{array}\right) = \left(\begin{array}{1}r \cos \varphi\\ r \sin \varphi\end{array}\right)\\
-\end{displaymath}
+\end{displaymath}\\
 \begin{displaymath}
 (x,y) = (r \cos \varphi, r \sin \varphi)
 \end{displaymath}
 
-\begin{center}
+\begin{flushright}
 \includegraphics[scale=2]{unitcircle.png}
-\end{center}
-
-\texbf{Definition}
+\end{flushright}
+}
+\\
+\\
+\textbf{Definition}
 
 Modeling the three two dimensional basis vectors with this information,
 we get the following three two dimensional basis vectors.\\
@@ -123,27 +123,25 @@ points into the right directions. On the plane we use to point into three direct
 \includegraphics[scale=1]{unitvectors.png}
 \end{center}
 
-\texbf{Remark}.The values of $r_x, r_y$ and $r_z$ decide, how long one unit into each
+\textbf{Remark}.The values of $r_x, r_y$ and $r_z$ decide, how long one unit into each
 direction is. To preserve affine graphical transformations all three
 axes should have the same length, to represent same distance for each coordinate unit. 
 The units can generally be enlarged or made smaller than \emph{unit length}, which is a length of $1$. 
 By default the resulting vectors with the cosine for $x$ and sine for $y$ components have \emph{unit length}, 
 if you don´t multiply the cosine and the sine in each basis vector with $r_x, r_y$ and $r_z$. The $r_n$ represent the lengths of the hypotenuses or the new radius of the circle around the origin described by the vectors. \\
 
-\texbf{Remark} On the other side, the length of $r$ can be determined from existing basis vectors.
+\textbf{Remark} On the other side, the length of $r$ can be determined from existing basis vectors.
 By pulling the square root out of the sum of the squares of the vector components.
 This is also known as euclidean norm, or the root of the inner product of the vector with itself.
 Like real fans of sines and cosines, we know that $\sin^2 \varphi + \cos^2 \varphi = 1$ and what the root of 1 is.
-If we pull the root out of the products of cosine and sine multiplied with $r \ne 1$ , we get the length of $r$ again. 
-$r = \sqrt{\vec{x} \dotproduct \vec{x}}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{1}{2}}$ = $\|\vec{x}\|$\\
-
-\texbf{\emph{Now about the basis of our vector space}}\\
+If we pull the root out of the products of cosine and sine multiplied with $r \ne 1$. We get the length of $r$ again. 
+$r = \sqrt{\vec{x}\vec{x}}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{1}{2}}$ = $\|\vec{x}\|$\\
 
 The other lemma we need is the generic theorem for multiplying a vector with some orthogonal basis for some coordinate system.\\
 
 In our case the orthogonality by 90 degrees rules of perpendicular basis vectors do not count. We arrange for example with about 120 degrees between each around the origin on a plane. The point is, the generic formula still holds.\\
 
-\texbf{Remark} The sum of the basis multiplied with the coordinates is nothing
+\textbf{Remark} The sum of the basis multiplied with the coordinates is nothing
 new. But literature and lecture scripts just tell how to multiply
 same dimensions, giving no clue about the easy 3-D to 2-D conversions.
 I can not speak for all, and do not believe, that no one told no one about this, 
@@ -240,7 +238,7 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 
 \end{Theorem}
 
-\texbf{Proof}\\
+\textbf{Proof}\\
 \begin{displaymath}
 \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = x\vec{e}_x + y\vec{e}_y + z\vec{e}_z = \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}
@@ -251,18 +249,32 @@ xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right)
 \end{displaymath}\\
 
+
 \begin{example}
-\texbf{Example}\\
+\textbf{Example}\\
 The following is example code for various computer systems.\\
 $x\_ = x*r*cos(alpha) + y*r*cos(beta) + z*r*cos(gamma)\\
 y\_ = x*r*sin(alpha) + y*r*sin(beta) + z*r*sin(gamma)$\\
 \end{example}
 
 \begin{example}
-\texbf{Example}\\And this is some EcmaScript 6 Arrow Function returning the new point. It is not optimized for speed. Means, to repeat the sin and cosine calls.\\
+\textbf{Example}\\And this is some EcmaScript 6 Arrow Function returning the new point. It is not optimized for speed. Means, to repeat the sin and cosine calls.\\
 
 let projection = ([x,y,z]) =\rangle [x*r*Math.cos(xAxisAngle) + y*r*Math.cos(yAxisAngle) + z*r*Math.cos(zAxisAngle),x*r*Math.sin(xAxisAngle) + y*r*Math.sin(yAxisAngle) + z*r*Math.sin(zAxisAngle)]; \\
-\end{example}
+\end{example}\\
+
+\emph{Proving rules of vector spaces.}\\
+
+A trivial proof is to prove, that the zero vector $\vec{0} \in \mathbb{R}^3$ maps to the zero vector $\vec{0} \in \mathbb{R}^2$.\\
+
+\textbf{Proof}:
+\begin{displaymath}
+    \boldsymbol{A}\left(\begin{array}{1}0\\0\\0\end{array}\right)
+    = \left(\begin{array}{1}0 + 0 + 0\\0 + 0 + 0\end{array}\right) 
+    =\left(\begin{array}{1}0\\0\end{array}\right)
+\end{displaymath}
+
+Remark. This brought me to the conclusion to prove more rules of vector spaces. In the next versions.\\
 
 \section{Corollary}
 
@@ -270,7 +282,7 @@ The theorem can be extended into more dimensions to go down to any other dimensi
 The generic case is known to linear algebra, i found it lately after beginning this
 document and will include the information within the next versions.\\
 
-\texbf{Corollary} \emph{(Converting any Dimensions down to less dimensions)}:\\
+\textbf{Corollary} \emph{(Converting any Dimensions down to less dimensions)}:\\
 
 The theorem can be extended to more dimensions, for example can four two-dimensional
 vectors represent a 4-D space on the 2-D plane. They get converted into the correct
@@ -293,7 +305,7 @@ Here the basis is four times of two dimensions. A 2x4 matrix.
 \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\\t\end{array}\right) = \sum_{n} \vec{e}_n\vec{x}_n = \left(\begin{array}{1}x'\\y'\end{array}\right)\\
 \end{displaymath}
 
-\texbf{Proof}:
+\textbf{Proof}:
 
 \begin{displaymath}
 \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\\t\end{array}\right) &= \left(\begin{array}{1}
@@ -309,7 +321,7 @@ used in a generic m by n case\footnote{http://de.wikipedia.org/wiki/Abbildungsma
 
 \section{Summary}
 
-\texbf{Summary of all neccessary steps}
+\textbf{Summary of all neccessary steps}
 \begin{enumerate}
 \item Lay out the three basis vectors around a circle and write down the angles $\varphi_n$. Programmers have to write down a variable for anyways.
 \item Write down the basis vectors $\vec{e}_n$ as $r_n \cos \varphi_n$ and $r_n \sin \varphi_n$ (two dimensional). Don´t multiply with $r_n$ for a unit length of $1$ or multiply with $r_n$ to change the length of the basis vector.
@@ -317,7 +329,7 @@ used in a generic m by n case\footnote{http://de.wikipedia.org/wiki/Abbildungsma
 \item Iterate over your points and multiply each $(x,y,z)$ with the matrix \boldsymbol{A}, which acts as our linear operator, and put $(x',y')$ into your new set.
 \end{enumerate}
 
-\texbf{Remark}\\
+\textbf{Remark}\\
 About the word \emph{unit}. I am not really sure, if i have to use \emph{base vector} for a vector of any length and \emph{unit vector} only for the \emph{unit length} of $1$. Because of the misleading mismatch with the \emph{unit} of the thought \emph{coordinate axes}, which the \emph{base vector} defines, i tend in the first versions to misuse the word \emph{unit vector} for both. If you find this, or any other formal mistake, be sure, it is not wanted :-) I will try to remove more of these spelling errors in the next versions.
 
 \begin{thebibliography}    
