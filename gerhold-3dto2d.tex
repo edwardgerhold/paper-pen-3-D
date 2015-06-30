@@ -40,12 +40,14 @@ tell you directly, what happens, when we multiply the coordinates with the matri
 \item Write down the basis vectors for each coordinate axis
 \item Assemble a matrix with the vector basis for a point by point transformation.
 \item Read the example source code for a computer function, which is exactly two lines long. One for the new $x$ and one for the new $y$.
-\item Derive the generic case of transforming coordinate systems down to the plane and from.
+\item Derive the generic case of transforming coordinate systems down to the plane.
 \end{enumerate}
 
 \section{Definitions}
 
-\textbf{Definition} Let $\varphi_n$ be the set of axis angles, one for each axis. The angles start
+\textbf{Definition of the angles for the coordinate axes}\\
+
+ Let $\varphi_n$ be the set of axis angles, one for each axis. The angles start
 at the same place, at the number zero. You have to arrange the $x$, $y$, and
 $z$ axes like on a piece of paper around the unit circle by giving them the
 appropriate angles. All three angles start at the default at zero at the horizontal axis of the plane.
@@ -69,7 +71,11 @@ Here is an example of three angles. The three axes have an angle of 120 degrees 
 \end{displaymath}
 \end{example}
 
-\textbf{Definition} Let $e_n$ be the set of three two dimensional basis vectors, namely 
+
+
+\textbf{Definition of the three 2-D basis vectors}\\ 
+
+Let $e_n$ be the set of three two dimensional basis vectors, namely 
 \vec{e}_x, $\vec{e}_y$ and $\vec{e}_z$. Other names are $\vec{i}$, $\vec{j}$ or $\vec{k}$ for example, like on the
 picture of the coordinate system mentioned. The three vectors point into the three directions
 of the three axes. On a piece of paper they are two dimensional, because they point into three
@@ -93,18 +99,16 @@ the unit circle, polar coordinates and cosine and sine for example in the books 
 \end{displaymath}\\
 \begin{displaymath}
 (x,y) = (r \cos \varphi, r \sin \varphi)
-\end{displaymath}
+\end{displaymath}\\
 
 \begin{flushright}
 \includegraphics[scale=2]{unitcircle.png}
-\end{flushright}
-}
+\end{flushright}\\
+}\\
 \\
-\\
-\textbf{Definition}
 
 Modeling the three two dimensional basis vectors with this information,
-we get the following three two dimensional basis vectors.\\
+we get the following three two dimensional basis vectors. They point along the coordinate axes and are the ruler for our transformation.\\
 
 \begin{displaymath}
 \vec{e}_x := (r_x\cos(\varphi_x), r_x\sin(\varphi_x) )^T = \left(\begin{array}{1}r_x\cos(\varphi_x)\\r_x\sin(\varphi_x) \end{array}\right)\\
@@ -114,10 +118,10 @@ we get the following three two dimensional basis vectors.\\
 \end{displaymath}
 \begin{displaymath}
 \vec{e}_z := (r_z\cos(\varphi_z), r_z\sin(\varphi_z) )^T = \left(\begin{array}{1}r_z\cos(\varphi_z)\\r_z\sin(\varphi_z) \end{array}\right)\\
-\end{displaymath}
+\end{displaymath}\\
 
 One for each component of $(x,y,z)$ By multiplying with, we move by the 
-points into the right directions. On the plane we use to point into three directions. This means that each component contributes a move. And the final position is the right one of the new coordinate.\\
+points into the right directions. On the plane we use to point into three directions. This means that each component contributes a move. And the final position is the right position of the new coordinate.\\
 
 \begin{center}
 \includegraphics[scale=1]{unitvectors.png}
@@ -137,18 +141,11 @@ Like real fans of sines and cosines, we know that $\sin^2 \varphi + \cos^2 \varp
 If we pull the root out of the products of cosine and sine multiplied with $r \ne 1$. We get the length of $r$ again. 
 $r = \sqrt{\vec{x}\vec{x}}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{1}{2}}$ = $\|\vec{x}\|$\\
 
-The other lemma we need is the generic theorem for multiplying a vector with some orthogonal basis for some coordinate system.\\
+\textbf{Lemma of the orthogonal bases}
+
+The one lemma we need is the generic theorem for multiplying a vector with some orthogonal basis for some coordinate system.\\
 
 In our case the orthogonality by 90 degrees rules of perpendicular basis vectors do not count. We arrange for example with about 120 degrees between each around the origin on a plane. The point is, the generic formula still holds.\\
-
-\textbf{Remark} The sum of the basis multiplied with the coordinates is nothing
-new. But literature and lecture scripts just tell how to multiply
-same dimensions, giving no clue about the easy 3-D to 2-D conversions.
-I can not speak for all, and do not believe, that no one told no one about this, 
-but i have not met any one in the last twenty years telling me about this easy 
-transformation and computer graphics went another, more complicated way, over
-homogeneous coordinates, 4 by 4 matrices and a final viewport division, to get
-the points back to two dimensions.\\
 
 The formula for multiplying a vector with a base to get a new vector is this.\footnote{The formula can be found in many mathematics and physics lecture scripts, and a good introduction is \cite{Strang1}.\\}
 
@@ -172,7 +169,7 @@ because we draw on a 2-D plane like the computer screen or a piece of paper. \\
 
 With a 3x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is equal to \left(\begin{array}{1}x'\\y'\\z'\end{array}\right)$. But with a 2x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is becoming  \left(\begin{array}{1}x'\\y'\end{array}\right)$\\
 
-Finishing the matrix\\
+\textbf{Finishing the matrix}\\
 
 Each $(x,y,z)$ coordinate has to be multiplied for the new $(x',y')$
 with it´s corresponding term of the basis vectors in the matrix. That means,
@@ -185,6 +182,17 @@ right with $\cos \varphi$ and up and down with $\sin \varphi$. Or mathematically
 xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right)\\
 \end{displaymath}
+
+
+\textbf{Remark} The sum of the basis multiplied with the coordinates is nothing
+new. But literature and lecture scripts just tell how to multiply
+same dimensions, giving no clue about the easy 3-D to 2-D conversions.
+I can not speak for all, and do not believe, that no one told no one about this, 
+but i have not met any one in the last twenty years telling me about this easy 
+transformation and computer graphics went another, more complicated way, over
+homogeneous coordinates, 4 by 4 matrices and a final viewport division, to get
+the points back to two dimensions.\\
+
 
 \section{Theorem}
 \index{Definition}
@@ -263,7 +271,7 @@ y\_ = x*r*sin(alpha) + y*r*sin(beta) + z*r*sin(gamma)$\\
 let projection = ([x,y,z]) =\rangle [x*r*Math.cos(xAxisAngle) + y*r*Math.cos(yAxisAngle) + z*r*Math.cos(zAxisAngle),x*r*Math.sin(xAxisAngle) + y*r*Math.sin(yAxisAngle) + z*r*Math.sin(zAxisAngle)]; \\
 \end{example}\\
 
-\emph{Proving rules of vector spaces.}\\
+\section{Proving rules of vector spaces}\\
 
 A trivial proof is to prove, that the zero vector $\vec{0} \in \mathbb{R}^3$ maps to the zero vector $\vec{0} \in \mathbb{R}^2$.\\
 
@@ -275,6 +283,51 @@ A trivial proof is to prove, that the zero vector $\vec{0} \in \mathbb{R}^3$ map
 \end{displaymath}
 
 Remark. This brought me to the conclusion to prove more rules of vector spaces. In the next versions.\\
+
+Remark. Did i mention that this is the real $\mathbb{R}^3$ embedded in the real $\mathbb{R}^2$? I just noticed in the bus,
+going over \cite{Strang1} again. \cite{Strang1} brings me to the idea of proving nullspace, row space, column space, left null space,
+linearity of the operations and a question. What´s the norm $\|\vec{x}\|$ in $\mathbb{R}^{2x3}$? and is this embedding really the $\mathbb{R}^{2x3}$? These question go beyond the simple transformation of the points and concern mathematics and linear algebra. I wrote down the transpose of the matrix, and multiplied it for a 2x2 matrix with $\boldsymbol{A}\boldsymbol{A}^T$. I didn´t for the 3x3 with $\boldsymbol{A}^T\boldsymbol{A}$ in the bus. I wrote down easier numbers for the vectors for manual calculations than the sines and cosines. 
+
+\textbf{Example}
+The example from the beginning, where i define sample angles in radians looks in numbers like. Let´s round it up to full numbers to calculate manually a few examples with.
+\begin{example}
+\begin{displaymath}
+\boldsymbol{A} = \left(    
+    \begin{array}{1111}
+    0.866 & -0.866 & 0\\
+    -0.5 & -0.5 & 1\\
+    \end{array}
+\right) \implies^{rounded} \left(    
+    \begin{array}{1111}
+    1 & -1 & 0\\
+    -0.5 & -0.5 & 1\\
+    \end{array}
+\right) 
+\end{displaymath}
+\end{example}\\
+
+Remark. This chapter has been added on June 30, 2015 and is a new draft in the draft for today.\\
+
+\left(
+    \begin{array}{111}
+    r_x\cos(\varphi_x) & r_y\cos(\varphi_y) & r_z\cos(\varphi_z) \\
+    r_x\sin(\varphi_x) & r_y\sin(\varphi_y) & r_z\sin(\varphi_z) \\
+    \end{array}
+\right)^T
+= \left(
+    \begin{array}{11}
+    r_x\cos(\varphi_x) & r_x\sin(\varphi_x)\\
+    r_y\cos(\varphi_y) & r_y\sin(\varphi_y)\\
+    r_z\cos(\varphi_z) & r_z\sin(\varphi_z) \\
+    \end{array}
+\right)
+
+Let´s check out
+$\boldsymbol{A}\boldsymbol{A}^T$
+and
+$\boldsymbol{A}^T\boldsymbol{A}$.$
+In the next ver$sions.
+$\boldsymbol{A}\boldsymbol{A}^T$
 
 \section{Corollary}
 
