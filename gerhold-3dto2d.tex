@@ -1,9 +1,10 @@
-\documentclass{article}
+\documentclass[a4paper]{article}
 \usepackage[hmargin=1in, vmargin=1in]{geometry}
 \usepackage{makeidx}
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \usepackage[pdftex]{graphicx}
+\usepackage{amsmath}
 \makeindex
 \begin{document}
 \begin{center}
@@ -35,12 +36,23 @@ basis is multiplied with the value of the coordinate to move to the correct new 
 In the case of cosines and sines, we move left and right and up and down, to 
 tell you directly, what happens, when we multiply the coordinates with the matrix.\\
 
+What we will do in the next paragraphs\\
+
+\begin{enumerate}
+\item Choose angles for our coordinate axes around the unit circle to lay out three axes.
+\item Write down the basis vectors for each coordinate axis
+\item Assemble a matrix with the vector basis for a point by point transformation.
+\item Read the example source code for a computer function, which is exactly two lines long. One for the new $x$ and one for the new $y$.
+\item Derive the generic case of transforming coordinate systems down to the plane and from.
+\end{enumerate}
+
 \section{Definitions}
 
 \texbf{Definition} Let $\varphi_n$ be the set of axis angles, one for each axis. The angles start
 at the same place, at the number zero. You have to arrange the $x$, $y$, and
 $z$ axes like on a piece of paper around the unit circle by giving them the
-appropriate angles. All three angles start at the default at zero. 
+appropriate angles. All three angles start at the default at zero at the horizontal axis of the plane.
+
 
 \begin{displaymath}
 \varphi_n := \{\varphi_x, \varphi_y, \varphi_z\}
@@ -113,10 +125,10 @@ points into the right directions. On the plane we use to point into three direct
 
 \texbf{Remark}.The values of $r_x, r_y$ and $r_z$ decide, how long one unit into each
 direction is. To preserve affine graphical transformations all three
-axes should have the same length, to represent same distance for each coordinate unit, 
-which can generally be enlarged or made smaller than \emph{unit length}, which is a length of $1$. 
-By default the resulting vector of the cosine and sine Components has \emph{unit length}, 
-if you don´t multiply the cosine and the sine with $r_x, r_y$ and $r_z$ in each basis vector. \\
+axes should have the same length, to represent same distance for each coordinate unit. 
+The units can generally be enlarged or made smaller than \emph{unit length}, which is a length of $1$. 
+By default the resulting vectors with the cosine for $x$ and sine for $y$ components have \emph{unit length}, 
+if you don´t multiply the cosine and the sine with $r_x, r_y$ and $r_z$, which represent the length of the hypotenuse or the new radius of the circle around, in each basis vector. \\
 
 \texbf{Remark} On the other side, the length of $r$ can be determined from existing basis vectors.
 By pulling the square root out of the sum of the squares of the vector components.
@@ -125,11 +137,9 @@ Like real fans of sines and cosines, we know that $\sin^2 \varphi + \cos^2 \varp
 If we pull the root out of the products of cosine and sine multiplied with $r \ne 1$ , we get the length of $r$ again. 
 $r = \sqrt{\vec{x} \dotproduct \vec{x}}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{1}{2}}$ = $\|\vec{x}\|$\\
 
+\texbf{\emph{Now about the basis of our vector space}}\\
 
-Now about the multiplication of the coordinates with the basis.\\
-
-\emph{The other help we take} \\The other lemma we need is the theorem for 
-multiplying with the orthogonal basis.\\
+The other lemma we need is the generic theorem for multiplying a vector with some orthogonal basis for some coordinate system.\\
 
 In our case the orthogonality by 90 degrees rules of perpendicular basis vectors do not count. We arrange for example with about 120 degrees beetween each around the origin on a plane. The point is, the generic formula still holds.\\
 
@@ -149,8 +159,8 @@ The formula for multiplying a vector with a base to get a new vector is this.\fo
 \end{displaymath}
 
 It is done componentwise for each row of the vector. $n$ is the number of the target dimensions. In our case it is 2. And we are
-doing it for three components.\\
-With $\vec{x}_i$ as the coordinate components and $\vec{e}_i$ as the corresponding basis vector component and $\vec{v}$ as the resulting new vector. $n$ is the target dimension. In our case it is $n = 2$. And we sum three components up.
+doing it for three components. Our old $\vec{x}$ is a $\vec{x} \in \mathbb{R}^3$.\\
+With $\vec{x}_i$ as the coordinate components and $\vec{e}_i$ as the corresponding basis vector component and $\vec{v}$ as the resulting new vector. $n$ is the target dimension. In our case it is $n = 2$. And we sum three components up. The new vector $\vec{v}$ is a $\vec{v} \in \mathbb{R}^2$.\\
 
 This is also equal to
 
@@ -197,8 +207,10 @@ Gerhold Projection Matrix to distinguish it from other matrices, making sure it 
     r_x\sin(\varphi_x) & r_y\sin(\varphi_y) & r_z\sin(\varphi_z) \\
     \end{array}
 \right)\\
-\end{displaymath}
-\end{Definition}
+\end{displaymath}\\
+
+\boldsymbol{A} should be treated as operator $\boldsymbol{A}(\vec{x}) := \boldsymbol{A}\vec{x}$. $\boldsymbol{A}(\vec{x}) : \mathbb{R}^3 \rightarrow \mathbb{R}^2$. \\
+\end{Definition}\\
 
 \index{Theorem}
 \newtheorem{Theorem}{Theorem (The Fundamental Theorem of transforming 3-D Points into 2-D Points)}
@@ -241,7 +253,7 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right
 
 \begin{example}
 \texbf{Example}\\
-The following is example code for varius computer systems.\\
+The following is example code for various computer systems.\\
 $x\_ = x*r*cos(alpha) + y*r*cos(beta) + z*r*cos(gamma)\\
 y\_ = x*r*sin(alpha) + y*r*sin(beta) + z*r*sin(gamma)$\\
 \end{example}
