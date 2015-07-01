@@ -81,7 +81,7 @@ Here is an example of three angles. The three axes have an angle of 120 degrees 
 \textbf{Definition of the three 2-D basis vectors}\\ 
 
 Let $e_n$ be the set of three two dimensional basis vectors, namely 
-\vec{e}_x, $\vec{e}_y$ and $\vec{e}_z$. Other names are $\vec{i}$, $\vec{j}$ or $\vec{k}$ for example, like on the
+$\vec{e}_x$, $\vec{e}_y$ and $\vec{e}_z$. Other names are $\vec{i}$, $\vec{j}$ or $\vec{k}$ for example, like on the
 picture of the coordinate system mentioned. The three vectors point into the three directions
 of the three axes. On a piece of paper they are two dimensional, because they point into three
 directions on the paper. The space being shown is what our brain completes, seeing three correct
@@ -151,11 +151,13 @@ $r = \sqrt{\vec{x}\vec{x}}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{
 The one lemma we need is the generic theorem for multiplying a vector with some orthogonal basis for some coordinate system.\\
 
 In our case the orthogonality by 90 degrees rules do not count. The basis vectors are no longer perpendicular. Or in other words
-$\neg \left( \vec{e}_i \perp \vec{e}_j \right)$ with $i,j \in \{x,y,z\}$ where $i \neq j$. \\
+$\neg \left( \vec{e}_i \perp \vec{e}_j \right)$ with $i,j \in \{x,y,z\}$
 
 The plane gives us two degrees of freedom, to go horizontal or vertical. And in a cartesian coordinate system with infinite points, we can choose any direction around a point (x,y).
 Any not straight move will go horizontally or vertically by componentwise amounts. Any straight move will go by one of the components only.
-We arrange for example with about 120 degrees\footnote{The angle between $e_x$ and $e_y$ can be a little bigger, if $e_z$ points up. I have noticed this on pictures} between each axis around the origin on a plane. The point is, the generic formula still holds.\\
+We arrange for example with about 120 degrees\footnote{The angle between $e_x$ and $e_y$ can be a little bigger, if $e_z$ points up. I have noticed this on pictures. And before you get crazy, you are allowed to choose any angles. Let x,y be perpendicular. Your choice.} between each axis around the origin on a plane. \\
+
+The point is, the generic formula still holds.\\
 The formula for multiplying a vector with a base to get a new vector is this.\footnote{The formula can be found in many mathematics and physics lecture scripts, and a good introduction is \cite{Strang1}.\\}
 
 \begin{displaymath}
@@ -281,7 +283,7 @@ y_ = x*r*sin(alpha) + y*r*sin(beta) + z*r*sin(gamma)
 
 
 \begin{example}
-\textbf{Example}\\This is full EcmaScript 6 snippet with all neccessary informations.\\
+\textbf{Example}\\This is a full EcmaScript 6 snippet with all neccessary informations.\\
 \begin{lstlisting}
 let rad = (deg) => Math.PI/180*deg;
 let r_x = 1, r_y = 1, r_z = 1; 
