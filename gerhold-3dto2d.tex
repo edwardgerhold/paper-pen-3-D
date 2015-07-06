@@ -15,8 +15,8 @@
 \date{\today}
 \maketitle
 
-Version 0.2.0 (the very a draft paper)\\
-Has to be ordered -and more- again. But is a working draft in progress.
+Version 0.2.1 (the very a draft paper)\\
+Has to be ordered, corrected -and more- again. This is an active working draft.
 
 }\\
 
@@ -160,7 +160,7 @@ Any not straight move will go horizontally or vertically by componentwise amount
 We arrange for example with about 120 degrees\footnote{The angle between $e_x$ and $e_y$ can be a little bigger, if $e_z$ points up. I have noticed this on pictures. And before you get crazy, you are allowed to choose any angles. Let x,y be perpendicular. Your choice.} between each axis around the origin on a plane. \\
 
 The point is, the generic formula still holds.\\
-The formula for multiplying a vector with a base to get a new vector is this.\footnote{The formula can be found in many mathematics and physics lecture scripts, and a good introduction is \cite{Strang1}.\\}
+The formula for multiplying a vector with a base to get a new vector is this.\footnote{The formula can be found in many mathematics, chemistry and physics lecture scripts, and a good introduction is \cite{Strang1}.\\}
 
 \begin{displaymath}
 \vec{v} = \displaystyle\sum_{i=1}^{n} \vec{x}_i\vec{e}_i
@@ -384,18 +384,20 @@ Another trivial proof is to prove, that coordinates lying on one axis are a mult
     = b\vec{e}_z
 \end{displaymath}\\
 
-Another trivial proof is to show, that $\lambda\boldsymbol{A}\vec{x} = \boldsymbol{A}(\lambda\vec{x})$.\\
+Another trivial proof is to show, that $\boldsymbol{A}(\lambda\vec{x}) = \lambda\boldsymbol{A}\vec{x}$.\\
 \textbf{Proof}:
 \begin{displaymath}
 
-\boldsymbol{A}\left(\begin{array}{1}\lambda{x}\\\lambda{y}\\\lambda{z}\end{array}\right)\\ = \left(\begin{array}{1}\lambda{x}r_x\cos(\varphi_x) + \lambda{y}r_y\cos(\varphi_y) + \lambda{z}r_z\cos(\varphi_z)\\
-\lambda{x}r_x\sin(\varphi_x) + \lambda{y}r_y\sin(\varphi_y) + \lambda{z}r_z\sin(\varphi_z)\\
-\end{array}\right)
-    = \lambda\left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
-xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
+\boldsymbol{A}(\lambda\vec{x}) &= \boldsymbol{A}\left(\begin{array}{1}\lambda{x}\\\lambda{y}\\\lambda{z}\end{array}\right) = \left(\begin{array}{1}\lambda{x}r_x\cos(\varphi_x) + \lambda{y}r_y\cos(\varphi_y) + \lambda{z}r_z\cos(\varphi_z)\\
+\lambda{x}r_x\sin(\varphi_x) + \lambda{y}r_y\sin(\varphi_y) + \lambda{z}r_z\sin(\varphi_z)
 \end{array}\right)\\
-    = \lambda\boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right)
+    &= \lambda\left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
+xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
+\end{array}\right)
+    = \lambda\boldsymbol{A}\vec{x} = \lambda\left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}\\
+
+It doesn´t matter, where you multiply with the constant. You can multiply the original vectors, or the resulting vectors. You reach the same point.\\
 
 Another trivial proof is to show, that $\boldsymbol{A}(\vec{v} + \vec{w}) = \boldsymbol{A}\vec{v} + \boldsymbol{A}\vec{w}$.\\
 \textbf{Proof}:
@@ -411,14 +413,24 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 ur_x\sin(\varphi_x) + vr_y\sin(\varphi_y) + wr_z\sin(\varphi_z)\\
 \end{array}\right)\\
     = \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) + \boldsymbol{A}\left(\begin{array}{1}u\\v\\w\end{array}\right)
+    = \left(\begin{array}{1}x'\\y'\end{array}\right) + \left(\begin{array}{1}u'\\v'\end{array}\right) 
 \end{displaymath}\\
+
+It does not matter, if you add the original or the results . The outcome is the same point, the same vector.\\
+ 
+\textbf{Corollary} From the previous two proofs, it is obvious to see, that
+\begin{displaymath}
+\boldsymbol{A}(\lambda\vec{v} + \kappa\vec{w}) = \lambda\boldsymbol{A}\vec{v} + \kappa\boldsymbol{A}\vec{w} = \lambda\left(\begin{array}{1}x'\\y'\end{array}\right) + \kappa\left(\begin{array}{1}u'\\v'\end{array}\right)\\
+\end{displaymath}\\
+
+which is a standard formulation of the rule of linearity. For example, you can find this rule in the form of $\boldsymbol{A}(c\vec{x} + d\vec{y}) = c\boldsymbol{A}\vec{x} + d\boldsymbol{A}\vec{y}$ in \cite{Strang1}.\\
 
 
 \textbf{Remark} This chapter has been added recently on June 30, one week after the paper, and will be extended with more proofs soon.\\
  
 \textbf{Remark} Less trivial is to figure out, what the transpose and the products with the transpose and the inverse matrices of those products are good for. Our rectangular 2x3 basis matrix has a transponse. A 3x2 matrix. The products are $\boldsymbol{A}\boldsymbol{A}^T$, a 2 by 2 matrix, and $\boldsymbol{A}^T\boldsymbol{A}$, a 3 by 3 matrix. Today i will just show the transpose. \\
 
-\textbf{Remark} Just by guessing, i think "least squares backwards" is closer to spanning up the z-dimension again, than trying to convert the inverses of the transpose products. But that´s just wild guessing and has no, not even dilletantic calculations behind.\\
+\textbf{Remark} Just by guessing, i think "least squares backwards" is closer to spanning up the z-dimension again, than trying to convert the inverses of the transpose products. But that´s just wild guessing and has no, not even dilletantic calculations behind. Please skip this remark.\\
 
 \begin{displaymath}
 \left(
@@ -435,6 +447,7 @@ ur_x\sin(\varphi_x) + vr_y\sin(\varphi_y) + wr_z\sin(\varphi_z)\\
     \end{array}
 \right)
 \end{displaymath}\\
+
 
 \section{Summary}
 
