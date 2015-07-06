@@ -15,7 +15,7 @@
 \date{\today}
 \maketitle
 
-Version 0.1.13 (the very a draft paper)\\
+Version 0.2.0 (the very a draft paper)\\
 Has to be ordered -and more- again. But is a working draft in progress.
 
 }\\
@@ -148,12 +148,12 @@ $r = \sqrt{\vec{x}\vec{x}}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{
 
 \textbf{Lemma of the orthogonal bases}\\
 
-textbf{Remark.} Not corrected in this version, i can use the word \emph{basis} together with the formula without the adjective. New lecture scripts proved me.
+\textbf{Remark.} Not corrected in this version, i can use the word \emph{basis} together with the formula without the adjective. New lecture scripts proved me.
 
 The one lemma we need is the generic theorem for multiplying a vector with some basis for some coordinate system.\\
 
 In our case the orthogonality by 90 degrees rules do not count. The basis vectors are no longer perpendicular. Or in other words
-$\neg \left( \vec{e}_i \perp \vec{e}_j \right)$ with $i,j \in \{x,y,z\}$
+$\neg \left( \vec{e}_i \perp \vec{e}_j \right)$ with $i,j \in \{x,y,z\}.$
 
 The plane gives us two degrees of freedom\footnote{A version later i am asking myself, if i may use degree of freedom? According to https://de.wikipedia.org/wiki/Freiheitsgrade Maybe i have explained it understandable, but wrong now.}, to go horizontal or vertical. And in a cartesian coordinate system with infinite points, we can choose any direction around a point (x,y).
 Any not straight move will go horizontally or vertically by componentwise amounts. Any straight move will go by one of the components only.
@@ -307,63 +307,8 @@ let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 \end{example}\\
 
 \textbf{Remark} I already proved affine transformations (Rotation, Scaling, Translation),
-after applying a local 3x3 base to the object, then projecting the points afterwards with 
-this formula. I think the alternative graphics  algorithm up to there could find a place here.\\
-
-\section{Proving more rules of vector spaces}\\
-
-A trivial proof is to prove, that the zero vector $\vec{0} \in \mathbb{R}^3$ maps to the zero vector $\vec{0} \in \mathbb{R}^2$.\\
-\textbf{Proof}:
-\begin{displaymath}
-    \boldsymbol{A}\left(\begin{array}{1}0\\0\\0\end{array}\right)
-    = \left(\begin{array}{1}0 + 0 + 0\\0 + 0 + 0\end{array}\right) 
-    =\left(\begin{array}{1}0\\0\end{array}\right)
-\end{displaymath}\\
-
-Another trivial proof is to prove, that coordinates lying on one axis are a multiple of the basis vector of the axis.\\
-
-\textbf{Proof}:
-\begin{displaymath}
-    \boldsymbol{A}\left(\begin{array}{1}a\\0\\0\end{array}\right)
-    = \left(\begin{array}{1}ar_x\cos \varphi_x + 0 + 0\\ar_x\sin \varphi_x  + 0 + 0\end{array}\right) 
-    = a\vec{e}_x
-\end{displaymath}
-
-\begin{displaymath}
-    \boldsymbol{A}\left(\begin{array}{1}0\\1\\0\end{array}\right)
-    = \left(\begin{array}{1}0 + r_y\cos \varphi_y + 0\\0 + r_y\sin \varphi_y + 0\end{array}\right) 
-    = \vec{e}_y
-\end{displaymath}
-
-\begin{displaymath}
-    \boldsymbol{A}\left(\begin{array}{1}0\\0\\b\end{array}\right)
-    = \left(\begin{array}{1}0 + 0 + br_z\cos \varphi_z\\0 + 0 + br_z\sin \varphi_z\end{array}\right) 
-    = b\vec{e}_z
-\end{displaymath}\\
-
-\textbf{Remark} More trivial proofs like $\lambda\boldsymbol{A}\vec{x} = \boldsymbol{A}(\lambda\vec{x})$ will follow in the evening of this version.\\
-
-The less trivial is what is the outcome of calculating with the products of the transpose and it´s inverses. I can not prove today. \\
-
-\begin{displaymath}
-\left(
-    \begin{array}{111}
-    r_x\cos(\varphi_x) & r_y\cos(\varphi_y) & r_z\cos(\varphi_z) \\
-    r_x\sin(\varphi_x) & r_y\sin(\varphi_y) & r_z\sin(\varphi_z) \\
-    \end{array}
-\right)^T
-= \left(
-    \begin{array}{11}
-    r_x\cos(\varphi_x) & r_x\sin(\varphi_x)\\
-    r_y\cos(\varphi_y) & r_y\sin(\varphi_y)\\
-    r_z\cos(\varphi_z) & r_z\sin(\varphi_z) \\
-    \end{array}
-\right)
-\end{displaymath}
-
-\textbf{Remark} The today unprovable for me. The rectangular 2x3 matrix has a transponse. A 3x2 matrix. The products are $\boldsymbol{A}\boldsymbol{A}^T$, a 2 by 2 matrix, and $\boldsymbol{A}^T\boldsymbol{A}$, a 3 by 3 matrix. I will just show the transpose. 
-
-\textbf{Remark} This chapter had been added on June 30. It will be continued in the evening of this version.
+with and without applying a local 3x3 base to the object, then projecting the points afterwards with 
+this formula. I think the alternative graphics algorithm up to there could find a place here.\\
 
 \section{Corollary}
 
@@ -407,6 +352,89 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)+ zr_t\sin(\varph
 
 The same method can be used to convert any other number of dimensions to the $xy$-plane. But it can also be
 used in a generic m by n case\footnote{http://de.wikipedia.org/wiki/Abbildungsmatrix, also found in lecture scripts, but not anyone explaining me this matrix here or the topic of the from-three-to-two-points conversion. Is it too obvious? Or isn´t it obvious?}, to convert from n dimensions down to m, if you know the basis for the destination.\\
+
+
+\section{Proving more rules of vector spaces}\\
+
+A trivial proof is to prove, that the zero vector $\vec{0} \in \mathbb{R}^3$ maps to the zero vector $\vec{0} \in \mathbb{R}^2$.\\
+\textbf{Proof}:
+\begin{displaymath}
+    \boldsymbol{A}\left(\begin{array}{1}0\\0\\0\end{array}\right)
+    = \left(\begin{array}{1}0 + 0 + 0\\0 + 0 + 0\end{array}\right) 
+    =\left(\begin{array}{1}0\\0\end{array}\right)
+\end{displaymath}\\
+
+Another trivial proof is to prove, that coordinates lying on one axis are a multiple of the basis vector of the axis.\\
+\textbf{Proof}:
+\begin{displaymath}
+    \boldsymbol{A}\left(\begin{array}{1}a\\0\\0\end{array}\right)
+    = \left(\begin{array}{1}ar_x\cos \varphi_x + 0 + 0\\ar_x\sin \varphi_x  + 0 + 0\end{array}\right) 
+    = a\vec{e}_x
+\end{displaymath}
+
+\begin{displaymath}
+    \boldsymbol{A}\left(\begin{array}{1}0\\1\\0\end{array}\right)
+    = \left(\begin{array}{1}0 + r_y\cos \varphi_y + 0\\0 + r_y\sin \varphi_y + 0\end{array}\right) 
+    = \vec{e}_y
+\end{displaymath}
+
+\begin{displaymath}
+    \boldsymbol{A}\left(\begin{array}{1}0\\0\\b\end{array}\right)
+    = \left(\begin{array}{1}0 + 0 + br_z\cos \varphi_z\\0 + 0 + br_z\sin \varphi_z\end{array}\right) 
+    = b\vec{e}_z
+\end{displaymath}\\
+
+Another trivial proof is to show, that $\lambda\boldsymbol{A}\vec{x} = \boldsymbol{A}(\lambda\vec{x})$.\\
+\textbf{Proof}:
+\begin{displaymath}
+
+\boldsymbol{A}\left(\begin{array}{1}\lambda{x}\\\lambda{y}\\\lambda{z}\end{array}\right)\\ = \left(\begin{array}{1}\lambda{x}r_x\cos(\varphi_x) + \lambda{y}r_y\cos(\varphi_y) + \lambda{z}r_z\cos(\varphi_z)\\
+\lambda{x}r_x\sin(\varphi_x) + \lambda{y}r_y\sin(\varphi_y) + \lambda{z}r_z\sin(\varphi_z)\\
+\end{array}\right)
+    = \lambda\left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
+xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
+\end{array}\right)\\
+    = \lambda\boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right)
+\end{displaymath}\\
+
+Another trivial proof is to show, that $\boldsymbol{A}(\vec{v} + \vec{w}) = \boldsymbol{A}\vec{v} + \boldsymbol{A}\vec{w}$.\\
+\textbf{Proof}:
+\begin{displaymath}
+
+\boldsymbol{A}\left(\begin{array}{1}x+u\\y+v\\z+w\end{array}\right) = \left(\begin{array}{1}(x+u)r_x\cos(\varphi_x) + (y+v)r_y\cos(\varphi_y) + (z+w)r_z\cos(\varphi_z)\\
+(x+u)r_x\sin(\varphi_x) + (y+v)r_y\sin(\varphi_y) + (z+w)r_z\sin(\varphi_z)\\
+\end{array}\right)\\
+
+    = \left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
+xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
+\end{array}\right) + \left(\begin{array}{1}ur_x\cos(\varphi_x) + vr_y\cos(\varphi_y) + wr_z\cos(\varphi_z)\\
+ur_x\sin(\varphi_x) + vr_y\sin(\varphi_y) + wr_z\sin(\varphi_z)\\
+\end{array}\right)\\
+    = \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) + \boldsymbol{A}\left(\begin{array}{1}u\\v\\w\end{array}\right)
+\end{displaymath}\\
+
+
+\textbf{Remark} This chapter has been added recently on June 30, one week after the paper, and will be extended with more proofs soon.\\
+ 
+\textbf{Remark} Less trivial is to figure out, what the transpose and the products with the transpose and the inverse matrices of those products are good for. Our rectangular 2x3 basis matrix has a transponse. A 3x2 matrix. The products are $\boldsymbol{A}\boldsymbol{A}^T$, a 2 by 2 matrix, and $\boldsymbol{A}^T\boldsymbol{A}$, a 3 by 3 matrix. Today i will just show the transpose. \\
+
+\textbf{Remark} Just by guessing, i think "least squares backwards" is closer to spanning up the z-dimension again, than trying to convert the inverses of the transpose products. But that´s just wild guessing and has no, not even dilletantic calculations behind.\\
+
+\begin{displaymath}
+\left(
+    \begin{array}{111}
+    r_x\cos(\varphi_x) & r_y\cos(\varphi_y) & r_z\cos(\varphi_z) \\
+    r_x\sin(\varphi_x) & r_y\sin(\varphi_y) & r_z\sin(\varphi_z) \\
+    \end{array}
+\right)^T
+= \left(
+    \begin{array}{11}
+    r_x\cos(\varphi_x) & r_x\sin(\varphi_x)\\
+    r_y\cos(\varphi_y) & r_y\sin(\varphi_y)\\
+    r_z\cos(\varphi_z) & r_z\sin(\varphi_z) \\
+    \end{array}
+\right)
+\end{displaymath}\\
 
 \section{Summary}
 
