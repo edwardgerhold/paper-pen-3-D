@@ -15,8 +15,8 @@
 \date{\today}
 \maketitle
 
-Version 0.1.12 (the very a draft paper)\\
-Has to be ordered -and more- again. But is a work in progress.
+Version 0.1.13 (the very a draft paper)\\
+Has to be ordered -and more- again. But is a working draft in progress.
 
 }\\
 
@@ -148,12 +148,14 @@ $r = \sqrt{\vec{x}\vec{x}}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{
 
 \textbf{Lemma of the orthogonal bases}\\
 
-The one lemma we need is the generic theorem for multiplying a vector with some orthogonal basis for some coordinate system.\\
+textbf{Remark.} Not corrected in this version, i can use the word \emph{basis} together with the formula without the adjective. New lecture scripts proved me.
+
+The one lemma we need is the generic theorem for multiplying a vector with some basis for some coordinate system.\\
 
 In our case the orthogonality by 90 degrees rules do not count. The basis vectors are no longer perpendicular. Or in other words
 $\neg \left( \vec{e}_i \perp \vec{e}_j \right)$ with $i,j \in \{x,y,z\}$
 
-The plane gives us two degrees of freedom, to go horizontal or vertical. And in a cartesian coordinate system with infinite points, we can choose any direction around a point (x,y).
+The plane gives us two degrees of freedom\footnote{A version later i am asking myself, if i may use degree of freedom? According to https://de.wikipedia.org/wiki/Freiheitsgrade Maybe i have explained it understandable, but wrong now.}, to go horizontal or vertical. And in a cartesian coordinate system with infinite points, we can choose any direction around a point (x,y).
 Any not straight move will go horizontally or vertically by componentwise amounts. Any straight move will go by one of the components only.
 We arrange for example with about 120 degrees\footnote{The angle between $e_x$ and $e_y$ can be a little bigger, if $e_z$ points up. I have noticed this on pictures. And before you get crazy, you are allowed to choose any angles. Let x,y be perpendicular. Your choice.} between each axis around the origin on a plane. \\
 
@@ -305,10 +307,10 @@ let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 \end{example}\\
 
 \textbf{Remark} I already proved affine transformations (Rotation, Scaling, Translation),
-projecting the points afterwards with this formula. I think the alternative graphics 
-algorithm up to there could find a place here.\\
+after applying a local 3x3 base to the object, then projecting the points afterwards with 
+this formula. I think the alternative graphics  algorithm up to there could find a place here.\\
 
-\section{Proving rules of vector spaces}\\
+\section{Proving more rules of vector spaces}\\
 
 A trivial proof is to prove, that the zero vector $\vec{0} \in \mathbb{R}^3$ maps to the zero vector $\vec{0} \in \mathbb{R}^2$.\\
 \textbf{Proof}:
@@ -318,14 +320,13 @@ A trivial proof is to prove, that the zero vector $\vec{0} \in \mathbb{R}^3$ map
     =\left(\begin{array}{1}0\\0\end{array}\right)
 \end{displaymath}\\
 
-
 Another trivial proof is to prove, that coordinates lying on one axis are a multiple of the basis vector of the axis.\\
 
 \textbf{Proof}:
 \begin{displaymath}
-    \boldsymbol{A}\left(\begin{array}{1}5\\0\\0\end{array}\right)
-    = \left(\begin{array}{1}5r_x\cos \varphi_x + 0 + 0\\5r_x\sin \varphi_x  + 0 + 0\end{array}\right) 
-    = 5\vec{e}_x
+    \boldsymbol{A}\left(\begin{array}{1}a\\0\\0\end{array}\right)
+    = \left(\begin{array}{1}ar_x\cos \varphi_x + 0 + 0\\ar_x\sin \varphi_x  + 0 + 0\end{array}\right) 
+    = a\vec{e}_x
 \end{displaymath}
 
 \begin{displaymath}
@@ -335,13 +336,14 @@ Another trivial proof is to prove, that coordinates lying on one axis are a mult
 \end{displaymath}
 
 \begin{displaymath}
-    \boldsymbol{A}\left(\begin{array}{1}0\\0\\7\end{array}\right)
-    = \left(\begin{array}{1}0 + 0 + 7r_z\cos \varphi_z\\0 + 0 + 7r_z\sin \varphi_z\end{array}\right) 
-    = 7\vec{e}_z
-\end{displaymath}
+    \boldsymbol{A}\left(\begin{array}{1}0\\0\\b\end{array}\right)
+    = \left(\begin{array}{1}0 + 0 + br_z\cos \varphi_z\\0 + 0 + br_z\sin \varphi_z\end{array}\right) 
+    = b\vec{e}_z
+\end{displaymath}\\
 
-The rectangular 2x3 matrix has a transponse. A 3x2 matrix. The products are $\boldsymbol{A}\boldsymbol{A}^T$, a 2 by 2 matrix, 
-and $\boldsymbol{A}^T\boldsymbol{A}$, a 3 by 3 matrix.
+\textbf{Remark} More trivial proofs like $\lambda\boldsymbol{A}\vec{x} = \boldsymbol{A}(\lambda\vec{x})$ will follow in the evening of this version.\\
+
+The less trivial is what is the outcome of calculating with the products of the transpose and it´s inverses. I can not prove today. \\
 
 \begin{displaymath}
 \left(
@@ -359,7 +361,9 @@ and $\boldsymbol{A}^T\boldsymbol{A}$, a 3 by 3 matrix.
 \right)
 \end{displaymath}
 
-\textbf{Remark} This chapter has been added on June 30 and needs further investigation and help from tools like FreeMat, where the calculations should be done instead of on the piece of paper to save time, proofs and nerves.\\
+\textbf{Remark} The today unprovable for me. The rectangular 2x3 matrix has a transponse. A 3x2 matrix. The products are $\boldsymbol{A}\boldsymbol{A}^T$, a 2 by 2 matrix, and $\boldsymbol{A}^T\boldsymbol{A}$, a 3 by 3 matrix. I will just show the transpose. 
+
+\textbf{Remark} This chapter had been added on June 30. It will be continued in the evening of this version.
 
 \section{Corollary}
 
@@ -437,7 +441,7 @@ About the word \emph{unit}. I am not really sure, if i have to use \emph{base ve
     \bibitem{Jürgens,Feuerstack} \textit{Manuela J\"urgens, Thomas Feuerstack, Fernuniversit\"at Hagen},
             LaTeX, eine Einf\"uhrung und ein bisschen mehr..., a026\_latex\_einf.pdf
             
-    \bibitem{Rudl} \textit{Dr.Jan Rudl, Technische Universit\"at Dresden, Fachbereich Mathematik},
+    \bibitem{Rudl} \textit{Dr.Jan Rudl, Tecahnische Universit\"at Dresden, Fachbereich Mathematik},
             Einf\"uhrung in LaTeX, LaTeX-Kurs.pdf            
 
 \end{thebibliography}
