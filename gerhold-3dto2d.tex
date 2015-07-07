@@ -15,8 +15,9 @@
 \date{\today}
 \maketitle
 
-Version 0.2.2 (the very a draft paper)\\
+Version 0.2.3 (the very much a draft paper)\\
 Has to be ordered, corrected -and more- again. This is an active working draft.
+Which is now totally out of it´s shape this version.
 
 }\\
 
@@ -26,8 +27,15 @@ Has to be ordered, corrected -and more- again. This is an active working draft.
 directions in space. In reality these vectors are two dimensional. Because
 they point into three directions on the paper, and not into the real space.\\
 
-[[missing: Picture of a 3-D coordinate system with ijk-vectors on the axes pointing
-into three directions. See \cite{Corral1} for introduction.]]\\
+
+
+\begin{figure}[ht]
+\includegraphics[scale=2]{ijksystem.png}\\
+\caption{Picture of a 3-D coordinate system with ijk-vectors on the axes pointing
+into three directions. See \cite{Corral1} for introduction.}
+\end{figure}
+
+
 
 In this document we will design a basis for the coordinate transformation. A
 basis is multiplied with the value of the coordinate to move to the correct new point.\\
@@ -46,7 +54,7 @@ tell you directly, what happens, when we multiply the coordinates with the matri
 
 \section{Definitions}
 
-\textbf{Definition of the angles for the coordinate axes}\\
+\subsection{Definition of the angles for the coordinate axes}
 
  Let $\varphi_n$ be the set of axis angles, one for each axis. The angles start
 at the same place, at the number zero. You have to arrange the $x$, $y$, and
@@ -78,7 +86,9 @@ Here is an example of three angles. The three axes have an angle of 120 degrees 
 \end{example}
 
 
-\textbf{Definition of the three 2-D basis vectors}\\ 
+\subsection{Definition of the three 2-D basis vectors}
+
+
 
 Let $e_n$ be the set of three two dimensional basis vectors, namely 
 $\vec{e}_x$, $\vec{e}_y$ and $\vec{e}_z$. Other names are $\vec{i}$, $\vec{j}$ or $\vec{k}$ for example, like on the
@@ -91,26 +101,31 @@ unit can be manipulated by multiplying the vector components inside $e_n$ with a
 \begin{displaymath}
 e_n := \{\vec{e}_x, \vec{e}_y, \vec{e}_z\}\\
 \end{displaymath} 
+
+
+\begin{figure}[ht]
+\includegraphics[scale=1]{unitvectors.png}
+\caption{The three basis vectors point into the positive directions of the desired coordinate axis. They are arranged around a circle with the trigonometric functions of cosine and sine.}
+\end{figure}
+
+
  
+
 This is the set of three basis vectors in set notation. To guess no numbers, it´s easier for us, 
 for each vector, to go around the unit circle by the angles we already defined and to use cosine 
 and sine for the correct $x$-distance and $y$-distance. For help, you should remember this parametrization 
 of $x$ and $y$ from the unit circle. \footnote{Interested people can read about parametrization of x and y, 
 the unit circle, polar coordinates and cosine and sine for example in the books \cite{Corral1}, \cite{Corral2}, \cite{Strang2}.}
 
-\mbox{
 \begin{displaymath}
 \left(\begin{array}{1}x\\y\end{array}\right) = \left(\begin{array}{1}r \cos \varphi\\ r \sin \varphi\end{array}\right)\\
 \end{displaymath}\\
+
+Alternativly it can be written like
+
 \begin{displaymath}
 (x,y) = (r \cos \varphi, r \sin \varphi)
 \end{displaymath}\\
-
-\begin{flushright}
-\includegraphics[scale=2]{unitcircle.png}
-\end{flushright}\\
-}\\
-\\
 
 Modeling the three two dimensional basis vectors with this information,
 we get the following three two dimensional basis vectors. They point along the coordinate axes and are the ruler for our transformation.\\
@@ -128,9 +143,12 @@ we get the following three two dimensional basis vectors. They point along the c
 One for each component of $(x,y,z)$ By multiplying with, we move by the 
 points into the right directions. On the plane we use to point into three directions. This means that each component contributes a move. And the final position is the right position of the new coordinate.\\
 
-\begin{center}
-\includegraphics[scale=2]{unitvectors.png}
-\end{center}
+
+\begin{figure}[ht]
+\includegraphics[scale=2]{unitcircle.png}
+\caption{A picture of the unit circle, the hypotenuse r, the adjacent cosine, the opposite sine and the angle $\varphi$. It is a circle of radius r, and no longer the unit circle, if $r \neq 1$.}
+\end{figure}
+
 
 \textbf{Remark}.The values of $r_x, r_y$ and $r_z$ decide, how long one unit into each
 direction is. To preserve affine graphical transformations all three
@@ -146,7 +164,7 @@ Like real fans of sines and cosines, we know that $\sin^2 \varphi + \cos^2 \varp
 If we pull the root out of the products of cosine and sine multiplied with $r \ne 1$, we get the length of $r$ again. 
 $r = \sqrt{\vec{x}\vec{x}}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{1}{2}}$ = $\|\vec{x}\|$\\
 
-\textbf{Lemma of the orthogonal bases}\\
+\subsection{Lemma of the orthogonal bases}\\
 
 \textbf{Remark.} Not corrected in this version, i can use the word \emph{basis} together with the formula without the adjective. New lecture scripts proved me.
 
@@ -183,7 +201,7 @@ because we draw on a 2-D plane like the computer screen or a piece of paper. \\
 
 With a 3x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is equal to \left(\begin{array}{1}x'\\y'\\z'\end{array}\right)$. But with a 2x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is becoming  \left(\begin{array}{1}x'\\y'\end{array}\right)$\\
 
-\textbf{Finishing the matrix}\\
+\subsection{Finishing the matrix}\\
 
 Each $(x,y,z)$ coordinate has to be multiplied for the new $(x',y')$
 with it´s corresponding term of the basis vectors in the matrix. That means,
@@ -207,6 +225,7 @@ homogeneous coordinates, 4 by 4 matrices and a final viewport division, to get
 the points back to two dimensions.\\
 
 \section{Theorem}
+\subsection{The transformation matrix}
 \index{Definition}
 \newtheorem{Definition}{Definition}
 \begin{Definition}
@@ -225,9 +244,10 @@ column. You get a rectangular 2x3 matrix $\boldsymbol{A} \in \mathbb{R}^{2x3}: \
 \right)\\
 \end{displaymath}\\
 
-\boldsymbol{A} should be treated as operator $\boldsymbol{A}(\vec{x}) := \boldsymbol{A}\vec{x}$. $\boldsymbol{A}(\vec{x}) : \mathbb{R}^3 \rightarrow \mathbb{R}^2$. \\
+\boldsymbol{A} should be treated as operator $\boldsymbol{A} : \mathbb{R}^3 \rightarrow \mathbb{R}^2$. $\vec{x} e \boldsymbol{A}\vec{x}$. 
 \end{Definition}\\
 
+\subsection{The transformation}
 \index{Theorem}
 \newtheorem{Theorem}{Theorem (The Fundamental Theorem of transforming 3-D Points into 2-D Points)}
 \begin{Theorem}\\
@@ -267,7 +287,7 @@ xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right)
 \end{displaymath}\\
 
-
+\subsection{Computer implementations of the matrix and the transformation}
 \begin{example}
 \textbf{Example}\\
 The following is example code for various computer systems.\\
@@ -292,8 +312,7 @@ let xAxisCos = r_x*Math.cos(phi_x),
     zAxisSin = r_z*Math.sin(phi_z);
 let transform2d = ([x,y,z]) => [
     x*xAxisCos+ y*yAxisCos+ z*zAxisCos,
-    x*xAxisSin+ y*yAxisSin+ z*zAxisSin
-];
+    x*xAxisSin+ y*yAxisSin+ z*zAxisSin];
 let transform2dAll = (P) => P.map(transform2d);
 
 let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
@@ -306,13 +325,9 @@ this formula. I think the alternative graphics algorithm up to there could find 
 
 \section{Corollary}
 
-The theorem can be extended into more dimensions to go down to any other dimension.
-The generic case is known to linear algebra, i found it lately after beginning this
-document and will include the information within the next versions.\\
+\subsection{Converting four Dimensions down to two dimensions}\\
 
-\textbf{Corollary} \emph{(Converting any Dimensions down to less dimensions)}:\\
-
-The theorem can be extended to more dimensions, for example can four two-dimensional
+The theorem can be used to handle more dimensions, for example can four two-dimensional
 vectors represent a 4-D space on the 2-D plane. They get converted into the correct
 2-D points. For Example, if you use a 2x4 matrix and convert all points at each 
 instance of $t$ you have a moving object into the direction of the fourth basis vector. \\
@@ -327,7 +342,7 @@ instance of $t$ you have a moving object into the direction of the fourth basis 
 \right)
 \end{displaymath}
 
-Here the basis is four times of two dimensions. A 2x4 matrix. 
+Here the basis is four times of two dimensions. A 2x4 matrix with four two dimensional basis vectors, one for each axis.\\
 
 \begin{displaymath}
 \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\\t\end{array}\right) = \sum_{n} \vec{e}_n\vec{x}_n = \left(\begin{array}{1}x'\\y'\end{array}\right)\\
@@ -342,15 +357,17 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)+ zr_t\sin(\varph
 \end{displaymath}
 \begin{displaymath}
 &= x\vec{e}_x + y\vec{e}_y + z\vec{e}_z + t\vec{e}_t &= \sum_{n} \vec{e}_n\vec{x}_n &= \left(\begin{array}{1}x'\\y'\end{array}\right)
-\end{displaymath}
+\end{displaymath}\\
 
 The same method can be used to convert any other number of dimensions to the $xy$-plane. But it can also be
 used in a generic m by n case\footnote{http://de.wikipedia.org/wiki/Abbildungsmatrix, also found in lecture scripts, but not anyone explaining me this matrix here or the topic of the from-three-to-two-points conversion. Is it too obvious? Or isn´t it obvious?}, to convert from n dimensions down to m, if you know the basis for the destination.\\
 
-
 \section{Proving more rules of vector spaces}\\
 
+\subsection{The origin stays in the origin}
+
 A trivial proof is to prove, that the zero vector $\vec{0} \in \mathbb{R}^3$ maps to the zero vector $\vec{0} \in \mathbb{R}^2$.\\
+
 \textbf{Proof}:
 \begin{displaymath}
     \boldsymbol{A}\left(\begin{array}{1}0\\0\\0\end{array}\right)
@@ -358,7 +375,10 @@ A trivial proof is to prove, that the zero vector $\vec{0} \in \mathbb{R}^3$ map
     =\left(\begin{array}{1}0\\0\end{array}\right)
 \end{displaymath}\\
 
+\subsection{Points along one axis}
+
 Another trivial proof is to prove, that coordinates lying on one axis are a multiple of the basis vector of the axis.\\
+
 \textbf{Proof}:
 \begin{displaymath}
     \boldsymbol{A}\left(\begin{array}{1}a\\0\\0\end{array}\right)
@@ -378,8 +398,11 @@ Another trivial proof is to prove, that coordinates lying on one axis are a mult
     = b\vec{e}_z
 \end{displaymath}\\
 
-Another trivial proof is to show, that $\boldsymbol{A}(\lambda\vec{x}) = \lambda\boldsymbol{A}\vec{x}$.\\
-\textbf{Proof}:
+\subsection{Multiplications with constants}
+
+Another trivial proof is to show, that $\boldsymbol{A}(\lambda\vec{x}) = \lambda\boldsymbol{A}\vec{x}$. It doesn´t matter, where you multiply with the constant. You can multiply the original vector, or the resulting vector. You reach the same point.\\
+
+\textbf{Proof}:\\
 \begin{displaymath}
 
 \boldsymbol{A}(\lambda\vec{x}) &= \boldsymbol{A}\left(\begin{array}{1}\lambda{x}\\\lambda{y}\\\lambda{z}\end{array}\right) = \left(\begin{array}{1}\lambda{x}r_x\cos(\varphi_x) + \lambda{y}r_y\cos(\varphi_y) + \lambda{z}r_z\cos(\varphi_z)\\
@@ -391,10 +414,13 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
     = \lambda\boldsymbol{A}\vec{x} = \lambda\left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}\\
 
-It doesn´t matter, where you multiply with the constant. You can multiply the original vector, or the resulting vector. You reach the same point.\\
 
-Another trivial proof is to show, that $\boldsymbol{A}(\vec{v} + \vec{w}) = \boldsymbol{A}\vec{v} + \boldsymbol{A}\vec{w}$.\\
-\textbf{Proof}:
+\subsection{Additions and subtractions}
+
+Another trivial proof is to show, that $\boldsymbol{A}(\vec{v} + \vec{w}) = \boldsymbol{A}\vec{v} + \boldsymbol{A}\vec{w}$. 
+It does not matter, if you add the original or the results . The outcome is the same point, the same vector.\\
+ 
+\textbf{Proof}:\\
 \begin{displaymath}
 
 \boldsymbol{A}\left(\begin{array}{1}x+u\\y+v\\z+w\end{array}\right) = \left(\begin{array}{1}(x+u)r_x\cos(\varphi_x) + (y+v)r_y\cos(\varphi_y) + (z+w)r_z\cos(\varphi_z)\\
@@ -410,8 +436,8 @@ ur_x\sin(\varphi_x) + vr_y\sin(\varphi_y) + wr_z\sin(\varphi_z)\\
     = \left(\begin{array}{1}x'\\y'\end{array}\right) + \left(\begin{array}{1}u'\\v'\end{array}\right) 
 \end{displaymath}\\
 
-It does not matter, if you add the original or the results . The outcome is the same point, the same vector.\\
- 
+\subsection{Rule of linearity}
+
 \textbf{Corollary} From the previous two proofs, it is obvious to see, that
 \begin{displaymath}
 \boldsymbol{A}(\lambda\vec{v} + \kappa\vec{w}) = \lambda\boldsymbol{A}\vec{v} + \kappa\boldsymbol{A}\vec{w} = \lambda\left(\begin{array}{1}x'\\y'\end{array}\right) + \kappa\left(\begin{array}{1}u'\\v'\end{array}\right)\\
@@ -419,12 +445,9 @@ It does not matter, if you add the original or the results . The outcome is the 
 
 which is a standard formulation of the rule of linearity. For example, you can find this rule in the form of $\boldsymbol{A}(c\vec{x} + d\vec{y}) = c\boldsymbol{A}\vec{x} + d\boldsymbol{A}\vec{y}$ in \cite{Strang1}.\\
 
+\subsection{Transpose and unproven}
 
-\textbf{Remark} This chapter has been added recently on June 30, one week after the paper, and will be extended with more proofs soon.\\
- 
 \textbf{Remark} Less trivial is to figure out, what the transpose and the products with the transpose and the inverse matrices of those products are good for. Our rectangular 2x3 basis matrix has a transponse. A 3x2 matrix. The products are $\boldsymbol{A}\boldsymbol{A}^T$, a 2 by 2 matrix, and $\boldsymbol{A}^T\boldsymbol{A}$, a 3 by 3 matrix. Today i will just show the transpose. \\
-
-\textbf{Remark} Just by guessing, i think "least squares backwards" is closer to spanning up the z-dimension again, than trying to convert the inverses of the transpose products. But that´s just wild guessing and has no, not even dilletantic calculations behind. Please skip this remark.\\
 
 \begin{displaymath}
 \left(
@@ -445,7 +468,7 @@ which is a standard formulation of the rule of linearity. For example, you can f
 
 \section{Summary}
 
-\textbf{Summary of all neccessary steps}
+\subsection{Summary of all neccessary steps}
 \begin{enumerate}
 \item Lay out the three basis vectors around a circle and write down the angles $\varphi_n$. Programmers have to write down a variable for anyways.
 \item Write down the basis vectors $\vec{e}_n$ as $r_n \cos \varphi_n$ and $r_n \sin \varphi_n$ (two dimensional). Don´t multiply with $r_n$ for a unit length of $1$ or multiply with $r_n$ to change the length of the basis vector.
@@ -454,7 +477,7 @@ which is a standard formulation of the rule of linearity. For example, you can f
 \end{enumerate}
 
 \textbf{Remark}\\
-About the word \emph{unit}. I am not really sure, if i have to use \emph{base vector} for a vector of any length and \emph{unit vector} only for the \emph{unit length} of $1$. Because of the misleading mismatch with the \emph{unit} of the thought \emph{coordinate axes}, which the \emph{base vector} defines, i tend in the first versions to misuse the word \emph{unit vector} for both. If you find this, or any other formal mistake, be sure, it is not wanted :-) I will try to remove more of these spelling errors\footnote{The \emph{Gerholdian operator}, the \emph{Gerholdian basis}, the \emph{Gerhold projection matrix}, the \emph{Gerhold transformation} are my favourite nicknames for my late discovery making sure, the three two dimensional and trigonometric basis vectors i explained, sit in the matrix.} in the next versions.
+About the word \emph{unit}. I am not really sure, if i have to use \emph{base vector} for a vector of any length and \emph{unit vector} only for the \emph{unit length} of $1$. Because of the misleading mismatch with the \emph{unit} of the thought \emph{coordinate axes}, which the \emph{base vector} defines, i tend in the first versions to misuse the word \emph{unit vector} for both. If you find this, or any other formal mistake, be sure, it is not wanted :-) I will try to remove more of these spelling errors\footnote{The \emph{Gerholdian operator}, the \emph{Gerholdian basis}, the \emph{Gerhold projection matrix}, the \emph{Gerhold transformation} are my favourite nicknames for my late discovery, making sure, the three two dimensional and trigonometric basis vectors, which i explained, sit in the matrix.} in the next versions.
 
 \begin{thebibliography}    
 
@@ -480,5 +503,8 @@ About the word \emph{unit}. I am not really sure, if i have to use \emph{base ve
             Einf\"uhrung in LaTeX, LaTeX-Kurs.pdf            
 
 \end{thebibliography}
+
+
+
 \printindex
 \end{document}
