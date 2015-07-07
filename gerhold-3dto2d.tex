@@ -15,7 +15,7 @@
 \date{\today}
 \maketitle
 
-Version 0.2.4 (the very much a draft paper)\\
+Version 0.2.5 (the very much a draft paper)\\
 Has to be ordered, corrected -and more- again. This is an active working draft.
 Which is now totally out of it´s shape this version.
 
@@ -66,7 +66,6 @@ at the same place, at the number zero. You have to arrange the $x$, $y$, and
 $z$ axes like on a piece of paper around the unit circle by giving them the
 appropriate angles. All three angles start at the default at zero at the horizontal axis of the plane.
 
-
 \begin{displaymath}
 \varphi_n := \{\varphi_x, \varphi_y, \varphi_z\}
 \end{displaymath}
@@ -90,9 +89,10 @@ Here is an example of three angles. The three axes have an angle of 120 degrees 
 \end{displaymath}
 \end{example}
 
+\textbf{Remark} Calculating the three values is fun. More fun with angles could be had with \cite{Corral2}. What the values are good for? The angles have to be passed to the cosine and sine functions, when we setup the basis vectors around a circle.
+
 
 \subsection{Definition of the three 2-D basis vectors}
-
 
 
 Let $e_n$ be the set of three two dimensional basis vectors, namely 
@@ -107,15 +107,11 @@ unit can be manipulated by multiplying the vector components inside $e_n$ with a
 e_n := \{\vec{e}_x, \vec{e}_y, \vec{e}_z\}\\
 \end{displaymath} 
 
-
 \begin{figure}[ht]
 \includegraphics[scale=1]{unitvectors.png}
 \caption{The three basis vectors point into the positive directions of the desired coordinate axis. They are arranged around a circle with the trigonometric functions of cosine and sine.}
 \end{figure}
-
-
  
-
 This is the set of three basis vectors in set notation. To guess no numbers, it´s easier for us, 
 for each vector, to go around the unit circle by the angles we already defined and to use cosine 
 and sine for the correct $x$-distance and $y$-distance. For help, you should remember this parametrization 
@@ -131,6 +127,8 @@ Alternativly it can be written like
 \begin{displaymath}
 (x,y) = (r \cos \varphi, r \sin \varphi)
 \end{displaymath}\\
+
+Increasing $r$ increases the radius of the circle and the distance of the point and the length of the vector $r$. It´s called the unit circle when $r = 1$.\\
 
 Modeling the three two dimensional basis vectors with this information,
 we get the following three two dimensional basis vectors. They point along the coordinate axes and are the ruler for our transformation.\\
@@ -167,11 +165,11 @@ By pulling the square root out of the sum of the squares of the vector component
 This is also known as euclidean norm, or the root of the inner product of the vector with itself.
 Like real fans of sines and cosines, we know that $\sin^2 \varphi + \cos^2 \varphi = 1$ and what the root of 1 is.
 If we pull the root out of the products of cosine and sine multiplied with $r \ne 1$, we get the length of $r$ again. 
-$r = \sqrt{\vec{x}\vec{x}}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{1}{2}}$ = $\|\vec{x}\|$\\
+$r = \sqrt{\vec{x}\cdot\vec{x}}$ = $\sqrt{(\vec{x},\vec{x})}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{1}{2}}$ = $\|\vec{x}\|$\\
 
 \subsection{Lemma of the orthogonal bases}\\
 
-\textbf{Remark.} Not corrected in this version, i can use the word \emph{basis} together with the formula without the adjective. New lecture scripts proved me.
+\textbf{Remark.} Not corrected in this version, i can use the word \emph{basis} together with the formula without the adjective. New lecture scripts proved me. The orthogonal case is then taught a paragraph later.\\
 
 The one lemma we need is the generic theorem for multiplying a vector with some basis for some coordinate system.\\
 
@@ -238,18 +236,18 @@ Let \boldsymbol{A} be the matrix containing the three, two dimensional and trigo
 column. You get a rectangular 2x3 matrix $\boldsymbol{A} \in \mathbb{R}^{2x3}: \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$. With the basis vectors $\left(\begin{array}{1}r_n \cos \varphi_n\\r_n \sin \varphi_n\end{array}\right)$ in the three columns. 
 
 \begin{displaymath}
-\boldsymbol{A} := \left(
-    \begin{array}{111}\vec{e}_x & \vec{e}_y & \vec{e}_z
-    \end{array}\right)
-    = \left(
-    \begin{array}{111}
+\boldsymbol{A} := \begin{pmatrix}
+    \vec{e}_x & \vec{e}_y & \vec{e}_z
+    \end{pmatrix}
+    = 
+    \begin{pmatrix}
     r_x\cos(\varphi_x) & r_y\cos(\varphi_y) & r_z\cos(\varphi_z) \\
     r_x\sin(\varphi_x) & r_y\sin(\varphi_y) & r_z\sin(\varphi_z) \\
-    \end{array}
-\right)\\
+    \end{pmatrix}\\
+
 \end{displaymath}\\
 
-\boldsymbol{A} should be treated as operator $\boldsymbol{A} : \mathbb{R}^3 \rightarrow \mathbb{R}^2$. $\vec{x} e \boldsymbol{A}\vec{x}$. 
+\boldsymbol{A} should be treated as operator $\boldsymbol{A} : \mathbb{R}^3 \rightarrow \mathbb{R}^2$. ($\vec{x}) \mapsto \boldsymbol{A}\vec{x}$. 
 \end{Definition}\\
 
 \subsection{The transformation}
@@ -260,7 +258,7 @@ column. You get a rectangular 2x3 matrix $\boldsymbol{A} \in \mathbb{R}^{2x3}: \
 If you multiply \boldsymbol{A}, the matrix of the three two-dimensional basis vectors,
 with the three-coordinate point $(x,y,z)$, the result is a two coordinate point, 
 $(x',y')$. This point $(x',y')$ is the correct point on the two dimensional plane,
-representing the point from the three dimensional coordinate system, you are transforming.\\
+representing the point $(x,y,z)$ from the three dimensional coordinate system, you are transforming.\\
 
 \begin{displaymath}
 \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
@@ -268,16 +266,16 @@ representing the point from the three dimensional coordinate system, you are tra
 
 Applying the operator performs the following operation\\
 
-\begin{equation}
+\begin{equation*}
 \begin{displaymath}
 \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = x\vec{e}_x + y\vec{e}_y + z\vec{e}_z\\
-\end{displaymath}
-\begin{displaymath}
+%\end{displaymath}
+%\begin{displaymath}
 &= \left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}
-\end{equation}
+\end{equation*}
 
 \end{Theorem}
 
@@ -293,8 +291,8 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right
 \end{displaymath}\\
 
 \subsection{Computer implementations of the matrix and the transformation}
+\subsubsection{Generic computer code}
 \begin{example}
-\textbf{Example}\\
 The following is example code for various computer systems.\\
 \begin{lstlisting}
 x_ = x*r*cos(alpha) + y*r*cos(beta) + z*r*cos(gamma)
@@ -303,8 +301,9 @@ y_ = x*r*sin(alpha) + y*r*sin(beta) + z*r*sin(gamma)
 \end{example}\\
 
 
+\subsubsection{JavaScript computer code}
 \begin{example}
-\textbf{Example}\\This is a full EcmaScript 6 snippet with all neccessary informations.\\
+This is a full EcmaScript 6 snippet with all neccessary informations.\\
 \begin{lstlisting}
 let rad = (deg) => Math.PI/180*deg;
 let r_x = 1, r_y = 1, r_z = 1; 
@@ -325,7 +324,7 @@ let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 \end{example}\\
 
 \textbf{Remark} I already proved affine transformations (Rotation, Scaling, Translation),
-with and without applying a local 3x3 base to the object, then projecting the points afterwards with 
+with and without applying a local 3x3 base to the object (with is better, let $r_x = r_y = r_z$), then projecting the points afterwards with 
 this formula. I think the alternative graphics algorithm up to there could find a place here.\\
 
 \section{Corollary}
@@ -338,13 +337,12 @@ vectors represent a 4-D space on the 2-D plane. They get converted into the corr
 instance of $t$ you have a moving object into the direction of the fourth basis vector. \\
 
 \begin{displaymath}
-\boldsymbol{A} := \left(
-    \begin{array}{1111}\vec{e}_x & \vec{e}_y & \vec{e}_z & \vec{e}_t\end{array}\right)\\ = \left(
-    \begin{array}{1111}
+\boldsymbol{A} := \begin{pmatrix}
+    \vec{e}_x & \vec{e}_y & \vec{e}_z & \vec{e}_t\end{pmatrix}\\ = 
+    \begin{pmatrix}
     r_x\cos(\varphi_x) & r_y\cos(\varphi_y) & r_z\cos(\varphi_z) & r_t\cos(\varphi_t)\\
     r_x\sin(\varphi_x) & r_y\sin(\varphi_y) & r_z\sin(\varphi_z) & r_t\sin(\varphi_t)\\
-    \end{array}
-\right)
+    \end{pmatrix}
 \end{displaymath}
 
 Here the basis is four times of two dimensions. A 2x4 matrix with four two dimensional basis vectors, one for each axis.\\
@@ -398,9 +396,9 @@ Another trivial proof is to prove, that coordinates lying on one axis are a mult
 \end{displaymath}
 
 \begin{displaymath}
-    \boldsymbol{A}\left(\begin{array}{1}0\\0\\b\end{array}\right)
-    = \left(\begin{array}{1}0 + 0 + br_z\cos \varphi_z\\0 + 0 + br_z\sin \varphi_z\end{array}\right) 
-    = b\vec{e}_z
+    \boldsymbol{A}\left(\begin{array}{1}0\\0\\-b\end{array}\right)
+    = \left(\begin{array}{1}0 + 0 - br_z\cos \varphi_z\\0 + 0 - br_z\sin \varphi_z\end{array}\right) 
+    = -b\vec{e}_z
 \end{displaymath}\\
 
 \subsection{Multiplications with constants}
@@ -426,29 +424,39 @@ Another trivial proof is to show, that $\boldsymbol{A}(\vec{v} + \vec{w}) = \bol
 It does not matter, if you add the original or the results . The outcome is the same point, the same vector.\\
  
 \textbf{Proof}:\\
-\begin{displaymath}
 
-\boldsymbol{A}\left(\begin{array}{1}x+u\\y+v\\z+w\end{array}\right) = \left(\begin{array}{1}(x+u)r_x\cos(\varphi_x) + (y+v)r_y\cos(\varphi_y) + (z+w)r_z\cos(\varphi_z)\\
+\begin{displaymath}
+\begin{align*}
+
+\boldsymbol{A}\left(\begin{array}{1}x+u\\y+v\\z+w\end{array}\right)\\ &=& \left(\begin{array}{1}(x+u)r_x\cos(\varphi_x) + (y+v)r_y\cos(\varphi_y) + (z+w)r_z\cos(\varphi_z)\\
 (x+u)r_x\sin(\varphi_x) + (y+v)r_y\sin(\varphi_y) + (z+w)r_z\sin(\varphi_z)\\
 \end{array}\right)\\
-
-    = \left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
+    &=& \left(\left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \end{array}\right) + \left(\begin{array}{1}ur_x\cos(\varphi_x) + vr_y\cos(\varphi_y) + wr_z\cos(\varphi_z)\\
 ur_x\sin(\varphi_x) + vr_y\sin(\varphi_y) + wr_z\sin(\varphi_z)\\
-\end{array}\right)\\
-    = \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) + \boldsymbol{A}\left(\begin{array}{1}u\\v\\w\end{array}\right)
-    = \left(\begin{array}{1}x'\\y'\end{array}\right) + \left(\begin{array}{1}u'\\v'\end{array}\right) 
+\end{array}\right)\right)\\
+    &=& \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) + \boldsymbol{A}\left(\begin{array}{1}u\\v\\w\end{array}\right)
+    &=& \left(\begin{array}{1}x'\\y'\end{array}\right) + \left(\begin{array}{1}u'\\v'\end{array}\right) 
+\end{align*}
 \end{displaymath}\\
+
 
 \subsection{Rule of linearity}
 
 \textbf{Corollary} From the previous two proofs, it is obvious to see, that
 \begin{displaymath}
 \boldsymbol{A}(\lambda\vec{v} + \kappa\vec{w}) = \lambda\boldsymbol{A}\vec{v} + \kappa\boldsymbol{A}\vec{w} = \lambda\left(\begin{array}{1}x'\\y'\end{array}\right) + \kappa\left(\begin{array}{1}u'\\v'\end{array}\right)\\
-\end{displaymath}\\
+\end{displaymath}
+which is a standard formulation of the rule of linearity. For example, you can find this rule in the form $\boldsymbol{A}(c\vec{x} + d\vec{y}) = c\boldsymbol{A}\vec{x} + d\boldsymbol{A}\vec{y}$ in \cite{Strang1}, but also in every linear algebra 1 lecture script.\\
 
-which is a standard formulation of the rule of linearity. For example, you can find this rule in the form of $\boldsymbol{A}(c\vec{x} + d\vec{y}) = c\boldsymbol{A}\vec{x} + d\boldsymbol{A}\vec{y}$ in \cite{Strang1}.\\
+
+\subsection{About the norm}
+
+
+\textbf{Remark} I removed this $\|\boldsymbol{A}\vec{v}\| + \|\boldsymbol{A}\vec{w}\| \geq \|\boldsymbol{A}(\vec{v} + \vec{w})\|$ Quickly stated is $4 + 4 >= \sqrt{32}$ for $\|\vec{x}\| = \sqrt{\sum_{i=0}^{n}\vec{x}_i^2}$. But don´t trust this version.
+\textbf{Remark} Don´t trust. I have to do the norms again.
+
 
 \subsection{Transpose and unproven}
 
@@ -484,7 +492,7 @@ which is a standard formulation of the rule of linearity. For example, you can f
 \textbf{Remark}\\
 About the word \emph{unit}. I am not really sure, if i have to use \emph{base vector} for a vector of any length and \emph{unit vector} only for the \emph{unit length} of $1$. Because of the misleading mismatch with the \emph{unit} of the thought \emph{coordinate axes}, which the \emph{base vector} defines, i tend in the first versions to misuse the word \emph{unit vector} for both. If you find this, or any other formal mistake, be sure, it is not wanted :-) I will try to remove more of these spelling errors\footnote{The \emph{Gerholdian operator}, the \emph{Gerholdian basis}, the \emph{Gerhold projection matrix}, the \emph{Gerhold transformation} are my favourite nicknames for my late discovery, making sure, the three two dimensional and trigonometric basis vectors, which i explained, sit in the matrix.} in the next versions.
 
-\section{Bibliography}
+\appendix
 \begin{thebibliography}    
 
     \bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
