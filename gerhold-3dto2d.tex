@@ -453,9 +453,40 @@ which is a standard formulation of the rule of linearity. For example, you can f
 
 \subsection{About the norm}
 
+The norm used is the euclidean norm, or the 2-norm. This is the square root of the sum of the squares of the absolute values of the components. In linear algebra, functional analysis and topology lectures there are three fundamental properties of the norm. Definiteness, homogenity and the triangle inequality.\\
 
-\textbf{Remark} I removed this $\|\boldsymbol{A}\vec{v}\| + \|\boldsymbol{A}\vec{w}\| \geq \|\boldsymbol{A}(\vec{v} + \vec{w})\|$ Quickly stated is $4 + 4 >= \sqrt{32}$ for $\|\vec{x}\| = \sqrt{\sum_{i=0}^{n}\vec{x}_i^2}$. But don´t trust this version.
-\textbf{Remark} Don´t trust. I have to do the norms again.
+
+\textbf{Definitness} Show that $\|\vec{x}\| = 0$ if $\vec{x} = 0$\\
+\begin{displaymath}
+    \|\vec{x}\| = \|\vec{0}\| = \sqrt{0^{2} + 0^{2}} = 0
+\end{displaymath}\\
+
+\textbf{Homogenity} Show that $\|a\vec{x}\| = |a|\|\vec{x}\|$\\
+\begin{displaymath}
+    \|a\vec{x}\| = \sqrt{|a\vec{x}_1|^{2} + |a\vec{x}_2|^{2}} = \sqrt{|a|^{2}(|\vec{x}_1|^{2} + |\vec{x}_2|^{2})} = |a|\sqrt{|\vec{x}_1|^{2} + |\vec{x}_2|^{2}} = |a|\|\vec{x}\|
+\end{displaymath}\\
+
+\textbf{Triangle inequality} (Minkowski inequality) Show that $ \|\boldsymbol{A}(\vec{v} + \vec{w})\| \leq \|\boldsymbol{A}\vec{v}\| + \|\boldsymbol{A}\vec{w}\|$\\
+
+\begin{displaymath}
+    \sqrt{\sum_{i=1}^{n}|\vec{v}_i + \vec{w}_i|^{2}} \leq \sqrt{\sum_{i=1}^{n}|\vec{v}_i|^{2}} + \sqrt{\sum_{i=1}^{n}|\vec{w}_i|^{2}} 
+\end{displaymath}\\
+
+
+
+\textbf{Remark} This subsection is not complete. In our case is probably $\|\boldsymbol{A}\vec{x}\| \leq \|\vec{x}\|$ but i am not finished with.\\
+
+
+\subsection{Metrics}
+
+Where a norm is, there is an induced metric.
+The measurement of the distance between two points is defined by the d-function. It´s the length of the difference vector between the two points.\\
+
+\begin{displaymath}
+    d(\vec{x}, \vec{y})_2 = \|\vec{x}-\vec{y}\|_2
+\end{displaymath}
+
+\textbf{Remark} This subsection is not complete and has to be continued. The point is to measure now the difference between the original coordinates and the new planar coordinates. $d(\vec{x}, \vec{y})_2 = \|\vec{x}-\vec{y}\|_2 \leq d(\vec{x}, \vec{y})_3 = \|\vec{x}-\vec{y}\|_3$ is my assumption which is not proven now.
 
 
 \subsection{Transpose and unproven}
