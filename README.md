@@ -1,4 +1,5 @@
 # paper-pen-3-D
+Repository name may move to a new name 2x3-D or be corrected for pen-and-paper-3-D.
 
 The forgotten projection
 ========================
@@ -15,8 +16,8 @@ matrix which solves all transformation problems. Apply this to each point.
 Definition
 
 ```
-var P = [ Math.cos(alpha), Math.cos(beta), Math.cos(gamma),
-          Math.sin(alpha), Math.sin(beta), Math.sin(gamma) ];
+var P = [ r*Math.cos(alpha), r*Math.cos(beta), r*Math.cos(gamma),
+          r*Math.sin(alpha), r*Math.sin(beta), r*Math.sin(gamma) ];
 ```
 
 Short. Each column is a basis vector and a combination of `[r*Math.cos(axisAngle), r*Math.sin(axisAngle)]`.
@@ -34,8 +35,8 @@ Theorem
 A multiplication of P with [x;y;z] results in [x';y']. Here are the two LOC.
 
 ```
-x_ = x*cos(a) + y*cos(b) + z*cos(g);
-y_ = x*sin(a) + y*sin(b) + z*sin(g);
+x_ = x*r*Math.cos(a) + y*r*Math.cos(b) + z*r*Math.cos(g);
+y_ = x*r*Math.sin(a) + y*r*Math.sin(b) + z*r*Math.sin(g);
 ```
 
 That´s all. 
@@ -59,15 +60,15 @@ Corollary
 Four dimensional space can be projected onto the screen easily.
 
 ```
-P = [ Math.cos(alpha), Math.cos(beta), Math.cos(gamma), Math.cos(delta),
-      Math.sin(alpha), Math.sin(beta), Math.sin(gamma), Math.sin(delta)];
+P = [ r*Math.cos(alpha), r*Math.cos(beta), r*Math.cos(gamma), r*Math.cos(delta),
+      r*Math.sin(alpha), r*Math.sin(beta), r*Math.sin(gamma), r*Math.sin(delta)];
 ```
 
 P[x;y;z;t] = [x';y'] can be used to visualize 4-D like the Minkowski Space.
 If i let the 4th axis just point straight to the right, the pictures should 
-move to the right at each increasement of t.
+move to the right at each increasement of t. 
 
 ```
-x_ = x*cos(a) + y*cos(b) + z*cos(g) + t*cos(d);
-y_ = x*sin(a) + y*sin(b) + z*sin(g) + t*sin(d);
+x_ = x*r*Math.cos(a) + y*r*Math.cos(b) + z*r*Math.cos(g) + t*r*Math.cos(d);
+y_ = x*r*Math.sin(a) + y*r*Math.sin(b) + z*r*Math.sin(g) + t*r*Math.sin(d);
 ```
