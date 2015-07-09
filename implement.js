@@ -52,8 +52,9 @@ function gettrans() {
     }; 
 }
 
-function draw2dAll(ctx, points2) { // connects an array of 2-D points via lineto
+function draw2dAll(ctx, points2, scale) {
     ctx.save();
+    scale = scale || 1;
     var x = scale * points2[0][0], y = scale * points2[0][1];
     ctx.moveTo(x,-y);
     ctx.beginPath();
@@ -75,4 +76,4 @@ exports.transform2dAll = transform2dAll;
 exports.rad = rad;
 exports.draw2dAll = draw2dAll;
 
-}(typeof exports != "undefined" ? exports : this));<!doctype html>
+}(typeof exports != "undefined" ? exports : this));
