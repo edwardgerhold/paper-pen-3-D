@@ -46,9 +46,9 @@ Remark
 
 Setting the units on the axes
 
-If you multiply each column vector with some length r, you will change the units length
+If you multiply each column vector with some length `r`, you will change the units length
 of the basis vector, and have direct control over the length of the units on the axes.
-Say, you multiply for example the x-axis by r=5, you get five units instead of one unit
+Say, you multiply for example the x-axis by `r=5`, you get five units instead of one unit
 into the x direction.
 
 Adding rotation made it clear, the elongination of the projection´s basis vectors should
@@ -62,15 +62,16 @@ Corollary
 Four dimensional space can be projected onto the screen easily.
 
 ```
-P = [ r*Math.cos(alpha), r*Math.cos(beta), r*Math.cos(gamma), r*Math.cos(delta),
-      r*Math.sin(alpha), r*Math.sin(beta), r*Math.sin(gamma), r*Math.sin(delta)];
+P = [ r*Math.cos(alpha), r*Math.cos(beta), r*Math.cos(gamma), rt*Math.cos(delta),
+      r*Math.sin(alpha), r*Math.sin(beta), r*Math.sin(gamma), rt*Math.sin(delta)];
 ```
 
 P[x;y;z;t] = [x';y'] can be used to visualize 4-D like the Minkowski Space.
 If i let the 4th axis just point straight to the right, the pictures should 
-move to the right at each increasement of t. 
+move to the right at each increasement of t. And with a larger `r_t` as the fourth
+unit, we can see the thing really moving.
 
 ```
-x_ = x*r*Math.cos(a) + y*r*Math.cos(b) + z*r*Math.cos(g) + t*r*Math.cos(d);
-y_ = x*r*Math.sin(a) + y*r*Math.sin(b) + z*r*Math.sin(g) + t*r*Math.sin(d);
+x_ = x*r*Math.cos(a) + y*r*Math.cos(b) + z*r*Math.cos(g) + t*r_t*Math.cos(d);
+y_ = x*r*Math.sin(a) + y*r*Math.sin(b) + z*r*Math.sin(g) + t*r_t*Math.sin(d);
 ```
