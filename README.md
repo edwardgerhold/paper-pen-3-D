@@ -62,8 +62,8 @@ Corollary
 Four dimensional space can be projected onto the screen easily.
 
 ```
-P = [ r*Math.cos(alpha), r*Math.cos(beta), r*Math.cos(gamma), rt*Math.cos(delta),
-      r*Math.sin(alpha), r*Math.sin(beta), r*Math.sin(gamma), rt*Math.sin(delta)];
+P = [ r*Math.cos(alpha), r*Math.cos(beta), r*Math.cos(gamma), r_t*Math.cos(delta),
+      r*Math.sin(alpha), r*Math.sin(beta), r*Math.sin(gamma), r_t*Math.sin(delta)];
 ```
 
 P[x;y;z;t] = [x';y'] can be used to visualize 4-D like the Minkowski Space.
