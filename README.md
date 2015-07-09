@@ -62,16 +62,16 @@ Corollary
 Four dimensional space can be projected onto the screen easily.
 
 ```
-P = [ r*Math.cos(alpha), r*Math.cos(beta), r*Math.cos(gamma), r_t*Math.cos(delta),
-      r*Math.sin(alpha), r*Math.sin(beta), r*Math.sin(gamma), r_t*Math.sin(delta)];
+P = [ r*Math.cos(alpha), r*Math.cos(beta), r*Math.cos(gamma), rt*Math.cos(delta),
+      r*Math.sin(alpha), r*Math.sin(beta), r*Math.sin(gamma), rt*Math.sin(delta)];
 ```
 
 P[x;y;z;t] = [x';y'] can be used to visualize 4-D like the Minkowski Space.
 If i let the 4th axis just point straight to the right, the pictures should 
-move to the right at each increasement of t. And with a larger `r_t` as the fourth
+move to the right at each increasement of t. And with a larger `rt` as the fourth
 unit, we can see the thing really moving.
 
 ```
-x_ = x*r*Math.cos(a) + y*r*Math.cos(b) + z*r*Math.cos(g) + t*r_t*Math.cos(d);
-y_ = x*r*Math.sin(a) + y*r*Math.sin(b) + z*r*Math.sin(g) + t*r_t*Math.sin(d);
+x_ = x*r*Math.cos(a) + y*r*Math.cos(b) + z*r*Math.cos(g) + t*rt*Math.cos(d);
+y_ = x*r*Math.sin(a) + y*r*Math.sin(b) + z*r*Math.sin(g) + t*rt*Math.sin(d);
 ```
