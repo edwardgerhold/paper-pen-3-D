@@ -17,8 +17,8 @@ var xAxisCos = r_x * Math.cos(phi_x),
 
 function transform2d(vec3) {
     return [
-	x*xAxisCos + y*yAxisCos + z*zAxisCos,
-	x*xAxisSin + y*yAxisSin + z*zAxisSin
+	vec3[0]*xAxisCos + vec3[1]*yAxisCos + vec3[2]*zAxisCos,
+	vec3[0]*xAxisSin + vec3[1]*yAxisSin + vec3[2]*zAxisSin
     ];
 }
 
