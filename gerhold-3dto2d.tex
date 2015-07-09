@@ -324,6 +324,15 @@ let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 with and without applying a local 3x3 base to the object (with is better, let $r_x = r_y = r_z$), then projecting the points afterwards with 
 this formula. I think the alternative graphics algorithm up to there could find a place here.\\
 
+\begin{figure}[ht]
+\includegraphics[scale=1]{helix.png}
+\caption{A helix shown as (x,y,z)=f(t) with implement.html on a Canvas2DRenderingContext testing the javascript example code.}
+\end{figure}
+\begin{figure}[ht]
+\includegraphics[scale=1]{fxyplot.png}
+\caption{$x^2 + y^2 + 3y \sin y$  from [-5,5] and [-3,3] as z=f(x,y) with cheap3danimate.html on a Canvas2DRenderingContext}
+\end{figure}
+
 \section{Corollary}
 
 \subsection{Converting four Dimensions down to two dimensions}\\
@@ -552,7 +561,7 @@ $\sin \varphi_n$ with $S_n$.
 
 \begin{displaymath}
 \boldsymbol{A}^T\boldsymbol{A} = \begin{pmatrix} 
-    C_x^2S_x^2 & C_xC_y+S_xS_y & C_xC_z+S_xS_z\\
+    C_x^2+S_x^2 & C_xC_y+S_xS_y & C_xC_z+S_xS_z\\
     C_yC_x+S_yS_x & C_y^2+S_y^2 & C_yC_z+S_yS_z\\
     C_zC_x+S_zS_x & C_zC_y+S_zS_y & C_z^2+S_z^2
 \end{pmatrix}

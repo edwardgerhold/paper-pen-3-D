@@ -1,0 +1,60 @@
+<!doctype html>
+Parametrized by t functions. Demo for the 3-D to 2-D transformation.<br>
+function (t) { return [<input id="func" size=50 value="12*Math.cos(t), 35*Math.sin(t), t">] }<br>
+start: <input id=istart type=text value=0> stop: <input id=istop type=text value="Math.PI*32"> delta: <input type=text value=250 id="idelta"><br>
+Enter three comma separated array fields into the input field between the [].<br>
+Use JavaScript and the variable "t". Example: 12*Math.cos(t),35*Math.sin(t),t/2 for [x,y,z]=f(t).<br>
+<canvas id="2d" width=500 height=500></canvas>
+<script src="implement.js">
+</script>
+<script>
+window.addEventListener("load", function (e) {
+    var ctx = document.getElementById("2d").getContext("2d");
+
+    var istart = document.getElementById("istart");
+    var istop = document.getElementById("istop");    
+    var idelta = document.getElementById("idelta");    
+    var width = ctx.canvas.width;
+    var height = ctx.canvas.height;
+    var whalf = width/2;
+    var hhalf = height/2;
+    var scale = 20;
+
+    ctx.translate(whalf, hhalf);
+    var func = document.getElementById("func");
+    func.onchange = drawFunction;
+    istart.onchange = drawFunction;
+    istop.onchange = drawFunction;
+    idelta.onchange = drawFunction;
+
+    function drawFunction(e) {
+	ctx.clearRect(-width,-height,width*2,height*2);
+	var f = new Function("t", "return ["+func.value+"]");
+	var start = +eval(istart.value);
+	var stop = +eval(istop.value);
+	var delta = (stop-start)/(+eval(idelta.value));
+	var points3 = [];
+	
+	for (var t = start; t < stop; t+=delta) {
+	    points3.push(f(t));
+	}
+	var points2 = transform2dAll(points3);
+	draw(points2);
+    }
+    function draw(points2) {
+    	ctx.save();
+    	var x = scale * points2[0][0], y = scale * points2[0][1];
+    	ctx.moveTo(x,-y);
+    	ctx.beginPath();
+	for (var i = 0, j = points2.length; i < j; i++) {
+	    x = points2[i][0], y = points2[i][1];
+	    ctx.lineTo(x,-y);
+	    ctx.moveTo(x,-y);
+	}
+	ctx.closePath();
+	ctx.stroke();
+	ctx.restore();
+    }
+    drawFunction();
+});
+</script>
