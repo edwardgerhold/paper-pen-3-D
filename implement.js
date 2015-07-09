@@ -52,10 +52,27 @@ function gettrans() {
     }; 
 }
 
+function draw2dAll(ctx, points2) { // connects an array of 2-D points via lineto
+    ctx.save();
+    var x = scale * points2[0][0], y = scale * points2[0][1];
+    ctx.moveTo(x,-y);
+    ctx.beginPath();
+    for (var i = 0, j = points2.length; i < j; i++) {
+	x = points2[i][0], y = points2[i][1];
+	ctx.lineTo(x,-y);
+	ctx.moveTo(x,-y);
+    }
+    ctx.closePath();
+    ctx.stroke();
+    ctx.restore();
+}
+
+
 exports.gettrans = gettrans;
 exports.settrans = settrans;
 exports.transform2d = transform2d;
 exports.transform2dAll = transform2dAll;
 exports.rad = rad;
+exports.draw2dAll = draw2dAll;
 
-}(typeof exports != "undefined" ? exports : this));
+}(typeof exports != "undefined" ? exports : this));<!doctype html>
