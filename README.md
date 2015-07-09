@@ -14,30 +14,29 @@ matrix which solves all transformation problems. Apply this to each point.
 
 Definition
 
-`
+```
 var P = [ Math.cos(alpha), Math.cos(beta), Math.cos(gamma),
-
           Math.sin(alpha), Math.sin(beta), Math.sin(gamma) ];
-`
+```
 
-Each basis vector is a combination of `[r*Math.cos(axisAngle), r*Math.sin(axisAngle)]`.
+Short. Each column is a basis vector and a combination of `[r*Math.cos(axisAngle), r*Math.sin(axisAngle)]`.
 
 I call P the Gerhold Projection Matrix to honor myself for the discovery. :-)
       
 This is a 2x3 projection basis for 3-D coordinates, which result 
-after multiplication with the matrix in two coordinates. Alpha, Beta, Gamma
-are the angles of the base vectors, pointing into the direction of your
-axes.
+after multiplication with the matrix in two coordinates. Alpha, Beta, Gamma in 
+the example are the angles of the base vectors, pointing into the direction of your
+axes. All three angles start at zero and may go over the other. You might arrange
+the three axes how you would like your coordinate system to look like.
 
 Theorem
 
 A multiplication of P with [x;y;z] results in [x';y']. Here are the two LOC.
 
-`
+```
 x_ = x*cos(a) + y*cos(b) + z*cos(g);
-
 y_ = x*sin(a) + y*sin(b) + z*sin(g);
-`
+```
 
 That´s all. 
 
@@ -45,9 +44,9 @@ Remark
 
 Setting the units on the axes
 
-If you multiply each column vector with some length, you
+If you multiply each column vector with some length r, you
 change the units of the base vector and with that the size of your projection.
-Say, you multiply for example the x-axis by 5, x_=x*5*cos(a)+... and y_=x*5*sin(a)+...,
+Say, you multiply for example the x-axis by r=5, x_=x*5*cos(a)+... and y_=x*5*sin(a)+...,
 you get five units instead of one into the x direction.
 
 Adding rotation made it clear, the elongination of the projection base should
@@ -59,18 +58,16 @@ Corollary
 
 Four dimensional space can be projected onto the screen easily.
 
-`
+```
 P = [ Math.cos(alpha), Math.cos(beta), Math.cos(gamma), Math.cos(delta),
-
       Math.sin(alpha), Math.sin(beta), Math.sin(gamma), Math.sin(delta)];
-`
+```
 
 P[x;y;z;t] = [x';y'] can be used to visualize 4-D like the Minkowski Space.
 If i let the 4th axis just point straight to the right, the pictures should 
 move to the right at each increasement of t.
 
-`
+```
 x_ = x*cos(a) + y*cos(b) + z*cos(g) + t*cos(d);
-
 y_ = x*sin(a) + y*sin(b) + z*sin(g) + t*sin(d);
-`
+```
