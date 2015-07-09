@@ -33,10 +33,16 @@ function settrans(op) {
 	phi_z = op.phi_n[2];
     }
     if (op.r_n) {
-	r_x = op_r_n[0];
-	r_y = op_r_n[1];
-	r_z = op_r_n[2];
+	r_x = op.r_n[0];
+	r_y = op.r_n[1];
+	r_z = op.r_n[2];
     }
+    xAxisCos = r_x * Math.cos(phi_x);
+    yAxisCos = r_y * Math.cos(phi_y);
+    zAxisCos = r_z * Math.cos(phi_z);
+    xAxisSin = r_x * Math.sin(phi_x);
+    yAxisSin = r_y * Math.sin(phi_y);
+    zAxisSin = r_z * Math.sin(phi_z);
 }
 
 function gettrans() { 
