@@ -59,7 +59,7 @@ function draw2dAll(ctx, points2, scale) {
     ctx.moveTo(x,-y);
     ctx.beginPath();
     for (var i = 0, j = points2.length; i < j; i++) {
-	x = points2[i][0], y = points2[i][1];
+	x = scale * points2[i][0], y = scale * points2[i][1];
 	ctx.lineTo(x,-y);
 	ctx.moveTo(x,-y);
     }

@@ -1,7 +1,7 @@
 <!doctype html>
-Parametrized by t functions. Demo for the 3-D to 2-D transformation.<br>
-function (t) { return [<input id="func" size=50 value="12*Math.cos(t), 35*Math.sin(t), t">] }<br>
-start: <input id=istart type=text value=0> stop: <input id=istop type=text value="Math.PI*32"> times: <input type=text value=250 id="itimes"><br>
+Parametrized by t functions. Demo for <a href=gerhold-3dto2d.pdf">the 3-D to 2-D transformation</a>.<br>
+function (t) { return [<input id="func" size=50 value="t/2*Math.cos(t), t*Math.sin(t), t">] }<br>
+start: <input id=istart type=text value=0> stop: <input id=istop type=text value="Math.PI*32"> times: <input type=text value=600 id="itimes"> scale: <input type=number value=1 id="iscale" min=-10 max=10 step=1><br>
 Enter three comma separated array fields into the input field between the [].<br>
 Use JavaScript and the variable "t". Example: 12*Math.cos(t),35*Math.sin(t),t/2 for [x,y,z]=f(t).<br>
 Times is the number of steps over the interval [start, stop] as well as the resolution.<br>
@@ -11,15 +11,15 @@ Times is the number of steps over the interval [start, stop] as well as the reso
 <script>
 window.addEventListener("load", function (e) {
     var ctx = document.getElementById("2d").getContext("2d");
-
     var istart = document.getElementById("istart");
     var istop = document.getElementById("istop");    
     var itimes = document.getElementById("itimes");    
+    var iscale = document.getElementById("iscale");    
     var width = ctx.canvas.width;
     var height = ctx.canvas.height;
     var whalf = width/2;
     var hhalf = height/2;
-    var scale = 20;
+    var scale = 1;
 
     ctx.translate(whalf, hhalf);
     var func = document.getElementById("func");
@@ -27,13 +27,16 @@ window.addEventListener("load", function (e) {
     istart.onchange = drawFunction;
     istop.onchange = drawFunction;
     itimes.onchange = drawFunction;
-
+    iscale.onchange = drawFunction;
+    
     function drawFunction(e) {
 	ctx.clearRect(-width,-height,width*2,height*2);
 	var f = new Function("t", "return ["+func.value+"]");
 	var start = +eval(istart.value);
 	var stop = +eval(istop.value);
 	var delta = (stop-start)/(+eval(itimes.value));
+	scale = +iscale.value;
+	if (scale < 0) scale = 1/Math.abs(scale);
 	var points3 = [];
 	
 	for (var t = start; t < stop; t+=delta) {
