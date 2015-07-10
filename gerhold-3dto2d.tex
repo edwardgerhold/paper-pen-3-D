@@ -16,7 +16,7 @@
 \maketitle
 
 Version 0.2.6 (the very much a draft paper)\\
-Has to be ordered, corrected, mathematically upgraded and to get more pictures.
+\textbf{Remark} Has to be ordered, corrected, mathematically upgraded and to get more pictures.
 
 This is an active working draft. Which is now totally out of it´s shape this version.
 
@@ -324,14 +324,30 @@ let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 with and without applying a local 3x3 base to the object (with is better, let $r_x = r_y = r_z$), then projecting the points afterwards with 
 this formula. I think the alternative graphics algorithm up to there could find a place here.\\
 
-\begin{figure}[ht]
-\includegraphics[scale=1]{helix.png}
-\caption{A helix shown as (x,y,z)=f(t) with implement.html on a Canvas2DRenderingContext testing the javascript example code.}
+
+
+
+\begin{figure}[h]
+\includegraphics[scale=0.5]{helix.png}
+\caption{A helix (35*Math.cos(t), 15*Math.sin(t), t) shown as (x,y,z)=f(t) with implement.html on a Canvas2DRenderingContext testing the javascript example code.}
 \end{figure}
-\begin{figure}[ht]
-\includegraphics[scale=1]{fxyplot.png}
+
+
+
+\begin{figure}[h]
+\includegraphics[scale=0.5]{conicalhelix.png}
+\caption{A conical helix (t/2*Math.cos(t), t*Math.sin(t), t) shown as (x,y,z)=f(t) with implement.html on a Canvas2DRenderingContext testing the javascript example code.}
+\end{figure}
+
+
+
+
+\begin{figure}[h]
+\includegraphics[scale=0.33]{fxyplot.png}
 \caption{$x^2 + y^2 + 3y \sin y$  from [-5,5] and [-3,3] as z=f(x,y) with cheap3danimate.html on a Canvas2DRenderingContext}
 \end{figure}
+
+
 
 \section{Corollary}
 
@@ -383,6 +399,34 @@ used in a generic m by n case\footnote{http://de.wikipedia.org/wiki/Abbildungsma
 
 \textbf{Remark}\\
 About the word \emph{unit}. I am not really sure, if i have to use \emph{base vector} for a vector of any length and \emph{unit vector} only for the \emph{unit length} of $1$. Because of the misleading mismatch with the \emph{unit} of the thought \emph{coordinate axes}, which the \emph{base vector} defines, i tend in the first versions to misuse the word \emph{unit vector} for both. If you find this, or any other formal mistake, be sure, it is not wanted :-) I will try to remove more of these spelling errors\footnote{The \emph{Gerholdian operator}, the \emph{Gerholdian basis}, the \emph{Gerhold projection matrix}, the \emph{Gerhold transformation} are my favourite nicknames for my late discovery, making sure, the three two dimensional and trigonometric basis vectors, which i explained, sit in the matrix.} in the next versions.
+
+
+\begin{thebibliography}    
+
+    \bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
+        Vector Calculus, GNU Free Documentation License, http://mecmath.net 
+        
+    \bibitem{Corral2} \textit{Michael Corral, Schoolcraft College},
+        Trigonometry, GNU Free Documentation License, http://mecmath.net         
+        
+    \bibitem{Strang1} \textit{Gilbert Strang, MIT},
+        Linear Algebra and it´s Applications. Fourth Edition.
+        
+    \bibitem{Strang2} \textit{Gilbert Strang, MIT},
+            Calculus. MIT OpenCourseWare Supplemental Resources. http://ocw.mit.edu    
+            
+    \bibitem{Corral3} \textit{Michael Corral, Schoolcraft College},
+            Latex Mini Tutorial, http://mecmath.net            
+            
+    \bibitem{Jürgens,Feuerstack} \textit{Manuela J\"urgens, Thomas Feuerstack, Fernuniversit\"at Hagen},
+            LaTeX, eine Einf\"uhrung und ein bisschen mehr..., a026\_latex\_einf.pdf
+            
+    \bibitem{Rudl} \textit{Dr.Jan Rudl, Technische Universit\"at Dresden, Fachbereich Mathematik},
+            Einf\"uhrung in LaTeX, LaTeX-Kurs.pdf            
+
+\end{thebibliography}
+
+
 
 \appendix
 
@@ -578,31 +622,83 @@ not, can not be told from looking at these matrices by a guy like me. This topic
 \textbf{Remark} Missing are $|\boldsymbol{A}\boldsymbol{A}^T|$ and $|\boldsymbol{A}^T\boldsymbol{A}|$ and $(\boldsymbol{A}\boldsymbol{A}^T)^{-1}$ and $(\boldsymbol{A}^T\boldsymbol{A})^{-1}$ and various tries to combine them to $P$, to $x^TAx$, and and.
 
 
-\begin{thebibliography}    
 
-    \bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
-	    Vector Calculus, GNU Free Documentation License, http://mecmath.net 
-	    
-    \bibitem{Corral2} \textit{Michael Corral, Schoolcraft College},
-	    Trigonometry, GNU Free Documentation License, http://mecmath.net         
-	    
-    \bibitem{Strang1} \textit{Gilbert Strang, MIT},
-	    Linear Algebra and it´s Applications. Fourth Edition.
-	    
-    \bibitem{Strang2} \textit{Gilbert Strang, MIT},
-            Calculus. MIT OpenCourseWare Supplemental Resources. http://ocw.mit.edu    
-            
-    \bibitem{Corral3} \textit{Michael Corral, Schoolcraft College},
-            Latex Mini Tutorial, http://mecmath.net            
-            
-    \bibitem{Jürgens,Feuerstack} \textit{Manuela J\"urgens, Thomas Feuerstack, Fernuniversit\"at Hagen},
-            LaTeX, eine Einf\"uhrung und ein bisschen mehr..., a026\_latex\_einf.pdf
-            
-    \bibitem{Rudl} \textit{Dr.Jan Rudl, Technische Universit\"at Dresden, Fachbereich Mathematik},
-            Einf\"uhrung in LaTeX, LaTeX-Kurs.pdf            
+\section{An alternative graphics algorithm}
 
-\end{thebibliography}
+\textbf{Remark} This section is new on July 10.
 
+With the new information how to translate the coordinates, it is obvious, that we want to draw some graphics on our 2-D Canvas.
+By doing so, i already found out a few interesting points of how to do this. Without homogenous coordinates or 4 by 4 matrices.\\
+
+\subsection{Origin}  
+
+Setting the origin is an easy task. Assuming, the regular origin is at (0,0,0) and (0,0), we just need to add the shift to the coordinate. You can shift the 3-D Origin or the 2-D Origin.\\
+\begin{lstlisting}
+x = Ox + x;
+y = Oy + y;
+z = Oz + z;
+\end{lstlisting}
+
+\subsection{Translation}
+
+Translating the points is very easy without a 4 by 4 matrix. You simply add the translation vector to each point.\\
+
+\begin{lstlisting}
+x = Tx + x;
+y = Ty + y;
+z = Tz + z;
+\end{lstlisting}
+
+\subsection{Scaling}
+
+To scale the object you just have to multiply with the constant. Reflecting, that it is no difference, whether you multiply
+before or after the transformation, you can choose, what to scale, the 3-D or the 2-D object.\\
+
+\begin{lstlisting}
+x = Sx * x;
+y = Sy * y;
+z = Sz * z;
+\end{lstlisting}
+
+\subsection{Local 3x3 basis}
+
+If you wish to introduce different units into different directions, you have to apply a local basis. Applying the local 3x3
+basis to an object makes it rotatable with changed units. If you change the units of r on the projection, rotation may give unrealistic results since suddenly the object stretches to an unexpected size. \\
+
+The matrix applied locally is a 3x3 matrix $\begin{pmatrix} xBX & yBX & zBX\\ xBY & yBY & zBY\\ xBZ & yBZ & zBZ\end{pmatrix}$.
+For example is $\begin{pmatrix} 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{pmatrix}$ is an orthogonal standard basis and the result is the same as if you do not apply any basis to the object, as the assumed default coordinate system in $R^{3}$ is orthogonal.
+
+\begin{lstlisting}
+u = x, v = y, w = z;
+x = u*xBX + v*yBX + w*zBX;
+y = u*xBY + v*yBY + w*zBY;
+z = u*xBZ + v*yBZ + w*zBZ;
+\end{lstlisting}
+
+This of course transform the object by the directions and the length of the three three dimensional basis vectors.
+
+
+\subsection{Rotation}
+
+Rotating the object can be done in three dimensional space by applying the regular rotation matrices
+
+\begin{lstlisting}
+    u = x, v = y, w = z;
+    y = v * rotxcos - w * rotxsin
+    z = v * rotxsin + w * rotxcos
+    u = x, v = y, w = z;
+    x = u * rotycos + w * rotysin;
+    z = -u * rotysin + w * rotycos;
+    u = x, v = y, w = z;
+    x = u * rotzcos - v * rotzsin;
+    y = u * rotzsin + v * rotzcos;
+\end{lstlisting}
+
+\textbf{Remark} I have to remove the substitution and write the whole thing out again. Next version.
+
+\subsection{Code Example}
+
+Last but not least here is a code snippet doing all the things together, showing you the order of transformation.
 
 
 \printindex
