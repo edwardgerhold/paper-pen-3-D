@@ -1,10 +1,18 @@
 <!doctype html>
-Parametrized by t functions. Demo for <a href=gerhold-3dto2d.pdf>the 3-D to 2-D transformation</a>.<br>
-function (t) { return [<input id="func" size=50 value="t/2*Math.cos(t), t*Math.sin(t), t">] }<br>
-start: <input id=istart type=text value=0> stop: <input id=istop type=text value="Math.PI*32"> times: <input type=text value=600 id="itimes"> scale: <input type=number value=1 id="iscale" min=-10 max=10 step=1><br>
-Enter three comma separated array fields into the input field between the [].<br>
+<head><meta charset=utf8><title>(x,y,z)=f(t) Simple 3-D to 2-D coordinate transformation in two LOC demo</title></head>
+(x,y,z) parametrized by t. Demo for the 3-D to 2-D transformation.<br>
+<div style=font-size:0.75em><i>This script draws a vector valued function <b>f(t) : &real; &rarr; &real;<sup>3</sup></b> taking a scalar and returning a vector.<br></div>
+function f(t) { return [</i><input id="func" size=50 value="t/2*Math.cos(t), t*Math.sin(t), /*Math.random()**/t"><i>] }</i><br>
+start: <input id=istart type=text value=Math.random()*10> stop: <input id=istop type=text value="11+Math.random()*Math.PI*48"> times: <input type=text value=Math.random()*800 id="itimes"><br>
+ scale: <input type=number value=1 id="iscale" min=-10 max=10 step=1> <button id="redraw">redraw</button> if you use Math.random() in the expressions.<br>
+ rotate: [<input type=number id="rotX" value=0 step=5>,[<input type=number id="rotY" value=0 step=5>,<input type=number id="rotZ" value=0 step=5>]
+<div style=font-size:0.75em>
+<i>Just enter three comma separated array fields for x(t),y(t),z(t) into the input field between the [].<br>
 Use JavaScript and the variable "t". Example: 12*Math.cos(t),35*Math.sin(t),t/2 for [x,y,z]=f(t).<br>
-Times is the number of steps over the interval [start, stop] as well as the resolution.<br>
+Times is the number of steps over the interval [start, stop] as well as the resolution of the lineTo pieces.<br></i>
+ <i>For the &real;<sup>3</sup> &rarr; &real;<sup>2</sup> transformation specification <a href=gerhold-3dto2d.pdf>click here</a>. <br>
+ Another <b>animated z=f(x,y) demo</b> with is found by <a href=cheap3danimate.html>clicking here</a>.<br>
+ </div>
 <canvas id="2d" width=500 height=500></canvas>
 <script src="implement.js">
 </script>
@@ -13,18 +21,29 @@ window.addEventListener("load", function (e) {
 
     function drawFunction(e) {
 	ctx.clearRect(-width,-height,width*2,height*2);
-	var f = new Function("t", "return ["+func.value+"]");
+	var s = func.value, tmp;
+	if (/XMLHttpRequest/.test(s)) { alert("nice expression"); return; }
+	var f = new Function("t", "return ["+s+"]");
 	var start = +eval(istart.value);
 	var stop = +eval(istop.value);
-	var delta = (stop-start)/(+eval(itimes.value));
+	var rotx = +(irotx.value);
+	var roty = +(iroty.value);
+	var rotz = +(irotz.value);
 	
+	if (start > stop) { tmp = start; start = stop; stop = start; }
+	var delta = (stop-start)/(+eval(itimes.value));
 	scale = +iscale.value;
 	if (scale < 0) scale = 1/Math.abs(scale);
 	
 	var points3 = [];
+	
+	// add as many as times of [x,y,z] to points3
 	for (var t = start; t < stop; t+=delta) {
 	    points3.push(f(t));
 	}
+	
+	// apply the rotation
+	rotate3dAll(rad(rotx), rad(roty), rad(rotz), points3);
 	
 	// a simple lineTo connector is with the demo
 	draw2dAll(ctx, transform2dAll(points3), scale);
@@ -36,6 +55,11 @@ window.addEventListener("load", function (e) {
     var istop = document.getElementById("istop");    
     var itimes = document.getElementById("itimes");    
     var iscale = document.getElementById("iscale");    
+    var redraw = document.getElementById("redraw");
+    var irotx = document.getElementById("rotX");
+    var iroty = document.getElementById("rotY");
+    var irotz = document.getElementById("rotZ");
+        
     var width = ctx.canvas.width;
     var height = ctx.canvas.height;
     var whalf = width/2;
@@ -47,9 +71,14 @@ window.addEventListener("load", function (e) {
     istop.onchange = drawFunction;
     itimes.onchange = drawFunction;
     iscale.onchange = drawFunction;
+    redraw.onclick = drawFunction;
+    rotX.onclick = drawFunction;    
+    rotY.onclick = drawFunction;
+    rotZ.onclick = drawFunction;
 
     // set the origin to the middle of the screen
     ctx.translate(whalf, hhalf);
+
     // draw the default function for the first time
     setTimeout(drawFunction, 0);
 });

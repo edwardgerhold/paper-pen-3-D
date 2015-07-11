@@ -68,12 +68,36 @@ function draw2dAll(ctx, points2, scale) {
     ctx.restore();
 }
 
+function rotate3dAll(xAngleRad,yAngleRad,zAngleRad, points3) {
+    var rotxcos = Math.cos(xAngleRad), rotxsin = Math.sin(xAngleRad);
+    var rotycos = Math.cos(yAngleRad), rotysin = Math.sin(yAngleRad);
+    var rotzcos = Math.cos(zAngleRad), rotzsin = Math.sin(zAngleRad);
+    var p, x, y, z, u, v, w, np;
+    for (var i = 0, j = points3.length; i < j; i++) {
+	    p = points3[i], x = p[0], y = p[1], z = p[2];
+	    u = x, v = y, w = z;
+	    y = v * rotxcos - w * rotxsin
+	    z = v * rotxsin + w * rotxcos
+	    u = x, v = y, w = z;
+	    x = u * rotycos + w * rotysin;
+	    z = -u * rotysin + w * rotycos;
+	    u = x, v = y, w = z;
+	    x = u * rotzcos - v * rotzsin;
+	    y = u * rotzsin + v * rotzcos;
+	    p[0]=x;
+	    p[1]=y;
+	    p[2]=z;
+    }
+}
+	
 
 exports.gettrans = gettrans;
 exports.settrans = settrans;
 exports.transform2d = transform2d;
 exports.transform2dAll = transform2dAll;
+exports.rotate3dAll = rotate3dAll;
 exports.rad = rad;
 exports.draw2dAll = draw2dAll;
 
 }(typeof exports != "undefined" ? exports : this));
+
