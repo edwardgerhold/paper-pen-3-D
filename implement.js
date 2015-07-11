@@ -72,7 +72,7 @@ function rotate3dAll(xAngleRad,yAngleRad,zAngleRad, points3) {
     var rotxcos = Math.cos(xAngleRad), rotxsin = Math.sin(xAngleRad);
     var rotycos = Math.cos(yAngleRad), rotysin = Math.sin(yAngleRad);
     var rotzcos = Math.cos(zAngleRad), rotzsin = Math.sin(zAngleRad);
-    var p, x, y, z, u, v, w, np;
+    var p, x, y, z, u, v, w;
     for (var i = 0, j = points3.length; i < j; i++) {
 	    p = points3[i], x = p[0], y = p[1], z = p[2];
 	    u = x, v = y, w = z;
@@ -90,12 +90,72 @@ function rotate3dAll(xAngleRad,yAngleRad,zAngleRad, points3) {
     }
 }
 	
+function rotate2dAll(zAngle, points2) {
+    var rotzcos = Math.cos(zAngleRad), rotzsin = Math.sin(zAngleRad);
+    var p, x, y, u, v;
+    for (var i = 0, j = points2.length; i < j; i++) {
+	    p = points2[i], x = p[0], y = p[1];
+	    u = x, v = y;
+	    x = u * rotzcos - v * rotzsin;
+	    y = u * rotzsin + v * rotzcos;
+	    p[0]=x;
+	    p[1]=y;
+    }
+}
+
+function translate3dAll(transvec, points3) {
+    var p, x, y, z;
+    var Tx = transvec[0],
+	Ty = transvec[1],
+	Tz = transvec[2];
+    for (var i = 0, j = points3.length; i < j; i++) {
+	    p = points3[i];
+	    p[0]+=Tx;
+	    p[1]+=Ty;
+	    p[2]+=Tz;
+    }
+}
+
+function translate2dAll(transvec, points2) {
+    var p;
+    var Tx = transvec[0],
+	Ty = transvec[1];
+    for (var i = 0, j = points2.length; i < j; i++) {
+	    p = points2[i];
+	    p[0]+=Tx;
+	    p[1]+=Ty;
+    }
+}
+
+function scale3dAll(scaleX, scaleY, scaleZ, points3) {
+    var p;
+    for (var i = 0, j = points3.length; i < j; i++) {
+	    p = points3[i];
+	    p[0]*=scaleX;
+	    p[1]*=scaleY;
+	    p[2]*=scaleZ;
+    }
+}
+
+function scale2dAll(scaleX, scaleY, points2) {
+    var p;
+    for (var i = 0, j = points2.length; i < j; i++) {
+	    p = points2[i];
+	    p[0]*=scaleX;
+	    p[1]*=scaleY;
+    }
+}
 
 exports.gettrans = gettrans;
 exports.settrans = settrans;
 exports.transform2d = transform2d;
 exports.transform2dAll = transform2dAll;
 exports.rotate3dAll = rotate3dAll;
+exports.rotate2dAll = rotate2dAll;
+exports.scale3dAll = scale3dAll;
+exports.scale2dAll = scale2dAll;
+exports.translate3dAll = translate3dAll;
+exports.translate2dAll = translate2dAll;
 exports.rad = rad;
 exports.draw2dAll = draw2dAll;
 
