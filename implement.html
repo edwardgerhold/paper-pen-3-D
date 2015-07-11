@@ -21,9 +21,8 @@ window.addEventListener("load", function (e) {
 
     function drawFunction(e) {
 	ctx.clearRect(-width,-height,width*2,height*2);
-	var s = func.value, tmp;
-	if (/XMLHttpRequest/.test(s)) { alert("nice expression"); return; }
-	var f = new Function("t", "return ["+s+"]");
+	var tmp;
+	var f = new Function("t", "return ["+func.value+"]");
 	var start = +eval(istart.value);
 	var stop = +eval(istop.value);
 	var rotx = +(irotx.value);
