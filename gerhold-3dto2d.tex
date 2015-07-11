@@ -15,10 +15,10 @@
 \date{\today}
 \maketitle
 
-Version 0.2.6 (the very much a draft paper)\\
-\textbf{Remark} Has to be ordered, corrected, mathematically upgraded and to get more pictures.
-
-This is an active working draft. Which is now totally out of it´s shape this version.
+Version 0.2.7 (the is getting reworked paper)\\
+\textbf{Remark} This text may or may not contain logical errors, typos,
+unclear phrases, remarks, during development. But this document is living
+and being edited.
 
 }\\
 
@@ -34,13 +34,15 @@ directions in space. In reality these vectors are two dimensional. Because
 they point into three directions on the paper, and not into the real space.\\
 
 \begin{figure}[ht]
+\label{ijksystem}
 \includegraphics[scale=2]{ijksystem.png}\\
 \caption{Picture of a 3-D coordinate system with ijk-vectors on the axes pointing
 into three directions. See \cite{Corral1} for introduction.}
 \end{figure}
 
-In this document we will design a basis for the coordinate transformation. A
-basis is multiplied with the value of the coordinate to move to the correct new point.\\
+In this document we will design a (pseudo-) basis for the coordinate transformation. 
+A basis is multiplied with the values of the coordinates to move for each component 
+a piece, to end the move on the correct new point.
 In the case of cosines and sines, we move left and right and up and down, to 
 tell you directly, what happens, when we multiply the coordinates with the matrix.\\
 
@@ -54,18 +56,40 @@ tell you directly, what happens, when we multiply the coordinates with the matri
 \item Derive the generic case of transforming coordinate systems down to the plane.
 \end{enumerate}
 
-\section{Definitions}
+\section{Designing a 2x3 transformation basis}
 
-\subsection{Definition of the angles for the coordinate axes}
+\subsection{The $_n$ index for $_x,_y,_z$ with $_x=1$, $_y=2$ and $_z=3$}
 
- Let $\varphi_n$ be the set of axis angles, one for each axis. The angles start
-at the same place, at the number zero. You have to arrange the $x$, $y$, and
-$z$ axes like on a piece of paper around the unit circle by giving them the
-appropriate angles. All three angles start at the default at zero at the horizontal axis of the plane.
+The index $_n$ in $r_n$, $\varphi_n$, $\vec{e}_n$ is the index for $_x$,$_y$,$_z$. For example $\varphi_n$  stands $\varphi_x, \varphi_y, \varphi_z$. $r_n$ stands for $r_x$, $r_y$ and $r_z$. $\vec{e}_n$ is for $\vec{e}_x$, $\vec{e}_y$, $\vec{e}_z$ It is possible, that in the formulas $x,y,z$ and $1,2,3$ may be used interchangeably. For example, when summing up the products of the coordinate componentents with basis components, this happens. The formula is $\sum_{i=1}^{2}\vec{x}_i\vec{e}_i$, which is a sum of $x,y,z$ and the $\cos \varphi_n$ terms in the first components of $\vec{e}_n$ for $x'$ and a sum of $x,y,z$ and the $\sin \varphi_n$ terms in the seconds components of $\vec{e}_n$ for $y'$.
+
+\subsection{$\varphi_n$ the angles for the coordinate axes}
+
+Why do we need angles? May be the first question. My answer is, we will arrange the basis vectors, 
+easily around a circle by their angle. Since they are two dimensional. Instead of guessing wild numbers.\\
+
+First draw three axes of a 3-D coordinate system on a piece of paper. Draw the horizontal x-Axis through the origin of the drawn coordinate system. You could directly add the y-axis, to see a 2-D coordinate system carrying your two dimensional 3-D system. A system with three vectors pointing into three directions, originating in the origin of the real R^2 space.\\
+
+Each of the three vectors has an angle, counted from the horizontal positive x-axis, going counterclockwise around the origin. The
+angle between the axes themselves isn´t what we want. We want the angle beginning on the real 2-D x-axis, to feed the cos and sin functions with, when calculating the real numbers of each basis vector.\\
+
+In this document, i will call the angles $\angle \varphi_n$ or just $\varphi_n$. If they are measured in degrees or radians depends
+on the cosine and sine functions you use. And on how you would like to read your own definition.
+
+Let $\varphi_n$ be the set of axis angles, one for each axis. I put them into a set in this document to simplify the access by
+using the index $_n$ together with $_x, _y, _z$ or $1,2,3$. $\varphi_x$ or $\varphi_1$ is the angle of the x-axis. $\varphi_y$ or $\varphi_2$ is the angle of the x-axis and $\varphi_z$ or $\varphi_3$ is the angle of the x-axis. 
+
 
 \begin{displaymath}
-\varphi_n := \{\varphi_x, \varphi_y, \varphi_z\}
+\varphi_n := \{\varphi_x, \varphi_y, \varphi_z\} = \{ \varphi_1, \varphi_2, \varphi_3 \}
 \end{displaymath}
+
+We will need the three angles for the axes shortly. So don´t forget it over the next lines.
+
+
+\subsubsection{Degrees or radians?}
+
+Depending on the cosine and sine functions and the input value for the angles, you may have to convert the degrees to radians, or
+the other way round, the radians to degrees. For example, the JavaScript Math.cos and Math.sin functions take the values in radians.\\
 
 \begin{example}
 \textbf{Example}
@@ -73,12 +97,15 @@ The function rad converts degrees to radians, it´s useful for computer function
 \begin{displaymath}
 \text{rad}(\phi) := \frac{\pi}{180} \times \phi, \phi \in \mathbb{R}
 \end{displaymath}
-Here is an example of three angles. The three axes have an angle of 120 degrees between each.
+
+
+Here is an example of three angles. The three axes have an angle of 120 degrees between each. But since we start counting counterclockwise and from the real horizontal axis of the plane, the angles are 210, 330, 90 in degrees, respectivly. And
+because of the cosine and sine functions taking radians, we convert the values to radians.
+ 
 \begin{displaymath}
-\varphi_x = \text{rad(210)},
-\varphi_y = \text{rad(330)},
-\varphi_z = \text{rad(90)} 
+\varphi_x = \text{rad(210)}, \varphi_y = \text{rad(330)}, \varphi_z = \text{rad(90)}
 \end{displaymath}
+
 \begin{displaymath}
 \varphi_x &= \frac{\pi}{180} \times 210 &= \frac{7\pi}{6},  
 \varphi_y &= \frac{\pi}{180} \times 330 &= \frac{11\pi}{6}, 
@@ -86,46 +113,83 @@ Here is an example of three angles. The three axes have an angle of 120 degrees 
 \end{displaymath}
 \end{example}
 
-Calculating the three values is fun. More fun with angles could be had with \cite{Corral2}. What the values are good for? The angles have to be passed to the cosine and sine functions, when we setup the basis vectors around a circle.
+
+\textbf{Example}
+The function deg converts the other way round and from radians to degrees. You multiply your value with the reciprocal of PI/180, namely 180/PI and get the other way round.
+\begin{displaymath}
+\text{deg}(\phi) := \frac{180}{\pi} \times \phi, \phi \in \mathbb{R}
+\end{displaymath}
+
+If you would like to get hands on angles, cosines, sines, or need a refresher, \cite{Corral2} is a good choice.
+
+\subsection{$r_n$ is the length of the unit on each axis}
+
+Before i show you the three vectors, and how to use them, we have to clear another piece of information belonging to each
+basis vector. In this document it is called $r_n$. The r is from radius. And it stands for the length of the basis vector.
+The length of the basis vector defines, how far a point in this direction will go by one unit.\\
+
+The $r$ originates from radius from the unit circle and from the parametrization of (x,y) via cosine and sine. 
+In polar coordinates the cosine and sine are multiplied with r. Also to change the length of the hypotenuse, 
+the vector $\vec{r}$, which is the third side to a triangle by cosine, sine and r. 
+If r is left away, the length of the basis vector is 1. Or in other words, the distance $d((0,0),(x,y))$ from the origin to $(x,y)=($$r \cos \varphi$$, $$r \sin \varphi$$)$ is $1$, if $r=1$ or if r is left away completely.\\
+
+Pay attention to this point now, to keep the affine transformation, especially under rotation, correct. You should give all three
+axes the same r-value. I will define them in this document as $r_n$ with one $r_x, r_y$ and $r_z$ for each coordinate axis,
+to keep it complete. But if you would like to change the units on your objects, i have to recommend, that you apply a local
+3x3 basis with the disjoint unit lengths. This will keep the rotation correct. In the other case, the object would suddenly
+stretch the head, if you rotate it to the side, where the unit for example is longer.\\
+
+So for the coordinate system, the best setting is $r_x = r_y = r_z$. Keeping them equal, you can rotate it realistic. But you
+don´t need to keep the unit length of 1 for the vector. Elonginating the units on the axes make zooming transformations very
+easy.\\
+
+\subsubsection{Taking the norm to obtain r}
+
+If you have some existing basis and you would like to figure out, how long r is, you can go the other way round and take the
+norm of the vector. Taking the norm means to measure the length of the vector. This is done with the euclidean norm, or the
+2-norm for regular purposes.\\
+
+$r = \sqrt{\vec{e}_n\cdot\vec{e}_n}$ = $\sqrt{(\vec{e}_n,\vec{e}_n)}$ = $\left(\Sigma_{i=1}^{2} \vec{e}_i^2\right)^{\frac{1}{2}}$ = $\|\vec{e}_n\|$\\
+
+With this formula you can not only measure the length of the basis vectors, but any vector in the $R^{3}$ and the $R^{2}$ space. 
+More advanced measurements include the p-Norm, which is $\sqrt[p]{\sum_{i=1}^{n}|\vec{x}_i|^{p}}$ and the max-Norm. Norms are used
+for measuring the lenghts of the vectors and matrices. And the distance function $d(\vec{x},\vec{y}) = \|\vec{x}-\vec{y}\|$ is used
+to measure the distance between to points or two vector tips.\\
 
 
-\subsection{Definition of the three 2-D basis vectors}
+\subsection{$\vec{e}_n$ are the three 2-D basis vectors}
 
+We have drawn some axes on a piece of paper and taken the angles starting from zero counterclockwise on the x-axis.\\
 
-Let $e_n$ be the set of three two dimensional basis vectors, namely 
-$\vec{e}_x$, $\vec{e}_y$ and $\vec{e}_z$. Other names are $\vec{i}$, $\vec{j}$ or $\vec{k}$ for example, like on the
-picture of the coordinate system mentioned. The three vectors point into the three directions
-of the three axes. On a piece of paper they are two dimensional, becausee they point into three
-directions on the paper. The space being shown is what our brain completes, seeing three correct
-axes. The three basis vectors represent exactly one unit into the direction of each axis. This
-unit can be manipulated by multiplying the vector components inside $e_n$ with a factor $r_n$.
+Now we will write down the three basis vectors. Each vector points from the origin exactly along the first unit of the together belonging axis.\\
+
+Let $\vec{e}_n$ be the set of three two dimensional basis vectors. In this document and some literature and scripts,
+we call them $\vec{e}_x$, $\vec{e}_y$ and $\vec{e}_z$. Another well known names for the basis vectors are $\vec{i}$, 
+$\vec{j}$ or $\vec{k}$ for example. That is equal to the picture of the coordinate axes at \ref{ijksxstem} in this document.\\
+
+The three vectors point into the three directions of the three coordinate axes. Exactly along one unit, since we are going
+to define with them the length of one unit of the corresponding axis together with the positive direction of the coordinate axis.
+Multiplying the 2x3 basis with the 3x1 points later results in wonderful 2x1 points. \\
 
 \begin{displaymath}
-e_n := \{\vec{e}_x, \vec{e}_y, \vec{e}_z\}\\
+\vec{e}_n := \{\vec{e}_x, \vec{e}_y, \vec{e}_z\} = \{\vec{e}_1, \vec{e}_2, \vec{e}_3}\\
 \end{displaymath} 
+
+There we have the set for the three basis vectors. We give them the letter $e$ and a subscript for the coordinate component in the numeric order of $x=1, y=2, z=3$. To arrange these vectors we already got around the unit circle. To measure the angles, beginning on the horizontal coordinate axis or zero, until we reach the vector. The vectors point into the positive direction of the describing axis.\\
 
 \begin{figure}[ht]
 \includegraphics[scale=1]{unitvectors.png}
 \caption{The three basis vectors point into the positive directions of the desired coordinate axis. They are arranged around a circle with the trigonometric functions of cosine and sine.}
 \end{figure}
- 
-This is the set of three basis vectors in set notation. To guess no numbers, it´s easier for us, 
-for each vector, to go around the unit circle by the angles we already defined and to use cosine 
-and sine for the correct $x$-distance and $y$-distance. For help, you should remember this parametrization 
-of $x$ and $y$ from the unit circle. \footnote{Interested people can read about parametrization of x and y, 
-the unit circle, polar coordinates and cosine and sine for example in the books \cite{Corral1}, \cite{Corral2}, \cite{Strang2}.}
+
+To reach all three (x,y) at the tips of the vectors, we will now pull out the cosine and sine functions and stuff them together
+with $r$ and $\varphi$ into a 2x1 vector with two components. So any (x,y) on one line from the origin to far distance can be reached like in polar coordinates\footnote{Interested readers may find in \cite{Corral1}, \cite{Corral2} and \cite{Strang2} everything about polar coordinates, parametrization of x and y with cosine and sine, the unit circle and the distance or radius r and more to these topics.} with the following parametrization.\\
 
 \begin{displaymath}
 \left(\begin{array}{1}x\\y\end{array}\right) = \left(\begin{array}{1}r \cos \varphi\\ r \sin \varphi\end{array}\right)\\
 \end{displaymath}\\
 
-Alternativly it can be written like
-
-\begin{displaymath}
-(x,y) = (r \cos \varphi, r \sin \varphi)
-\end{displaymath}\\
-
-Increasing $r$ increases the radius of the circle and the distance of the point and the length of the vector $r$. It´s called the unit circle when $r = 1$.\\
+Which can alternativly it can be written like $(x,y) = (r \cos \varphi, r \sin \varphi)$.\\
 
 Modeling the three two dimensional basis vectors with this information,
 we get the following three two dimensional basis vectors. They point along the coordinate axes and are the ruler for our transformation.\\
@@ -140,44 +204,35 @@ we get the following three two dimensional basis vectors. They point along the c
 \vec{e}_z := (r_z\cos(\varphi_z), r_z\sin(\varphi_z) )^T = \left(\begin{array}{1}r_z\cos(\varphi_z)\\r_z\sin(\varphi_z) \end{array}\right)\\
 \end{displaymath}\\
 
-One for each component of $(x,y,z)$ By multiplying with, we move by the 
-points into the right directions. On the plane we use to point into three directions. This means that each component contributes a move. And the final position is the right position of the new coordinate.\\
-
+Each component of (x,y,z) has now an own basis vector. By multiplying the cos terms for the x' and the sin terms for y' with the corresponding component of (x,y,z) and summing the three products up for each of x' and y', we directly obtain the right coordinate on the plane. All we would have to do is to connect the points again, or to fill the space between. 
 
 \begin{figure}[ht]
 \includegraphics[scale=2]{unitcircle.png}
 \caption{A picture of the unit circle, the hypotenuse r, the adjacent cosine, the opposite sine and the angle $\varphi$. It is a circle of radius r, and no longer the unit circle, if $r \neq 1$.}
 \end{figure}
 
+\subsection{About the vector basis lemma}\\
 
-\textbf{Remark}.The values of $r_x, r_y$ and $r_z$ decide, how long one unit into each
-direction is. To preserve affine graphical transformations all three
-axes should have the same length, to represent same distance for each coordinate unit. 
-The units can generally be enlarged or made smaller than \emph{unit length}, which is a length of $1$. 
-By default the resulting vectors with the cosine for $x$ and sine for $y$ components have \emph{unit length}, 
-if you don´t multiply the cosine and the sine in each basis vector with $r_x, r_y$ and $r_z$. The $r_n$ represent the lengths of the hypotenuses or the new radius of the circle around the origin described by the vectors. \\
+\subsubsection{The generic formula}
 
-\textbf{Remark} On the other side, the length of $r$ can be determined from existing basis vectors.
-By pulling the square root out of the sum of the squares of the vector components.
-This is also known as euclidean norm, or the root of the inner product of the vector with itself.
-Like real fans of sines and cosines, we know that $\sin^2 \varphi + \cos^2 \varphi = 1$ and what the root of 1 is.
-If we pull the root out of the products of cosine and sine multiplied with $r \ne 1$, we get the length of $r$ again. 
-$r = \sqrt{\vec{x}\cdot\vec{x}}$ = $\sqrt{(\vec{x},\vec{x})}$ = $\left(\Sigma_{i=1}^{n} \vec{x}_i^2\right)^{\frac{1}{2}}$ = $\|\vec{x}\|$\\
+I am talking about multiplying the coordinates with the new vector basis, which i state to be the same as the coordinate system we drew on a piece of paper at the beginning. We wrote down the angles, made out the unit length, and wrote down the three basis vectors with the information. Where is this coming from?\\
 
-\subsection{Lemma of the orthogonal bases}\\
+Every mathematics, physics or related course has a lesson, where the orthogonal basis of an objects coordinate system is introduced. 
+A orthogonal basis is a set of 2 or three or up to infinite orthogonal or perpendicular vectors. The describe a coordinate system, and one has to show for excercises, that the basis is linearly independent, that each basis vector points into it´s own dimension and not into the others.
 
-\textbf{Remark.} Not corrected in this version, i can use the word \emph{basis} together with the formula without the adjective. New lecture scripts proved me. The orthogonal case is then taught a paragraph later.\\
+The one lemma we need is the generic theorem for multiplying a vector with the vector basis for the target coordinate system.\\
+In our case the orthogonality by 90 degrees rules do not count. The basis vectors are no longer perpendicular. And no longer completely linearly independent. 
 
-The one lemma we need is the generic theorem for multiplying a vector with some basis for some coordinate system.\\
+\textbf{Remark} \emph{My move will be to show linear dependence by contradiction, and to call the basis a \textbf{pseudo-}basis then,
+because of it´s correct result and wanted place in the hall of bases.}
 
-In our case the orthogonality by 90 degrees rules do not count. The basis vectors are no longer perpendicular. Or in other words
-$\neg \left( \vec{e}_i \perp \vec{e}_j \right)$ with $i,j \in \{x,y,z\}.$
-
-The plane gives us two degrees of freedom\footnote{A version later i am asking myself, if i may use degree of freedom? According to https://de.wikipedia.org/wiki/Freiheitsgrade. Maybe i have explained it understandable, but wrong now.}, to go horizontal or vertical. And in a cartesian coordinate system with infinite points, we can choose any direction around a point (x,y).
-Any not straight move will go horizontally or vertically by componentwise amounts. Any straight move will go by one of the components only.
-We arrange for example with about 120 degrees\footnote{The angle between $e_x$ and $e_y$ can be a little bigger, if $e_z$ points up. I have noticed this on pictures. And before you get crazy, you are allowed to choose any angles. Let x,y be perpendicular or smaller. It is your choice.} between each axis around the origin on a plane. \\
+The plane gives us two possible directions, to go horizontal or vertical. And in a cartesian coordinate system with infinite points, we can choose any direction around a center point (x,y). Which is in the case of our coordinate system the origin at (0,0,0) or (0,0). We will see later, that the zero vector stays in the origin for both systems.
+Any not straight move will go horizontally or vertically by componentwise amounts. Any straight move horizontally or vertically will go by one of the components only.
 
 The point is, the generic formula still holds.\\
+
+Our pseudo basis is linearly dependent, but multiplying the coordinates with yield the right image of the set of points processed.\\
+
 The formula for multiplying a vector with a base to get a new vector is this.\footnote{The formula can be found in many mathematics, chemistry and physics lecture scripts, and a good introduction is \cite{Strang1}.\\}
 
 \begin{displaymath}
@@ -186,8 +241,10 @@ The formula for multiplying a vector with a base to get a new vector is this.\fo
 
 It is done componentwise for each row of the vector. $n$ is the number of the source dimensions. In our case it is $n = 3$. 
 We are summing three products for each component of the new vector. Our old $\vec{x}$ is a $\vec{x} \in \mathbb{R}^3$.\\
-With $\vec{x}_i$ as the coordinate component and $\vec{e}_i$ as the corresponding basis vector and the current component. $\vec{v}$ is the resulting new vector. 
-The new vector $\vec{v}$ is a $\vec{v} \in \mathbb{R}^2$.\\
+With $\vec{x}_i$ as the coordinate component and $\vec{e}_i$ as the corresponding basis vector in the right component. 
+$\vec{v}$ is the resulting new vector.  The new vector $\vec{v}$ is a $\vec{v} \in \mathbb{R}^2$.\\
+
+\subsubsection{Connection to ijk-Notation}
 
 This is also equal to
 
@@ -201,13 +258,10 @@ because we draw on a 2-D plane like the computer screen or a piece of paper. \\
 
 With a 3x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is equal to \left(\begin{array}{1}x'\\y'\\z'\end{array}\right)$. But with a 2x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is becoming  \left(\begin{array}{1}x'\\y'\end{array}\right)$\\
 
-\subsection{Finishing the matrix}\\
 
-Each $(x,y,z)$ coordinate has to be multiplied for the new $(x',y')$
-with it´s corresponding term of the basis vectors in the matrix. That means,
-to sum the products with $(x,y,z)$ and the cos terms up for $x'$ and to sum the products
-of $(x,y,z)$ and the sin terms up for $y'$. This is the same as imagining walking left and
-right with $\cos \varphi$ and up and down with $\sin \varphi$. Or mathematically adding positive or negative values.\\
+\subsection{Time to show the operation}
+
+The operation of multiplying the (x,y,z) coordinate with our basis vectors in order is the following:\\
 
 \begin{displaymath}
 \left(\begin{array}{1}x'\\y'\end{array}\right) = \left(\begin{array}{1}
@@ -215,20 +269,30 @@ xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right)\\
 \end{displaymath}\\
 
-\textbf{Remark} The sum of the basis multiplied with the coordinates is nothing
-new. But literature and lecture scripts just tell how to multiply
-same dimensions, giving no clue about the easy 3-D to 2-D conversions.
-I can not speak for all, and do not believe, that no one told no one about this, 
-but i have not met any one in the last twenty years telling me about this easy 
-transformation and computer graphics went another, more complicated way, over
-homogeneous coordinates, 4 by 4 matrices and a final viewport division, to get
-the points back to two dimensions.\\
+Right, this small formula brings the unexpected 1:1 images of the preimage from $R^3$ to $R^2$.\\
+
+What is new, what we know now? Each $(x,y,z)$ coordinate has to be multiplied with the vectors for the new $(x',y')$.
+With the corresponding terms of the basis vectors for each of x,y,z in the matrix. That means,
+to sum the products with $(x,y,z)$ and the cos terms up for $x'$ and to sum the products
+of $(x,y,z)$ and the sin terms up for $y'$. This is the same as imagining walking left and
+right with $\cos \varphi$ and up and down with $\sin \varphi$. Or mathematically adding positive or negative values to move up and down and left and right to the right spot. On the piece of paper, you take the ruler. You count the units, and go parallel to each axis. From the point you reached along parallel to the current axis as many units as the coordinate component has.
+
+It is almost time to finish the matrix and to go through a set of points to draw the new set of resulting points.
+For this i close the chapter and come to the part of the formal mathematical definitions.\\
 
 \section{Theorem}
+
+Let $V$ be the set of all points $(x,y,z) \in R^3$ which are about to become transformed. $V = \{ \vec{v}=(x,y,z) | x,y,z \in R^3 \}$.
+Let $W$ be the set of all points $(x',y') \in R^2$ which are the result of the transformation $W = \{ \vec{w}=(x',y') | x',y' \in R^2, (x',y')=\boldsymbol{A}\vec{v}\}$.\\
+
+\textbf{Remark} This chapter needs to be overworked with correct definitions of the sets, domain and range, etc.\\
+
+
 \subsection{The transformation matrix}
 \index{Definition}
 \newtheorem{Definition}{Definition}
 \begin{Definition}
+
 Let \boldsymbol{A} be the matrix containing the three, two dimensional and trigonometric, basis vectors in order, one each
 column. You get a rectangular 2x3 matrix $\boldsymbol{A} \in \mathbb{R}^{2x3}: \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$. With the basis vectors $\left(\begin{array}{1}r_n \cos \varphi_n\\r_n \sin \varphi_n\end{array}\right)$ in the three columns. 
 
@@ -241,11 +305,14 @@ column. You get a rectangular 2x3 matrix $\boldsymbol{A} \in \mathbb{R}^{2x3}: \
     r_x\cos(\varphi_x) & r_y\cos(\varphi_y) & r_z\cos(\varphi_z) \\
     r_x\sin(\varphi_x) & r_y\sin(\varphi_y) & r_z\sin(\varphi_z) \\
     \end{pmatrix}\\
-
 \end{displaymath}\\
 
-\boldsymbol{A} should be treated as a function $\boldsymbol{A} \in \mathbb{R}^{2x3} : \mathbb{R}^3 \rightarrow \mathbb{R}^2$. ($\vec{x}) \mapsto \boldsymbol{A}\vec{x}$. 
+$\boldsymbol{A}$ should be treated as operator $\boldsymbol{\hat{A}} \in \mathbb{R}^{2x3} : \mathbb{R}^3 \rightarrow \mathbb{R}^2$. ($\vec{x}) \mapsto \boldsymbol{A}\vec{x}$. 
+
 \end{Definition}\\
+
+
+\textbf{Remark} This chapter needs to be overworked.
 
 \subsection{The transformation}
 \index{Theorem}
@@ -261,9 +328,10 @@ representing the point $(x,y,z)$ from the three dimensional coordinate system, y
 \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}
 
-Applying the operator performs the following operation\\
+Applying the operator \boldsymbol{\hat{A}} transforms the point $(x,y,z) \in \mathbb{R}^3$ into a new point $(x',y') \in \mathbb{R}^2$. 
 
-\begin{equation*}
+\textbf{Proof}:\\
+
 \begin{displaymath}
 \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = x\vec{e}_x + y\vec{e}_y + z\vec{e}_z\\
 %\end{displaymath}
@@ -272,20 +340,14 @@ Applying the operator performs the following operation\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}
-\end{equation*}
+
+\begin{figure}[ht]
+\includegraphics[scale=0.5]{fxyplot.png}
+\caption{$f(x,y) = x^2 + y^2 + 3y \sin y$ from [-5,5] and [-3,3] on a Canvas2DRenderingContext}
+\end{figure}
+
 
 \end{Theorem}
-
-\textbf{Proof}\\
-\begin{displaymath}
-\boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = x\vec{e}_x + y\vec{e}_y + z\vec{e}_z = \left(\begin{array}{1}x'\\y'\end{array}\right)
-\end{displaymath}
-
-\begin{displaymath}
-\left(\begin{array}{1}x'\\y'\end{array}\right) = \left(\begin{array}{1}
-xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
-xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right)
-\end{displaymath}\\
 
 \subsection{Computer implementations of the matrix and the transformation}
 \subsubsection{Generic computer code}
@@ -320,32 +382,13 @@ let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 \end{lstlisting}
 \end{example}\\
 
-\textbf{Remark} I already proved affine transformations (Rotation, Scaling, Translation),
-with and without applying a local 3x3 base to the object (with is better, let $r_x = r_y = r_z$), then projecting the points afterwards with 
-this formula. I think the alternative graphics algorithm up to there could find a place here.\\
 
 
-
-
-\begin{figure}[h]
-\includegraphics[scale=0.5]{helix.png}
-\caption{A helix (35*Math.cos(t), 15*Math.sin(t), t) shown as (x,y,z)=f(t) with implement.html on a Canvas2DRenderingContext testing the javascript example code.}
-\end{figure}
-
-
-
-\begin{figure}[h]
+\begin{figure}[ht]
 \includegraphics[scale=0.5]{conicalhelix.png}
 \caption{A conical helix (t/2*Math.cos(t), t*Math.sin(t), t) shown as (x,y,z)=f(t) with implement.html on a Canvas2DRenderingContext testing the javascript example code.}
 \end{figure}
 
-
-
-
-\begin{figure}[h]
-\includegraphics[scale=0.33]{fxyplot.png}
-\caption{$x^2 + y^2 + 3y \sin y$  from [-5,5] and [-3,3] as z=f(x,y) with cheap3danimate.html on a Canvas2DRenderingContext}
-\end{figure}
 
 
 
