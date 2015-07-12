@@ -36,8 +36,8 @@ they point into three directions on the paper, and not into the real space.\\
 \begin{figure}[ht]
 \label{ijksystem}
 \includegraphics[scale=2]{ijksystem.png}\\
-\caption{Picture of a 3-D coordinate system with ijk-vectors on the axes pointing
-into three directions. See \cite{Corral1} for introduction.}
+\caption{Picture of a right handed 3-D coordinate system with ijk-basis-vectors on the axes pointing
+into three dimensions. See \cite{Corral1} for introduction.}
 \end{figure}
 
 In this document we will design a (pseudo-) basis for the coordinate transformation. 
@@ -64,10 +64,16 @@ The index $_n$ in $r_n$, $\varphi_n$, $\vec{e}_n$ is the index for $_x$,$_y$,$_z
 
 \subsection{$\varphi_n$ the angles for the coordinate axes}
 
-Why do we need angles? May be the first question. My answer is, we will arrange the basis vectors, 
-easily around a circle by their angle. Since they are two dimensional. Instead of guessing wild numbers.\\
+Why do we need angles? May be the first question. My answer is, we will arrange the basis vectors,
+easily around a circle, by their angle. Since they are two dimensionsal. The circle is available in two dimensions.
+With the arrangement around a circle, we get the right numbers, same lengths, instead of guessing wild numbers.\\
 
 First draw three axes of a 3-D coordinate system on a piece of paper. Draw the horizontal x-Axis through the origin of the drawn coordinate system. You could directly add the y-axis, to see a 2-D coordinate system carrying your two dimensional 3-D system. A system with three vectors pointing into three directions, originating in the origin of the real R^2 space.\\
+
+\begin{figure}[ht]
+\includegraphics{handsystems.png}
+\caption{A left-handed and a right handed coordinate system. They just have different angles in our 2-D projection.}
+\end{figure}
 
 Each of the three vectors has an angle, counted from the horizontal positive x-axis, going counterclockwise around the origin. The
 angle between the axes themselves isn´t what we want. We want the angle beginning on the real 2-D x-axis, to feed the cos and sin functions with, when calculating the real numbers of each basis vector.\\
@@ -113,14 +119,13 @@ because of the cosine and sine functions taking radians, we convert the values t
 \end{displaymath}
 \end{example}
 
-
 \textbf{Example}
 The function deg converts the other way round and from radians to degrees. You multiply your value with the reciprocal of PI/180, namely 180/PI and get the other way round.
 \begin{displaymath}
 \text{deg}(\phi) := \frac{180}{\pi} \times \phi, \phi \in \mathbb{R}
 \end{displaymath}
 
-If you would like to get hands on angles, cosines, sines, or need a refresher, \cite{Corral2} is a good choice.
+If you would like to get hands on angles, cosines, sines, or need a refresher, \cite{Corral2} is a good choice. But also \cite{Corral1} and \cite{Strang2} bring unit circles, polar coordinates, sines, cosines and more informations.
 
 \subsection{$r_n$ is the length of the unit on each axis}
 
@@ -149,13 +154,11 @@ If you have some existing basis and you would like to figure out, how long r is,
 norm of the vector. Taking the norm means to measure the length of the vector. This is done with the euclidean norm, or the
 2-norm for regular purposes.\\
 
-$r = \sqrt{\vec{e}_n\cdot\vec{e}_n}$ = $\sqrt{(\vec{e}_n,\vec{e}_n)}$ = $\left(\Sigma_{i=1}^{2} \vec{e}_i^2\right)^{\frac{1}{2}}$ = $\|\vec{e}_n\|$\\
+$r_n = \sqrt{\vec{e}_n\cdot\vec{e}_n}$ = $\sqrt{(\vec{e}_n,\vec{e}_n)}$ = $\left(\Sigma_{i=1}^{2} \vec{e}_i^2\right)^{\frac{1}{2}}$ = $\|\vec{e}_n\|$\\
 
 With this formula you can not only measure the length of the basis vectors, but any vector in the $R^{3}$ and the $R^{2}$ space. 
-More advanced measurements include the p-Norm, which is $\sqrt[p]{\sum_{i=1}^{n}|\vec{x}_i|^{p}}$ and the max-Norm. Norms are used
-for measuring the lenghts of the vectors and matrices. And the distance function $d(\vec{x},\vec{y}) = \|\vec{x}-\vec{y}\|$ is used
-to measure the distance between to points or two vector tips.\\
-
+More advanced measurements include the p-Norm, which is $\sqrt[p]{\sum_{i=1}^{n}|\vec{x}_i|^{p}} 1 \leq p \leq \infty$ and $\sup_{i=1..n} |\vec{x}_i|$ for $p=\infty}$ and the max-Norm $\|\vec{x}\|_{\infty}$= $\sup_{} \{|\vec{x}_i| \}$. There are matrix norms like $\|A\| = \max_{i=1..m} \sum_{j=1}^{n}A_{ij}$, which for example yields the largest row of a m by n matrix. Norms are used widely in mathematics for measuring the lenghts of the vectors and matrices. And the distance function $d(\vec{x},\vec{y}) = \|\vec{x}-\vec{y}\|$ is used to measure the distance between to points or two vector tips. A vector space V with a distance function $d(x,y)=\|x-y\|$. 
+  is called a metric space $(V,d)$. And a complete metric space with a norm, written $(V, \|\cdot\|)$, is a Banach space. 
 
 \subsection{$\vec{e}_n$ are the three 2-D (pseudo) basis vectors}
 
@@ -179,8 +182,14 @@ There we have the set for the three basis vectors. We give them the letter $e$ a
 
 \begin{figure}[ht]
 \includegraphics[scale=1]{unitvectors.png}
-\caption{The three basis vectors point into the positive directions of the desired coordinate axis. They are arranged around a circle with the trigonometric functions of cosine and sine.}
+\caption{The three basis vectors point into the positive directions of the desired coordinate axis. They are arranged around a circle with the trigonometric functions of cosine and sine. The coordinate system shown is a righthanded coordinate system.}
 \end{figure}
+
+\begin{figure}[ht]
+\includegraphics[scale=0.5]{lefthandbasis.png}
+\caption{The three two dimensional pseudo-basis vectors and a lefthanded coordinate system.}
+\end{figure}
+
 
 To reach all three (x,y) at the tips of the vectors, we will now pull out the cosine and sine functions and stuff them together
 with $r$ and $\varphi$ into a 2x1 vector with two components. So any (x,y) on one line from the origin to far distance can be reached like in polar coordinates\footnote{Interested readers may find in \cite{Corral1}, \cite{Corral2} and \cite{Strang2} everything about polar coordinates, parametrization of x and y with cosine and sine, the unit circle and the distance or radius r and more to these topics.} with the following parametrization.\\
@@ -189,7 +198,7 @@ with $r$ and $\varphi$ into a 2x1 vector with two components. So any (x,y) on on
 \left(\begin{array}{1}x\\y\end{array}\right) = \left(\begin{array}{1}r \cos \varphi\\ r \sin \varphi\end{array}\right)\\
 \end{displaymath}\\
 
-Which can alternativly it can be written like $(x,y) = (r \cos \varphi, r \sin \varphi)$.\\
+Which can alternativly be written like $(x,y) = (r \cos \varphi, r \sin \varphi)$.\\
 
 Modeling the three two dimensional basis vectors with this information,
 we get the following three two dimensional basis vectors. They point along the coordinate axes and are the ruler for our transformation.\\
@@ -215,16 +224,26 @@ Each component of (x,y,z) has now an own basis vector. By multiplying the cos te
 
 \subsubsection{The generic formula}
 
+
 I am talking about multiplying the coordinates with the new vector basis, which i state to be the same as the coordinate system we drew on a piece of paper at the beginning. We wrote down the angles, made out the unit length, and wrote down the three basis vectors with the information. Where is this coming from?\\
 
 Every mathematics, physics or related course has a lesson, where the orthogonal basis of an objects coordinate system is introduced. 
 A orthogonal basis is a set of 2 or three or up to infinite orthogonal or perpendicular vectors. The describe a coordinate system, and one has to show for excercises, that the basis is linearly independent, that each basis vector points into it´s own dimension and not into the others.\\
 
 The one lemma we need is the general theorem for multiplying a vector with the a basis of a target coordinate system.\\
-In our case the orthogonality by 90 degrees rules do not count. The basis vectors are no longer perpendicular. And no longer completely linearly independent. What brings me to the terms of a pseudo-basis in the next versions of this chapter.\\
 
-\textbf{Remark} \emph{My move will be to show linear dependence by contradiction, and to call the basis a \textbf{pseudo-}basis then,
+The basis vectors are no longer perpendicular. And no longer completely linearly independent. What brings me to the terms of a pseudo-basis in the next versions of this chapter.\\
+
+\textbf{Remark} \emph{My move will be to show linear dependence by contradiction, and to call the basis a pseudo-basis then,
 because of it´s correct result and wanted place in the hall of bases.}\\
+\begin{figure}
+\begin{displaymath}
+    \boldsymbol{E}_{\mathbb{R}^2} = \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}    
+\end{displaymath}
+\caption{The standard basis for the $\mathbb{R^{2}}$ spans up the two dimensional space. Our pseudo basis is a linear combination of $\lambda\begin{pmatrix}1\\0\end{pmatrix}$ and $\mu\begin{pmatrix}0\\1\end{pmatrix}$.}
+\end{figure}
+
+
 
 The plane gives us two possible directions, to go horizontal or vertical. And in a cartesian coordinate system with infinite points, we can choose any direction around a center point (x,y). Which is in the case of our coordinate system the origin at (0,0,0) or (0,0). We will see later, that the zero vector stays in the origin for both systems.
 Any not straight move will go horizontally or vertically by componentwise amounts. Any straight move horizontally or vertically will go by one of the components only.\\
@@ -236,13 +255,15 @@ Our pseudo basis is linearly dependent, but multiplying the coordinates with yie
 The formula for multiplying a vector with a base to get a new vector is this.\footnote{The formula can be found in many mathematics, chemistry and physics lecture scripts, and a good introduction is \cite{Strang1}.\\}
 
 \begin{displaymath}
-\vec{v} = \displaystyle\sum_{i=1}^{n} \vec{x}_i\vec{e}_i
+\vec{w} = \displaystyle\sum_{i=1}^{n} \vec{v}_i\vec{e}_i
 \end{displaymath}
 
 It is done componentwise for each row of the vector. $n$ is the number of the source dimensions. In our case it is $n = 3$. 
-We are summing three products for each component of the new vector. Our old $\vec{x}$ is a $\vec{x} \in \mathbb{R}^3$.\\
-With $\vec{x}_i$ as the coordinate component and $\vec{e}_i$ as the corresponding basis vector in the right component. 
-$\vec{v}$ is the resulting new vector.  The new vector $\vec{v}$ is a $\vec{v} \in \mathbb{R}^2$.\\
+We are summing three products for each component of the new vector. Our old $\vec{v}$ is a $\vec{v} \in \mathbb{R}^3$.\\
+With $\vec{v}_i$ as the coordinate component and $\vec{e}_i$ as the corresponding basis vector in the right component. 
+$\vec{w}$ is the resulting new vector.  The new vector $\vec{w}$ is a $\vec{w} \in \mathbb{R}^2$.\\
+
+In our scenario is $V \subseteq \mathbb{R^{3}}, \vec{v} \in V$ and $W \subseteq \mathbb{R^{2}}, \vec{w} \in W$.
 
 \subsubsection{Connection to ijk-Notation}
 
@@ -442,13 +463,17 @@ then i can dot each with the coordinate vector and write the dot product into th
     \vec{v} = \left(\begin{array}{1}x\\y\\z\end{array}\right)       \vec{c} = \left(\begin{array}{1}r_x\cos\varphi_x\\r_y\cos\varphi_y\\r_z\cos\varphi_z\end{array}\right)            \vec{s} = \left(\begin{array}{1}r_x\sin\varphi_x\\r_y\sin\varphi_y\\r_z\sin\varphi_z\end{array}\right)
 \end{displaymath}
 
-Then we simply dot the vectors for each point $\vec{w} \in W$, $W \subset R^2$
+
 
 \begin{displaymath}
     \vec{w} = \left(\begin{array}{1}\vec{v}\cdot\vec{c}\\\vec{v}\cdot\vec{s}\end{array}\right)
 \end{displaymath}
 
-This can also be done with up to infinite dimensions which result in two coordinates then. Just add the dimensions to $\vec{v}, \vec{c}, \vec{s}$ and see.
+The result is $\vec{w} \in W$, $W \subset R^2$.\\
+
+
+This can also be done with up to infinite dimensions which result in two coordinates then. Just add the dimensions to $\vec{v}, \vec{c}, \vec{s}$ and see.\\
+
 
 \textbf{Proof}:
 \begin{displaymath}
