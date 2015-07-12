@@ -146,6 +146,55 @@ function scale2dAll(scaleX, scaleY, points2) {
     }
 }
 
+function normOf(point) {
+    var n = point.length;
+    var k = 0; 
+    length = 0;
+    while (k < n) {
+	length += point[k]*point[k];
+	k++;
+    }
+    return Math.sqrt(length);
+}
+
+function normOfAll(points) {
+    var results = [];
+    var n = points[0].length; 
+    var p, length, k;
+    for (var i = 0, j = points.length; i < j; i++) {
+	p = points[i];
+	k = 0; 
+	length = 0;
+	while (k < n) {
+	    length += p[k]*p[k];
+	    k++;
+	}
+	results.push(Math.sqrt(length));
+    }
+    return results;
+}
+
+function compareAll(points3, points2, callback) {
+    var p, q, results = [];
+    for (var i = 0, j = points3.length; i < j; i++) {
+	p = points3[i];
+	q = points2[i];
+	results.push(callback(p,q));
+    }
+    return results;
+}
+
+function distanceOf(p,q) {
+    var n = p.length;
+    var k = 0;
+    var d = 0;
+    while (k < n) {
+	d += Math.pow(p[k]-q[k], 2);
+	k++;
+    }
+    return Math.sqrt(d);
+}
+
 exports.gettrans = gettrans;
 exports.settrans = settrans;
 exports.transform2d = transform2d;
@@ -156,6 +205,10 @@ exports.scale3dAll = scale3dAll;
 exports.scale2dAll = scale2dAll;
 exports.translate3dAll = translate3dAll;
 exports.translate2dAll = translate2dAll;
+exports.normOf = normOf;
+exports.normOfAll = normOfAll;
+exports.compareAll = compareAll;
+exports.distanceOf = distanceOf;
 exports.rad = rad;
 exports.draw2dAll = draw2dAll;
 
