@@ -702,8 +702,7 @@ In this case a+b are equal. Pulling one root out the first binomial formula give
 \end{displaymath}
 
 Here i could conclude at once, that each component row will be equal to the sum on the right side. But i can not. \\
-Because at the end is it the fact, that the root pulled out of the larger term ($(a+b)^{2}$ is larger then $a^{2}+b^{2}$ by $2ab$) is then a smaller number, than the two roots from the single letters being together, for example is $\sqrt{2} < \sqrt{1}+\sqrt{1}$. or 1.41 smaller than 1+1. The theorem seems to be established.\\
-
+Because at the end is it the fact, that the root pulled out of the larger term ($(a+b)^{2}$ is larger then $a^{2}+b^{2}$ by $2ab$) is then a smaller number, than the two roots from the single letters being together, for example is $\sqrt{2} < \sqrt{1}+\sqrt{1}$. or 1.41 smaller than 1+1. The theorem seems to be established. But i haven proven the last words from the example yet.\\
 
 \textbf{Cauchy-Schwarz inequality} There is another interesting inequality.
 
@@ -711,20 +710,19 @@ Because at the end is it the fact, that the root pulled out of the larger term (
     |\vec{v}\cdot\vec{w}|^{2} \leq \|\vec{v}\|^{2}\|\vec{w}\|^{2}
 \end{displaymath}
 
-
+The absolute value of the dot product squared is less or equal to the product of the two norms squared. Squaring the two norms to the right brings the square root away, that you multiply with the full scalar product length.
 
 \begin{displaymath}
     |\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}|^{2} \leq ((\sum_{i=1}^{n}|\vec{v}_{i}|^{2})^{\frac{1}{2}})^{2}((\sum_{i=1}^{n}|\vec{w}_{i}|^{2})^{\frac{1}{2}})^{2}\\
 \end{displaymath}
 \begin{displaymath}
-|\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}|^{2} \leq ((\sum_{i=1}^{n}|\vec{v}_{i}|^{2}|\vec{w}_{i}|^{2})^{\frac{1}{2}})^{2} 
+|\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}|^{2} \leq (\sum_{i=1}^{n}\sum_{j=1}^{n}|\vec{v}_{i}|^{2}|\vec{w}_{j}|^{2})^{\frac{1}{2}})^{2} 
 =
-|\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}|^{2} \leq \sum_{i=1}^{n}(|\vec{v}_{i}||\vec{w}_{i}|)^{2}
+|\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}|^{2} \leq \sum_{i=1}^{n}\sum_{j=1}^{n}(|\vec{v}_{i}||\vec{w}_{j}|)^{2}
 \end{displaymath}
 
-\textbf{Remark} Seems to be equal now. But i am not sure. Update: I spotted another mistake and this seems to be wrong, as i square left the sum, and right each component of the sum.
-But that will be calculated the days. Thanks for the place.
-
+\textbf{Remark} Can be that i am wrong. I had to correct myself, after i had a weak error. I think i have forgotten the double
+sum when multiplying two sums. The other point is, i do not know now, whether it is right or wrong. But the right term looks larger for me now.
 
 \textbf{Remark} This subsection is not complete. And may contain mistakes.
 
@@ -879,16 +877,21 @@ Rotating the object can be done in three dimensional space by applying the regul
     y = u * rotzsin + v * rotzcos;
 \end{lstlisting}
 
-\textbf{Skewing}
+\subsection{Skewing}
 
 Skewing is not difficult. It´s also called Shearing.
 
 \begin{lstlisting}
+x =      x + k_xy*y + k_xz*z;
+y = k_yx*x + y      + k_yz*z;
+z = k_zx*x + k_zy*y + z;
 \end{lstlisting}
 
-\textbf{Frustum and Perspective}
+I do not now values for k now by heart, but remember the formula already. I took a skewing matrix and forgot about the empty fields.
 
-I am sorry to state, that i have to read the frustum formula first and to program it, but i am 100% sure, you can simply
+\subsection{Frustum and Perspective}
+
+I am sorry to state, that i have to read the frustum formula first and to program it, but i am 100\% sure, you can simply
 apply it to the points.
 
 \begin{lstlisting}
