@@ -15,7 +15,7 @@
 \date{\today}
 \maketitle
 
-Version 0.2.7 (the is getting reworked paper)\\
+Version 0.2.8 (the is getting reworked paper)\\
 \textbf{Remark} This text may or may not contain logical errors, typos,
 unclear phrases, remarks, during development. But this document is living
 and being edited.
@@ -228,9 +228,9 @@ Each component of (x,y,z) has now an own basis vector. By multiplying the cos te
 I am talking about multiplying the coordinates with the new vector basis, which i state to be the same as the coordinate system we drew on a piece of paper at the beginning. We wrote down the angles, made out the unit length, and wrote down the three basis vectors with the information. Where is this coming from?\\
 
 Every mathematics, physics or related course has a lesson, where the orthogonal basis of an objects coordinate system is introduced. 
-A orthogonal basis is a set of 2 or three or up to infinite orthogonal or perpendicular vectors. The describe a coordinate system, and one has to show for excercises, that the basis is linearly independent, that each basis vector points into it´s own dimension and not into the others.\\
+A orthogonal basis is a set of 2 or three or up to infinite orthogonal or perpendicular vectors. They describe the coordinate system, the space, the dimensions, and one has to show for excercises, that the basis is linearly independent, that each basis vector points into it´s own dimension and not into the others.\\
 
-The one lemma we need is the general theorem for multiplying a vector with the a basis of a target coordinate system.\\
+The one lemma we need is this general theorem for multiplying a vector with the a basis of a target coordinate system.\\
 
 The basis vectors are no longer perpendicular. And no longer completely linearly independent. What brings me to the terms of a pseudo-basis in the next versions of this chapter.\\
 
@@ -250,7 +250,7 @@ Any not straight move will go horizontally or vertically by componentwise amount
 
 The point is, the general formula still holds with a 2x3 (pseudo) basis.\\
 
-Our pseudo basis is linearly dependent, but multiplying the coordinates with yield the right image of the set of points processed.\\
+Our pseudo basis is linearly dependent, but multiplying the coordinates with, yield the right image of the set of points processed.\\
 
 The formula for multiplying a vector with a base to get a new vector is this.\footnote{The formula can be found in many mathematics, chemistry and physics lecture scripts, and a good introduction is \cite{Strang1}.\\}
 
@@ -290,7 +290,7 @@ xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right)\\
 \end{displaymath}\\
 
-Right, this small formula brings the unexpected 1:1 images of the preimage from $R^3$ to $R^2$.\\
+Right, this small formula brings the unexpected images of the preimage from $R^3$ to $R^2$.\\
 
 What is new, what we know now? Each $(x,y,z)$ coordinate has to be multiplied with the vectors for the new $(x',y')$.
 With the corresponding terms of the basis vectors for each of x,y,z in the matrix. That means,
@@ -482,6 +482,39 @@ xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}
 
+\section{Glossary}
+
+I am nativly a german speaking man. To reduce the risk of misunderstanding me, i will write down the terms, which i use in this document. So you can read from my definition, what i mean with and decide by yourself, what´s the correct word, i wanted to use.
+
+
+\begin{tabular}{-l-l-l}
+    assumed english & german & personal definition \\
+
+\hline
+    basis &     Basis &     A system of vectors, with which any coordinate has to be transformed.\\
+    & & A basis transforms your coordinates into your desired coordinate system.\\
+    & & A basis is regularly a set of linearly independent vectors. They span the space.\\    
+    & & For example are $(1,0)$ and $(0,1)$ the basis for the $\mathbb{R}^{2}$ and\\
+    & & $(3,4)$ is a combination of $3\times(1,0)$ and $4\times(0,1)$,\\
+
+\hline
+    pseudo-basis & Pseudobasis & My word for a basis-like set of vectors, which can not be linearly independent. \\
+    & & They can not become called a real basis, but be a fake basis, which provides \\
+    & & \emph{the solution} for the problem. The pseudo basis 2x3 for projecting the R3 onto \\
+    & & the R2 does the job right, but mathematically each cosine is a combination \\
+    & & with (1,0) and each sine is a combination with (0,1). So, it´s no true basis.\\
+
+\hline    
+    vector, point & Vektor, Punkt & A vector has a length and a direction. \\
+    & & The tails of the vectors here meet in the origin. The point is the tip\\
+    & & of the vector, or the word for the point coordinates in the cartesian system. \\
+    & & The words point and vector are used interchangably in this text and depend \\
+    & & on what your numbers mean.\\
+
+\end{tabular}
+
+\textbf{Remark} incomplete.
+
 \section{Summary}
 
 \subsection{Summary of all neccessary steps}
@@ -586,9 +619,54 @@ ur_x\sin(\varphi_x) + vr_y\sin(\varphi_y) + wr_z\sin(\varphi_z)\\
 which is a standard formulation of the rule of linearity. For example, you can find this rule in the form $\boldsymbol{A}(c\vec{x} + d\vec{y}) = c\boldsymbol{A}\vec{x} + d\boldsymbol{A}\vec{y}$ in \cite{Strang1}, but also in every linear algebra 1 lecture script.\\
 
 
+\subsection{Dot product}
+
+The dot product, scalar product or inner product is the sum of the vector component products. Speaking this, $(\vec{v}, \vec{w})$ is $\sum_{i=1}^{n}\vec{v}_i\vec{w}_i$.  
+
+$\sum_{i=1}^{n}\vec{v}_i\vec{w}_i = 0$ means, that $\vec{v} \perp \vec{w}$
+
+\begin{displaymath}
+    (v,w) = \sum_{i=1}^{n}\vec{v}_i\vec{w}_i
+\end{displaymath}
+
+\begin{displaymath}
+    (0,w) = \sum_{i=1}^{n}0\vec{w}_i = 0
+\end{displaymath}
+
+
+
+\begin{displaymath}
+    (\lambda\vec{v},\vec{w}) = \sum_{i=1}^{n}\lambda\vec{v}_{i}\vec{w}_{i}
+    = \lambda\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} = \lambda(\vec{v}, \vec{w})
+\end{displaymath}
+
+\begin{displaymath}
+    (\lambda\vec{v},\vec{w}+\vec{x}) = \sum_{i=1}^{n}\lambda\vec{v}_{i}(\vec{w}_{i}+\vec{x}_{i})
+    = \lambda(\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}+\sum_{i=1}^{n}\vec{v}_{i}\vec{x}_{i})
+    = \lambda((\vec{v},\vec{w})+(\vec{v},\vec{x}))
+\end{displaymath}
+
+
+
+\begin{displaymath}
+    (\lambda\vec{v},\kappa\vec{w}) = \sum_{i=1}^{n}\lambda\vec{v}_{i}\kappa\vec{w}_{i}
+    = \lambda\kappa\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} = \lambda\kappa(\vec{v}, \vec{w})
+\end{displaymath}
+
+\begin{displaymath}
+\begin{center}
+    (\lambda\vec{v}+\mu\vec{x},\kappa\vec{w}+\nu\vec{y})\\
+    = \sum_{i=1}^{n}(\lambda\vec{v}_{i}+\mu\vec{x}_{i})(\kappa\vec{w}_{i}+\nu\vec{y}_{i})\\
+    = (\lambda\vec{v},\kappa\vec{w}) + (\lambda\vec{v},\nu\vec{y}) + (\kappa\vec{w},\mu\vec{x}) + (\kappa\vec{w},\nu\vec{y})\\
+    = \lambda(\kappa(\vec{v},\vec{w}) + \nu(\vec{v},\vec{y})) + \kappa(\mu(\vec{w},\vec{x}) + \nu(\vec{w},\vec{y}))\\
+\end{center}    
+\end{displaymath}
+
+\textbf{Remark}. Don´t know if that´s right. I just wrote it.
+
 \subsection{About the norm}
 
-The norm used is the euclidean norm, or the 2-norm. This is the square root of the sum of the squares of the absolute values of the components $\|\vec{x}\| = \sqrt{\sum_{i=1}^{n}|x_n|^2}$. In linear algebra, functional analysis and topology lectures there are three fundamental properties of the norm. Definiteness, homogenity and the triangle inequality.\\
+The norm used is the euclidean norm, or the 2-norm. This is the square root of the sum of the squares of the absolute values of the components $\|\vec{x}\| = \sqrt{\sum_{i=1}^{n}|x_{i}|^2}$. In linear algebra, functional analysis and topology lectures there are three fundamental properties of the norm repeating. Definiteness, homogenity and the triangle inequality.\\
 
 
 \textbf{Definitness} Show that $\|\vec{x}\| = 0$ if $\vec{x} = 0$\\
@@ -604,17 +682,56 @@ The norm used is the euclidean norm, or the 2-norm. This is the square root of t
 \textbf{Triangle inequality} (Minkowski inequality) Show that $ \|\boldsymbol{A}(\vec{v} + \vec{w})\| \leq \|\boldsymbol{A}\vec{v}\| + \|\boldsymbol{A}\vec{w}\|$\\
 
 \begin{displaymath}
-    \sqrt{\sum_{i=1}^{n}|\vec{v}_i + \vec{w}_i|^{2}} \leq \sqrt{\sum_{i=1}^{n}|\vec{v}_i|^{2}} + \sqrt{\sum_{i=1}^{n}|\vec{w}_i|^{2}} 
+    \sqrt{\sum_{i=1}^{n}|\vec{v}_{i} + \vec{w}_{i}|^{2}} \leq \sqrt{\sum_{i=1}^{n}|\vec{v}_{i}|^{2}} + \sqrt{\sum_{i=1}^{n}|\vec{w}_{i}|^{2}} 
 \end{displaymath}\\
 
-\textbf{Remark} This subsection is not complete.
+I tried to come closer to the proof of the triangle inequality. Because i do not have a proof available, or just forgot, where to look for. I tried for myself to come to a conclusion. Something interesting was the comparison with the first binomial formula $(a+b)^{2}$ which can be used for substitution of the terms, i think.
+
+\begin{displaymath}     
+\begin{center}
+    \sqrt{(a^{2}+2ab+b^{2})} \leq \sqrt{(a^{2})} + \sqrt{(b^{2})}\\
+    = \sqrt{(a+b)^{2}} \leq \sqrt{a^{2}} + \sqrt{b^{2}}\\
+    = \(a+b\) \leq a + b\\
+\end{center}
+\end{displaymath}
+
+In this case a+b are equal. Pulling one root out the first binomial formula gives us $a+b$ which is equal to $a+b$. But i am still unsure, how the real proof goes.
+
+\begin{displaymath}
+    (\sum_{i=1}^{n}|a_{i} + b_{i}|^{2})^{\frac{1}{2}} = (\sum_{i=1}^{n}|a_{i}|^{2})^{\frac{1}{2}} + (\sum_{i=1}^{n}|b_{i}|^{2})^{\frac{1}{2}}
+\end{displaymath}
+
+Here i could conclude at once, that each component row will be equal to the sum on the right side. But i can not. \\
+Because at the end is it the fact, that the root pulled out of the larger term ($(a+b)^{2}$ is larger then $a^{2}+b^{2}$ by $2ab$) is then a smaller number, than the two roots from the single letters being together, for example is $\sqrt{2} < \sqrt{1}+\sqrt{1}$. or 1.41 smaller than 1+1. The theorem seems to be established.\\
+
+
+\textbf{Cauchy-Schwarz inequality} There is another interesting inequality.
+
+\begin{displaymath}
+    |\vec{v}\cdot\vec{w}|^{2} \leq \|\vec{v}\|^{2}\|\vec{w}\|^{2}
+\end{displaymath}
+
+
+
+\begin{displaymath}
+    |\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}|^{2} \leq ((\sum_{i=1}^{n}|\vec{v}_{i}|^{2})^{\frac{1}{2}})^{2}((\sum_{i=1}^{n}|\vec{w}_{i}|^{2})^{\frac{1}{2}})^{2}\\
+\end{displaymath}
+\begin{displaymath}
+|\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}|^{2} \leq ((\sum_{i=1}^{n}|\vec{v}_{i}|^{2}|\vec{w}_{i}|^{2})^{\frac{1}{2}})^{2} 
+=
+|\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}|^{2} \leq \sum_{i=1}^{n}(|\vec{v}_{i}||\vec{w}_{i}|)^{2}
+\end{displaymath}
+
+\textbf{Remark} Seems to be equal now. But i am not sure.
+
+\textbf{Remark} This subsection is not complete. And may contain mistakes.
 
 \subsection{Metrics}
 
 Where a norm is, there will be a metric induced.
 The measurement of the distance between two points is defined by the d-function. It is the length of the difference vector between the two points.\\
 \begin{displaymath}
-    d(\vec{x}, \vec{y}) = \|\vec{x}-\vec{y}\| = \sqrt{\sum_{i=1}^{n}|\vec{x}_i-\vec{y}_i|^2}
+    d(\vec{x}, \vec{y}) = \|\vec{x}-\vec{y}\| = \sqrt{\sum_{i=1}^{n}|\vec{x}_{i}-\vec{y}_{i}|^2}
 \end{displaymath}
 
 Metrics have three fundamental properties.
@@ -746,7 +863,7 @@ This of course transform the object by the directions and the length of the thre
 
 \subsection{Rotation}
 
-Rotating the object can be done in three dimensional space by applying the regular rotation matrices
+Rotating the object can be done in three dimensional space by applying the regular rotation matrices. In our alternative graphics code, the matrix is removed and the zero columns are left away.
 
 \begin{lstlisting}
     u = x, v = y, w = z;
@@ -760,11 +877,34 @@ Rotating the object can be done in three dimensional space by applying the regul
     y = u * rotzsin + v * rotzcos;
 \end{lstlisting}
 
+\textbf{Skewing}
+
+Skewing is not difficult. It´s also called Shearing.
+
+\begin{lstlisting}
+\end{lstlisting}
+
+\textbf{Frustum and Perspective}
+
+I am sorry to state, that i have to read the frustum formula first and to program it, but i am 100% sure, you can simply
+apply it to the points.
+
+\begin{lstlisting}
+// soon
+
+// I do not know the frustum code by heart yet. 
+\end{lstlisting}
+
+But i grant it can simply be applied to the 3-D coordinates to change the 3-D view and then be projected onto the plane.
+
 \textbf{Remark} I have to remove the substitution and write the whole thing out again. Next version.
 
 \subsection{Code Example}
 
 Here is an implementation of these function together with the EcmaScript 6 snippet in modern EcmaScript 5.
+
+Remark. Many functions loop over a bunch of coordinates. Next i could introduce the main loop for processing coordinates, that the loop bodies can be replaced, by calls to a single coordinate processor. But even this has an issue due to repeating function calls. The good is, our code here is only for demonstration and proving the rules, and not for highspeed graphics. You can hardcode the loops later alone.
+Btw. passing an options object, this main loop can easily be made dynamic for a semi-professional version of the demonstration code.
 
 \begin{lstlisting}
 (function (exports) {
@@ -932,7 +1072,28 @@ exports.draw2dAll = draw2dAll;
 
 \end{lstlisting}
 
-Last but not least here is a code snippet doing all the things together, showing you the order of transformation.
+Last but not least here is a code snippet doing all the things together.
+
+\begin{lstlisting}
+
+var n = points3.length;
+var i = 0;
+while (i < n) {
+    var x,y,z, u,v,w;
+
+    // local operations
+    translate;
+    rotate;
+    scale;
+
+    // world operations
+    translate;
+    rotate;
+    scale;
+
+}
+
+\end{lstlisting}
 
 
 
