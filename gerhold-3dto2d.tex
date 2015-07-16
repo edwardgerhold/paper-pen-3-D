@@ -15,15 +15,24 @@
 \date{\today}
 \maketitle
 
-Version 0.2.8 (the is getting reworked paper is currently full of mistakes)\\
-\textbf{Remark} This text may or may not contain logical errors, \textbf{typos},
+Version 0.2.9 (the is getting expanded version has a few new unshaped subsections)\\
+
+\textbf{Remark} This text may contain miscounts and maybe logical errors, \emph{typos},
 unclear phrases, remarks, during development. But this document is living
-and being edited. It is evolving from a projection of three component points
-on two component points to a study of those vector spaces and their subspaces,
-the linear combination done, and will continue over the next days and weeks 
-until it is complete.\\
-I am looking for a friendlier word for pseudo basis, like the basis-like A is a
-linear operator acting as a mediator beetween R3 and R2 coordinate systems.
+and being edited. It is evolving from a projection, of three-component points
+onto two-component points, to a study, of the used vector spaces and the linear
+combination, which is done. I will continue this study over the next days and weeks
+with topology, linear operators, the dual space of the transpose, and also improve 
+my linear algebra. I think it is worth studying the euclidean space and selfmade subspaces.
+It is Hausdorff. :-)\\
+
+I am also looking for a friendlier word for pseudo basis, like the basis-like \boldsymbol{A} is a
+linear operator acting as a mediator beetween R3 and R2 coordinate systems. (A)(x) := Ax. By 
+studying and doing formal calculations to this topic, i have seen, i´ve got to learn more. And i 
+would like to apologize for my remark at the beginning, continue with some good text and a few 
+new paragraphs, which may be incomplete, but happen over this cirrem week
+
+
 
 }\\
 
@@ -103,7 +112,7 @@ Depending on the cosine and sine functions and the input value for the angles, y
 the other way round, the radians to degrees. For example, the JavaScript Math.cos and Math.sin functions take the values in radians.\\
 
 \begin{example}
-\textbf{Example}
+\textbf{example}
 The function rad converts degrees to radians, it´s useful for computer functions taking radians.
 \begin{displaymath}
 \text{rad}(\phi) := \frac{\pi}{180} \times \phi, \phi \in \mathbb{R}
@@ -124,7 +133,7 @@ because of the cosine and sine functions taking radians, we convert the values t
 \end{displaymath}
 \end{example}
 
-\textbf{Example}
+\textbf{example}
 The function deg converts the other way round and from radians to degrees. You multiply your value with the reciprocal of PI/180, namely 180/PI and get the other way round.
 \begin{displaymath}
 \text{deg}(\phi) := \frac{180}{\pi} \times \phi, \phi \in \mathbb{R}
@@ -153,16 +162,16 @@ So for the coordinate system, the best setting is $r_x = r_y = r_z$. Keeping the
 don´t need to keep the unit length of 1 for the vector. Elonginating the units on the axes make zooming transformations very
 easy.\\
 
-\subsubsection{Taking the norm to obtain r}
+\subsubsection{Taking the norm of $\vec{e}_n$ to obtain $r_n$}
 
 If you have some existing basis and you would like to figure out, how long r is, you can go the other way round and take the
 norm of the vector. Taking the norm means to measure the length of the vector. This is done with the euclidean norm, or the
 2-norm for regular purposes.\\
 
-$r_{n} = \sqrt{\vec{e}_{n}\cdot\vec{e}_{n}}$ = $\sqrt{(\vec{e}_{n},\vec{e}_{n})}$ = $\left(\Sigma_{i=1}^{2} \vec{e}_{i}^2\right)^{\frac{1}{2}}$ = $\|\vec{e}_{n}\|$\\
+$r_{n} = \sqrt{\vec{e}_{n}\cdot\vec{e}_{n}}$ = $\sqrt{(\vec{e}_{n},\vec{e}_{n})}$ = $\left(\Sigma_{i=1}^{2} \vec{e}_{i}^2\right)^{\frac{1}{2}}$ = $\|\vec{e}_{n}\|$\\itt
 
 With this formula you can not only measure the length of the basis vectors, but any vector in the $R^{3}$ and the $R^{2}$ space. 
-More advanced measurements include the p-Norm, which is $\sqrt[p]{\sum_{i=1}^{n}|\vec{x}_{i}|^{p}} 1 \leq p \leq \infty$ and $\sup_{i=1..n} |\vec{x}_{i}|$ for $p=\infty}$ and the max-Norm $\|\vec{x}\|_{\infty}$= $\sup_{} \{|\vec{x}_{i}| \}$. There are matrix norms like $\|A\| = \max_{i=1..m} \sum_{j=1}^{n}A_{ij}$, which for example yields the largest row of a m by n matrix. Norms are used everywhere in mathematics for measuring the lenghts of the vectors and matrices. And the distance function $d(\vec{x},\vec{y}) = \|\vec{x}-\vec{y}\|$ is used to measure the distance between to points or two vector tips. A vector space V with a distance function $d(x,y)=\|x-y\|$. 
+More advanced measurements include the p-Norm, which is $\sqrt[p]{\sum_{i=1}^{n}|\vec{x}_{i}|^{p}} 1 \leq p \leq \infty$ and $\sup_{i=1..n} |\vec{x}_{i}|$ for $p=\infty}$ and the max-Norm $\|\vec{x}\|_{\infty}$= $\sup_{} \{|\vec{x}_{i}| \}$. There are matrix norms like $\|A\| = \max_{i=1..m} \sum_{j=1}^{n}A_{ij}$, which for example yields the largest row of a m by n matrix. Norms are used everywhere ing mathematics for measuring the lenghts of the vectors and matrices. And the distance function $d(\vec{x},\vec{y}) = \|\vec{x}-\vec{y}\|$ is used to measure the distance between to points or two vector tips. A vector space V with a distance function $d(x,y)=\|x-y\|$. 
   is called a metric space $(V,d)$. And a complete metric space with a norm, written $(V, \|\cdot\|)$, is a Banach space. 
 
 A vector can be normalized to give $\|\vec{x}\| = 1$, by dividing the vector components by the length, say $\vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|}$. See the appendix for more on norms and for example for a proof of the normalization.
@@ -194,7 +203,7 @@ There we have the set for the three basis vectors. We give them the letter $e$ a
 
 \begin{figure}[ht]
 \includegraphics[scale=0.5]{lefthandbasis.png}
-\caption{The three two dimensional pseudo-basis vectors and a lefthanded coordinate system.}
+\caption{The three two dimensional pseudo-basis vectors as a lefthanded coordinate system.}
 \end{figure}
 
 
@@ -279,7 +288,7 @@ This is also equal to
 \end{displaymath}
 
 what also explains, what the ijk-Notation means. If you don´t use it already for determining determinants for
-calculating cross products. It is for describing a vector. Don´t forget, our $i, j, k$ basis is two dimensional, 
+calculating cross products (\ref{crossproducts}). It is for describing a vector. Don´t forget, our $i, j, k$ basis is two dimensional, 
 because we draw on a 2-D plane like the computer screen or a piece of paper. \\
 
 With a 3x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is equal to \left(\begin{array}{1}x'\\y'\\z'\end{array}\right)$. But with a 2x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is becoming  \left(\begin{array}{1}x'\\y'\end{array}\right)$\\
@@ -409,14 +418,10 @@ let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 \end{example}\\
 
 
-
 \begin{figure}[ht]
 \includegraphics[scale=0.5]{conicalhelix.png}
 \caption{A conical helix (t/2*Math.cos(t), t*Math.sin(t), t) shown as (x,y,z)=f(t) with implement.html on a Canvas2DRenderingContext testing the javascript example code.}
 \end{figure}
-
-
-
 
 \section{Corollaries}
 
@@ -453,8 +458,6 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)+ zr_t\sin(\varph
 &= x\vec{e}_x + y\vec{e}_y + z\vec{e}_z + t\vec{e}_t &= \sum_{n} \vec{e}_{n}\vec{x}_{n} &= \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}\\
 
-
-
 The same method can be used, to convert points or vectors from any other number of dimensions, down to the $xy$-plane. It can also be used in a general m by n case.\footnote{http://de.wikipedia.org/wiki/Abbildungsmatrix, shows the m by n case.}
 
 \subsection{Alternative definition of the transformation by using dot products}
@@ -480,6 +483,27 @@ This can also be done with up to infinite dimensions which result in two coordin
 xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}
+
+
+\subsection{Easiest orthographic projection possible}
+
+
+
+Even less difficult to create a 3-D righthand coordinate system is this. Rotate the $xy$-plane by for example 225 degrees or $\frac{\pi}{180}\times225=\frac{15\pi}{12}=\frac{5}{4}\pi = 1.25\pi$ radians. Now the x-axis and the y-axis point downwards. This means, the real y-axis on the hardware is now free. So add the z-coordinate in by just adding it to y (Excercise, now try for the lefthand coordinate system yourself). This results in some acceptable orthographic projection.\\
+
+\begin{lstlisting}
+var angle = 1.25*Math.PI; // 225 deg
+var cos = Math.cos(angle), sin = Math.sin(angle);
+// for each point now
+var u = x, w = y;
+x = cos * u - sin * w; // rotate the point like we rotate the xy plane
+y = sin * u + cos * w; // let the positive x,y axes point downwards 
+y += z; // the trick, let z now go upwards by just adding it to the vertical coord.
+\end{lstlisting}
+
+That´s about it. This is the shortest projection i could find.\\
+
+\textbf{Remark} Before i came to the conclusion to try the three 2-D vectors, i tried it the wrong way by using the $\begin{pmatrix}\cos \angle& -\sin \angle \\ \sin \angle & \cos \angle \end{pmatrix}$ rotation matrix, which can be found everywhere. But i was wrong. I could rotate the plane and add the z coordinate to the free y-coordinate. But my plan of having freely movable axes, was not working. We know, what went wrong.\\
 
 \section{Glossary}
 
@@ -508,6 +532,9 @@ I am nativly a german speaking man. To reduce the risk of misunderstanding me, i
     & & of the vector, or the word for the coordinates in the cartesian system. \\
     & & The words point, vector, coordinate are used interchangably in this text and depend \\
     & & on what your numbers mean.\\
+\hline 
+    component & Komponente & A component of a vector or a matrix or a point is one of the scalars
+    inside. For a (x,y,z) Vector, x is a component.
 
 \end{tabular}
 
@@ -619,19 +646,23 @@ which is a standard formulation of the rule of linearity. For example, you can f
 
 \subsection{Dot product}
 
-The dot product, scalar product or inner product is the sum of the vector component products. Speaking this, $(\vec{v}, \vec{w})$ is $\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}$.  
+The dot product, scalar product or inner product is the sum of the vector component products. Speaking this, $(\vec{v}, \vec{w})$ is $\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}$.  The formula is quite identical to our main formula. But there will be various places in mathematics where you find a sum of a set of two products. A dot product, inner product, or scalar product creates a scalar (a real number) from the vector components.\\
 
-$\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} = 0$ means, that $\vec{v} \perp \vec{w}$
+$\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} = 0$ means, that $\vec{v} \perp \vec{w}$ \\
+
+The basis formula is this
 
 \begin{displaymath}
     (v,w) = \sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}
 \end{displaymath}
 
+The zero vector is also $\perp$, but to any vector. The nullspace is $\perp$ to the row space. And the column space and the left null space are orthogonal, too. This is explained much better in \cite{Strang1}. Here the zero vector is just $\perp$ to all.
+
 \begin{displaymath}
     (\vec{0},w) = \sum_{i=1}^{n}\vec{0}_{i}\vec{w}_{i} = 0
 \end{displaymath}
 
-
+For the rest i will take linear combinations, to show, how to handle the dot product. There is even more to beat.
 
 \begin{displaymath}
     (\lambda\vec{v},\vec{w}) = \sum_{i=1}^{n}\lambda\vec{v}_{i}\vec{w}_{i}
@@ -660,13 +691,49 @@ $\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} = 0$ means, that $\vec{v} \perp \vec{w}$
 \end{center}    
 \end{displaymath}
 
+\subsection{The cross product}\label{crossproducts}
+
+The cross product is defined for $\mathbb{R^{3}}$ only. The notation is $\vec{a} \times \vec{b} = \vec{c}$. With two vectors on the
+same plane, you can calculate a third, orthogonal vector, which is perpendicular to the plane, by using the cross product. With the cross product it is easy to span up vector spaces. Just define a plane, cross the two vectors, to get a third, replace the first with crossing the second with the new third. And replace the second with crossing the new first with the new third. Or just stick with the first triple and normalize the vectors, if the two vectors on the plane are already perpendicular. 
+
+In this document, it is not neccessary, to span up an orthogonal space, because we are just combining the components of the triples into pairs. For the x coordinate we add the products with one cosine term for each of the triple components up. This is a sum of left and right moves. For the y coordinate we sum up x*sin x-angle, y*sin y-angle and z*sin z-angle, which means to combine three ups and downs to a final up or down. Orthogonal spaces instead have very very important properties for all kinds of mathematical uses in science and real life, that you shouldn´t forget about it.
+
+\begin{displaymath}
+\begin{pmatrix}
+    \vec{i} & \vec{j} & \vec{k}\\
+    a_1 & a_2 & a_3\\
+    b_1 & b_2 & b_3
+\end{pmatrix} =
+\begin{vmatrix}
+a_2 & a_3 \\
+b_2 & b_3 
+\end{vmatrix} \vec{i} - \begin{vmatrix}a_1 & a_3\\ b_1 & b_3\end{vmatrix} \vec{j} + \begin{vmatrix}a_1 & a_2\\b_1 & b_2\end{vmatrix} \vec{k} = \left(\begin{array}{1}c_1\\c_2\\c_3\end{array}\right)
+\end{displaymath}
+
+Remember, the ijk Notation describes a vector. I mentioned, you could be writing cross products with the ijk Notation, too. This is the formula. You write i j k in the top row of a 3x3 matrix and the two vectors to cross as row vectors each under the ijk. Then you will write a new vector $x\vec{i}-y\vec{j}+z\vec{k}$ with, by writing the determinants gotten by striking the ijk row and the column of the current component. For the first component you strike column three away, for the second determinant you strike column two and for the third component you strike column three. x, y, z get replaced by 2x2 determinant, and the formula is easy to remember. Just don´t forget, the first plus of $x\vec{i}-y\vec{j}+z\vec{k}$ is a - (minus) and the second stays a + (plus). If you just write a vector with x,y,z, you would write a sum. It´s x,-y,z you write down as determinants, to create vector conforming to the cross product.
+
+\begin{displaymath}
+    \vec{a} \times \vec{b} = (a_{2}b_{3}-a_{3}b_{2})\vec{i} - (a_{1}b_{3}-a_{3}b_{1})\vec{j} + (a_{1}_b{2}-a{2}b_{1})\vec{k} = \vec{c}
+\end{displaymath}
+
+If the cross product does not yield a new vector, but the \vec{0} zero vector, the two vectors are not on the same plane.
+
+\textbf{Remark} Just added on Jul 15.
+
+\subsection{Normal vectors}
+
+A vector perpendicular to the plane below is also a normal vector. A normal is describing how the underlying plane is curved. As the normal is always perpendicular to the surface it is pointing up from, it shows the orientation of the plane on every point it is calculated. 
+
+In computer graphics, normal vectors play an important role, as they describe the orientation of the surface. They are used together with the incoming light ray, to calculate the reflection angle of the light. But normals play more roles, for example in differential geometry.
+
+\textbf{Remark} Just added on Jul 15.
 
 \subsection{About the norm}
 
 The norm used is the euclidean norm, or the 2-norm. This is the square root of the sum of the squares of the absolute values of the components $\|\vec{x}\| = \sqrt{\sum_{i=1}^{n}|x_{i}|^2}$. In linear algebra, functional analysis and topology lectures there are three fundamental properties of the norm repeating. Definiteness, homogenity and the triangle inequality.\\
 
+\textbf{Definitness} Show that $\|\vec{x}\| = 0 \iff \vec{x} = 0$\\
 
-\textbf{Definitness} Show that $\|\vec{x}\| = 0$ if $\vec{x} = 0$\\
 \begin{displaymath}
     \|\vec{x}\| = \|\vec{0}\| = \sqrt{0^{2} + 0^{2}} = 0
 \end{displaymath}\\
@@ -723,7 +790,7 @@ The absolute value of the dot product squared is less or equal to the product of
 
 \subsection{Normalizing a vector}
 
-If you wish to take the length of the vector, you take the norm $\|\vec{v}\|_{V}$ in three dimensions or $\|\vec{w}\|_{W}$ in two dimensions. If you wish to reduce or enlarge a vector to unit length, that $\|\vec{v}\|=1$ or $\|\vec{w}\|=1$, you can do this, by creating a new vector by dividing the old vectors components through the old vectors length. Taking the norm then, results in 1.\\
+If you wish to take the length of the vector, you take the norm $\|\vec{v}\|_{V}$ in three dimensions or $\|\vec{w}\|_{W}$ in two dimensions. If you wish to reduce or enlarge a vector to unit length, that $\|\vec{v}\|=1$ or $\|\vec{w}\|=1$, you can do this, by updating the or creating a new vector, by dividing the old vector components through the old vectors length. Taking the norm then, results in 1.\\
 
 \begin{displaymath}
     \vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|} \implies \|\vec{w}_{normalized}\| = 1
@@ -742,7 +809,7 @@ If you wish to take the length of the vector, you take the norm $\|\vec{v}\|_{V}
     = \left(\begin{array}{1}\frac{a}{\sqrt{a^{2}+b^{2}}}\\\frac{b}{\sqrt{a^{2}+b^{2}}}\end{array}\right)
 \end{displaymath}
 \begin{displaymath}
-    \|\vec{w}_{normalized}\| = \sqrt{(\frac{a}{\sqrt{a^{2}+b^{2}}})^{2}+(\frac{b}{\sqrt{a^{2}+b^{2}}})^{2}} = \sqrt{\frac{a^{2}+b^{2}}{a^{2}+b^{2}}} = \sqrt{1} = 1
+    \|\vec{w}_{normalized}\| = \sqrt{\left(\frac{a}{\sqrt{a^{2}+b^{2}}}\right)^{2}+\left(\frac{b}{\sqrt{a^{2}+b^{2}}}\right)^{2}} = \sqrt{\frac{a^{2}+b^{2}}{a^{2}+b^{2}}} = \sqrt{1} = 1
 \end{displaymath}
 
 
@@ -774,7 +841,7 @@ d(x,z) \leq d(x,y) + d(y,z)
 
 \textbf{Remark} This subsection is not complete and has to be continued. The point is to measure now the difference between the original coordinates and the new planar coordinates. $d(\vec{x}, \vec{y})_2 = \|\vec{x}-\vec{y}\|_2 \leq d(\vec{x}, \vec{y})_3 = \|\vec{x}-\vec{y}\|_3$ is my assumption which is not proven now.
 
-\subsection{Transpose and unproven}
+\subsection{Transpose and unproven stuff behind}
 
 \textbf{Remark} Less trivial (but not much) is to figure out, what the transpose and the products with the transpose and the inverse matrices of those products are good for. Our rectangular 2x3 basis matrix has a transponse. A 3x2 matrix. The products are $\boldsymbol{A}\boldsymbol{A}^T$, a 2 by 2 matrix, and $\boldsymbol{A}^T\boldsymbol{A}$, a 3 by 3 matrix. Today i will just show the transpose. \\
 
@@ -821,12 +888,26 @@ $\sin \varphi_{n}$ with $S_{n}$.
 \end{pmatrix}
 \end{displaymath}
 
-\textbf{Remark} I wrote down the formula for the 2x2 determinant and noticed, it´s getting hairy writing with bare hands. Using numeric software like FreeMat should be less stressing. Whether it makes sense to calculate the determinants and the inverses or
-not, i do not know today.\\
 
 \textbf{Remark} Missing are $|\boldsymbol{A}\boldsymbol{A}^T|$ and $|\boldsymbol{A}^T\boldsymbol{A}|$ and $(\boldsymbol{A}\boldsymbol{A}^T)^{-1}$ and $(\boldsymbol{A}^T\boldsymbol{A})^{-1}$ and various tries to combine them to $P$ = $\boldsymbol{A}(\boldsymbol{A}^T\boldsymbol{A})^{-1}\boldsymbol{A}^T$.\\
 
-I am sure to clean this up.\\
+I am sure to clean this up. I have to program something to plot this, to make sure i can see, what i am doing.\\
+
+\subsection{The pseudo-inverse \boldsymbol{A}^{+}}
+
+In a lecture script about numerical linear algebra i found the formulas for the pseudo inverses.\\
+
+For a m by n matrix with m < n it is $A^T(AA^{T})^{-1}$\\
+
+For a m by n matrix with m > n it is $(A^{T}A)^{-1}A^T$\\
+
+Update follows\\
+
+Doing this chapter, the previous, and the proof for linear independence of a basis reminds me of being a little poor in linear algebra itself. This is subject to become better. I will study more for these little chapters.\\
+
+\subsection{least squares backwards}
+
+\textbf{Remark} A partial restoring of the third dimension. We will see, how far we get.
 
 \section{An alternative graphics algorithm}
 
@@ -896,11 +977,38 @@ z = u*xBZ + v*yBZ + w*zBZ;
 
 This of course transform the object by the directions and the length of the three three dimensional basis vectors.
 
+\subsubsection{Creating a 3x3 basis with cross products}
+\begin{lstlisting}
+function cross(a,b) {
+    return [a[1]b[2]-a[2]b[1],a[0]b[2]-a[2]b[0],a[0]b[1]-a[1]b[0]];
+}
+\end{lstlisting}
+
+// if you look and remember \ref{crossproducts} you see the third determinant only giving (1-0)k
+\begin{lstlisting}
+var u = [1,0,0];
+var v = [0,1,0];
+var w = cross(u,v);
+// v = [0,0,1]
+\end{lstlisting}
+// if you look and remember \ref{crossproducts} you see the third determinant only giving (-1-0)k
+\begin{lstlisting}
+var u = [-1,0,0];
+var v = [0,1,0];
+var w = cross(u,v);
+// v = [0,0,-1]
+\end{lstlisting}
+
 \subsection{Rotation}
 
-Rotating the object can be done in three dimensional space by applying the regular rotation matrices. In our alternative graphics code, the matrix is removed and the zero columns are left away.
+Rotating the object can be done in three dimensional space by applying the regular rotation matrices. In our alternative graphics code, the matrix is removed and the zero columns are left away. The rotation is of course applied on the 3-D coordinates, because our 2-D rotation would just be around the z-axis, which would then be the origin at (0,0), where we turn around.
 
 \begin{lstlisting}
+// once
+    var rotxcos = Math.cos(xAngleRad), rotxsin = Math.sin(xAngleRad);
+    var rotycos = Math.cos(yAngleRad), rotysin = Math.sin(yAngleRad);
+    var rotzcos = Math.cos(zAngleRad), rotzsin = Math.sin(zAngleRad);
+// for each point
     u = x, v = y, w = z;
     y = v * rotxcos - w * rotxsin
     z = v * rotxsin + w * rotxcos
@@ -912,7 +1020,8 @@ Rotating the object can be done in three dimensional space by applying the regul
     y = u * rotzsin + v * rotzcos;
 \end{lstlisting}
 
-\textbf{Remark} I have to remove the substitution and write the whole thing out again. Next version.
+This is of course applied to the vectors in 3x3 space, as 2x2 space only has one rotation around (0,0), which is a z-axis rotation,
+while the z-axis is perpendicular to the 2x2 plane and so only a point in (0,0).
 
 \subsection{Frustum and Perspective}
 
@@ -925,7 +1034,57 @@ apply it to the points.
 // I do not know the frustum code by heart yet. 
 \end{lstlisting}
 
-But i grant it can simply be applied to the 3-D coordinates to change the 3-D view and then be projected onto the plane.
+It can simply be applied to the 3-D coordinates to change the 3-D view and then be projected onto the plane.
+
+
+\subsection{Dot product}
+
+The dot product or inner product or scalar product is the sum of the component products and one of the most important basic formulas in space.\\
+
+\begin{lstlisting}
+function dot(a,b) {
+    var sum = 0;
+    for (var i = 0, j = a.length; i < j; i++) sum += a[i]*b[i];
+    return sum;
+}
+\end{lstlisting}
+
+\subsection{Norm}
+
+The euclidean norm is the length of the vector. It´s the square root pulled out of the sum of all components squared.\\
+
+\begin{lstlisting}
+function norm(a) {
+    var sum = 0;
+    for (var i = 0, j = a.length; i < j; i++) sum += a[i]*a[i];
+    return Math.sqrt(sum);
+}
+\end{lstlisting}\\
+
+A p-Norm version, the second argument is the exponent p and p-th root.\\
+
+\begin{lstlisting}
+function norm(a,p) {
+    var sum = 0;
+    if (p===undefined) p = 2;
+    if (p===Infinity) return Math.max.apply(null, a);
+    for (var i = 0, j = a.length; i < j; i++) sum += Math.pow(Math.abs(a[i]),p);
+    for (i = 2; i < p; i++) sum = Math.sqrt(sum);
+    return sum;
+}
+\end{lstlisting}
+
+\subsection {Metric}
+
+The distance function gives us the distance beetween two points, that is the length of the vector from tip to tip.
+
+\begin{lstlisting}
+function d(a,b) {
+    var sum = 0;
+    for (var i = 0, j = a.length; i < j; i++) sum += Math.pow(a[i]-b[i],2);
+    return Math.sqrt(sum);
+}
+\end{lstlisting}
 
 
 
