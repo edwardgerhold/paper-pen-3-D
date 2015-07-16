@@ -17,26 +17,15 @@
 
 Version 0.2.9 (the is getting expanded version has a few new unshaped subsections)\\
 
-\textbf{Remark} This text may contain miscounts and maybe logical errors, \emph{typos},
-unclear phrases, remarks, during development. But this document is living
-and being edited. It is evolving from a projection, of three-component points
-onto two-component points, to a study, of the used vector spaces and the linear
-combination, which is done. I will continue this study over the next days and weeks
-with topology, linear operators, the dual space of the transpose, and also improve 
-my linear algebra. I think it is worth studying the euclidean space and selfmade subspaces.
-It is Hausdorff. :-)\\
-
-I am also looking for a friendlier word for pseudo basis, like the basis-like \boldsymbol{A} is a
-linear operator acting as a mediator beetween R3 and R2 coordinate systems. (A)(x) := Ax. By 
-studying and doing formal calculations to this topic, i have seen, i´ve got to learn more. And i 
-would like to apologize for my remark at the beginning, continue with some good text and a few 
-new paragraphs, which may be incomplete, but happen over this cirrem week
-
-
+\textbf{Remark} This text may contain miscounts and logical errors (the pseudo basis term
+is removed), \emph{typos},
+unclear phrases, remarks, during development. But this document is living and being edited.
+It is evolving from a transformation, to a documentation of the transformation plus a study
+of the spaces beetween which the transformation happens and how. 
 
 }\\
 
-\end{center}
+\end{center} 
 
 
 \tableofcontents\\
@@ -54,7 +43,7 @@ they point into three directions on the paper, and not into the real space.\\
 into three dimensions. See \cite{Corral1} for introduction.}
 \end{figure}
 
-In this document we will design a (pseudo-) basis for the coordinate transformation. 
+In this document we will design a $\mathbb{R^{2x3}}$ basis for the coordinate transformation. 
 A basis is multiplied with the values of the coordinates to move for each component 
 a piece, to end the move on the correct new point.
 In the case of cosines and sines, we move left and right and up and down, to 
@@ -70,7 +59,7 @@ tell you directly, what happens, when we multiply the coordinates with the matri
 \item Derive the generic case of transforming coordinate systems down to the plane.
 \end{enumerate}
 
-\section{Designing a 2x3 pseudo basis for our transformation}
+\section{Designing a $R^{2x3}$ basis for our transformation from $R^{3}$ to $R^{2}$}
 
 \subsection{The $_{n}$ index for $_x,_y,_z$ with $_x=1$, $_y=2$ and $_z=3$}
 
@@ -176,7 +165,7 @@ More advanced measurements include the p-Norm, which is $\sqrt[p]{\sum_{i=1}^{n}
 
 A vector can be normalized to give $\|\vec{x}\| = 1$, by dividing the vector components by the length, say $\vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|}$. See the appendix for more on norms and for example for a proof of the normalization.
 
-\subsection{$\vec{e}_{n}$ are the three 2-D (pseudo) basis vectors}
+\subsection{$\vec{e}_{n}$ are the three 2-D basis vectors}
 
 We have drawn some axes on a piece of paper and taken the angles starting from zero counterclockwise on the x-axis.\\
 
@@ -203,7 +192,7 @@ There we have the set for the three basis vectors. We give them the letter $e$ a
 
 \begin{figure}[ht]
 \includegraphics[scale=0.5]{lefthandbasis.png}
-\caption{The three two dimensional pseudo-basis vectors as a lefthanded coordinate system.}
+\caption{The three two dimensional basis vectors $\in R^{2x3}$ as a lefthanded coordinate system.}
 \end{figure}
 
 
@@ -248,23 +237,24 @@ A orthogonal basis is a set of 2 or three or up to infinite orthogonal or perpen
 
 The one lemma we need is this general theorem for multiplying a vector with the a basis of a target coordinate system.\\
 
-\textbf{Remark} \emph{My move will be to show linear dependence by contradiction, and to call the basis a pseudo-basis then,
-because of it´s correct result and wanted place in the hall of bases.}\\
 \begin{figure}
 \begin{displaymath}
     \boldsymbol{E}_{\mathbb{R}^2} = \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}    
 \end{displaymath}
-\caption{The standard basis for the $\mathbb{R^{2}}$ spans up the two dimensional space. Our pseudo basis is a linear combination of $\lambda\begin{pmatrix}1\\0\end{pmatrix}$ and $\mu\begin{pmatrix}0\\1\end{pmatrix}$. }
+\caption{The standard basis for the $\mathbb{R^{2}}$ spans up the two dimensional space. The basis is true in $R^{2x3}$ but in $R^{2}$ just a linear combination of $\lambda\begin{pmatrix}1\\0\end{pmatrix}$ and $\mu\begin{pmatrix}0\\1\end{pmatrix}$. }
 \end{figure}
 
 The plane gives us two possible directions, to go horizontal or vertical. And in a cartesian coordinate system with infinite points, we can choose any direction around a center point (x,y). Which is in the case of our coordinate system the origin at (0,0,0) or (0,0). We will see later, that the zero vector stays in the origin fo both systems.
 Any not straight move will go horizontally or vertically by componentwise amounts. Any straight move horizontally or vertically will go by one of the components only.\\
 
-The basis vectors are no longer perpendicular. And no longer completely linearly independent. What brings me to the terms of a pseudo-basis in the next versions of this chapter.\\
 
-The point is, the general formula still holds with a 2x3 (pseudo) basis.\\
+\textbf{Remark} Edward was doing it right, then wrong (wrong with his pseudo-term). The basis is correct, but the space was $R^{2x3}$. In $R^{2x3}$ the basis can be shown. In R2 it is just a linear combination of three scalars with three vectors. I will be able to formulate this out in the next versions and have nice images for explanation in mind, which i will draw for.
 
-Our pseudo basis is linearly dependent, but multiplying the coordinates with, yield the right image of the set of points processed.\\
+The point is, the general formula holds with a 2x3 basis.
+
+The basis acts as a middler beetween the two spaces. We walk through the $R^{2x3}$ when going from $R^{3}$ to $R^{2}.$\\
+
+In $R^{2}$ the basis is linearly dependent, and not a basis, but multiplying the coordinates with, yield the right image of the set of points processed. On the other side, in $R^{2x3}$ the basis can be explained, what i will do in the next versions. Have to read the text again, to catch my thread.\\
 
 The formula for multiplying a vector with a base to get a new vector is this.\footnote{The formula can be found in many mathematics, chemistry and physics lecture scripts, and a good introduction is \cite{Strang1}.\\}
 
@@ -525,6 +515,8 @@ I am nativly a german speaking man. To reduce the risk of misunderstanding me, i
     & & \emph{the solution} for the problem. The pseudo basis 2x3 for projecting the R3 onto \\
     & & the R2 does the job right, but mathematically each cosine is a combination \\
     & & with (1,0) and each sine is a combination with (0,1). So, it´s no true basis.\\
+& & \textbf{Wrong}: In $R^{2x3}$ the matrix has a basis. The text has to be corrected, but i have to read all again.
+
 
 \hline    
     vector, point, coordinate & Vektor, Punkt, Koordinate & A vector has a length and a direction. \\
