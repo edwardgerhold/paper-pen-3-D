@@ -290,7 +290,7 @@ With a 3x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is equal to \left(\
 
 \subsection{Time to show the operation}
 
-The operation of multiplying the (x,y,z) coordinate with our basis vectors in order is the following:\\
+The operation of multiplying the (x,y,z) coordinate with our $R^{2x3}$ basis vectors in order is the following:\\
 
 \begin{displaymath}
 \left(\begin{array}{1}x'\\y'\end{array}\right) = \left(\begin{array}{1}
@@ -298,23 +298,21 @@ xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right)\\
 \end{displaymath}\\
 
-Right, this small formula brings the unexpected images of the preimage from $R^3$ to $R^2$.\\
-
-What is new, what we know now? Each $(x,y,z)$ coordinate has to be multiplied with the vectors for the new $(x',y')$.
-With the corresponding terms of the basis vectors for each of x,y,z in the matrix. That means,
-to sum the products with $(x,y,z)$ and the cos terms up for $x'$ and to sum the products
-of $(x,y,z)$ and the sin terms up for $y'$. This is the same as imagining walking left and
-right with $\cos \varphi$ and up and down with $\sin \varphi$. Or mathematically adding positive or negative values to move up and down and left and right to the right spot. On the piece of paper, you take the ruler. You count the units, and go parallel to each axis. From the point you reached along parallel to the current axis as many units as the coordinate component has.
+Right, this small formula brings over the $R^{2x3}$ the unexpected images of the preimage from $R^3$ to $R^2$.\\
 
 It is almost time to finish the matrix and to go through a set of points to draw the new set of resulting points.
 For this i close the explaining chapters and come to the part of the formal mathematical definitions.\\
 
-\section{My $\mathbb{R^{3}} \rightarrow \mathbb{R^{2}}$ transformation theorem}
+\section{My $\mathbb{R^{3}} \rightarrow \mathbb{R^{2}}$ through $\mathbb{R^{2x3}}$ transformation theorem}
 
 Let $V$ be the set of all points $(x,y,z) \in R^3$ which are about to become transformed. $V = \{ \vec{v}=(x,y,z) | x,y,z \in R^3 \}$.
 Let $W$ be the set of all points $(x',y') \in R^2$ which are the result of the transformation $W = \{ \vec{w}=(x',y') | x',y' \in R^2, (x',y')=\boldsymbol{A}\vec{v}\}$.\\
 
 \textbf{Remark} This chapter needs to be overworked with correct definitions of the sets, domain and range, etc.\\
+
+\textbf{Remark} For me it is about intermediate, beetween easy and difficult to study the topology of the euclidean space $R^{n}$, but i am making progress. Very soon this chapter will be equipped with the right forms.
+
+
 
 
 \subsection{The transformation matrix}
@@ -374,8 +372,6 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \includegraphics[scale=0.5]{fxyplot.png}
 \caption{$f(x,y) = x^2 + y^2 + 3y \sin y$ from [-5,5] and [-3,3] on a Canvas2DRenderingContext}
 \end{figure}
-
-
 \end{Theorem}
 
 \subsection{Computer implementations of the matrix and the transformation}
@@ -472,6 +468,7 @@ The result is $\vec{w} \in W$, $W \subset R^2$.\\
 This can also be done with up to infinite dimensions which result in two coordinates then. Just add the dimensions to $\vec{v}, \vec{c}, \vec{s}$ and see.\\
 
 \textbf{Proof}:
+
 \begin{displaymath}
 \left(\begin{array}{1}\vec{v}\cdot\vec{c}\\\vec{v}\cdot\vec{s}\end{array}\right) = \left(\begin{array}{1}
 xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
@@ -479,12 +476,34 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right
 \end{displaymath}
 
 
+\subsection{Orthogonality in the 2x3 matrix}
+
+
+
+Remark This is an assumption, which has to be proven. But i assume this mixed form of orthogonality is the right one for the orthographic projection. \\
+
+TODO\\
+
+Remark The R2 has two dimension. A line horizontal and a line vertical. The three sin terms go vertical, the three cos terms horizontal. Hope you get behind. This seems to map in a mode having each horizontal vertical part perpendicular. I will find the right words for, and think i am already pointing at the right lemma what is in a mixed dimensional matrix.\\
+
 \subsection{Easiest orthographic projection possible}
-
-
 
 Even less difficult to create a 3-D righthand coordinate system is this. Rotate the $xy$-plane by for example 225 degrees or $\frac{\pi}{180}\times225=\frac{15\pi}{12}=\frac{5}{4}\pi = 1.25\pi$ radians. Now the x-axis and the y-axis point downwards. This means, the real y-axis on the hardware is now free. So add the z-coordinate in by just adding it to y (Excercise, now try for the lefthand coordinate system yourself). This results in some acceptable orthographic projection.\\
 
+\begin{displaymath}
+\begin{center}
+\angle{a} = 1.25\pi\\
+A = \begin{pmatrix}\cos \angle{a}& -\sin \angle{a} \\ \sin \angle{a} & \cos \angle{a} \end{pmatrix}\\
+v = (x,y,z)^T, w = (v_1, v_2)^T = (x,y)^T\\
+\boldsymbol{A}\left(\begin{array}{1}x\\y\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)\\
+w = \left(\begin{array}{1}x'\\y'+z\end{array}\right)
+
+\end{center}
+\end{displaymath}
+
+\textbf{Example}
+This is a EcmaScript 5 code, to rotate the xy plane to point downwards and add the z coordinate to y to move the point upwards. This results in an orthographic projection, which is less flexible, but still one.
+\begin{example}
 \begin{lstlisting}
 var angle = 1.25*Math.PI; // 225 deg
 var cos = Math.cos(angle), sin = Math.sin(angle);
@@ -494,10 +513,12 @@ x = cos * u - sin * w; // rotate the point like we rotate the xy plane
 y = sin * u + cos * w; // let the positive x,y axes point downwards 
 y += z; // the trick, let z now go upwards by just adding it to the vertical coord.
 \end{lstlisting}
+\end{example}
 
-That´s about it. This is the shortest projection i could find.\\
+\subsection{Orthogonality in the 2x3 matrix}
 
-\textbf{Remark} Before i came to the conclusion to try the three 2-D vectors, i tried it the wrong way by using the $\begin{pmatrix}\cos \angle& -\sin \angle \\ \sin \angle & \cos \angle \end{pmatrix}$ rotation matrix, which can be found everywhere. But i was wrong. I could rotate the plane and add the z coordinate to the free y-coordinate. But my plan of having freely movable axes, was not working. We know, what went wrong.\\
+Probably already found. 2-D (in each column, the two rows) mapping orthogonal, 3-D is linear (three moves left-right, three up-down) in the 2x3. In the 3x2 case the converse. Do never forget, that cos and sin are $\perp$ and form a right angle. TODO.\\
+
 
 \section{Glossary}
 
@@ -505,22 +526,13 @@ I am nativly a german speaking man. To reduce the risk of misunderstanding me, i
 
 \begin{tabular}{-l-l-l}
     assumed english & german & personal definition \\
-
+. 
 \hline
     basis &     Basis &     A system of vectors, with which any coordinate has to be transformed.\\
     & & A basis transforms your coordinates into your desired coordinate system.\\
     & & A basis is regularly a set of linearly independent vectors. They span the space.\\    
     & & For example are $(1,0)$ and $(0,1)$ the basis for the $\mathbb{R}^{2}$ and\\
     & & $(3,4)$ is a combination of $3\times(1,0)$ and $4\times(0,1)$,\\
-
-\hline
-    pseudo-basis & Pseudobasis & My word for a basis-like set of vectors, which can not be linearly independent. \\
-    & & They can not become called a real basis, but be a fake basis, which provides \\
-    & & \emph{the solution} for the problem. The pseudo basis 2x3 for projecting the R3 onto \\
-    & & the R2 does the job right, but mathematically each cosine is a combination \\
-    & & with (1,0) and each sine is a combination with (0,1). So, it´s no true basis.\\
-& & \textbf{Wrong}: In $R^{2x3}$ the matrix has a basis. The text has to be corrected, but i have to read all again.
-
 
 \hline    
     vector, point, coordinate & Vektor, Punkt, Koordinate & A vector has a length and a direction. \\
@@ -642,7 +654,7 @@ which is a standard formulation of the rule of linearity. For example, you can f
 
 \subsection{Dot product}
 
-The dot product, scalar product or inner product is the sum of the vector component products. Speaking this, $(\vec{v}, \vec{w})$ is $\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}$.  The formula is quite identical to our main formula. But there will be various places in mathematics where you find a sum of a set of two products. A dot product, inner product, or scalar product creates a scalar (a real number) from the vector components.\\
+The dot product, scalar product or inner product is the sum of the vector component products. $(\vec{v}, \vec{w})$ is $\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}$.  \\
 
 $\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} = 0$ means, that $\vec{v} \perp \vec{w}$ \\
 
@@ -671,8 +683,6 @@ For the rest i will take linear combinations, to show, how to handle the dot pro
     = \lambda((\vec{v},\vec{w})+(\vec{v},\vec{x}))
 \end{displaymath}
 
-
-
 \begin{displaymath}
     (\lambda\vec{v},\kappa\vec{w}) = \sum_{i=1}^{n}\lambda\vec{v}_{i}\kappa\vec{w}_{i}
     = \lambda\kappa\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} = \lambda\kappa(\vec{v}, \vec{w})
@@ -689,11 +699,6 @@ For the rest i will take linear combinations, to show, how to handle the dot pro
 
 \subsection{The cross product}\label{crossproducts}
 
-The cross product is defined for $\mathbb{R^{3}}$ only. The notation is $\vec{a} \times \vec{b} = \vec{c}$. With two vectors on the
-same plane, you can calculate a third, orthogonal vector, which is perpendicular to the plane, by using the cross product. With the cross product it is easy to span up vector spaces. Just define a plane, cross the two vectors, to get a third, replace the first with crossing the second with the new third. And replace the second with crossing the new first with the new third. Or just stick with the first triple and normalize the vectors, if the two vectors on the plane are already perpendicular. 
-
-In this document, it is not neccessary, to span up an orthogonal space, because we are just combining the components of the triples into pairs. For the x coordinate we add the products with one cosine term for each of the triple components up. This is a sum of left and right moves. For the y coordinate we sum up x*sin x-angle, y*sin y-angle and z*sin z-angle, which means to combine three ups and downs to a final up or down. Orthogonal spaces instead have very very important properties for all kinds of mathematical uses in science and real life, that you shouldn´t forget about it.
-
 \begin{displaymath}
 \begin{pmatrix}
     \vec{i} & \vec{j} & \vec{k}\\
@@ -706,7 +711,7 @@ b_2 & b_3
 \end{vmatrix} \vec{i} - \begin{vmatrix}a_1 & a_3\\ b_1 & b_3\end{vmatrix} \vec{j} + \begin{vmatrix}a_1 & a_2\\b_1 & b_2\end{vmatrix} \vec{k} = \left(\begin{array}{1}c_1\\c_2\\c_3\end{array}\right)
 \end{displaymath}
 
-Remember, the ijk Notation describes a vector. I mentioned, you could be writing cross products with the ijk Notation, too. This is the formula. You write i j k in the top row of a 3x3 matrix and the two vectors to cross as row vectors each under the ijk. Then you will write a new vector $x\vec{i}-y\vec{j}+z\vec{k}$ with, by writing the determinants gotten by striking the ijk row and the column of the current component. For the first component you strike column three away, for the second determinant you strike column two and for the third component you strike column three. x, y, z get replaced by 2x2 determinant, and the formula is easy to remember. Just don´t forget, the first plus of $x\vec{i}-y\vec{j}+z\vec{k}$ is a - (minus) and the second stays a + (plus). If you just write a vector with x,y,z, you would write a sum. It´s x,-y,z you write down as determinants, to create vector conforming to the cross product.
+You write a new vector $x\vec{i}-y\vec{j}+z\vec{k}$ (pay attention to the minus) with the determinants, which you optain by scratching current column and the first row. You multiply the determinant with i, j, or k.
 
 \begin{displaymath}
     \vec{a} \times \vec{b} = (a_{2}b_{3}-a_{3}b_{2})\vec{i} - (a_{1}b_{3}-a_{3}b_{1})\vec{j} + (a_{1}_b{2}-a{2}b_{1})\vec{k} = \vec{c}
@@ -714,15 +719,9 @@ Remember, the ijk Notation describes a vector. I mentioned, you could be writing
 
 If the cross product does not yield a new vector, but the \vec{0} zero vector, the two vectors are not on the same plane.
 
-\textbf{Remark} Just added on Jul 15.
-
 \subsection{Normal vectors}
 
-A vector perpendicular to the plane below is also a normal vector. A normal is describing how the underlying plane is curved. As the normal is always perpendicular to the surface it is pointing up from, it shows the orientation of the plane on every point it is calculated. 
-
-In computer graphics, normal vectors play an important role, as they describe the orientation of the surface. They are used together with the incoming light ray, to calculate the reflection angle of the light. But normals play more roles, for example in differential geometry.
-
-\textbf{Remark} Just added on Jul 15.
+Are perpendicular to the surface and give the orientation.
 
 \subsection{About the norm}
 
@@ -745,7 +744,7 @@ The norm used is the euclidean norm, or the 2-norm. This is the square root of t
     \sqrt{\sum_{i=1}^{n}|\vec{v}_{i} + \vec{w}_{i}|^{2}} \leq \sqrt{\sum_{i=1}^{n}|\vec{v}_{i}|^{2}} + \sqrt{\sum_{i=1}^{n}|\vec{w}_{i}|^{2}} 
 \end{displaymath}\\
 
-I tried to come closer to the proof of the triangle inequality. Because i do not have a proof available, or just forgot, where to look for. I tried for myself to come to a conclusion. Something interesting was the comparison with the first binomial formula $(a+b)^{2}$ which can be used for substitution of the terms, i think.
+I tried to come closer to the proof of the triangle inequality. This was my first try.
 
 \begin{displaymath}     
 \begin{center}
@@ -755,16 +754,29 @@ I tried to come closer to the proof of the triangle inequality. Because i do not
 \end{center}
 \end{displaymath}
 
-In this case a+b are equal. Pulling one root out of the first binomial formula gives us $a+b$ which is equal to $a+b$. But i am still unsure, how the real proof goes.
+In this case a+b are equal. But i could not get to the right proof.
 
 \begin{displaymath}
     (\sum_{i=1}^{n}|a_{i} + b_{i}|^{2})^{\frac{1}{2}} \leq (\sum_{i=1}^{n}|a_{i}|^{2})^{\frac{1}{2}} + (\sum_{i=1}^{n}|b_{i}|^{2})^{\frac{1}{2}}
 \end{displaymath}
 
-Here i could conclude at once, that each component row will be equal to the sum on the right side. But i can not. \\
-Because at the end is it the fact, that the root pulled out of the larger (\emph{$(a+b)^{2}$ is larger than $a^{2}+b^{2}$ by $2ab$}) term is then a smaller number, than the two roots from the single letters being together, for example is $\sqrt{2} < \sqrt{1}+\sqrt{1}$. or 1.41 smaller than 1+1. The theorem seems to be established. But i haven proven the last words from the example yet.\\
+Remark. Here i could conclude at once, that each component row will be equal to the sum on the right side. But i can not. \\
+At the end is it the fact, that the root pulled out of the larger (\emph{$(a+b)^{2}$ is larger than $a^{2}+b^{2}$ by $2ab$}) term is then a smaller number, than the two roots from the single letters being together, for example is $\sqrt{2} < \sqrt{1}+\sqrt{1}$. or 1.41 smaller than 1+1. The theorem seems to be established. But i did not prove.
+
+My next attempt is rather logic than that. Pythagoras.
+
+
+\begin{displaymath}
+a = \|x-y\|, b = \|y-z\|, c = \|x-z\|
+|d(x,y) - d(y,z)| \leq d(x,z);
+\sqrt{a^2 - b^2} \leq  \sqrt{a^2+b^2}
+\end{displaymath}
+
+
 
 \textbf{Cauchy-Schwarz inequality} There is another interesting inequality.
+
+TODO\\
 
 \begin{displaymath}
     |\vec{v}\cdot\vec{w}|^{2} \leq \|\vec{v}\|^{2}\|\vec{w}\|^{2}
@@ -879,7 +891,7 @@ $\sin \varphi_{n}$ with $S_{n}$.
 \end{pmatrix}
 = \begin{pmatrix}
     r_x^2 & a & b \\
-    a & r_y^2 & c \\
+    a & r_y^2 & c \\ 
     b & c & r_z^2 \\
 \end{pmatrix}
 \end{displaymath}
@@ -887,9 +899,9 @@ $\sin \varphi_{n}$ with $S_{n}$.
 
 \textbf{Remark} Missing are $|\boldsymbol{A}\boldsymbol{A}^T|$ and $|\boldsymbol{A}^T\boldsymbol{A}|$ and $(\boldsymbol{A}\boldsymbol{A}^T)^{-1}$ and $(\boldsymbol{A}^T\boldsymbol{A})^{-1}$ and various tries to combine them to $P$ = $\boldsymbol{A}(\boldsymbol{A}^T\boldsymbol{A})^{-1}\boldsymbol{A}^T$.\\
 
-I am sure to clean this up. I have to program something to plot this, to make sure i can see, what i am doing.\\
+TODO\\
 
-\subsection{The pseudo-inverse \boldsymbol{A}^{+}}
+\subsection{The pseudo-inverse \boldsymbol{A}^{+} and least squares}
 
 In a lecture script about numerical linear algebra i found the formulas for the pseudo inverses.\\
 
@@ -897,20 +909,13 @@ For a m by n matrix with m < n it is $A^T(AA^{T})^{-1}$\\
 
 For a m by n matrix with m > n it is $(A^{T}A)^{-1}A^T$\\
 
-Update follows\\
-
-Doing this chapter, the previous, and the proof for linear independence of a basis reminds me of being a little poor in linear algebra itself. This is subject to become better. I will study more for these little chapters.\\
-
-\subsection{least squares backwards}
-
-\textbf{Remark} A partial restoring of the third dimension. We will see, how far we get.
+TODO\\
 
 \section{An alternative graphics algorithm}
 
 \textbf{Remark} This section is new on July 10.
 
-With the new information how to translate the coordinates, it is obvious, that we want to draw some graphics on our 2-D Canvas.
-By doing so, i already found out a few interesting points of how to do this. Without homogenous coordinates or 4 by 4 matrices.\\
+It is obvious, that we want to draw some graphics on our 2-D Canvas.
 
 \subsection{Origin}  
 
@@ -923,7 +928,7 @@ z = Oz + z;
 
 \subsection{Translation}
 
-Translating the points is very easy without a 4 by 4 matrix. You simply add the translation vector to each point.\\
+You simply add the translation vector to each point.\\
 
 \begin{lstlisting}
 x = Tx + x;
@@ -933,8 +938,7 @@ z = Tz + z;
 
 \subsection{Scaling}
 
-To scale the object you just have to multiply with the constant. Reflecting, that it is no difference, whether you multiply
-before or after the transformation, you can choose, what to scale, the 3-D or the 2-D object.\\
+To scale the object you just have to multiply with the constant. 
 
 \begin{lstlisting}
 x = Sx * x;
@@ -954,12 +958,10 @@ y = k_yx*u + v      + k_yz*w;
 z = k_zx*u + k_zy*v + w;
 \end{lstlisting}
 
-I do not now values for k now by heart, but remember the formula already. \\
-
 \subsection{Local 3x3 basis}
 
-If you wish to introduce different units into different directions, you have to apply a local basis. Applying the local 3x3
-basis to an object makes it rotatable with changed units. If you change the units of r on the projection, rotation may give unrealistic results since suddenly the object stretches to an unexpected size. \\
+If you wish to introduce different units for different directions, you have to apply a local basis. Applying the local 3x3
+basis to an object makes sure, it is rotatable without side effects. If you would change the units of r on the projection, then the rotation will give unrealistic results, since suddenly the object stretches to an unexpected size, when entering the zone. \\
 
 The matrix applied locally is a 3x3 matrix $\begin{pmatrix} xBX & yBX & zBX\\ xBY & yBY & zBY\\ xBZ & yBZ & zBZ\end{pmatrix}$.
 For example is $\begin{pmatrix} 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{pmatrix}$ is the original and orthonormal (orthogonal and unit length vectors) standard basis for the $\mathbb{R}^{3}$ and the result is the same as if you do not apply any basis to the object, as the assumed default coordinate system in $R^{3}$ is orthogonal.
@@ -971,12 +973,12 @@ y = u*xBY + v*yBY + w*zBY;
 z = u*xBZ + v*yBZ + w*zBZ;
 \end{lstlisting}
 
-This of course transform the object by the directions and the length of the three three dimensional basis vectors.
+This of course transforms the object by the directions and the length of the three three dimensional basis vectors.
 
 \subsubsection{Creating a 3x3 basis with cross products}
 \begin{lstlisting}
 function cross(a,b) {
-    return [a[1]b[2]-a[2]b[1],a[0]b[2]-a[2]b[0],a[0]b[1]-a[1]b[0]];
+    return [a[1]b[2]-a[2]b[1],-a[0]b[2]+a[2]b[0],a[0]b[1]-a[1]b[0]];
 }
 \end{lstlisting}
 
@@ -997,7 +999,7 @@ var w = cross(u,v);
 
 \subsection{Rotation}
 
-Rotating the object can be done in three dimensional space by applying the regular rotation matrices. In our alternative graphics code, the matrix is removed and the zero columns are left away. The rotation is of course applied on the 3-D coordinates, because our 2-D rotation would just be around the z-axis, which would then be the origin at (0,0), where we turn around.
+Rotating the object can be done in three dimensional space by applying the regular rotation matrices. 
 
 \begin{lstlisting}
 // once
@@ -1016,21 +1018,13 @@ Rotating the object can be done in three dimensional space by applying the regul
     y = u * rotzsin + v * rotzcos;
 \end{lstlisting}
 
-This is of course applied to the vectors in 3x3 space, as 2x2 space only has one rotation around (0,0), which is a z-axis rotation,
-while the z-axis is perpendicular to the 2x2 plane and so only a point in (0,0).
-
 \subsection{Frustum and Perspective}
 
-I am sorry to state, that i have to read the frustum formula first and to program it, but i am 100\% sure, you can simply
-apply it to the points.
+Apply the perspective to the 3x3 set of points before projecting.
 
 \begin{lstlisting}
-// soon
-
-// I do not know the frustum code by heart yet. 
+TODO
 \end{lstlisting}
-
-It can simply be applied to the 3-D coordinates to change the 3-D view and then be projected onto the plane.
 
 
 \subsection{Dot product}
@@ -1063,7 +1057,13 @@ A p-Norm version, the second argument is the exponent p and p-th root.\\
 function norm(a,p) {
     var sum = 0;
     if (p===undefined) p = 2;
-    if (p===Infinity) return Math.max.apply(null, a);
+    if (p===Infinity) {
+        var max = 0;
+        for (var i = 0, j = a.length; i < j; i++) {
+            max = Math.max(Math.abs(a[i]), max);
+        }
+        return max;
+    }
     for (var i = 0, j = a.length; i < j; i++) sum += Math.pow(Math.abs(a[i]),p);
     for (i = 2; i < p; i++) sum = Math.sqrt(sum);
     return sum;
@@ -1083,13 +1083,9 @@ function d(a,b) {
 \end{lstlisting}
 
 
-
 \subsection{Code Example}
 
 Here is an implementation of these function together with the EcmaScript 6 snippet in modern EcmaScript 5.
-
-Remark. Many functions loop over a bunch of coordinates. Next i could introduce the main loop for processing coordinates, that the loop bodies can be replaced, by calls to a single coordinate processor. But even this has an issue due to repeating function calls. The good is, our code here is only for demonstration and proving the rules, and not for highspeed graphics. You can hardcode the loops later alone.
-Btw. passing an options object, this main loop can easily be made dynamic for a semi-professional version of the demonstration code.
 
 \begin{lstlisting}
 (function (exports) {
