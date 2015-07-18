@@ -15,13 +15,9 @@
 \date{\today}
 \maketitle
 
-Version 0.2.9 (the is getting expanded version has a few new unshaped subsections)\\
+Version 0.3.0 changing to operators and metric spaces, because it´s (not) just a 2-d image.\\
 
-\textbf{Remark} This text may contain miscounts and logical errors (the pseudo basis term
-is removed), \emph{typos},
-unclear phrases, remarks, during development. But this document is living and being edited.
-It is evolving from a transformation, to a documentation of the transformation plus a study
-of the spaces beetween which the transformation happens and how. 
+\textbf{Remark} This text may contain miscounts and logical errors, unclear phrases, remarks, but only temporarily and during development. And the end everything not formal enough will be removed, that you may officially refer to it.
 
 }\\
 
@@ -415,7 +411,7 @@ let xAxisCos = r_x*Math.cos(phi_x),
     zAxisCos = r_z*Math.cos(phi_z),
     xAxisSin = r_x*Math.sin(phi_x), 
     yAxisSin = r_y*Math.sin(phi_y),
-    zAxisSin = r_z*Math.sin(phi_z);
+    zAxisSin = r_zg*Math.sin(phi_z);
 let transform2d = ([x,y,z]) => [
     x*xAxisCos+ y*yAxisCos+ z*zAxisCos,
     x*xAxisSin+ y*yAxisSin+ z*zAxisSin];
@@ -476,7 +472,7 @@ then i can dot each with the coordinate vector and write the dot product into th
 \begin{displaymath}
     \vec{v} = \left(\begin{array}{1}x\\y\\z\end{array}\right)       \vec{c} = \left(\begin{array}{1}r_x\cos\varphi_x\\r_y\cos\varphi_y\\r_z\cos\varphi_z\end{array}\right)            \vec{s} = \left(\begin{array}{1}r_x\sin\varphi_x\\r_y\sin\varphi_y\\r_z\sin\varphi_z\end{array}\right)
 \end{displaymath}
-
+ 
 \begin{displaymath}
     \vec{w} = \left(\begin{array}{1}\vec{v}\cdot\vec{c}\\\vec{v}\cdot\vec{s}\end{array}\right)
 \end{displaymath}
@@ -493,9 +489,9 @@ xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}
 
-\subsection{Easiest orthographic projection possible}
+\subsection{Weakest orthographic projection possible}
 
-Even less difficult to create a 3-D righthand coordinate system is this. Rotate the $xy$-plane by for example 225 degrees or $\frac{\pi}{180}\times225=\frac{15\pi}{12}=\frac{5}{4}\pi = 1.25\pi$ radians. Now the x-axis and the y-axis point downwards. This means, the real y-axis on the hardware is now free. So add the z-coordinate in by just adding it to y (Excercise, now try for the lefthand coordinate system yourself). This results in some acceptable orthographic projection.\\
+Even less difficult to create a 3-D righthand coordinate system is this. Rotate the $xy$-plane by for example 225 degrees or $\frac{\pi}{180}\times225=\frac{15\pi}{12}=\frac{5}{4}\pi = 1.25\pi$ radians. Now the x-axis and the y-axis point downwards. This means, the real y-axis on the hardware is now free. So add the z-coordinate in by just adding it to y (Excercise, now try for the lefthand coordinate system yourself).\\
 
 \begin{displaymath}
 \begin{center}
@@ -526,7 +522,7 @@ y += z; // the trick, let z now go upwards by just adding it to the vertical coo
 
 Probably already found. 2-D (in each column, the two rows) mapping orthogonal, 3-D is linear (three moves left-right, three up-down) in the 2x3. In the 3x2 case the converse. Do never forget, that cos and sin are $\perp$ and form a right angle. TODO.\\
 
-I mean. In each of the three column vectors, the map to the plane is defined by orthogonality of the two columns. Even if we change
+I mean. In each of the three column vectors, the map to the plane is defined by orthogonality of the two rows. Even if we change
 from the perpendicular sine and cosine to some weird numbers, it would be interpreted as x and y and depend on the base used in the r2.\\
 
 
@@ -758,39 +754,47 @@ This means, the path over two sides of the triangle is longer, than the side lef
     \sqrt{\sum_{i=1}^{n}|\vec{v}_{i} + \vec{w}_{i}|^{2}} \leq \sqrt{\sum_{i=1}^{n}|\vec{v}_{i}|^{2}} + \sqrt{\sum_{i=1}^{n}|\vec{w}_{i}|^{2}} 
 \end{displaymath}\\
 
-I tried to come closer to the proof of the triangle inequality. This was my first try.
-
-\begin{displaymath}     
-\begin{center}
-    \sqrt{(a^{2}+2ab+b^{2})} \leq \sqrt{(a^{2})} + \sqrt{(b^{2})}\\
-    = \sqrt{(a+b)^{2}} \leq \sqrt{a^{2}} + \sqrt{b^{2}}\\
-    = \(a+b\) \leq a + b\\
-\end{center}
-\end{displaymath}
-
-In this case a+b are equal. But i could not get to the right proof. 
+Ok here we go again.
 
 \begin{displaymath}
-    (\sum_{i=1}^{n}|a_{i} + b_{i}|^{2})^{\frac{1}{2}} \leq (\sum_{i=1}^{n}|a_{i}|^{2})^{\frac{1}{2}} + (\sum_{i=1}^{n}|b_{i}|^{2})^{\frac{1}{2}}
+(\vec{v}+\vec{w}, \vec{v}+\vec{w})^{\frac{1}{2}} \leq (\vec{v},\vec{v})^{\frac{1}{2}}+(\vec{w},\vec{w})^{\frac{1}{2}}
 \end{displaymath}
 
-Older Remark. Here i could conclude at once, that each component row will be equal to the sum on the right side. But i can not. \\
-At the end is it the fact, that the root pulled out of the larger (\emph{$(a+b)^{2}$ is larger than $a^{2}+b^{2}$ by $2ab$}) term is then a smaller number, than the two roots from the single letters being together, for example is $\sqrt{2} < \sqrt{1}+\sqrt{1}$. or 1.41 smaller than 1+1. The theorem seems to be established. But i did not prove.
-
-My next attempt was rather logic than that. Pythagoras. I substituted the norm with a,b,c.
+ This time i tried it algebraically, to first remove the root by squaring both sides. 
 
 \begin{displaymath}
-a = \|x-y\|, b = \|y-z\|, c = \|x-z\|
-|d(x,y) - d(y,z)| \leq d(x,z);
-|a-b| \leq \sqrt{a^2+b^2}
-|a-b| \leq c
+(\vec{v}+\vec{w}, \vec{v}+\vec{w}) \leq (\vec{v},\vec{v}) + 2(\vec{v},\vec{v})^{\frac{1}{2}}(\vec{w},\vec{w})^{\frac{1}{2}} + (\vec{w},\vec{w})
 \end{displaymath}
-
-Remark. This wasn´t what i´ve written. It shouldn´t be, that i need my notes. But. Got to do it again.\\
+Written as sum this is
 
 \begin{displaymath}
-\sqrt{a^2 - b^2} \leq  \sqrt{a^2+b^2}
+\sum_{i=1}^{n}\vec{v}_{i}^{2}+2\vec{v}_{i}\vec{w}_{i}+\vec{w}_{i}^{2} \leq \sum_{i=1}\vec{v}_{i}^{2}+2(\sum_{i=1}^{n}\vec{v}_{i}\vec{v}_{i})^{\frac{1}{2}}(\sum_{i=1}^{n}\vec{w}_{i}\vec{w}_{i})^{\frac{1}{2}}+\sum_{i=1}^{n}\vec{w}_{i}^{2}
 \end{displaymath}
+
+This can be simplified. Now assume i split the left side up into three sums. And for more simplification i leave the equal (v,v) and (w,w) on both sides away, since they are summed, not multiplied. We get
+
+\begin{displaymath}
+2(\vec{v},\vec{w}) \leq 2(\vec{v},\vec{v})^{\frac{1}{2}}(\vec{w},\vec{w})^{\frac{1}{2}}
+\end{displaymath}
+
+Now i square it again to get rid of the square roots, and compare finally.
+
+\begin{displaymath}
+4(\vec{v}, \vec{w})^{2} \leq 4(\vec{v},\vec{v})(\vec{w},\vec{w}) 
+\end{displaymath}
+
+Which is
+
+\begin{displaymath}
+4\sum_{j=1}^{n}\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{j} \leq 4\sum_{j=1}^{n}\sum_{i=1}^{n}\vec{v}_{i}^{2}\vec{w}_{j}^{2}
+\end{displaymath}
+
+
+
+
+
+
+
 
 \textbf{Cauchy-Schwarz inequality} There is another interesting inequality.
 
@@ -800,7 +804,7 @@ TODO\\
     |\vec{v}\cdot\vec{w}|^{2} \leq \|\vec{v}\|^{2}\|\vec{w}\|^{2}
 \end{displaymath}
 
-The absolute value of the dot product squared is less or equal to the product of the two norms squared. Squaring the two norms to the right cancels the outer square root on the norms away, so that you multiply with the full vector length squared. So both sides are squares. Left is the dot product of the two vectors squared, on the right side the squared lengths of the two vectors are multiplied. So which square is larger? Ok, the formula is proof anyways and you know. But we have to get behind. And i for sure, too.
+The absolute value of the dot product squared is less or equal to the product of the two norms squared. Squaring the two norms to the right cancels the outer square root on the norms away, so that you multiply with the full vector length squared. So both sides are squares. Left is the dot product of the two vectors squared, on the right side the squared lengths of the two vectors are multiplied. So which square or rectangle is larger? You know by the formula anyways.
 
 \begin{displaymath}
     |\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}|^{2} \leq ((\sum_{i=1}^{n}|\vec{v}_{i}|^{2})^{\frac{1}{2}})^{2}((\sum_{i=1}^{n}|\vec{w}_{i}|^{2})^{\frac{1}{2}})^{2}\\
@@ -812,6 +816,23 @@ The absolute value of the dot product squared is less or equal to the product of
 \end{displaymath}
 
 \textbf{Remark} This subsection is not complete. And may contain mistakes.
+
+
+
+\subsection{Parallelogram equation}
+
+\begin{displaymath}
+2(\|v\|^{2} + \|w\|^{2}) = \|v+w\|^{2}+\|v-w\|^{2}
+\end{displaymath}
+
+This equation says, that the square sum of the parallelogram equals the square sum of the four sides.\\
+\textbf{Proof}:
+\begin{displaymath}
+2(\sum_{i=1}^{n}\vec{v}_{i}^{2} + \sum_{i=1}^{n}\vec{w}_{i}^{2}) = \sum_{i=1}^{n}\vec{v}_{i}^{2}+2\vec{v}_{i}\vec{w}_{i}+\vec{w}_{i}^{2}+\vec{v}_{i}^{2}-2\vec{v}_{i}\vec{w}_{i}+\vec{w}_{i}^{2} = \sum_{i=1}^{n}2\vec{v}_{i}^{2}+2\vec{w}_{i}^2 = 2\sum_{i=1}^{n}\vec{v}_{i}^{2}+\vec{w}_{i}^{2} = 2(\sum_{i=1}^{n}\vec{v}_{i}^{2} + \sum_{i=1}^{n}\vec{w}_{i}^{2})
+\end{displaymath}
+
+
+
 
 \subsection{Normalizing a vector}
 
@@ -1121,7 +1142,7 @@ function rad(deg) {
 
 var r_x = 1, r_y = 1, r_z = 1;
 
-var phi_x = rad(210), phi_y = rad(330), phi_z = rad(90);
+qqvar phi_x = rad(210), phi_y = rad(330), phi_z = rad(90);
 
 var xAxisCos = r_x * Math.cos(phi_x),
     yAxisCos = r_y * Math.cos(phi_y),
