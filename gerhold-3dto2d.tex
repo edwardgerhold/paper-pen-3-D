@@ -15,7 +15,8 @@
 \date{\today}
 \maketitle
 
-Version 0.3.0 changing to operators and metric spaces, because it´s (not) just a 2-d image.\\
+Version 0.3.1 Begun changing to operators and metric spaces, because it is (not) just a 2-D image.\\
+Btw. The frustum operator has to be prepared and combined with the projection operator. This should be one package, for good views.
 
 \textbf{Remark} This text may contain miscounts and logical errors, unclear phrases, remarks, but only temporarily and during development. And the end everything not formal enough will be removed, that you may officially refer to it.
 
@@ -489,34 +490,6 @@ xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}
 
-\subsection{Weakest orthographic projection possible}
-
-Even less difficult to create a 3-D righthand coordinate system is this. Rotate the $xy$-plane by for example 225 degrees or $\frac{\pi}{180}\times225=\frac{15\pi}{12}=\frac{5}{4}\pi = 1.25\pi$ radians. Now the x-axis and the y-axis point downwards. This means, the real y-axis on the hardware is now free. So add the z-coordinate in by just adding it to y (Excercise, now try for the lefthand coordinate system yourself).\\
-
-\begin{displaymath}
-\begin{center}
-\angle{a} = 1.25\pi\\
-A = \begin{pmatrix}\cos \angle{a}& -\sin \angle{a} \\ \sin \angle{a} & \cos \angle{a} \end{pmatrix}\\
-v = (x,y,z)^T, w = (v_1, v_2)^T = (x,y)^T\\
-\boldsymbol{A}\left(\begin{array}{1}x\\y\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)\\
-w = \left(\begin{array}{1}x'\\y'+z\end{array}\right)
-
-\end{center}
-\end{displaymath}
-
-\textbf{Example}
-This is an EcmaScript 5 code. First rotate the xy plane to point downwards. Then add the z coordinate to y. That moves the point upwards again for the z-value. This results in an orthographic projection. Which is less flexible, but still one.
-\begin{example}
-\begin{lstlisting}
-var angle = 1.25*Math.PI; // 225 deg
-var cos = Math.cos(angle), sin = Math.sin(angle);
-// for each point now
-var u = x, w = y;
-x = cos * u - sin * w; // rotate the point like we rotate the xy plane
-y = sin * u + cos * w; // let the positive x,y axes point downwards 
-y += z; // the trick, let z now go upwards by just adding it to the vertical coord.
-\end{lstlisting}
-\end{example}
 
 \subsection{Orthogonality in the 2x3 matrix}
 
@@ -570,6 +543,88 @@ I am nativly a german speaking man. To reduce the risk of misunderstanding me, i
 About the word \emph{unit}. I am not really sure, if i have to use \emph{base vector} for a vector of any length and \emph{unit vector} only for the \emph{unit length} of $1$. Because of the misleading mismatch with the \emph{unit} of the thought \emph{coordinate axes}, which the \emph{base vector} defines, i tend in the first versions to misuse the word \emph{unit vector} for both. If you find this, or any other formal mistake, be sure, it is not wanted :-) I will try to remove more of these spelling errors\footnote{The \emph{Gerholdian operator}, the \emph{Gerholdian basis}, the \emph{Gerhold projection matrix}, the \emph{Gerhold transformation} are my favourite nicknames for my late discovery, making sure, the three two dimensional and trigonometric basis vectors, which i explained, sit in the matrix.} in the next versions.
 
 \appendix
+
+\section{Deconstructing and proving the 2x3 basis}
+
+A 2x3 basis is a set of six matrices being constructed out of five basis vectors. In the Appendix of \cite{Strang1}, there is a basis of a 2x3 matrix printed, together with a few arguments. The professor constructed a 2x3 standard basis by multiplying the 2-D standard basis vectors with the 3-D standard vectors.\\
+
+\begin{displaymath}
+
+\begin{center}
+e_{1}^{R^{2}} = \begin{pmatrix}1\\0\end{pmatrix}
+e_{2}^{R^{2}} = \begin{pmatrix}0\\1\end{pmatrix}\\
+
+e_{1}^{R^{3}} = \begin{pmatrix}1\\0\\0\end{pmatrix}
+e_{2}^{R^{3}} = \begin{pmatrix}0\\1\\0\end{pmatrix}
+e_{2}^{R^{3}} = \begin{pmatrix}0\\0\\1\end{pmatrix}
+
+\end{center}
+\end{displaymath}
+
+Multiplying e_{i}^{R^{2}} with (e_{j}^{R^{3}})^{T} yields six independent matrices, which, when added, form the standard basis.
+
+\begin{displaymath}
+E^{R^{2x3}} =
+\begin{pmatrix}1&0&0\\0&0&0\end{pmatrix}+
+\begin{pmatrix}0&1&0\\0&0&0\end{pmatrix}+
+\begin{pmatrix}0&0&1\\0&0&0\end{pmatrix}+
+\begin{pmatrix}0&0&0\\1&0&0\end{pmatrix}+
+\begin{pmatrix}0&0&0\\0&1&0\end{pmatrix}+
+\begin{pmatrix}0&0&0\\0&0&1\end{pmatrix}
+
+\end{displaymath}
+
+My task is now, to deconstruct our formula, to meet the requirements. 
+\begin{displaymath}
+\begin{center}
+e_{1}^{R^{2}} = \begin{pmatrix}u\\0\end{pmatrix}
+e_{2}^{R^{2}} = \begin{pmatrix}0\\v\end{pmatrix}\\
+e_{1}^{R^{3}} = \begin{pmatrix}a\\0\\0\end{pmatrix}
+e_{2}^{R^{3}} = \begin{pmatrix}0\\b\\0\end{pmatrix}
+e_{2}^{R^{3}} = \begin{pmatrix}0\\0\\c\end{pmatrix}\\
+E^{R^{2x3}} =
+\begin{pmatrix}ua&0&0\\0&0&0\end{pmatrix}+
+\begin{pmatrix}0&ub&0\\0&0&0\end{pmatrix}+
+\begin{pmatrix}0&0&uc\\0&0&0\end{pmatrix}+
+\begin{pmatrix}0&0&0\\va&0&0\end{pmatrix}+
+\begin{pmatrix}0&0&0\\0&vb&0\end{pmatrix}+
+\begin{pmatrix}0&0&0\\0&0&vc\end{pmatrix}
+\end{center}
+\end{displaymath}
+So we can subtitute 
+\begin{displaymath}
+ua=r_x\cos\varphi_x,
+va=r_x\sin\varphi_x,
+ub=r_y\cos\varphi_y,
+vb=r_y\sin\varphi_y,
+uc=r_z\cos\varphi_z,
+vc=r_z\sin\varphi_z,
+\end{displaymath}
+It should result in
+\begin{displaymath}
+\begin{center}
+\begin{pmatrix}r_x\cos\varphi_x&0&0\\0&0&0\end{pmatrix}+
+\begin{pmatrix}0&r_y\cos\varphi_y&0\\0&0&0\end{pmatrix}+
+\begin{pmatrix}0&0&r_z\cos\varphi_z\\0&0&0\end{pmatrix}+\\
+\begin{pmatrix}0&0&0\\r_x\sin\varphi_x&0&0\end{pmatrix}+
+\begin{pmatrix}0&0&0\\0&r_y\sin\varphi_y&0\end{pmatrix}+
+\begin{pmatrix}0&0&0\\0&0&r_z\sin\varphi_z\end{pmatrix}\\
+   = \begin{pmatrix}
+    r_x\cos(\varphi_x) & r_y\cos(\varphi_y) & r_z\cos(\varphi_z) \\
+    r_x\sin(\varphi_x) & r_y\sin(\varphi_y) & r_z\sin(\varphi_z) \\
+    \end{pmatrix}
+\end{center}
+\end{displaymath}
+
+From trigonometry, we know, that cosine and sine form a right angle. They are perpendicular to each other. But taking the norm of the vector results in r, not in 0, because $sin^{2}+cos{2}=1$. $r sin^{2}+r cos{2}=r^{2}$. This is not orthogonal in terms of the dot product, which should result in 0, if the angle is 90 degrees.\\
+
+For simplification we should do a few things. First, we assume $r_x = r_y = r_z = 1$. Without a factor in front of sine and cosine, they both together have unit length of one. With $\|\begin{pmatrix}\frac{r_x\cos\varphi_x}{r_x}\\\frac{r_x\sin\varphi_x}{r_x}\end{pmatrix}\| = 1$ the vector is normalized. 
+
+Secondly, we substitute the cosine and sine terms with simple letters. Sine, cosine and r form a triangle. Thinking of a triangle, and sin = opposite/hypotenuse and cos = adjacent/hypotenuse, will make it easier for us to find the factors and to solve this system.
+
+
+\textbf{Remark}. Today i prepared this decomposition.
+
 
 \section{Proving more rules of vector spaces}\\
 
@@ -719,7 +774,7 @@ b_2 & b_3
 \end{vmatrix} \vec{i} - \begin{vmatrix}a_1 & a_3\\ b_1 & b_3\end{vmatrix} \vec{j} + \begin{vmatrix}a_1 & a_2\\b_1 & b_2\end{vmatrix} \vec{k} = \left(\begin{array}{1}c_1\\c_2\\c_3\end{array}\right)
 \end{displaymath}
 
-You write a new vector $x\vec{i}-y\vec{j}+z\vec{k}$ (pay attention to the minus) with the determinants, which you optain by scratching current column and the first row. You multiply the determinant with i, j, or k.
+You write a new vector $x\vec{i}-y\vec{j}+z\vec{k}$ (pay attention to the minus) with the determinants, which you obtain by scratching current column and the first row. You multiply the determinant with i, j, or k.Which
 
 \begin{displaymath}
     \vec{a} \times \vec{b} = (a_{2}b_{3}-a_{3}b_{2})\vec{i} - (a_{1}b_{3}-a_{3}b_{1})\vec{j} + (a_{1}_b{2}-a{2}b_{1})\vec{k} = \vec{c}
@@ -732,6 +787,8 @@ If the cross product does not yield a new vector, but the \vec{0} zero vector, t
 Are perpendicular to the surface and give the orientation.
 
 \subsection{About the norm}
+
+The norm is the word for the vector length.
 
 The norm used is the euclidean norm, or the 2-norm. This is the square root of the sum of the squares of the absolute values of the components $\|\vec{x}\| = \sqrt{\sum_{i=1}^{n}|x_{i}|^2}$. In linear algebra, functional analysis and topology lectures there are three fundamental properties of the norm repeating. Definiteness, homogenity and the triangle inequality.\\
 
@@ -783,7 +840,7 @@ Now i square it again to get rid of the square roots, and compare finally.
 4(\vec{v}, \vec{w})^{2} \leq 4(\vec{v},\vec{v})(\vec{w},\vec{w}) 
 \end{displaymath}
 
-Which is
+Which is 
 
 \begin{displaymath}
 4\sum_{j=1}^{n}\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{j} \leq 4\sum_{j=1}^{n}\sum_{i=1}^{n}\vec{v}_{i}^{2}\vec{w}_{j}^{2}
@@ -1322,6 +1379,42 @@ while (i < n) {
 
 \end{lstlisting}
 
+\subsection{Weakest orthographic projection possible}
+
+
+Remark. Before i figured out, how to compose three 2-D vectors for an orthographic projection, i did it wrong. But when doing it false, i had the most intelligent idea. I simply added z to y, after turning the plane around. I wanted to turn the axes, but failed, because i used the wrong formula. \emph{After moving this paragraph out of the corollaries, i think, i can write the story again. In the next versions.}\\
+
+
+Even less difficult to create a 3-D righthand coordinate system is this. Rotate the $xy$-plane by for example 225 degrees or $\frac{\pi}{180}\times225=\frac{15\pi}{12}=\frac{5}{4}\pi = 1.25\pi$ radians. Now the x-axis and the y-axis point downwards. This means, the real y-axis on the real 2-D coordinate system is now 'free'. So add the z-coordinate in by just adding it to y.
+
+\begin{displaymath}
+\begin{center}
+
+\angle{a} = 1.25\pi\\
+A = \begin{pmatrix}\cos \angle{a}& -\sin \angle{a} \\ \sin \angle{a} & \cos \angle{a} \end{pmatrix}\\
+v = (x,y,z)^T, w = (v_1, v_2)^T = (x,y)^T\\
+\boldsymbol{A}\left(\begin{array}{1}x\\y\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)\\
+w = \left(\begin{array}{1}x'\\y'+z\end{array}\right)
+
+\end{center}
+\end{displaymath}
+
+
+\textbf{Example}
+This is an EcmaScript 5 code. First rotate the xy plane to point downwards. Then add the z coordinate to y. That moves the point upwards again for the z-value. This results in an orthographic projection. Which is less flexible, but still one.
+\begin{example}
+\begin{lstlisting}
+var angle = 1.25*Math.PI; // 225 deg
+var cos = Math.cos(angle), sin = Math.sin(angle);
+// for each point now
+var u = x, w = y;
+x = cos * u - sin * w; // rotate the point like we rotate the xy plane
+y = sin * u + cos * w; // let the positive x,y axes point downwards 
+y += z; // the trick, let z now go upwards by just adding it to the vertical coord.
+\end{lstlisting}
+\end{example}
+
+Remark. Have to write this again.
 
 
 \begin{thebibliography}    
