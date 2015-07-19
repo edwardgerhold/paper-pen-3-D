@@ -297,6 +297,11 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right
 
 Right, this small formula brings over the $R^{2x3}$ the unexpected images of the preimage from $R^3$ to $R^2$.\\
 
+\begin{figure}[ht]
+\includegraphics{pathcoords.png}
+\caption{The path a point goes from the origin. Along the first axis, then from that parallel to the second along that axis, and last parallel to the third axis as many units as the coordinate says. You can not see on this picture, how it is deconstructed by cosine and sine into left and right moves. To see, just draw the two missing sides of the triangles under each move. The z axis has a cosine of 0. I will paint a new picture for.}
+\end{figure}\\
+
 It is almost time to finish the matrix and to go through a set of points to draw the new set of resulting points.
 For this i close the explaining chapters and come to the part of the formal mathematical definitions.\\
 
@@ -304,7 +309,7 @@ For this i close the explaining chapters and come to the part of the formal math
 \section{My $\mathbb{R^{3}} \rightarrow \mathbb{R^{2}}$ through $\mathbb{R^{2x3}}$ transformation theorem}
 
 Let $V$ be the set of all points $(x,y,z) \in R^3$ which are about to become transformed. $V = \{ \vec{v}=(x,y,z) | x,y,z \in R^3 \}$.
-Let $W$ be the set of all points $(x',y') \in R^2$ which are the result of the transformation $W = \{ \vec{w}=(x',y') | x',y' \in R^2, (x',y')=\boldsymbol{A}\vec{v}\}$.\\
+Let $W$ be the set of all points $(x',y') \in R^2$ which are the result of the transformation $W = \{ \vec{w}=(x',y') | x',y' \in R^{2}, (x',y')=\boldsymbol{A}\vec{v}\}$.\\
 
 \textbf{Remark} study in progress.
 
@@ -846,11 +851,7 @@ Which is
 4\sum_{j=1}^{n}\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{j} \leq 4\sum_{j=1}^{n}\sum_{i=1}^{n}\vec{v}_{i}^{2}\vec{w}_{j}^{2}
 \end{displaymath}
 
-
-
-
-
-
+Remark. When reading myself, i am sure, this last step is wrong, and the two vectors left have to be squared, too. I will calculate that again and correct then.
 
 
 \textbf{Cauchy-Schwarz inequality} There is another interesting inequality.
