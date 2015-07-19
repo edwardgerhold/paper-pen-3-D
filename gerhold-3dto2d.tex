@@ -17,6 +17,7 @@
 
 Version 0.3.1 Begun changing to operators and metric spaces, because it is (not) just a 2-D image.\\
 Btw. The frustum operator has to be prepared and combined with the projection operator. This should be one package, for good views.
+And as i am looking into geometry and state of the art, i should mention that.
 
 \textbf{Remark} This text may contain miscounts and logical errors, unclear phrases, remarks, but only temporarily and during development. And the end everything not formal enough will be removed, that you may officially refer to it.
 
@@ -125,7 +126,16 @@ The function deg converts the other way round and from radians to degrees. You m
 \text{deg}(\phi) := \frac{180}{\pi} \times \phi, \phi \in \mathbb{R}
 \end{displaymath}
 
-If you would like to get hands on angles, cosines, sines, or need a refresher, \cite{Corral2} is a good choice. But also \cite{Corral1} and \cite{Strang2} bring unit circles, polar coordinates, sines, cosines and more informations.
+\textbf{example}
+The first example was for the righthand coordinate system. Here are the angles for a lefthand system.
+\begin{displaymath}
+\varphi_x &= \frac{\pi}{180} \times 0 &= 0,  
+\varphi_y &= \frac{\pi}{180} \times 90 &= \frac{\pi}{2}, 
+\varphi_z &= \frac{\pi}{180} \times 45 &= \frac{\pi}{4} 
+\end{displaymath}
+
+
+If you would like to get hands on angles, cosines, sines, or need a refresher, \cite{Corral2} is a good choice. And as well \cite{Corral1} and \cite{Strang2} teach unit circles, polar coordinates, sines, cosines and wonderful mathematics.
 
 \subsection{$r_{n}$ is the length of the unit on each axis}
 
@@ -551,6 +561,8 @@ About the word \emph{unit}. I am not really sure, if i have to use \emph{base ve
 
 \section{Deconstructing and proving the 2x3 basis}
 
+\subsection{2x3 standard basis}
+
 A 2x3 basis is a set of six matrices being constructed out of five basis vectors. In the Appendix of \cite{Strang1}, there is a basis of a 2x3 matrix printed, together with a few arguments. The professor constructed a 2x3 standard basis by multiplying the 2-D standard basis vectors with the 3-D standard vectors.\\
 
 \begin{displaymath}
@@ -566,7 +578,7 @@ e_{2}^{R^{3}} = \begin{pmatrix}0\\0\\1\end{pmatrix}
 \end{center}
 \end{displaymath}
 
-Multiplying e_{i}^{R^{2}} with (e_{j}^{R^{3}})^{T} yields six independent matrices, which, when added, form the standard basis.
+Multiplying $e_{i}^{R^{2}}$ with $(e_{j}^{R^{3}})^{T}$ yields six independent matrices, which, when added, form the standard basis.
 
 \begin{displaymath}
 E^{R^{2x3}} =
@@ -615,20 +627,44 @@ It should result in
 \begin{pmatrix}0&0&0\\0&r_y\sin\varphi_y&0\end{pmatrix}+
 \begin{pmatrix}0&0&0\\0&0&r_z\sin\varphi_z\end{pmatrix}\\
    = \begin{pmatrix}
-    r_x\cos(\varphi_x) & r_y\cos(\varphi_y) & r_z\cos(\varphi_z) \\
-    r_x\sin(\varphi_x) & r_y\sin(\varphi_y) & r_z\sin(\varphi_z) \\
+    r_x\cos\varphi_x & r_y\cos\varphi_y & r_z\cos\varphi_z \\
+    r_x\sin\varphi_x & r_y\sin\varphi_y & r_z\sin\varphi_z \\
     \end{pmatrix}
 \end{center}
 \end{displaymath}
 
-From trigonometry, we know, that cosine and sine form a right angle. They are perpendicular to each other. But taking the norm of the vector results in r, not in 0, because $sin^{2}+cos{2}=1$. $r sin^{2}+r cos{2}=r^{2}$. This is not orthogonal in terms of the dot product, which should result in 0, if the angle is 90 degrees.\\
+From trigonometry, we know, that cosine and sine form a right angle. They are perpendicular to each other. But taking the norm of the vector results in r, not in 0, because $sin^{2}+cos^{2}=1$. $r sin^{2}+r cos^{2}=r^{2}$. This is not orthogonal in terms of the dot product, which should result in 0, if the angle is 90 degrees.\\
 
-For simplification we should do a few things. First, we assume $r_x = r_y = r_z = 1$. Without a factor in front of sine and cosine, they both together have unit length of one. With $\|\begin{pmatrix}\frac{r_x\cos\varphi_x}{r_x}\\\frac{r_x\sin\varphi_x}{r_x}\end{pmatrix}\| = 1$ the vector is normalized. 
+For simplification we should do a few things. First, we assume $r_x = r_y = r_z = 1$. Without a factor in front of sine and cosine, they both together have unit length of one. With $\|\begin{pmatrix}\frac{r_x\cos\varphi_x}{r_x}\\\frac{r_x\sin\varphi_x}{r_x}\end{pmatrix}\| = 1$ the vector is normalized. \\
 
-Secondly, we substitute the cosine and sine terms with simple letters. Sine, cosine and r form a triangle. Thinking of a triangle, and sin = opposite/hypotenuse and cos = adjacent/hypotenuse, will make it easier for us to find the factors and to solve this system.
+Secondly, we substitute the cosine and sine terms with simple letters. Sine, cosine and r form a triangle. Thinking of a triangle, and sin = opposite/hypotenuse and cos = adjacent/hypotenuse, will make it easier for us to find the factors and to solve this system.\\
+
+\begin{displaymath}
+    cos = \frac{adjacent}{hypotenuse} 
+    sin = \frac{opposite}{hypotenuse}
+\end{displaymath}
 
 
-\textbf{Remark}. Today i prepared this decomposition.
+\textbf{Remark}. Today i prepared this decomposition.\\
+
+Remark. I think, this can be also done with Gram-Schmidt. Gram-Schmidt is an iterative process, to reduce the first vector, then with the information the second and so on. \\
+
+\subsection{Lefthand and righthand standard bases}
+
+Without calculating them, but concluding them from the existing, i get the following standard bases containing only zeros and ones.
+
+\begin{displaymath}
+    E^{R^{2x3}}_{lefthand} = \begin{pmatrix}1&0&1\\0&1&1\end{pmatrix}
+\end{displaymath}
+\begin{displaymath}
+    E^{R^{2x3}}_{righthand} = \begin{pmatrix}-1&1&0\\-1&-1&1\end{pmatrix}
+\end{displaymath}
+
+Can you spot a little lack in that? Right, the column vectors are not normalized. That means, that for example the column vectors with two ones have a length $\|\vec{e}_n\| = \sqrt{2}$. The length is $\sqrt{1^{2} + 1^{2}} = \sqrt{2}$. Our trigonometric basis vectors have unit length, unless you multiply them with a new factor $r_n$. So in the lefthand coordinate system the z-axis is longer. And in the righthand system the x- and the y-axis are longer.
+
+
+\textbf{Remark} TODO
+
 
 
 \section{Proving more rules of vector spaces}\\
@@ -851,7 +887,7 @@ Which is
 4\sum_{j=1}^{n}\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{j} \leq 4\sum_{j=1}^{n}\sum_{i=1}^{n}\vec{v}_{i}^{2}\vec{w}_{j}^{2}
 \end{displaymath}
 
-Remark. When reading myself, i am sure, this last step is wrong, and the two vectors left have to be squared, too. I will calculate that again and correct then.
+Remark. When reading myself, i am sure, this last step is wrong, and the two vectors left have to be squared, too. I will calculate that again and correct then.\\
 
 
 \textbf{Cauchy-Schwarz inequality} There is another interesting inequality.
@@ -1200,7 +1236,7 @@ function rad(deg) {
 
 var r_x = 1, r_y = 1, r_z = 1;
 
-qqvar phi_x = rad(210), phi_y = rad(330), phi_z = rad(90);
+var phi_x = rad(210), phi_y = rad(330), phi_z = rad(90);
 
 var xAxisCos = r_x * Math.cos(phi_x),
     yAxisCos = r_y * Math.cos(phi_y),
@@ -1221,15 +1257,15 @@ function transform2dAll(avec3) {
 }
 
 function settrans(op) {
-    if (op.phi_{n}) {
-    phi_x = op.phi_{n}[0];
-    phi_y = op.phi_{n}[1];
-    phi_z = op.phi_{n}[2];
+    if (op.phi_n) {
+    phi_x = op.phi_n[0];
+    phi_y = op.phi_n[1];
+    phi_z = op.phi_n[2];
     }
-    if (op.r_{n}) {
-    r_x = op.r_{n}[0];
-    r_y = op.r_{n}[1];
-    r_z = op.r_{n}[2];
+    if (op.r_n) {
+    r_x = op.r_n[0];
+    r_y = op.r_n}[1];
+    r_z = op.r_n[2];
     }
     xAxisCos = r_x * Math.cos(phi_x);
     yAxisCos = r_y * Math.cos(phi_y);
@@ -1241,8 +1277,8 @@ function settrans(op) {
 
 function gettrans() { 
     return { 
-    phi_{n}: [phi_x, phi_y, phi_z], 
-    r_{n}: [r_x, r_y, r_z] 
+    phi_n: [phi_x, phi_y, phi_z], 
+    r_n: [r_x, r_y, r_z] 
     }; 
 }
 
