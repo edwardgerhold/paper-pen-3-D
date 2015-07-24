@@ -17,7 +17,7 @@
 \maketitle
 
 
-Version 0.3.2-unstable-parts\\
+Version 0.3.3-unstable-parts\\
 
 \textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor.\\
 }\\
@@ -237,9 +237,9 @@ Each component of (x,y,z) has now an own basis vector. By multiplying the cos te
 \caption{A picture of the unit circle, the hypotenuse r, the adjacent cosine, the opposite sine and the angle $\varphi$. It is a circle of radius r, and no longer the unit circle, if $r \neq 1$.}
 \end{figure}
 
-\subsection{About the vector basis lemma (The Hamel-Basis Theorem)}\\
+\subsection{About the vector basis lemma}\\
 
-\subsubsection{The generic formula}
+\subsubsection{The general formula like the Hamel Basis}
 
 Remark. This section needs to be formulated again
 
@@ -302,6 +302,20 @@ because we draw on a 2-D plane like the computer screen or a piece of paper. \\
 
 With a 3x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is equal to \left(\begin{array}{1}x'\\y'\\z'\end{array}\right)$. But with a 2x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is becoming  \left(\begin{array}{1}x'\\y'\end{array}\right)$\\
 
+\subsubsection{Coordinate system}
+
+Remark. Needs to be formulated. New on July 23
+
+The best i can do in the future editions of this text and for the concrete definition, is to say coordinate axes and coordinate system, without needing to know the horrible mathematic details, whose basis is used and whose not, and what words are right or wrong for.
+
+The three vectors build the three coordinate axes of a three dimensional coordinate system in two dimensions. Nothing else.
+
+The coordinates are transferred absolutely correct, they move along the vectors. They move the right units and only sidewards and upwards. The proportions are exact and can be controlled.
+
+More rational is to say, a human designed this coordinate system and has put it right way round into the matrix, no matter how difficult another view of mathematics on the same vectors could become.
+
+It is for the practical use, to use after plotting to project something 3-D onto the 2-D plane.
+
 
 \subsection{Time to show the operation}
 
@@ -324,16 +338,17 @@ It is almost time to finish the matrix and to go through a set of points to draw
 For this i close the explaining chapters and come to the part of the formal mathematical definitions.\\
 
 
+\textbf{Remark.} \LaTeX and i are new to each other. For the theorems, proofs, defintions, corrolaries, examples there is the possibility of a personal layout.\\
+
 \section{The $\mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$ through $\mathbb{R}^{2\times{3}}$ transformation theorem}
 
 
-
-Let $V$ be the set of all points $(x,y,z) \in R^3$ which are about to become transformed. $V = \{ \vec{v}=(x,y,z) | x,y,z \in R^3 \}$.
-Let $W$ be the set of all points $(x',y') \in R^2$ which are the result of the transformation $W = \{ \vec{w}=(x',y') | x',y' \in \mathbb{R}^{2}, (x',y')=\boldsymbol{A}\vec{v}\}$.\\
+Let $V$ be the set of all points $(x,y,z) \in V \subseteq R^3$ which are about to become transformed. $V := \{ \vec{v}=(x,y,z)^T | x,y,z \in \mathbb{R}, \vec{v} \in V \subseteq \mathbb{R}^{3} \}$.
+Let $W$ be the set of all points $(x',y') \in W \subseteq R^2$ which are the result of the transformation $W ;= \{ \vec{w}=(x',y')^T | \vec{w} \in W \subseteq \mathbb{R}^{2} x',y' \in \mathbb{R}, \boldsymbol{A}\vec{v}=(x',y')\}$.\\
 
 \textbf{Remark} study in progress.
 
-
+Remark. What about the prime behind x and y. x', y' looks bad.
 
 \subsection{The transformation matrix}
 
@@ -376,7 +391,7 @@ $\boldsymbol{A}$ should be treated as operator $\boldsymbol{A} \in \mathbb{R}^{2
 
 Remark. Make this another definition.\\
 
-The operator lives itself in $O \subset \mathbb{R}^{2\times{3}}$. O for Operator is also $O \subset L(V,W)$, L(V,W) contains all linear operators from V to W. A is mapping the input, which is 3-D from $V \subseteq \mathbb{R}^{3}$. onto the 2-D subset $W \subseteq \mathbb{R}^{2}$.\\
+The operator lives itself in $O \subset \mathbb{R}^{2\times{3}}$. O for Operator is also $O \subset L(V,W)$, L(V,W) contains all linear operators from V to W. A is mapping the input, which is 3-D from $V \subseteq \mathbb{R}^{3}$. onto the 2-D subset $W \subseteq \mathbb{R}^{2}$. The operator is NOT invertible due to a loss of one dimension and a lack of linear independence.\\
 
 
 
@@ -384,21 +399,11 @@ The operator lives itself in $O \subset \mathbb{R}^{2\times{3}}$. O for Operator
 
 \subsection{The transformation}
 
-\subsubsection{Vectorbasis version}
-
-Remark. Under construction.
-
-\begin{displaymath}
-    \vec{v} = (x,y,z)^{T}
-    \vec{w} = x\vec{i} + y\vec{j} + z\vec{k} = x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z}
-\end{displaymath}
-
-TODO. 
-
 \subsubsection{Matrix version}
 \index{Theorem}
-\newtheorem{Theorem}{Theorem[The Fundamental Theorem of transforming 3-D Points into 2-D Points (with the Matrix version)]}
+\newtheorem{Theorem}{Theorem (My fundamental theorem of transforming 3-D Points into 2-D Points)}
 \begin{Theorem}\\
+\label{Theorem}
 
 If you multiply \boldsymbol{A}, the 2x3 matrix of the three two-dimensional basis vectors,
 with the three-coordinate point $(x,y,z)$, the result is a two coordinate point, 
@@ -427,6 +432,33 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \caption{$f(x,y) = x^2 + y^2 + 3y \sin y$ from [-5,5] and [-3,3] on a Canvas2DRenderingContext}
 \end{figure}
 \end{Theorem}
+
+
+\subsubsection{Vectorbasis version }
+
+Remark. Under construction.
+
+\begin{displaymath}
+\vec{v} = \sum_{i=1}^{n}\vec{x}_{i}\vec{e}_{i}
+\end{displaymath}
+
+If you multiply the three-d vectors a linear dependet set of three two dimensional vectors, which represent the three coordinate axes on the plane with the formula of the Hamel-Basis, the resulting two dimensional vectors are the correct points on the plane.
+
+Remark. A Hamel-Basis requires an linearly independent set of basis vectors, which we can not provide due to the dimension change.
+
+\begin{displaymath}
+\vec{v} = (x,y,z)^{T}
+\end{displaymath}
+\begin{displaymath}    
+\vec{w} = x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} \mbox{ which is equal to } x\vec{i} + y\vec{j} + z\vec{k} \\
+\end{displaymath}    
+\begin{displaymath}
+    \vec{w} = \sum_{i=1}^{n}\vec{v}_{i}\vec{e}_{i} = \left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
+xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
+\end{array}\right) = \begin{pmatrix}x'\\y'\end{pmatrix}
+\end{displaymath}
+
+TODO. 
 
 \subsection{Computer implementations of the matrix and the transformation}
 \subsubsection{Generic computer code}
@@ -496,9 +528,8 @@ There are various possibilities to combine the output of g and the input of f.
 A $g(t)$ returning a vector passed to $f(\vec{x})$
 
 \begin{displaymath}
-g(\vec{x}) : \mathbb{R} \rightarrow \mathbb{R}^{3}
+g(\vec{x}) : \mathbb{R} \rightarrow \mathbb{R}^{3}\\
 f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}
-
 \end{displaymath}
 
 
@@ -507,14 +538,14 @@ f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}
 Or a $g(x,y) = (x,y,z)^{T}$ which does not only produce z on x and y, but return all three together.
 
 \begin{displaymath}
-g(\vec{x}) : \mathbb{R}^{2} \rightarrow \mathbb{R}^{3}
+g(\vec{x}) : \mathbb{R}^{2} \rightarrow \mathbb{R}^{3}\\
 f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}
 \end{displaymath}
 
 A $g(x,y,z)$ or $g(\vec{x})$ a three-d or vector-valued function returning a three-d vector.
 
 \begin{displaymath}
-g(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{3}
+g(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{3}\\
 f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}
 \end{displaymath}
 
@@ -529,7 +560,7 @@ Remark. This list is longer. But it is 2 a.m. and i am stopping here.
 
 Remark. This is under construction.
 
-Using regular functions, and the nice trigonometric definition, it is easy to differentiate the coordinate system, together with the mapping.
+Using regular functions, and the nice trigonometric definition, it is easy to differentiate the coordinate system, together with the mapping. Whether it makes sense, or not. I find it out.
 
 Remark. This is under construction.
 
@@ -629,13 +660,50 @@ ur_x\sin(\varphi_x) + vr_y\sin(\varphi_y) + wr_z\sin(\varphi_z)\\
 which is a standard formulation of the rule of linearity. For example, you can find this rule in the form $\boldsymbol{A}(c\vec{x} + d\vec{y}) = c\boldsymbol{A}\vec{x} + d\boldsymbol{A}\vec{y}$ in \cite{Strang1}, but also in every linear algebra 1 lecture script.\\
 
 
+\subsection{Convexity}
+
+Remark. Edward is new to convex sets. 
+
+Convex sets contain the distance beetween two points inside the set. That means, that the direct way from a to be is not crossing the borders of the set. This can be imagined with real borders of a set. A round set, or a rectangle have all points inside together with their path. A star for example, where you have two points at two of the tips is not convex, the direct path, the straight line would cross the border of the star, leave the star, and reenter the star. There is a formula, which gives the points on the path.
+
+\begin{displaymath}
+u = \lambda\vec{x} + (1-\lambda)\vec{y}, \lambda \in [0,1], x,y \in V \implies u \in V
+\end{displaymath}
+
+The factor lambda lies beetween 0 and 1. If $\lambda = 0.1$ then is $(1-\lambda) = 0.9$, if $\lambda = 0.2$ then is $(1-\lambda) = 0.8$ and so on. The result is lying on the straight line of \vec{x} + \vec{y}. I have taken two vectors $\vec{x}, \vec{y} \in R^2$ and drawn them. After drawing the vector $\vec{x}+\vec{y}$ in the middle, i found 0.1 up to 0.9 lying on the line of the position vector to $\vec{x}+\vec{y}$.\\
+
+Remark. Edward is new to convexity.
+
+There is an inequality, which convex functions have to satisfy.
+
+\begin{displaymath}
+\|\lambda\vec{x} + (1-\lambda)\vec{y}\| \leq \lambda\|\vec{x}\| + (1-\lamda)\|\vec{y}\|
+\end{displaymath}
+
+or what expresses, that a function is convex.
+
+\begin{displaymath}
+f(\lambda\vec{x} + (1-\lambda)\vec{y}) \leq \lambda f(\vec{x}) + (1-\lamda)f(\vec{y})
+\end{displaymath}
+
+Our image is very precise, because we designed a real coordinate system. What is happening to our new vector? 
+
+Remark. Edward is new to mathematics.
+
+\begin{displaymath}
+\lambda\boldsymbol{A}\vec{x} + (1-\lambda)\boldsymbol{A}\vec{y} = \boldsymbol{A}(\lambda\vec{x} + (1-\lambda)\vec{y})
+\end{displaymath}
+
+By the rule of linearity.
+
+
 \section{Convergence and Completeness}
 
 \subsubsection{Neighborhood}
 
 Remark. The first words are older than this position.
 
-The neighborhood of a point (x,y,z) is a bowl or a sphere with a radius r or \epsilon. A bowl is a complete ball, with inner points, the sphere just is the border of the ball. The bowl has the formula ${ (x,y,z) : x^{2} + y^{2} + z^{2} <= 1 }$ and the sphere collects all points around with the radius of one ${ (x,y,z) : x^{2} + y^{2} + z^{2} = 1 }$.
+The neighborhood of a point (x,y,z) is a bowl or a sphere with a radius r or \epsilon. A bowl is a complete ball, with inner points, the sphere just is the border of the ball. The bowl has the formula ${ (x,y,z) : x^{2} + y^{2} + z^{2} <= 1 }$ and the sphere collects all points around with the radius of one ${ (x,y,z) : x^{2} + y^{2} + z^{2} = 1 }$.\\
 
 Remark. This is under construction for the next versions.
 
@@ -644,9 +712,17 @@ Remark. This is under construction for the next versions.
 
 Remark. These first words are older than this position.
 
-Convergence: $\forall \epsilon > 0 \exists n_{0} \in N : \forall n \geq n_{0} \|x_{n}-x\| < \epsilon$ For every epsilon greater than 0 exists some starting point $n_{0}$ from which on the sequence items for any n greater than $n_{0}$ come closer together on each step. Means, the distance is getting smaller and smaller until the sequence converges to a point and the distance goes to zero.
+Convergence: $\forall \epsilon > 0 \exists n_{0} \in N : \forall n \geq n_{0} \|u_{n}-u\| < \epsilon$ For every epsilon greater than 0 exists some starting point $n_{0}$ from which on the sequence items for any n greater than $n_{0}$ come closer together on each step. Means, the distance is getting smaller and smaller until the sequence converges to a point and the distance goes to zero.\\
 
-A simpler proof is to show, that a converging sequence from $\mathbb{R}^{3}$ also converges, when being transformed to $\mathbb{R}^{2}$. What also proves, that the $\mathbb{R}^{2\times{3}}$ subspace we use is complete.
+A simpler proof is to show, that a converging sequence from $\mathbb{R}^{3}$ also converges, when being transformed to $\mathbb{R}^{2}$. \\
+
+
+In three dimensions, all components of the sequence have to converge. It depends on your sequence, whether it returns a vector or is build by three sequences. Anyways, $(\vec{u}_{n})_{n \in \mathbb{N}^{+} }$ has to follow the ordinary rules, that $\lim_{n\rightarrow\infty}(\vec{u}_{n}) = \vec{v}$, or short, the sequence has to converge against the limit. $(\vec{u}_{n}) \rightarrow \vec{v}$
+
+
+Remark. I have now to show, that the distance shrinks under epsilon and goes to zero, while the sequence goes to some point in space.
+Together with the transformation in use on the resulting vector of the sequence. What will happen, seems to be obvious, but it is the must, to show.
+
 
 Remark. This is under construction for the next Versions.
 
@@ -718,6 +794,8 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right
 
 \textbf{Remark. This is an assumption. Proof follows.}
 
+I think this is more about the right angle in the two dimensions and the linear combination of the three input values, once for each direction of the right angle here. It is still the 3-D on 2-D coordinate system with image and it should do exactly that.\\
+
 Probably already found. 2-D (in each column, the two rows) mapping orthogonal, 3-D is linear (three moves left-right, three up-down) in the 2x3. In the 3x2 case the converse. Do never forget, that cos and sin are $\perp$ and form a right angle. TODO.\\
 
 I mean. In each of the three column vectors, the map to the plane is defined by orthogonality of the two rows. Even if we change
@@ -765,6 +843,10 @@ Remark. This doesnt contain the right info. I should use basis and coordinate ax
 \hline 
     component & Komponente & A component of a vector or a matrix or a point is one of the scalars
     inside. For a (x,y,z) Vector, x is a component.
+\hline operator & Operator & A matrix is a linear map or a linear operator. The former is linear algebra\\
+    & & and the latter is functional analysis. Well, a better application for the transformation is to visualize
+    both, so both should be used. But possibly i currenly intermingle these words a bit, trying to find the right.
+    The definition of the 2x3 operator is not complete, it is for example not invertible, has no determinant, looses the third dimensions also, when restoring, with say least squares, 
 
 \end{tabular}
 
@@ -1056,12 +1138,19 @@ Column wise. Sum up each column vector, and return the largest. This is the colu
 
 
 \begin{displaymath}
-\|A\|_{row} = \max_{j=1..n} { \sum_{i=1} |A_{i}j| }
+\|A\|_{column} = \max_{j=1..n} { \sum_{i=1} |A_{i}j| }
 \end{displaymath}
 
 
 \subsubsection{Operator norms}
 
+The operatornorm is a dependent norm. It depends on the currently used norm. 
+
+\begin{displaymath}
+\|A\| = \|\phi\| := \sup\{ \phi(\vec{x}) : \|x\|=1 \}
+\end{displaymath}
+
+Remark. This is by heart. But i sure i am not through with using it correctly.
 
 
 \subsection{Parallelogram equation}
@@ -1070,7 +1159,9 @@ Column wise. Sum up each column vector, and return the largest. This is the colu
 2(\|v\|^{2} + \|w\|^{2}) = \|v+w\|^{2}+\|v-w\|^{2}
 \end{displaymath}
 
-This equation says, that the square sum of the parallelogram equals the square sum of the four sides.\\
+This equation says, that the square sum of the parallelogram equals the square sum of the four sides.\footnote{This is a direct translated cite from a lecture script. http://pages.math.tu-berlin.de/~ferus/skripten.html from Lineare Algebra I.}\\
+
+
 \textbf{Proof}:
 \begin{displaymath}
 2(\sum_{i=1}^{n}\vec{v}_{i}^{2} + \sum_{i=1}^{n}\vec{w}_{i}^{2}) = \sum_{i=1}^{n}\vec{v}_{i}^{2}+2\vec{v}_{i}\vec{w}_{i}+\vec{w}_{i}^{2}+\vec{v}_{i}^{2}-2\vec{v}_{i}\vec{w}_{i}+\vec{w}_{i}^{2} = \sum_{i=1}^{n}2\vec{v}_{i}^{2}+2\vec{w}_{i}^2 = 2\sum_{i=1}^{n}\vec{v}_{i}^{2}+\vec{w}_{i}^{2} = 2(\sum_{i=1}^{n}\vec{v}_{i}^{2} + \sum_{i=1}^{n}\vec{w}_{i}^{2})
