@@ -17,9 +17,12 @@
 \maketitle
 
 
-Version 0.3.3-unstable-parts\\
+Version 0.3.4-unstable-parts\\
 
 \textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor.\\
+\\
+\\
+The current version is very informal since the last versions compared with very formal. That text is subject to be deleted asap.\\
 }\\
 
 
@@ -241,15 +244,17 @@ Each component of (x,y,z) has now an own basis vector. By multiplying the cos te
 
 \subsubsection{The general formula like the Hamel Basis}
 
-Remark. This section needs to be formulated again
+Remark. This section needs to be formulated again.\\
 
-Remark II. Meanwhile i am sure, that Hamel-Basis is the right term to use here for the "generic formula". TODO.
+Remark II. Meanwhile i am sure, that Hamel-Basis is the right term to use here for the "generic formula". TODO.\\
 
 I am talking about multiplying the coordinates with the new vector basis, which i state to be the same as the coordinate system we drew on a piece of paper at the beginning. We wrote down the angles, made out the unit length, and wrote down the three basis vectors with the information. Where is this coming from?\\
 
 Every mathematics, physics or related course has a lesson, where the orthogonal basis of an object it's coordinate system is introduced. Orthogonality has some wonderful properties, and solving differential equations and other complicated systems take help from orthogonal vector sets.\\
 
 A orthogonal basis is a set of 2 or three or up to infinite orthogonal or perpendicular vectors. They describe the coordinate system, the space, the dimensions, and one has to show for excercises, that the basis is linearly independent, that each basis vector points into it´s own dimension and not into the others.\\
+
+Another excercise is to orthogonalize the existing vectors with Gram-Schmidt. \\
 
 The one lemma we need is this general theorem for multiplying a vector with the a basis of a target coordinate system.\\
 
@@ -319,7 +324,7 @@ It is for the practical use, to use after plotting to project something 3-D onto
 
 \subsection{Time to show the operation}
 
-The operation of multiplying the (x,y,z) coordinate with our $\mathbb{R}^{2\times{3}}$ basis vectors in order is the following:\\
+The operation of multiplying the (x,y,z) coordinate with our $\mathbb{R}^{2\times{3}}$ coordinate axis vectors in order is the following:\\
 
 \begin{displaymath}
 \left(\begin{array}{1}x'\\y'\end{array}\right) = \left(\begin{array}{1}
@@ -391,9 +396,7 @@ $\boldsymbol{A}$ should be treated as operator $\boldsymbol{A} \in \mathbb{R}^{2
 
 Remark. Make this another definition.\\
 
-The operator lives itself in $O \subset \mathbb{R}^{2\times{3}}$. O for Operator is also $O \subset L(V,W)$, L(V,W) contains all linear operators from V to W. A is mapping the input, which is 3-D from $V \subseteq \mathbb{R}^{3}$. onto the 2-D subset $W \subseteq \mathbb{R}^{2}$. The operator is NOT invertible due to a loss of one dimension and a lack of linear independence.\\
-
-
+The operator lives itself in L(V,W). L(V,W) contains all linear operators from V to W. A is mapping the input, which is 3-D from $V \subseteq \mathbb{R}^{3}$. onto the 2-D subset $W \subseteq \mathbb{R}^{2}$. The operator is NOT invertible due to a loss of one dimension and a lack of linear independence.\\
 
 \textbf{Remark} This chapter needs to be overworked.
 
@@ -419,9 +422,9 @@ Applying the operator \boldsymbol{A} transforms the point $(x,y,z) \in V \subset
 \textbf{Proof}:\\
 
 \begin{displaymath}
-\boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = x\vec{e}_x + y\vec{e}_y + z\vec{e}_z\\
+\boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = (\sum_{j=1}^{3}a_{ij}\vec{v}_{j})_{i=1,2}
 %\end{displaymath}
-%\begin{displaymath}
+%\beg{in{displaymath}
 &= \left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
@@ -439,12 +442,12 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 Remark. Under construction.
 
 \begin{displaymath}
-\vec{v} = \sum_{i=1}^{n}\vec{x}_{i}\vec{e}_{i}
+\vec{w} = \sum_{i=1}^{n}\vec{v}_{i}\vec{e}_{i}
 \end{displaymath}
 
 If you multiply the three-d vectors a linear dependet set of three two dimensional vectors, which represent the three coordinate axes on the plane with the formula of the Hamel-Basis, the resulting two dimensional vectors are the correct points on the plane.
 
-Remark. A Hamel-Basis requires an linearly independent set of basis vectors, which we can not provide due to the dimension change.
+Remark. A Hamel-Basis requires a linearly independent set of basis vectors, which we can not provide, due to the dimension change. I am still thinking about the right explainings. 
 
 \begin{displaymath}
 \vec{v} = (x,y,z)^{T}
@@ -460,18 +463,24 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 
 TODO. 
 
-\subsection{Computer implementations of the matrix and the transformation}
+\subsection{Computer implementations, left away the matrix, of the transformation}
 \subsubsection{Generic computer code}
 
+This should be in a border box.
+
+
 \begin{example}
-The following is example code for various computer systems.\\
+\fbox{
+The following is example code for various computer systems.
+}
 \begin{lstlisting}
 x_ = x*r*cos(alpha) + y*r*cos(beta) + z*r*cos(gamma)
 y_ = x*r*sin(alpha) + y*r*sin(beta) + z*r*sin(gamma)
-\end{lstlisting}
+\end{lstlisting}\\
+\fbox{ These are the one and only two lines of code you need.\\}
+
 \end{example}\\
 
-Remark. Border around this.
 
 \subsubsection{JavaScript computer code}
 \begin{example}
@@ -494,7 +503,7 @@ let transform2dAll = (P) => P.map(transform2d);
 let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 \end{lstlisting}
 \end{example}\\
-
+\fbox{ This is the realistic amount of code to write to transform all points from 3-D to 2-D.\\}
 
 \begin{figure}[ht]
 \includegraphics[scale=0.5]{conicalhelix.png}
@@ -502,7 +511,7 @@ let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 \end{figure}
 
 
-\subsection{The transformation with functions, $f$ and $f \composed g$ version}
+\subsection{The transformation with functions, $f$ and $f \circ g$ version}
 
 Remark. The first days, i could not see the forest, because of all these trees. 
 
@@ -514,60 +523,124 @@ A big gain for this point transformation is the easy use to create surface plots
 
 \subsubsection{As a function}
 
-We begin with $f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$.
+We begin with $f(\vec{x}) : V \subseteq \mathbb{R}^{3} \rightarrow \subseteq \mathbb{R}^{2}$.
+
+$f(\vec{x})$ is mapping the three dimensional coordinates onto our designed coordinate system. The multiplication of the components with the horizontal and vertical displacements which are represented by the axes of our coordinate system is the fix content of our function. Assume we have the angles and units designed and the function is well defined for its purpose.
 
 \begin{displaymath}
+\label{f_function}
 f(\vec{x}) := \left(\begin{array}{1}\vec{x}_{1}r_x\cos\varphi_x + \vec{x}_{2}r_y\cos\varphi_y + \vec{x}_{3}r_z\cos\varphi_z\\
 \vec{x}_{1}r_x\sin\varphi_x + \vec{x}_{2}r_y\sin\varphi_y + \vec{x}_{3}r_z\sin\varphi_z\end{array}\right)
 \end{displaymath}
 
-\subsubsection{As a composition of the functions $f$ and $g$}
+\subsubsection{As a composition of the functions $f \circ g$}
 
 There are various possibilities to combine the output of g and the input of f.
 
-A $g(t)$ returning a vector passed to $f(\vec{x})$
+The following functions are compositions of two functions and take some input and return our 2-D points.
+
+f is the transformation of the vector returned by g. g is taking the input in all examples and f is reworking the coordinates.
+
+In other words, f is the same function as previously shown in \ref{f_function}..
+
+Example 1. A call to $g(t)$ is returning a vector $\vec{v}$ passed to $f(\vec{x})$ by using the composition $f \circ g$ :  $f(g(t)) = \vec{w}$
+
+\begin{center}
+$g(t) : \mathbb{R} \rightarrow \mathbb{R}^{3}$\\
+$f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$\\
+\end{center}
+
+See figure \ref{g_of_t_helix}
 
 \begin{displaymath}
-g(\vec{x}) : \mathbb{R} \rightarrow \mathbb{R}^{3}\\
-f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}
+\label{g_of_t_code}
+g(t) := \left(\begin{array}{1}t\times{\cos}t\\t\times{\sin}t\\t\end{array}\right)
 \end{displaymath}
 
+\begin{center}
+\begin{figure}
+\includegraphics[scale=0.5]{conicalhelix2.png}
+\label{g_of_t_helix}
+\caption{Projected with the example javascript code is this an output of the function g(t) in \ref{g_of_t_code}.}
+\end{figure}
+\end{center}
 
 
+Example 2. $g(x,y) = (x,y,z)^{T}$ which does not only produce z on x and y. It returns all three scalars together in one vector and passes that to our f.
 
-Or a $g(x,y) = (x,y,z)^{T}$ which does not only produce z on x and y, but return all three together.
+\begin{center}
+$g(x,y) : \mathbb{R}^{2} \rightarrow \mathbb{R}^{3}$\\
+$f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$\\
+\end{center}
+
+Example. This function will give us a surface plot. See figure \ref{g_of_x_y_figure}
 
 \begin{displaymath}
-g(\vec{x}) : \mathbb{R}^{2} \rightarrow \mathbb{R}^{3}\\
-f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}
+\label{g_of_x_y_code}
+g(x,y) := \left(\begin{array}{1}x\\y\\\exp{-x^{2} - y^{2}}\end{array}\right)
 \end{displaymath}
 
-A $g(x,y,z)$ or $g(\vec{x})$ a three-d or vector-valued function returning a three-d vector.
+\begin{figure}
+\label{g_of_x_y_figure}
+\includegraphics[scale=0.5]{expfunction.png}
+\caption{This is $\exp -x^{2}-y{2}$ from \ref{g_of_x_y_code} plotted with the cheap3danimate.html code within $[-2,2] \times [-2,2]$.}
+\end{figure}
+
+Example 3. A $g(x,y,z)$ or $g(\vec{x})$ a three-d or vector-valued function returning a three-d vector.
 
 \begin{displaymath}
-g(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{3}\\
-f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}
+\label{g_of_x_y_z_code}
+g(x,y,z) := \left(\begin{array}{1}next\\next\\next\end{array}\right)
 \end{displaymath}
 
+The vector field.
 
-
+\begin{center}
+$g(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{3}$\\
+$f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$\\
+\end{center}
 
 Remark. This list is longer. But it is 2 a.m. and i am stopping here.
-
 
 
 \subsubsection{Differentiability}
 
 Remark. This is under construction.
 
-Using regular functions, and the nice trigonometric definition, it is easy to differentiate the coordinate system, together with the mapping. Whether it makes sense, or not. I find it out.
+\subsubsubsection{Derivatives of \vec{f}(\vec{x}) : V \rightarrow W }
 
-Remark. This is under construction.
+Again we begin with $\vec{f}(\vec{x}) : V \subseteq \mathbb{R}^{3} \rightarrow W \subseteq \mathbb{R}^{2}$.
+
+\begin{displaymath}
+\vec{f}(\vec{x}) := \left(\begin{array}{1}\vec{x}_{1}r_x\cos\varphi_x + \vec{x}_{2}r_y\cos\varphi_y + \vec{x}_{3}r_z\cos\varphi_z\\
+\vec{x}_{1}r_x\sin\varphi_x + \vec{x}_{2}r_y\sin\varphi_y + \vec{x}_{3}r_z\sin\varphi_z\end{array}\right)
+\end{displaymath}
+
+The first derivatives after the vector are the following by using the product rule and partial differentiation. 
+The scalar component of the input is gone, because the derivative is $1$ and the other summand of the derived product is zero, because the cosine or sine function are treated like either like a constant or like a function and become zero because there is the wrong variable to differentiate in the angle.\\
+
+The derivatives of the angles are not taken. But it seems to be obvious, that the sin and cosine would be rotating around by 90 degrees each time the derivative of the derivative with respect to the angle is taken.\\
+
+\begin{center}
+\begin{displaymath}
+\partial_{1}(\vec{f}(\vec{x})) = \vec{e}_{x}\\
+\partial_{2}(\vec{f}(\vec{x})) = \vec{e}_{y}\\
+\partial_{3}(\vec{f}(\vec{x})) = \vec{e}_{z}\\
+\end{displaymath}
+\end{center}
+
+The second derivatives are already zero, because the returned vectors are constants with respect to the taken input variable.\
+\begin{center}
+\begin{displaymath}
+\partial_{1}^{2}(\vec{f}(\vec{x})) = 0\\
+\partial_{2}^{2}(\vec{f}(\vec{x})) = 0\\
+\partial_{3}^{2}(\vec{f}(\vec{x})) = 0\\
+\end{displaymath}
+\end{center}
 
 
 
-
-\section{Important proofs of vector spaces}
+\section{Important proofs of the transformations behaviour}
 
 Remark. This document is still under construction. 
 
@@ -660,7 +733,7 @@ ur_x\sin(\varphi_x) + vr_y\sin(\varphi_y) + wr_z\sin(\varphi_z)\\
 which is a standard formulation of the rule of linearity. For example, you can find this rule in the form $\boldsymbol{A}(c\vec{x} + d\vec{y}) = c\boldsymbol{A}\vec{x} + d\boldsymbol{A}\vec{y}$ in \cite{Strang1}, but also in every linear algebra 1 lecture script.\\
 
 
-\subsection{Convexity}
+\subsection{Convexity test}
 
 Remark. Edward is new to convex sets. 
 
@@ -696,19 +769,20 @@ Remark. Edward is new to mathematics.
 
 By the rule of linearity.
 
+Remark. To be studied within the next days. One of the main theorems of fa is dealing with the convex sets. And the formula is ubiquitous like the sums of vector products. It makes sense to test this completly. 
 
 \section{Convergence and Completeness}
 
-\subsubsection{Neighborhood}
+\subsection{Neighborhood}
 
 Remark. The first words are older than this position.
 
-The neighborhood of a point (x,y,z) is a bowl or a sphere with a radius r or \epsilon. A bowl is a complete ball, with inner points, the sphere just is the border of the ball. The bowl has the formula ${ (x,y,z) : x^{2} + y^{2} + z^{2} <= 1 }$ and the sphere collects all points around with the radius of one ${ (x,y,z) : x^{2} + y^{2} + z^{2} = 1 }$.\\
+The neighborhood of a point (x,y,z) is a ball or a sphere with a radius r or \epsilon. The bowl or ball is complete, with inner points, the sphere just is the border of the ball. The bowl has the formula $B_{r}{ (x,y,z) : x^{2} + y^{2} + z^{2} <= r }$ and the sphere collects all points around with the radius of one $B_{r}(\vec{v}) :={ (x,y,z) : x^{2} + y^{2} + z^{2} = r }$.\\
 
 Remark. This is under construction for the next versions.
 
 
-\subsubsection{Cauchy Sequences}
+\subsection{Cauchy Sequences}
 
 Remark. These first words are older than this position.
 
@@ -842,11 +916,14 @@ Remark. This doesnt contain the right info. I should use basis and coordinate ax
     & & on what your numbers mean.\\
 \hline 
     component & Komponente & A component of a vector or a matrix or a point is one of the scalars
-    inside. For a (x,y,z) Vector, x is a component.
-\hline operator & Operator & A matrix is a linear map or a linear operator. The former is linear algebra\\
-    & & and the latter is functional analysis. Well, a better application for the transformation is to visualize
-    both, so both should be used. But possibly i currenly intermingle these words a bit, trying to find the right.
-    The definition of the 2x3 operator is not complete, it is for example not invertible, has no determinant, looses the third dimensions also, when restoring, with say least squares, 
+    inside. For a (x,y,z) Vector, x is a component.\\
+
+\hline 
+    operator & Operator & A matrix is a linear map or a linear operator. The former is linear algebra\\
+    & & and the latter is functional analysis. Well, a better application for the transformation is to visualize\\
+    & & both, so both should be used. But possibly i currenly intermingle these words a bit, trying to find the right.\\
+    & & The definition of the 2x3 operator is not complete, it is for example not invertible, has no determinant, \\
+    & & looses the third dimensions also, when restoring, with say least squares, \\
 
 \end{tabular}
 
@@ -1122,7 +1199,11 @@ The absolute value of the dot product squared is less or equal to the product of
 |\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}|^{2} \leq \sum_{j=1}^{n}\sum_{i=1}^{n}(|\vec{v}_{i}||\vec{w}_{i}|)^{2}
 \end{displaymath}
 
-\textbf{Remark} This subsection is not complete. And may contain mistakes.
+
+
+\textbf{Remark} This subsection is not complete. And may contain mistakes.\\
+
+\textbf{Remark} If i am reading right, it contains really a mistake. In the middle.
 
 \subsubsection{Matrix norms}
 
@@ -1211,7 +1292,7 @@ Metrics have three fundamental properties.
 \begin{displaymath}
 d(x,y) = 0 \iff x = y
 \end{displaymath}
-\item It does not matter, whether you read $d(x,y)$ or $d(y,x)$, the number must be equal.
+\item It does not matter, whether you read $d(x,y)$ or $d(y,x)$, the number must be equal. The absolute value function $|\pm n| = n, \pm n \in \mathbb{Q}$ makes sure
 \begin{displaymath}
 d(x,y) = d(y,x)
 \end{displaymath}
@@ -1392,7 +1473,8 @@ This of course transforms the object by the directions and the length of the thr
 \subsubsection{Creating a 3x3 basis with cross products}
 \begin{lstlisting}
 function cross(a,b) {
-    return [a[1]b[2]-a[2]b[1],-a[0]b[2]+a[2]b[0],a[0]b[1]-a[1]b[0]];
+    // does not multiply with ijk the components, diy
+    return [a[1]*b[2]-a[2]*b[1],-a[0]*b[2]+a[2]*b[0],a[0]*b[1]-a[1]*b[0]];
 }
 \end{lstlisting}
 
@@ -1650,6 +1732,14 @@ function scale2dAll(scaleX, scaleY, points2) {
     }
 }
 
+function compareAll(points3, points2, callback) {
+    var results = [];
+    for (var i = 0, j = points3.length; i < j; i++) {       
+        results.push(callback(points3[i],points2[i]));
+    }
+    return results;
+}
+
 exports.gettrans = gettrans;
 exports.settrans = settrans;
 exports.transform2d = transform2d;
@@ -1660,6 +1750,7 @@ exports.scale3dAll = scale3dAll;
 exports.scale2dAll = scale2dAll;
 exports.translate3dAll = translate3dAll;
 exports.translate2dAll = translate2dAll;
+exports.compareAll = compareAll;
 exports.rad = rad;
 exports.draw2dAll = draw2dAll;
 
