@@ -17,7 +17,7 @@
 \maketitle
 
 
-Version 0.3.5-unstable-parts-or-many-todo-parts-raised\\
+Version 0.3.6-unstable-parts-or-many-todo-parts-raised\\
 
 \textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX ever.
 Status. Moved the chaotic stuff into the appendix. It is now the chaotic appendix and the current version is not as nice as earlier and cleaner ones. The good news are, the next versions will not be about expanding the topic anymore. 
@@ -467,21 +467,17 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 TODO. 
 
 
-\subsection{The transformation with functions, $f$ and $f \circ g$ version}
+\subsection{Function version}
 
-Remark. The first days, i could not see the forest, because of all these trees. 
-
-
-
-The operation can be written as function, or as part of a composition of functions.\\
-
+The first days, i could not see the forest, because of all these trees. 
+The operation can be written as function, or as part of a composition of functions.
 A big gain for this point transformation is the easy use to create surface plots and other functional graphs.\\
 
 \subsubsection{The functional $f(\vec{x})$}
 
-We begin with $f(\vec{x}) : V \subseteq \mathbb{R}^{3} \rightarrow \subseteq \mathbb{R}^{2}$.
+We begin with $f(\vec{x}) : V \subseteq \mathbb{R}^{3} \rightarrow \subseteq \mathbb{R}^{2}$.\\
 
-$f(\vec{x})$ is mapping the three dimensional coordinates onto our designed coordinate system. The multiplication of the components with the horizontal and vertical displacements which are represented by the axes of our coordinate system is the fix content of our function. Assume we have the angles and units designed and the function is well defined for its purpose.
+$f(\vec{x})$ is mapping the three dimensional coordinates onto our designed coordinate system. The multiplication of the components with the horizontal and vertical displacements which are represented by the axes of our coordinate system is the fix content of our function. Assume we have the angles and units designed and the function is well defined for its purpose.\\
 
 \begin{displaymath}
 \label{f_function}
@@ -489,18 +485,28 @@ f(\vec{x}) := \left(\begin{array}{1}\vec{x}_{1}r_x\cos\varphi_x + \vec{x}_{2}r_y
 \vec{x}_{1}r_x\sin\varphi_x + \vec{x}_{2}r_y\sin\varphi_y + \vec{x}_{3}r_z\sin\varphi_z\end{array}\right)
 \end{displaymath}
 
-\subsubsection{The composition of the functions $f \circ g$}
+\subsubsection{Composition of the functions $f \circ g$}
 
 There are various possibilities to combine the output of g and the input of f.
-
 The following functions are compositions of two functions and take some input and return our 2-D points.
+f is transformingthe vector returned by g. g is taking the input in all examples and f is reworking the coordinates.
+In other words, f is the same function as previously shown in \ref{f_function}.\\
 
-f is the transformation of the vector returned by g. g is taking the input in all examples and f is reworking the coordinates.
+Example 1. A call to $g(t)$ is returning a vector $\vec{v}$ passed to $f(\vec{x})$ by using the composition $f \circ g$ :  $f(g(t)) = \vec{w}$\\
 
-In other words, f is the same function as previously shown in \ref{f_function}..
+\begin{displaymath}
+\label{g_of_t_code}
+g(t) := \left(\begin{array}{1}t*Math.cos(t)\\t*Math.sin(t)\\t\end{array}\right)
+\end{displaymath}
 
-Example 1. A call to $g(t)$ is returning a vector $\vec{v}$ passed to $f(\vec{x})$ by using the composition $f \circ g$ :  $f(g(t)) = \vec{w}$
-ilnction will give us a surface plot. See figure \ref{g_of_x_y_figure}
+
+\begin{figure}
+\label{g_of_t_figure}
+\includegraphics[scale=0.5]{conicalhelix2.png}
+\caption{This is $g(t)$ from \ref{g_of_t_code} plotted with the cheap3danimate.html code within $[-2,2] \times [-2,2]$.}
+\end{figure}
+
+Example 2. $g(x,y)=(x,y,z)$ this function will give us a surface plot. See figure \ref{g_of_x_y_figure}.\\
 
 \begin{displaymath}
 \label{g_of_x_y_code}
@@ -527,14 +533,11 @@ $g(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{3}$\\
 $f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$\\
 \end{center}
 
-Remark. This list is longer. But it is 2 a.m. and i am stopping here.
-
 
 \subsection{Computer implementations, left away the matrix, of the transformation}
 \subsubsection{Generic computer code}
 
 This should be in a border box.
-
 
 \begin{example}
 \fbox{
@@ -579,7 +582,7 @@ let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 
 
 
-\section{Important proofs of the transformations behaviour}
+\section{Important proofs of the transformation behaviour}
 
 Remark. This document is still under construction. 
 
@@ -738,7 +741,50 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right
 
 
 
+\section{Derivatives of $\vec{f}(\vec{x}) : V \rightarrow W$ }
 
+Again we begin with $\vec{f}(\vec{x}) : V \subseteq \mathbb{R}^{3} \rightarrow W \subseteq \mathbb{R}^{2}$.
+
+\begin{displaymath}
+\vec{f}(\vec{x}) := \left(\begin{array}{1}\vec{x}_{1}r_x\cos\varphi_x + \vec{x}_{2}r_y\cos\varphi_y + \vec{x}_{3}r_z\cos\varphi_z\\
+\vec{x}_{1}r_x\sin\varphi_x + \vec{x}_{2}r_y\sin\varphi_y + \vec{x}_{3}r_z\sin\varphi_z\end{array}\right)
+\end{displaymath}
+
+The first derivatives after the vector are the following by using the product rule and partial differentiation. 
+The scalar component of the input is gone, because the derivative is $1$ and the other summand of the derived product is zero, because the cosine or sine function are treated like either like a constant or like a function and become zero because there is the wrong variable to differentiate in the angle.\\
+
+The derivatives of the angles are not taken. But it seems to be obvious, that the sin and cosine would be rotating around by 90 degrees each time the derivative of the derivative with respect to the angle is taken. The slope is the vector, because the point is moving by that vector from its current position a straight line, when multiplied.\\
+
+\begin{center}
+$\partial_{1}(\vec{f}(\vec{x})) = \vec{e}_{x}$
+$\partial_{2}(\vec{f}(\vec{x})) = \vec{e}_{y}$
+$\partial_{3}(\vec{f}(\vec{x})) = \vec{e}_{z}$
+\end{center}
+
+The second derivatives are already zero, because the returned vectors are constants with respect to the taken input variable.
+In a different meaning, there is no second derivative, because the coordinate system is linear. It is a straight line. It has
+no curves, so no tangent. There is no curvature, so no second derivative. But it is perfect. And calculus is right, because the three vectors are three straight lines.
+
+
+\begin{center}
+$\partial_{1}^{2}(\vec{f}(\vec{x})) = 0$\\
+$\partial_{2}^{2}(\vec{f}(\vec{x})) = 0$\\
+$\partial_{3}^{2}(\vec{f}(\vec{x})) = 0$\\
+\end{center}
+
+Conclusion. The first derivative represents the axis vector. The gradient gives us the complete coordinate system. If we use the gradient then in another composition, we can apply the mapping again. 
+
+\begin{center}
+$\nabla\vec{f} := \left(\begin{array}{1}\vec{e}_{x}\\\vec{e}_{y}\\\vec{e}_{z}\\\end{array}\right) = \boldsymbol{A}^{T} $
+\end{center}
+
+Looks like we have to transpose the row vector again. Because the gradient seems to be the same as the 3 by 2 matrix $A^{T}$ and not like our original coordinate system.
+
+\begin{center}
+$\nabla\vec{f}^{T} := \begin{pmatrix}\vec{e}_{x} & \vec{e}_{y} &\vec{e}_{z}\\\end{pmatrix} = \boldsymbol{A} $
+\end{center}
+
+Now we could reuse the vector of vectors (the matrix) and multiply again with coordinates. 
 
 \section{Summary}
 
@@ -800,13 +846,14 @@ Remark. This doesnt contain the right info. I should use basis and coordinate ax
 
 \subsection{Neighborhood} 
 
-\subsection{Convex sets}
+
 Remark. The first words are older than this position.
 
-The neighborhood of a point (x,y,z) is a ball or a sphere with a radius r or \epsilon. The ball is complete, with inner points, the sphere just is the border of the ball. The ball got the formula $B_{r}{ (x,y,z) : x^{2} + y^{2} + z^{2} <= r }$ and the sphere collects all points around with the radius of one $B_{r}(\vec{v}) :={ (x,y,z) : x^{2} + y^{2} + z^{2} = r }$.\\
+The neighborhood of a point (x,y,z) is a ball or a sphere with a radius r. The ball has inner points, the sphere just is the border of the ball. The ball got the formula $B_{r}{ (x,y,z) : x^{2} + y^{2} + z^{2} <= r }$ and the sphere collects all points around with the radius of one $B_{r}(\vec{v}) :={ (x,y,z) : x^{2} + y^{2} + z^{2} = r }$.\\
 
 Remark. This is under construction for the next versions.
 
+\subsection{Convex sets}
 
 Remark. Edward is new to convex sets. 
 
@@ -816,9 +863,7 @@ Convex sets contain the distance beetween two points inside the set. That means,
 u = \lambda\vec{x} + (1-\lambda)\vec{y}, \lambda \in [0,1], x,y \in V \implies u \in V
 \end{displaymath}
 
-The factor lambda lies beetween 0 and 1. If $\lambda = 0.1$ then is $(1-\lambda) = 0.9$, if $\lambda = 0.2$ then is $(1-\lambda) = 0.8$ and so on. The result is lying on the straight line of $\vec{x} + \vec{y}$. I have taken two vectors $\vec{x}, \vec{y} \in R^2$ and drawn them. The points lie on the line beetween the two points. Be careful not to mismatch the line with another, if it´s going for example if both vectors are on one line from the origin
-
-Remark. Edward is new to convexity.
+The factor lambda lies beetween 0 and 1. If $\lambda = 0.1$ then is $(1-\lambda) = 0.9$, if $\lambda = 0.2$ then is $(1-\lambda) = 0.8$ and so on. The result is lying on the straight line beetween $\vec{x}$ and $\vec{y}$. I have taken two vectors $\vec{x}, \vec{y} \in R^2$ and drawn them. The points lie on the line beetween the two points. Be careful not to mismatch the line with another, if it´s going for example if both vectors are on one line from the origin
 
 There is an inequality, which convex functions have to satisfy.
 
@@ -834,8 +879,6 @@ f(\lambda\vec{x} + (1-\lambda)\vec{y}) \leq \lambda f(\vec{x}) + (1-\lamda)f(\ve
 
 Our image is very precise, because we designed a real coordinate system. What is happening to our new vector? 
 
-Remark. Edward is new to mathematics.
-
 \begin{displaymath}
 \lambda\boldsymbol{A}\vec{x} + (1-\lambda)\boldsymbol{A}\vec{y} = \boldsymbol{A}(\lambda\vec{x} + (1-\lambda)\vec{y})
 \end{displaymath}
@@ -845,8 +888,6 @@ By the rule of linearity.
 Remark. To be studied within the next days. One of the main theorems of fa is dealing with the convex sets. And the formula is ubiquitous like the sums of vector products. It makes sense to test this completly. 
 
 \subsection{Cauchy Sequences and Convergence}
-
-Remark. These first words are older than this position.
 
 Convergence: $\forall \epsilon > 0 \exists n_{0} \in N : \forall n \geq n_{0} \|u_{n}-u\| < \epsilon$ For every epsilon greater than 0 exists some starting point $n_{0}$ from which on the sequence items for any n greater than $n_{0}$ come closer together on each step. Means, the distance is getting smaller and smaller until the sequence converges to a point and the distance goes to zero.\\
 
@@ -883,19 +924,10 @@ And if the last one can not be decided, is this an application for probability, 
 The last section is also the last i come to to study it for this article. Algebra.
 It is possible, that the section moves, but first i have to complete my research.
 
-\subsubsection{Ordered sets}
 
-The relation $\leq$ makes it possible to compare elements.
-
-\subsubsection{K-Vectorspace}
+\subsubsection{K-Vectorspace and Modulns}
 
 The euclidean space is a K-Vectorspace.
-
-Remark.
-
-\subsubsection{Topology}
-
-I am looking topology up in my lecture scripts very often and have a raw collection, of what can be applied here.
 
 \subsubsection{Quotient rooms}
 
@@ -905,58 +937,17 @@ This is a quotient room of the three dimensional room. Written V/W. A quotient r
 
 Inside of the topic. Equivalenceclasses are written in Brackets. They have properties like [v]+[w]=[v+w].
 
-I recently got into the topic and am learning more about. This section can be updated in the near future.
+I recently got into the topic and am learning more about. This section can be updated in some hours.\\
 
 \subsection{Differentiability of the function version}
 
-Remark. This is under construction.
-
-\subsubsection{Derivatives of $\vec{f}(\vec{x}) : V \rightarrow W$ }
-
-Again we begin with $\vec{f}(\vec{x}) : V \subseteq \mathbb{R}^{3} \rightarrow W \subseteq \mathbb{R}^{2}$.
-
-\begin{displaymath}
-\vec{f}(\vec{x}) := \left(\begin{array}{1}\vec{x}_{1}r_x\cos\varphi_x + \vec{x}_{2}r_y\cos\varphi_y + \vec{x}_{3}r_z\cos\varphi_z\\
-\vec{x}_{1}r_x\sin\varphi_x + \vec{x}_{2}r_y\sin\varphi_y + \vec{x}_{3}r_z\sin\varphi_z\end{array}\right)
-\end{displaymath}
-
-The first derivatives after the vector are the following by using the product rule and partial differentiation. 
-The scalar component of the input is gone, because the derivative is $1$ and the other summand of the derived product is zero, because the cosine or sine function are treated like either like a constant or like a function and become zero because there is the wrong variable to differentiate in the angle.\\
-
-The derivatives of the angles are not taken. But it seems to be obvious, that the sin and cosine would be rotating around by 90 degrees each time the derivative of the derivative with respect to the angle is taken.\\
-
-\begin{center}
-\begin{displaymath}
-\partial_{1}(\vec{f}(\vec{x})) = \vec{e}_{x}\\
-\partial_{2}(\vec{f}(\vec{x})) = \vec{e}_{y}\\
-\partial_{3}(\vec{f}(\vec{x})) = \vec{e}_{z}\\
-\end{displaymath}
-\end{center}
-
-The second derivatives are already zero, because the returned vectors are constants with respect to the taken input variable.\
-
-\begin{center}
-\begin{displaymath}
-\partial_{1}^{2}(\vec{f}(\vec{x})) = 0\\
-\partial_{2}^{2}(\vec{f}(\vec{x})) = 0\\
-\partial_{3}^{2}(\vec{f}(\vec{x})) = 0\\
-\end{displaymath}
-\end{center}
-
-Conclusion. The first derivative represents the axis vector. The 
-
-
 \subsubsection{Integration}
 
-I think here it is time for the Lebesgue Integral.\\
-
-But it mustnt be the only.\\
-
-Since the function is continuous, it is possible to measure the objects, and to integrate over the surfaces, or to get some volumes together.\\
+Since the function is continuous, it is possible to measure the objects, and to integrate over the surfaces, to get some areas and volumes together.\\
 
 Remark. More TODO.
 
-
+A big lack in this document is, that the estimations are not ready.\\
 
 \section{Deconstructing and proving the 2x3 basis or not}
 
@@ -1050,7 +1041,9 @@ Secondly, we substitute the cosine and sine terms with simple letters. Sine, cos
 
 Remark. I think, this can be also done with Gram-Schmidt. Gram-Schmidt is an iterative process, to reduce the first vector, then with the information the second and so on. But i have not tried it since my first excercise with. \\
 
-Remark II. Underways i broke my head a few times. The periodic function can be modeled with modulo operations, some algebraic definition of.
+Remark II. Underways i broke my head a few times. The periodic function can be modeled with modulo operations, some algebraic definition of. Else the possible zeros would blow the try up. 
+
+Remark III. Here i am missing more experience in Ring Theory and related. Up to the set theory.
 
 \subsection{Lefthanded and righthanded system}
 
@@ -1827,7 +1820,7 @@ while (i < n) {
 
 \end{lstlisting}
 
-\subsection{Weakest orthographic projection possible}
+\subsection{Another orthographic projection possible}
 
 
 Remark. Before i figured out, how to compose three 2-D vectors for an orthographic projection, i did it wrong. But when doing it false, i had the most intelligent idea. I simply added z to y, after turning the plane around. I wanted to turn the axes, but failed, because i used the wrong formula. \emph{After moving this paragraph out of the corollaries, i think, i can write the story again. In the next versions.}\\
