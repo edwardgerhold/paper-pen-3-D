@@ -17,17 +17,14 @@
 \maketitle
 
 
-Version 0.3.4-unstable-parts\\
+Version 0.3.5-unstable-parts-or-many-todo-parts-raised\\
 
-\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor.\\
-\\
-\\
-The current version is very informal since the last versions compared with very formal. That text is subject to be deleted asap.\\
+\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX ever.
+Status. Moved the chaotic stuff into the appendix. It is now the chaotic appendix and the current version is not as nice as earlier and cleaner ones. The good news are, the next versions will not be about expanding the topic anymore. 
 }\\
 
 
 \end{center} 
-
 
 \tableofcontents\\
 
@@ -62,6 +59,14 @@ tell you directly, what happens, when we multiply the coordinates with the matri
 \end{enumerate}
 
 \section{Designing a $\mathbb{R}^{2\times{3}}$ coordinate system for our transformation from $\mathbb{R}^{3}$ to $\mathbb{R}^{2}$}
+
+\subsection{Axis vector}
+
+Remark. July, 25.\\
+
+You will not read it during the text. Due to the problems with the linear independence definitions i will introduce the word \emph{axis vector}. \\
+
+Remark. A coordinate system is known to linear algebra. And the formulas are obviously the same combination. Only the three two dimensional axis vectors i talk about are missing. For myself, i am the first one to write about.\\
 
 \subsection{The $_{n}$ index for $_x,_y,_z$ with $_x=1$, $_y=2$ and $_z=3$}
 \index{index}
@@ -198,7 +203,7 @@ Multiplying the 2x3 basis with the 3x1 points later results in wonderful 2x1 poi
 \vec{e}_{n} := \{\vec{e}_x, \vec{e}_y, \vec{e}_z\} = \{\vec{e}_1, \vec{e}_2, \vec{e}_3\}\\
 \end{displaymath} 
 
-There we have the set for the three basis vectors. We give them the letter $e$ and a subscript for the coordinate component in the numeric order of $x=1, y=2, z=3$. To arrange these vectors we already got around the unit circle. To measure the angles, beginning on the horizontal coordinate axis or zero, until we reach the vector. The vectors point into the positive direction of the describing axis.\\
+There we have the set for the three basis vectors. We give them the letter $e$ and a subscript for the coordinate component in the numeric order of $x=1, y=2, z=3$. To arrange these vectors we already got around the unit circle. To measure the angles, beginning on the horizontal coordinate axis or zero, until we reach the vector. The vectors point into the positive direction of the described axis.\\
 
 \begin{figure}[ht]
 \includegraphics[scale=1]{unitvectors.png}
@@ -347,7 +352,7 @@ For this i close the explaining chapters and come to the part of the formal math
 
 \section{The $\mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$ through $\mathbb{R}^{2\times{3}}$ transformation theorem}
 
-
+gi
 Let $V$ be the set of all points $(x,y,z) \in V \subseteq R^3$ which are about to become transformed. $V := \{ \vec{v}=(x,y,z)^T | x,y,z \in \mathbb{R}, \vec{v} \in V \subseteq \mathbb{R}^{3} \}$.
 Let $W$ be the set of all points $(x',y') \in W \subseteq R^2$ which are the result of the transformation $W ;= \{ \vec{w}=(x',y')^T | \vec{w} \in W \subseteq \mathbb{R}^{2} x',y' \in \mathbb{R}, \boldsymbol{A}\vec{v}=(x',y')\}$.\\
 
@@ -355,7 +360,7 @@ Let $W$ be the set of all points $(x',y') \in W \subseteq R^2$ which are the res
 
 Remark. What about the prime behind x and y. x', y' looks bad.
 
-\subsection{The transformation matrix}
+\subsection{Matrix version}
 
 A $m\times n$ matrix is a rectangle or square of numbers.\\
 \begin{displaymath}
@@ -400,9 +405,7 @@ The operator lives itself in L(V,W). L(V,W) contains all linear operators from V
 
 \textbf{Remark} This chapter needs to be overworked.
 
-\subsection{The transformation}
 
-\subsubsection{Matrix version}
 \index{Theorem}
 \newtheorem{Theorem}{Theorem (My fundamental theorem of transforming 3-D Points into 2-D Points)}
 \begin{Theorem}\\
@@ -437,7 +440,7 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \end{Theorem}
 
 
-\subsubsection{Vectorbasis version }
+\subsection{Vectorbasis version }
 
 Remark. Under construction.
 
@@ -462,6 +465,70 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \end{displaymath}
 
 TODO. 
+
+
+\subsection{The transformation with functions, $f$ and $f \circ g$ version}
+
+Remark. The first days, i could not see the forest, because of all these trees. 
+
+
+
+The operation can be written as function, or as part of a composition of functions.\\
+
+A big gain for this point transformation is the easy use to create surface plots and other functional graphs.\\
+
+\subsubsection{The functional $f(\vec{x})$}
+
+We begin with $f(\vec{x}) : V \subseteq \mathbb{R}^{3} \rightarrow \subseteq \mathbb{R}^{2}$.
+
+$f(\vec{x})$ is mapping the three dimensional coordinates onto our designed coordinate system. The multiplication of the components with the horizontal and vertical displacements which are represented by the axes of our coordinate system is the fix content of our function. Assume we have the angles and units designed and the function is well defined for its purpose.
+
+\begin{displaymath}
+\label{f_function}
+f(\vec{x}) := \left(\begin{array}{1}\vec{x}_{1}r_x\cos\varphi_x + \vec{x}_{2}r_y\cos\varphi_y + \vec{x}_{3}r_z\cos\varphi_z\\
+\vec{x}_{1}r_x\sin\varphi_x + \vec{x}_{2}r_y\sin\varphi_y + \vec{x}_{3}r_z\sin\varphi_z\end{array}\right)
+\end{displaymath}
+
+\subsubsection{The composition of the functions $f \circ g$}
+
+There are various possibilities to combine the output of g and the input of f.
+
+The following functions are compositions of two functions and take some input and return our 2-D points.
+
+f is the transformation of the vector returned by g. g is taking the input in all examples and f is reworking the coordinates.
+
+In other words, f is the same function as previously shown in \ref{f_function}..
+
+Example 1. A call to $g(t)$ is returning a vector $\vec{v}$ passed to $f(\vec{x})$ by using the composition $f \circ g$ :  $f(g(t)) = \vec{w}$
+ilnction will give us a surface plot. See figure \ref{g_of_x_y_figure}
+
+\begin{displaymath}
+\label{g_of_x_y_code}
+g(x,y) := \left(\begin{array}{1}x\\y\\\exp{-x^{2} - y^{2}}\end{array}\right)
+\end{displaymath}
+
+\begin{figure}
+\label{g_of_x_y_figure}
+\includegraphics[scale=0.5]{expfunction.png}
+\caption{This is $\exp -x^{2}-y{2}$ from \ref{g_of_x_y_code} plotted with the cheap3danimate.html code within $[-2,2] \times [-2,2]$.}
+\end{figure}
+
+Example 3. A $g(x,y,z)$ or $g(\vec{x})$ a three-d or vector-valued function returning a three-d vector.
+
+\begin{displaymath}
+\label{g_of_x_y_z_code}
+g(x,y,z) := \left(\begin{array}{1}next\\next\\next\end{array}\right)
+\end{displaymath}
+
+The vector field.
+
+\begin{center}
+$g(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{3}$\\
+$f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$\\
+\end{center}
+
+Remark. This list is longer. But it is 2 a.m. and i am stopping here.
+
 
 \subsection{Computer implementations, left away the matrix, of the transformation}
 \subsubsection{Generic computer code}
@@ -511,134 +578,6 @@ let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 \end{figure}
 
 
-\subsection{The transformation with functions, $f$ and $f \circ g$ version}
-
-Remark. The first days, i could not see the forest, because of all these trees. 
-
-
-
-The operation can be written as function, or as part of a composition of functions.\\
-
-A big gain for this point transformation is the easy use to create surface plots and other functional graphs.\\
-
-\subsubsection{As a function}
-
-We begin with $f(\vec{x}) : V \subseteq \mathbb{R}^{3} \rightarrow \subseteq \mathbb{R}^{2}$.
-
-$f(\vec{x})$ is mapping the three dimensional coordinates onto our designed coordinate system. The multiplication of the components with the horizontal and vertical displacements which are represented by the axes of our coordinate system is the fix content of our function. Assume we have the angles and units designed and the function is well defined for its purpose.
-
-\begin{displaymath}
-\label{f_function}
-f(\vec{x}) := \left(\begin{array}{1}\vec{x}_{1}r_x\cos\varphi_x + \vec{x}_{2}r_y\cos\varphi_y + \vec{x}_{3}r_z\cos\varphi_z\\
-\vec{x}_{1}r_x\sin\varphi_x + \vec{x}_{2}r_y\sin\varphi_y + \vec{x}_{3}r_z\sin\varphi_z\end{array}\right)
-\end{displaymath}
-
-\subsubsection{As a composition of the functions $f \circ g$}
-
-There are various possibilities to combine the output of g and the input of f.
-
-The following functions are compositions of two functions and take some input and return our 2-D points.
-
-f is the transformation of the vector returned by g. g is taking the input in all examples and f is reworking the coordinates.
-
-In other words, f is the same function as previously shown in \ref{f_function}..
-
-Example 1. A call to $g(t)$ is returning a vector $\vec{v}$ passed to $f(\vec{x})$ by using the composition $f \circ g$ :  $f(g(t)) = \vec{w}$
-
-\begin{center}
-$g(t) : \mathbb{R} \rightarrow \mathbb{R}^{3}$\\
-$f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$\\
-\end{center}
-
-See figure \ref{g_of_t_helix}
-
-\begin{displaymath}
-\label{g_of_t_code}
-g(t) := \left(\begin{array}{1}t\times{\cos}t\\t\times{\sin}t\\t\end{array}\right)
-\end{displaymath}
-
-\begin{center}
-\begin{figure}
-\includegraphics[scale=0.5]{conicalhelix2.png}
-\label{g_of_t_helix}
-\caption{Projected with the example javascript code is this an output of the function g(t) in \ref{g_of_t_code}.}
-\end{figure}
-\end{center}
-
-
-Example 2. $g(x,y) = (x,y,z)^{T}$ which does not only produce z on x and y. It returns all three scalars together in one vector and passes that to our f.
-
-\begin{center}
-$g(x,y) : \mathbb{R}^{2} \rightarrow \mathbb{R}^{3}$\\
-$f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$\\
-\end{center}
-
-Example. This function will give us a surface plot. See figure \ref{g_of_x_y_figure}
-
-\begin{displaymath}
-\label{g_of_x_y_code}
-g(x,y) := \left(\begin{array}{1}x\\y\\\exp{-x^{2} - y^{2}}\end{array}\right)
-\end{displaymath}
-
-\begin{figure}
-\label{g_of_x_y_figure}
-\includegraphics[scale=0.5]{expfunction.png}
-\caption{This is $\exp -x^{2}-y{2}$ from \ref{g_of_x_y_code} plotted with the cheap3danimate.html code within $[-2,2] \times [-2,2]$.}
-\end{figure}
-
-Example 3. A $g(x,y,z)$ or $g(\vec{x})$ a three-d or vector-valued function returning a three-d vector.
-
-\begin{displaymath}
-\label{g_of_x_y_z_code}
-g(x,y,z) := \left(\begin{array}{1}next\\next\\next\end{array}\right)
-\end{displaymath}
-
-The vector field.
-
-\begin{center}
-$g(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{3}$\\
-$f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$\\
-\end{center}
-
-Remark. This list is longer. But it is 2 a.m. and i am stopping here.
-
-
-\subsubsection{Differentiability}
-
-Remark. This is under construction.
-
-\subsubsubsection{Derivatives of \vec{f}(\vec{x}) : V \rightarrow W }
-
-Again we begin with $\vec{f}(\vec{x}) : V \subseteq \mathbb{R}^{3} \rightarrow W \subseteq \mathbb{R}^{2}$.
-
-\begin{displaymath}
-\vec{f}(\vec{x}) := \left(\begin{array}{1}\vec{x}_{1}r_x\cos\varphi_x + \vec{x}_{2}r_y\cos\varphi_y + \vec{x}_{3}r_z\cos\varphi_z\\
-\vec{x}_{1}r_x\sin\varphi_x + \vec{x}_{2}r_y\sin\varphi_y + \vec{x}_{3}r_z\sin\varphi_z\end{array}\right)
-\end{displaymath}
-
-The first derivatives after the vector are the following by using the product rule and partial differentiation. 
-The scalar component of the input is gone, because the derivative is $1$ and the other summand of the derived product is zero, because the cosine or sine function are treated like either like a constant or like a function and become zero because there is the wrong variable to differentiate in the angle.\\
-
-The derivatives of the angles are not taken. But it seems to be obvious, that the sin and cosine would be rotating around by 90 degrees each time the derivative of the derivative with respect to the angle is taken.\\
-
-\begin{center}
-\begin{displaymath}
-\partial_{1}(\vec{f}(\vec{x})) = \vec{e}_{x}\\
-\partial_{2}(\vec{f}(\vec{x})) = \vec{e}_{y}\\
-\partial_{3}(\vec{f}(\vec{x})) = \vec{e}_{z}\\
-\end{displaymath}
-\end{center}
-
-The second derivatives are already zero, because the returned vectors are constants with respect to the taken input variable.\
-\begin{center}
-\begin{displaymath}
-\partial_{1}^{2}(\vec{f}(\vec{x})) = 0\\
-\partial_{2}^{2}(\vec{f}(\vec{x})) = 0\\
-\partial_{3}^{2}(\vec{f}(\vec{x})) = 0\\
-\end{displaymath}
-\end{center}
-
-
 
 \section{Important proofs of the transformations behaviour}
 
@@ -646,6 +585,7 @@ Remark. This document is still under construction.
 
 A very important thing is to show, that the linearity of the transformation is in order. With a wrong function, bad thing can happen.
 With the right functions, linear combinations should stay in the subspace.
+
 \subsection{The origin stays in the origin}
 
 A trivial proof is to prove, that the zero vector $\vec{0} \in \mathbb{R}^3$ maps to the zero vector $\vec{0} \in \mathbb{R}^2$.\\
@@ -733,74 +673,6 @@ ur_x\sin(\varphi_x) + vr_y\sin(\varphi_y) + wr_z\sin(\varphi_z)\\
 which is a standard formulation of the rule of linearity. For example, you can find this rule in the form $\boldsymbol{A}(c\vec{x} + d\vec{y}) = c\boldsymbol{A}\vec{x} + d\boldsymbol{A}\vec{y}$ in \cite{Strang1}, but also in every linear algebra 1 lecture script.\\
 
 
-\subsection{Convexity test}
-
-Remark. Edward is new to convex sets. 
-
-Convex sets contain the distance beetween two points inside the set. That means, that the direct way from a to be is not crossing the borders of the set. This can be imagined with real borders of a set. A round set, or a rectangle have all points inside together with their path. A star for example, where you have two points at two of the tips is not convex, the direct path, the straight line would cross the border of the star, leave the star, and reenter the star. There is a formula, which gives the points on the path.
-
-\begin{displaymath}
-u = \lambda\vec{x} + (1-\lambda)\vec{y}, \lambda \in [0,1], x,y \in V \implies u \in V
-\end{displaymath}
-
-The factor lambda lies beetween 0 and 1. If $\lambda = 0.1$ then is $(1-\lambda) = 0.9$, if $\lambda = 0.2$ then is $(1-\lambda) = 0.8$ and so on. The result is lying on the straight line of \vec{x} + \vec{y}. I have taken two vectors $\vec{x}, \vec{y} \in R^2$ and drawn them. After drawing the vector $\vec{x}+\vec{y}$ in the middle, i found 0.1 up to 0.9 lying on the line of the position vector to $\vec{x}+\vec{y}$.\\
-
-Remark. Edward is new to convexity.
-
-There is an inequality, which convex functions have to satisfy.
-
-\begin{displaymath}
-\|\lambda\vec{x} + (1-\lambda)\vec{y}\| \leq \lambda\|\vec{x}\| + (1-\lamda)\|\vec{y}\|
-\end{displaymath}
-
-or what expresses, that a function is convex.
-
-\begin{displaymath}
-f(\lambda\vec{x} + (1-\lambda)\vec{y}) \leq \lambda f(\vec{x}) + (1-\lamda)f(\vec{y})
-\end{displaymath}
-
-Our image is very precise, because we designed a real coordinate system. What is happening to our new vector? 
-
-Remark. Edward is new to mathematics.
-
-\begin{displaymath}
-\lambda\boldsymbol{A}\vec{x} + (1-\lambda)\boldsymbol{A}\vec{y} = \boldsymbol{A}(\lambda\vec{x} + (1-\lambda)\vec{y})
-\end{displaymath}
-
-By the rule of linearity.
-
-Remark. To be studied within the next days. One of the main theorems of fa is dealing with the convex sets. And the formula is ubiquitous like the sums of vector products. It makes sense to test this completly. 
-
-\section{Convergence and Completeness}
-
-\subsection{Neighborhood}
-
-Remark. The first words are older than this position.
-
-The neighborhood of a point (x,y,z) is a ball or a sphere with a radius r or \epsilon. The bowl or ball is complete, with inner points, the sphere just is the border of the ball. The bowl has the formula $B_{r}{ (x,y,z) : x^{2} + y^{2} + z^{2} <= r }$ and the sphere collects all points around with the radius of one $B_{r}(\vec{v}) :={ (x,y,z) : x^{2} + y^{2} + z^{2} = r }$.\\
-
-Remark. This is under construction for the next versions.
-
-
-\subsection{Cauchy Sequences}
-
-Remark. These first words are older than this position.
-
-Convergence: $\forall \epsilon > 0 \exists n_{0} \in N : \forall n \geq n_{0} \|u_{n}-u\| < \epsilon$ For every epsilon greater than 0 exists some starting point $n_{0}$ from which on the sequence items for any n greater than $n_{0}$ come closer together on each step. Means, the distance is getting smaller and smaller until the sequence converges to a point and the distance goes to zero.\\
-
-A simpler proof is to show, that a converging sequence from $\mathbb{R}^{3}$ also converges, when being transformed to $\mathbb{R}^{2}$. \\
-
-
-In three dimensions, all components of the sequence have to converge. It depends on your sequence, whether it returns a vector or is build by three sequences. Anyways, $(\vec{u}_{n})_{n \in \mathbb{N}^{+} }$ has to follow the ordinary rules, that $\lim_{n\rightarrow\infty}(\vec{u}_{n}) = \vec{v}$, or short, the sequence has to converge against the limit. $(\vec{u}_{n}) \rightarrow \vec{v}$
-
-
-Remark. I have now to show, that the distance shrinks under epsilon and goes to zero, while the sequence goes to some point in space.
-Together with the transformation in use on the resulting vector of the sequence. What will happen, seems to be obvious, but it is the must, to show.
-
-
-Remark. This is under construction for the next Versions.
-
-
 \section{Corollaries}
 
 \subsection{Converting four Dimensions down to two dimensions}\\
@@ -864,17 +736,6 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right
 \end{displaymath}
 
 
-\subsection{Orthogonality in the 2x3 matrix}
-
-\textbf{Remark. This is an assumption. Proof follows.}
-
-I think this is more about the right angle in the two dimensions and the linear combination of the three input values, once for each direction of the right angle here. It is still the 3-D on 2-D coordinate system with image and it should do exactly that.\\
-
-Probably already found. 2-D (in each column, the two rows) mapping orthogonal, 3-D is linear (three moves left-right, three up-down) in the 2x3. In the 3x2 case the converse. Do never forget, that cos and sin are $\perp$ and form a right angle. TODO.\\
-
-I mean. In each of the three column vectors, the map to the plane is defined by orthogonality of the two rows. Even if we change
-from the perpendicular sine and cosine to some weird numbers, it would be interpreted as x and y and depend on the base used in the R2.\\
-
 
 
 
@@ -931,7 +792,173 @@ Remark. This doesnt contain the right info. I should use basis and coordinate ax
 
 \appendix
 
-\section{Deconstructing and proving the 2x3 basis }
+
+
+\section{Temporarily moved down MORE TODO}
+
+
+
+\subsection{Neighborhood} 
+
+\subsection{Convex sets}
+Remark. The first words are older than this position.
+
+The neighborhood of a point (x,y,z) is a ball or a sphere with a radius r or \epsilon. The ball is complete, with inner points, the sphere just is the border of the ball. The ball got the formula $B_{r}{ (x,y,z) : x^{2} + y^{2} + z^{2} <= r }$ and the sphere collects all points around with the radius of one $B_{r}(\vec{v}) :={ (x,y,z) : x^{2} + y^{2} + z^{2} = r }$.\\
+
+Remark. This is under construction for the next versions.
+
+
+Remark. Edward is new to convex sets. 
+
+Convex sets contain the distance beetween two points inside the set. That means, that the direct way from a to be is not crossing the borders of the set. This can be imagined with real borders of a set. A round set, or a rectangle have all points inside together with their path. A star for example, where you have two points at two of the tips is not convex, the direct path, the straight line would cross the border of the star, leave the star, and reenter the star. There is a formula, which gives the points on the path.
+
+\begin{displaymath}
+u = \lambda\vec{x} + (1-\lambda)\vec{y}, \lambda \in [0,1], x,y \in V \implies u \in V
+\end{displaymath}
+
+The factor lambda lies beetween 0 and 1. If $\lambda = 0.1$ then is $(1-\lambda) = 0.9$, if $\lambda = 0.2$ then is $(1-\lambda) = 0.8$ and so on. The result is lying on the straight line of $\vec{x} + \vec{y}$. I have taken two vectors $\vec{x}, \vec{y} \in R^2$ and drawn them. The points lie on the line beetween the two points. Be careful not to mismatch the line with another, if it´s going for example if both vectors are on one line from the origin
+
+Remark. Edward is new to convexity.
+
+There is an inequality, which convex functions have to satisfy.
+
+\begin{displaymath}
+\|\lambda\vec{x} + (1-\lambda)\vec{y}\| \leq \lambda\|\vec{x}\| + (1-\lamda)\|\vec{y}\|
+\end{displaymath}
+
+or what expresses, that a function is convex.
+
+\begin{displaymath}
+f(\lambda\vec{x} + (1-\lambda)\vec{y}) \leq \lambda f(\vec{x}) + (1-\lamda)f(\vec{y})
+\end{displaymath}
+
+Our image is very precise, because we designed a real coordinate system. What is happening to our new vector? 
+
+Remark. Edward is new to mathematics.
+
+\begin{displaymath}
+\lambda\boldsymbol{A}\vec{x} + (1-\lambda)\boldsymbol{A}\vec{y} = \boldsymbol{A}(\lambda\vec{x} + (1-\lambda)\vec{y})
+\end{displaymath}
+
+By the rule of linearity.
+
+Remark. To be studied within the next days. One of the main theorems of fa is dealing with the convex sets. And the formula is ubiquitous like the sums of vector products. It makes sense to test this completly. 
+
+\subsection{Cauchy Sequences and Convergence}
+
+Remark. These first words are older than this position.
+
+Convergence: $\forall \epsilon > 0 \exists n_{0} \in N : \forall n \geq n_{0} \|u_{n}-u\| < \epsilon$ For every epsilon greater than 0 exists some starting point $n_{0}$ from which on the sequence items for any n greater than $n_{0}$ come closer together on each step. Means, the distance is getting smaller and smaller until the sequence converges to a point and the distance goes to zero.\\
+
+A simpler proof is to show, that a converging sequence from $\mathbb{R}^{3}$ also converges, when being transformed to $\mathbb{R}^{2}$. \\
+
+
+In three dimensions, all components of the sequence have to converge. It depends on your sequence, whether it returns a vector or is build by three sequences. Anyways, $(\vec{u}_{n})_{n \in \mathbb{N}^{+} }$ has to follow the ordinary rules, that $\lim_{n\rightarrow\infty}(\vec{u}_{n}) = \vec{v}$, or short, the sequence has to converge against the limit. $(\vec{u}_{n}) \rightarrow \vec{v}$
+
+
+Remark. I have now to show, that the distance shrinks under epsilon and goes to zero, while the sequence goes to some point in space.
+Together with the transformation in use on the resulting vector of the sequence. What will happen, seems to be obvious, but it is the must, to show.
+
+
+Remark. This is under construction for the next Versions.
+
+\subsection{Orthogonality in the 2x3 matrix}
+
+Remark. This is my note, just a few days old. I am sorry for the crap inside the document. Ok. Its a dev version. I said that. But my first words about the right angle of the xy plane, for whose two axes the three inputs are combined to one final position, are stumbled a little.
+
+I think this is more about the right angle in the two dimensions and the linear combination of the three input values, once for each direction of the right angle here. It is still the 3-D on 2-D coordinate system with image and it should do exactly that.\\
+
+Probably already found. 2-D (in each column, the two rows) mapping orthogonal, 3-D is linear (three moves left-right, three up-down) in the 2x3. In the 3x2 case the converse. Do never forget, that cos and sin are $\perp$ and form a right angle. TODO.\\
+
+I mean. In each of the three column vectors, the map to the plane is defined by orthogonality of the two rows. Even if we change
+from the perpendicular sine and cosine to some weird nbers, it would be interpreted as x and y and depend on the base used in the R2.\\
+
+Funny Remark. For the advanced mathematician. Seeing cross products, euler doing cross formulas, is it some idea, to take three 2x2 matrices, to cross them over, maybe restore the xy dimensions correctly and take the third one over the difference of the two?
+Maybe this is easier, to take z from the mix with x and from the mix with y. And if it can not be decided, because of the point being covered by more than one position (where these algebra classes land on the same value)?
+And if the last one can not be decided, is this an application for probability, to get this document full over the months?
+
+
+\subsection{Algebra and related}
+
+The last section is also the last i come to to study it for this article. Algebra.
+It is possible, that the section moves, but first i have to complete my research.
+
+\subsubsection{Ordered sets}
+
+The relation $\leq$ makes it possible to compare elements.
+
+\subsubsection{K-Vectorspace}
+
+The euclidean space is a K-Vectorspace.
+
+Remark.
+
+\subsubsection{Topology}
+
+I am looking topology up in my lecture scripts very often and have a raw collection, of what can be applied here.
+
+\subsubsection{Quotient rooms}
+
+Taking away the z coordinate and setting it to zero shows us a parallel projection of the xy plane.
+
+This is a quotient room of the three dimensional room. Written V/W. A quotient room collapses a dimension or more.
+
+Inside of the topic. Equivalenceclasses are written in Brackets. They have properties like [v]+[w]=[v+w].
+
+I recently got into the topic and am learning more about. This section can be updated in the near future.
+
+\subsection{Differentiability of the function version}
+
+Remark. This is under construction.
+
+\subsubsection{Derivatives of $\vec{f}(\vec{x}) : V \rightarrow W$ }
+
+Again we begin with $\vec{f}(\vec{x}) : V \subseteq \mathbb{R}^{3} \rightarrow W \subseteq \mathbb{R}^{2}$.
+
+\begin{displaymath}
+\vec{f}(\vec{x}) := \left(\begin{array}{1}\vec{x}_{1}r_x\cos\varphi_x + \vec{x}_{2}r_y\cos\varphi_y + \vec{x}_{3}r_z\cos\varphi_z\\
+\vec{x}_{1}r_x\sin\varphi_x + \vec{x}_{2}r_y\sin\varphi_y + \vec{x}_{3}r_z\sin\varphi_z\end{array}\right)
+\end{displaymath}
+
+The first derivatives after the vector are the following by using the product rule and partial differentiation. 
+The scalar component of the input is gone, because the derivative is $1$ and the other summand of the derived product is zero, because the cosine or sine function are treated like either like a constant or like a function and become zero because there is the wrong variable to differentiate in the angle.\\
+
+The derivatives of the angles are not taken. But it seems to be obvious, that the sin and cosine would be rotating around by 90 degrees each time the derivative of the derivative with respect to the angle is taken.\\
+
+\begin{center}
+\begin{displaymath}
+\partial_{1}(\vec{f}(\vec{x})) = \vec{e}_{x}\\
+\partial_{2}(\vec{f}(\vec{x})) = \vec{e}_{y}\\
+\partial_{3}(\vec{f}(\vec{x})) = \vec{e}_{z}\\
+\end{displaymath}
+\end{center}
+
+The second derivatives are already zero, because the returned vectors are constants with respect to the taken input variable.\
+
+\begin{center}
+\begin{displaymath}
+\partial_{1}^{2}(\vec{f}(\vec{x})) = 0\\
+\partial_{2}^{2}(\vec{f}(\vec{x})) = 0\\
+\partial_{3}^{2}(\vec{f}(\vec{x})) = 0\\
+\end{displaymath}
+\end{center}
+
+Conclusion. The first derivative represents the axis vector. The 
+
+
+\subsubsection{Integration}
+
+I think here it is time for the Lebesgue Integral.\\
+
+But it mustnt be the only.\\
+
+Since the function is continuous, it is possible to measure the objects, and to integrate over the surfaces, or to get some volumes together.\\
+
+Remark. More TODO.
+
+
+
+\section{Deconstructing and proving the 2x3 basis or not}
 
 \subsection{2x3 standard basis}
 
@@ -1023,7 +1050,9 @@ Secondly, we substitute the cosine and sine terms with simple letters. Sine, cos
 
 Remark. I think, this can be also done with Gram-Schmidt. Gram-Schmidt is an iterative process, to reduce the first vector, then with the information the second and so on. But i have not tried it since my first excercise with. \\
 
-\subsection{Lefthands and righthands}
+Remark II. Underways i broke my head a few times. The periodic function can be modeled with modulo operations, some algebraic definition of.
+
+\subsection{Lefthanded and righthanded system}
 
 Without calculating them, but concluding them from the existing, i get the following matrices, which look like bases, containing only zeros and ones.
 
@@ -1107,7 +1136,26 @@ You write a new vector $x\vec{i}-y\vec{j}+z\vec{k}$ (pay attention to the minus)
     \vec{a} \times \vec{b} = (a_{2}b_{3}-a_{3}b_{2})\vec{i} - (a_{1}b_{3}-a_{3}b_{1})\vec{j} + (a_{1}_b{2}-a{2}b_{1})\vec{k} = \vec{c}
 \end{displaymath}
 
-If the cross product does not yield a new vector, but the \vec{0} zero vector, the two vectors are not on the same plane.
+If the cross product does not yield a new vector, but the \vec{0} zero vector, the two vectors are not on the same plane.\\
+
+First i could not make out, what to proof now. But i can orient myself with \cite{Corral1}. The proof works like this: You have to prove, that $(v \times w) \cdot v = 0$, so that $(v \times w) \perp w$ and that $(v \times w) \cdot w = 0$ and also $(v \times w) \perp w$. I will calculate this alone, without looking again. Just calculate out the cross product and multiply with the components of the one vector you dot. After rearranging the terms, the result must be zero.\\
+
+\begin{displaymath}
+\left(\begin{vmatrix}
+a_2 & a_3 \\
+b_2 & b_3 
+\end{vmatrix} \vec{i} - \begin{vmatrix}a_1 & a_3\\ b_1 & b_3\end{vmatrix} \vec{j} + \begin{vmatrix}a_1 & a_2\\b_1 & b_2\end{vmatrix} \vec{k}\right) \cdot \left(\vec{a}_{1}\vec{i} + \vec{a}_{2}\vec{j} + \vec{a}_{3}\vec{k}\right) =\nolimits^{?} 0
+\end{displaymath}
+
+and
+
+\begin{displaymath}
+\left(\begin{vmatrix}
+a_2 & a_3 \\
+b_2 & b_3 
+\end{vmatrix} \vec{i} - \begin{vmatrix}a_1 & a_3\\ b_1 & b_3\end{vmatrix} \vec{j} + \begin{vmatrix}a_1 & a_2\\b_1 & b_2\end{vmatrix} \vec{k}\right) \cdot \left(\vec{b}_{1}\vec{i} + \vec{b}_{2}\vec{j} + \vec{b}_{3}\vec{k}\right) =\nolimits^{?} 0
+\end{displaymath}
+
 
 \subsection{Normal vectors}
 
@@ -1222,7 +1270,6 @@ Column wise. Sum up each column vector, and return the largest. This is the colu
 \|A\|_{column} = \max_{j=1..n} { \sum_{i=1} |A_{i}j| }
 \end{displaymath}
 
-
 \subsubsection{Operator norms}
 
 The operatornorm is a dependent norm. It depends on the currently used norm. 
@@ -1240,8 +1287,7 @@ Remark. This is by heart. But i sure i am not through with using it correctly.
 2(\|v\|^{2} + \|w\|^{2}) = \|v+w\|^{2}+\|v-w\|^{2}
 \end{displaymath}
 
-This equation says, that the square sum of the parallelogram equals the square sum of the four sides.\footnote{This is a direct translated cite from a lecture script. http://pages.math.tu-berlin.de/~ferus/skripten.html from Lineare Algebra I.}\\
-
+This equation says, that the square sum of the parallelogram equals the square sum of the four sides.\footnote{This is a direct translated citation from a lecture script. http://pages.math.tu-berlin.de/~ferus/skripten.html from Lineare Algebra I.}\\
 
 \textbf{Proof}:
 \begin{displaymath}
@@ -1453,7 +1499,7 @@ y = k_yx*u + v      + k_yz*w;
 z = k_zx*u + k_zy*v + w;
 \end{lstlisting}
 
-\subsection{Local 3x3 basis}
+\subsection{Local 3x3 basis for change of units and per object rotation}
 
 If you wish to introduce different units for different directions, you have to apply a local basis, if the picture is moving angular. Applying the local 3x3
 basis to an object makes sure, it will be rotatable, but without side effects. If you would change the units of r on the projection, then the rotation will give unrealistic results, since suddenly the object stretches to an unexpected size, when entering the zone. \\
