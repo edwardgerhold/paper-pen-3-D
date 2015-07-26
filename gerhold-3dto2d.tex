@@ -596,6 +596,27 @@ let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 \end{figure}
 
 
+\section{Main estimation}
+
+The absolute value of the transformed is less or equal to the originals absolute value.\\
+
+\begin{displaymath}
+(\|\boldsymbol{A}\vec{v}\| = \|x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}\| = \|\vec{f}(\vec{v})\|) \leq \|\vec{v}\| \mbox{ if there is no manipulation of the unit length or both 3-D and 2-D have equal unit length.} 
+\end{displaymath}
+
+Again. No matter, with which tool we transform it.\\
+
+\begin{center}
+$\|\boldsymbol{A}\vec{v}\| \leq \|\vec{v}\|$\\
+
+$\|x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}\| \leq \|\vec{v}\|$\\ 
+
+$\|\vec{f}(\vec{v})\| \leq \|\vec{v}\|$\\
+\end{center}
+
+Proof follows.\\
+
+As well as more meaningful estimations.\\
 
 \section{Important proofs of the transformation behaviour}
 
@@ -860,26 +881,20 @@ $(\boldsymbol{A}v_{n}) = \boldsymbol{A}(v_{n})$\\
 $\boldsymbol{A}(v_{n})} \rightarrow \boldsymbol{A}\vec{v}$
 \end{center}
 
-Doesnt this also imply that the matrix times the limit yields the right values?
+Doesnt this also imply that the matrix times the limit yields the right values?\\
 
 \begin{center}
-\boldsymbol{A}\lim_{n\rightarrow\infty} (v_{n}) = \boldsymbol{A}\vec{w} = \vec{w}
+$\boldsymbol{A}\lim_{n\rightarrow\infty} (v_{n}) = \boldsymbol{A}\vec{v} = \vec{w}$
 \end{center}
-
 
 So we got to show, that there is a $n_{0}$ and that some series converges.\\
 
 Let there be some sequence $(\boldsymbol{A}v_{n})_{n\in\mathbb{N}^{+}}$.
-We start at $n=1$ and when  there is some $n_{0}$ than the distance must shrink under epsilon and finally go to zero.
+We start at $n=1$ and when   when the distance shrinks under epsilon, there is some $n_{0}$. The distance continues to shrink and will finally go to zero.
 
 \begin{center}
 $\|\boldsymbol{A}v_{n} - \boldsymbol{A}v_{m}\| \leq \epsilon,  \forall m,n > n_{0}$
 \end{center}
-
-
-
-
-
 
 \section{Summary}
 
@@ -1509,9 +1524,7 @@ Remark. I would like to post a picture of the handwritten page with the abstract
 Remark. The stuff possibly moves. 
 
 A 2x2 determinant and inverse have the following formulas.
-
 A 3x3 determinant and inverse have the following formulas.
-
 
 Remark. I thought about creating three crossover 2x2 matrices from the original and to invert them, to look if we can puzzle the right information back together. But it will take more days, by time i have and can give until i get to.
 
@@ -1521,6 +1534,8 @@ TODO\\
 \subsection{The pseudo-inverse \boldsymbol{A}^{+} and least squares}
 
 In a lecture script about numerical linear algebra i found the formulas for the pseudo inverses.\\
+
+Remark. In \cite{Strang1} there is a whole chapter about least squares. 
 
 For a m by n matrix with m < n it is $A^T(AA^{T})^{-1}$\\
 
@@ -1533,6 +1548,10 @@ enough information to restore the data. How far you can span up the z dimension 
 here.
 
 TODO\\
+
+\section{Computer Error Estimation}
+
+TODO
 
 \section{An alternative graphics algorithm}
 
