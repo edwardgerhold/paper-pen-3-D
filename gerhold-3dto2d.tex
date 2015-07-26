@@ -17,10 +17,10 @@
 \maketitle
 
 
-Version 0.3.6-unstable-parts-or-many-todo-parts-raised\\
+Version 0.3.7\\
 
-\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX ever.
-Status. Moved the chaotic stuff into the appendix. It is now the chaotic appendix and the current version is not as nice as earlier and cleaner ones. The good news are, the next versions will not be about expanding the topic anymore. 
+\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX().\\ \emph{There must be a new emphasizement made on the normed vector space and some other points throughout the text. I will change it carefully over the next days.
+
 }\\
 
 
@@ -347,12 +347,11 @@ Right, this small formula brings over the $\mathbb{R}^{2\times{3}}$ the unexpect
 It is almost time to finish the matrix and to go through a set of points to draw the new set of resulting points.
 For this i close the explaining chapters and come to the part of the formal mathematical definitions.\\
 
+\textbf{Remark.} \LaTeX and i are new to each other. For the theorems, proofs, defintions, corollaries, examples there is the possibility of a personal layout.\\
 
-\textbf{Remark.} \LaTeX and i are new to each other. For the theorems, proofs, defintions, corrolaries, examples there is the possibility of a personal layout.\\
+\section{The $\mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$ through $\mathbb{R}^{2\times{3}}$ transformation}
 
-\section{The $\mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$ through $\mathbb{R}^{2\times{3}}$ transformation theorem}
 
-gi
 Let $V$ be the set of all points $(x,y,z) \in V \subseteq R^3$ which are about to become transformed. $V := \{ \vec{v}=(x,y,z)^T | x,y,z \in \mathbb{R}, \vec{v} \in V \subseteq \mathbb{R}^{3} \}$.
 Let $W$ be the set of all points $(x',y') \in W \subseteq R^2$ which are the result of the transformation $W ;= \{ \vec{w}=(x',y')^T | \vec{w} \in W \subseteq \mathbb{R}^{2} x',y' \in \mathbb{R}, \boldsymbol{A}\vec{v}=(x',y')\}$.\\
 
@@ -407,7 +406,7 @@ The operator lives itself in L(V,W). L(V,W) contains all linear operators from V
 
 
 \index{Theorem}
-\newtheorem{Theorem}{Theorem (My fundamental theorem of transforming 3-D Points into 2-D Points)}
+\newtheorem{Theorem}{My fundamental theorem of transforming 3-D Points into 2-D Points (Matrix)}
 \begin{Theorem}\\
 \label{Theorem}
 
@@ -442,15 +441,16 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 
 \subsection{Vectorbasis version }
 
-Remark. Under construction.
-
 \begin{displaymath}
 \vec{w} = \sum_{i=1}^{n}\vec{v}_{i}\vec{e}_{i}
 \end{displaymath}
 
-If you multiply the three-d vectors a linear dependet set of three two dimensional vectors, which represent the three coordinate axes on the plane with the formula of the Hamel-Basis, the resulting two dimensional vectors are the correct points on the plane.
+\newtheorem{VectorBasisVersion}{My fundamental theorem of transforming 3-D points into 2-D points (Vectorbasis)}
+\begin{VectorBasisVersion}
+If you multiply the three linear dependent two dimensional vectors with the three dimensional coordinates, they are mapped correctly onto the two dimensional coordinate system.
+\end{VectorBasisVersion}
 
-Remark. A Hamel-Basis requires a linearly independent set of basis vectors, which we can not provide, due to the dimension change. I am still thinking about the right explainings. 
+Remark. A Hamel-Basis requires a linearly independent set of basis vectors. Which we can not provide. We change the dimension.
 
 \begin{displaymath}
 \vec{v} = (x,y,z)^{T}
@@ -466,12 +466,21 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 
 TODO. 
 
+\newtheorem{VectorBasisBrokenLaw}{Breaking the rule of linear independence to map from 3-D to 2-D}
+\begin{VectorBasisBrokenLaw}
+To transfer the points from 3-D to 2-D with the same formula, as mapping ordinary points with a vector basis into 
+the corresponding coordinate system, it is o.k., to remove the third dimension from the basis and to multiply the
+3-D coordinates with three 2-D vectors to get a correct mapping onto the projection plane.
+\end{VectorBasisBrokenLaw}
+
+Remark. Formulation needs overworking.
 
 \subsection{Function version}
 
 The first days, i could not see the forest, because of all these trees. 
 The operation can be written as function, or as part of a composition of functions.
-A big gain for this point transformation is the easy use to create surface plots and other functional graphs.\\
+A big gain for this point by point transformation is the easy usability. For example, 
+to create surface plots and other functional graphs from three dimensional space on a flat screen or printed paper.\\
 
 \subsubsection{The functional $f(\vec{x})$}
 
@@ -484,6 +493,12 @@ $f(\vec{x})$ is mapping the three dimensional coordinates onto our designed coor
 f(\vec{x}) := \left(\begin{array}{1}\vec{x}_{1}r_x\cos\varphi_x + \vec{x}_{2}r_y\cos\varphi_y + \vec{x}_{3}r_z\cos\varphi_z\\
 \vec{x}_{1}r_x\sin\varphi_x + \vec{x}_{2}r_y\sin\varphi_y + \vec{x}_{3}r_z\sin\varphi_z\end{array}\right)
 \end{displaymath}
+
+
+\newtheorem{FunctionalVersion}{My fundamental theorem of transforming 3-D points into 2-D points (Functional))}
+\begin{FunctionalVersion}
+\end{FunctionalVersion}
+
 
 \subsubsection{Composition of the functions $f \circ g$}
 
@@ -534,7 +549,7 @@ $f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$\\
 \end{center}
 
 
-\subsection{Computer implementations, left away the matrix, of the transformation}
+\subsection{Computer implementations of the transformation}
 \subsubsection{Generic computer code}
 
 This should be in a border box.
@@ -777,13 +792,13 @@ $\partial_{2}^{2}(\vec{f}(\vec{x})) = 0$\\
 $\partial_{3}^{2}(\vec{f}(\vec{x})) = 0$\\
 \end{center}
 
-Conclusion. The first derivative represents the axis vector. The gradient gives us the complete coordinate system. If we use the gradient then in another composition, we can apply the mapping again. 
+Conclusion. The first derivative represents the axis vector. The gradient gives us the complete coordinate system. If we use the gradient then in another composition (with matrix vector multiplication with a three coordinate vector), we can apply the mapping again. \\
 
 \begin{center}
 $\nabla\vec{f} := \left(\begin{array}{1}\vec{e}_{x}\\\vec{e}_{y}\\\vec{e}_{z}\\\end{array}\right) = \boldsymbol{A}^{T} $
 \end{center}
 
-Looks like we have to transpose the row vector again. Because the gradient seems to be the same as the 3 by 2 matrix $A^{T}$ and not like our original coordinate system.
+Looks like we have to transpose the row vector again. Because the gradient seems to be the same as the 3 by 2 matrix $A^{T}$ and not like our original coordinate system.\\
 
 \begin{center}
 $(\nabla\vec{f})^{T} := \begin{pmatrix}\vec{e}_{x} & \vec{e}_{y} &\vec{e}_{z}\\\end{pmatrix} = \boldsymbol{A} $
@@ -796,6 +811,70 @@ $(\nabla\vec{f})^{T} \Leftrightarrow \boldsymbol{J}(\vec{f}(\vec{x})) := \begin{
 \end{center}
 
 The transposed gradient of the vector function $\vec{f}(\vec{x}) : V \rightarrow W$ is the Jacobi Matrix, which is equal to the matrix, i discussed already. This possible makes another re-ordering neccessary. But first look yourself.\\
+
+\section{Cauchy Sequences and Convergence}
+
+Convergence means, that a sequence comes step by step closer together, until the sequence items come so close together, that the distance goes to zero. The sequence itself gets closer and closer to the point. When the n goes to infinity, the distance goes to zero.\\
+
+For myself, i imagine it is like it is going the path of $1,\bar{9}$ and said to converge against $2$.\\
+
+\begin{center}
+$\forall \epsilon > 0 : \exists n_{0} \in \mathbb{N} : \forall n \geq n_{0} : \|v_{m}-v_{n}\| \less \epsilon$
+\end{center}
+
+For every $\epsilon$ greater than 0 exists some index $n_{0}$ of the sequence. Which has not to be the first index because of the zero,
+but is the first n, where the distance of the sequence vector compared to the former sequence vector is smaller than our epsilon value.\\
+
+The limit goes to some value, if the series converges.\\
+
+\begin{center}
+$\lim\nolimits_{n\rightarrow\infty} v_{n} \rightarrow \vec{v}$\\
+\end{center}
+
+The norm or the distance goes to zero, after going under epsilon at some point $n_{0}$.
+
+\begin{center}
+$\|v_{n}-v_{m}\| = d(v_{n}-v_{m}) \rightarrow 0$
+\end{center}
+
+
+In three dimensions, all vector components of the sequence have to converge to some value. It depends on your sequence, whether it returns one vector with three components or is a vector build by three sequences.\\
+
+ Anyways, $(\vec{v}_{n})_{n \in \mathbb{N}^{+} }$ has to follow the ordinary rules, that $\lim_{n\rightarrow\infty}(\vec{v}_{n}) = \vec{v}$. In shorthand, the sequence has to converge against the limit $\lim_{n\rightarrow\infty}v_{n}\rightarrow\vec{v}$. Or even shorter, that $(\vec{v}_{n}) \rightarrow \vec{v}$\\
+
+For my 3-D to 2-D transformation, the following propositions are made by me.\\
+
+First. If the sequence $(v_{n})$ converges to $\vec{v}$. Then $(\boldsymbol{A}\vec{v})$ converges to $\boldsymbol{A}\v$.\\
+
+\begin{center}
+$(v_{n})_{n\in\mathbb{N}^{+}} \rightarrow \vec{v}$\\
+$(\boldsymbol{A}v_{n})_{n\in\mathbb{N}^{+}} \rightarrow \boldsymbol{A}\vec{v}$
+\end{center}
+
+Second. It is better to put the matrix outside of the parens, if you let a computer calculate this.\\
+
+For the proof it is maybe neccessary, to put the $\boldsymbol{A}$ back into the parens. But ractically i would like to know the rule and then take the smallest calculation.\\
+
+\begin{center}
+$(\boldsymbol{A}v_{n}) = \boldsymbol{A}(v_{n})$\\
+$\boldsymbol{A}(v_{n})} \rightarrow \boldsymbol{A}\vec{v}$
+\end{center}
+
+Doesnt this also imply that the matrix times the limit yields the right values?
+
+\begin{center}
+\boldsymbol{A}\lim_{n\rightarrow\infty} (v_{n}) = \boldsymbol{A}\vec{w} = \vec{w}
+\end{center}
+
+
+So we got to show, that there is a $n_{0}$ and that some series converges.\\
+
+Let there be some sequence $(\boldsymbol{A}v_{n})_{n\in\mathbb{N}^{+}}$.
+We start at $n=1$ and when  there is some $n_{0}$ than the distance must shrink under epsilon and finally go to zero.
+
+\begin{center}
+$\|\boldsymbol{A}v_{n} - \boldsymbol{A}v_{m}\| \leq \epsilon,  \forall m,n > n_{0}$
+\end{center}
 
 
 
@@ -860,38 +939,40 @@ Remark. This doesnt contain the right info. I should use basis and coordinate ax
 
 
 
-\subsection{Neighborhood} 
+\subsection{Neighborhood } 
 
-
-Remark. The first words are older than this position.
+Remark. This should come together with topology. With metrics and distance. Maybe i can move the metric stuff from downwards up to this.
 
 The neighborhood of a point (x,y,z) is a ball or a sphere with a radius r. The ball has inner points, the sphere just is the border of the ball. The ball got the formula $B_{r}{ (x,y,z) : x^{2} + y^{2} + z^{2} <= r }$ and the sphere collects all points around with the radius of one $B_{r}(\vec{v}) :={ (x,y,z) : x^{2} + y^{2} + z^{2} = r }$.\\
 
-Remark. This is under construction for the next versions.
+
+
+
 
 \subsection{Convex sets}
 
-Remark. Edward is new to convex sets. 
-
-Convex sets contain the distance beetween two points inside the set. That means, that the direct way from a to be is not crossing the borders of the set. This can be imagined with real borders of a set. A round set, or a rectangle have all points inside together with their path. A star for example, where you have two points at two of the tips is not convex, the direct path, the straight line would cross the border of the star, leave the star, and reenter the star. There is a formula, which gives the points on the path.
+Convex sets contain the path beetween two points inside the set. That means, that the direct way from a to be is not crossing the borders of the set. This can be imagined with real borders of a set. A round set, or a rectangle have all points inside together with their path. A star for example, where you have two points at two of the tips is not convex, the direct path, the straight line would cross the border of the star, leave the star, and reenter the star. There is a formula, which gives the points on the path.
 
 \begin{displaymath}
 u = \lambda\vec{x} + (1-\lambda)\vec{y}, \lambda \in [0,1], x,y \in V \implies u \in V
 \end{displaymath}
 
-The factor lambda lies beetween 0 and 1. If $\lambda = 0.1$ then is $(1-\lambda) = 0.9$, if $\lambda = 0.2$ then is $(1-\lambda) = 0.8$ and so on. The result is lying on the straight line beetween $\vec{x}$ and $\vec{y}$. I have taken two vectors $\vec{x}, \vec{y} \in R^2$ and drawn them. The points lie on the line beetween the two points. Be careful not to mismatch the line with another, if it´s going for example if both vectors are on one line from the origin
+The factor lambda lies beetween 0 and 1. If $\lambda = 0.1$ then is $(1-\lambda) = 0.9$, if $\lambda = 0.2$ then is $(1-\lambda) = 0.8$ and so on. The result is lying on the straight line beetween $\vec{x}$ and $\vec{y}$. I have taken two vectors $\vec{x}, \vec{y} \in R^2$ and drawn them. The points lie on the line beetween the two points.
 
-There is an inequality, which convex functions have to satisfy.
+There is an inequality, which convex functions have to satisfy. And you may know it. It is the \emph{triangle inequality}
 
 \begin{displaymath}
 \|\lambda\vec{x} + (1-\lambda)\vec{y}\| \leq \lambda\|\vec{x}\| + (1-\lamda)\|\vec{y}\|
 \end{displaymath}
+
 
 or what expresses, that a function is convex.
 
 \begin{displaymath}
 f(\lambda\vec{x} + (1-\lambda)\vec{y}) \leq \lambda f(\vec{x}) + (1-\lamda)f(\vec{y})
 \end{displaymath}
+
+What is again the \emph{triangle inequality}.
 
 Our image is very precise, because we designed a real coordinate system. What is happening to our new vector? 
 
@@ -901,23 +982,8 @@ Our image is very precise, because we designed a real coordinate system. What is
 
 By the rule of linearity.
 
-Remark. To be studied within the next days. One of the main theorems of fa is dealing with the convex sets. And the formula is ubiquitous like the sums of vector products. It makes sense to test this completly. 
+Remark. To be studied within the next days. 
 
-\subsection{Cauchy Sequences and Convergence}
-
-Convergence: $\forall \epsilon > 0 \exists n_{0} \in N : \forall n \geq n_{0} \|u_{n}-u\| < \epsilon$ For every epsilon greater than 0 exists some starting point $n_{0}$ from which on the sequence items for any n greater than $n_{0}$ come closer together on each step. Means, the distance is getting smaller and smaller until the sequence converges to a point and the distance goes to zero.\\
-
-A simpler proof is to show, that a converging sequence from $\mathbb{R}^{3}$ also converges, when being transformed to $\mathbb{R}^{2}$. \\
-
-
-In three dimensions, all components of the sequence have to converge. It depends on your sequence, whether it returns a vector or is build by three sequences. Anyways, $(\vec{u}_{n})_{n \in \mathbb{N}^{+} }$ has to follow the ordinary rules, that $\lim_{n\rightarrow\infty}(\vec{u}_{n}) = \vec{v}$, or short, the sequence has to converge against the limit. $(\vec{u}_{n}) \rightarrow \vec{v}$
-
-
-Remark. I have now to show, that the distance shrinks under epsilon and goes to zero, while the sequence goes to some point in space.
-Together with the transformation in use on the resulting vector of the sequence. What will happen, seems to be obvious, but it is the must, to show.
-
-
-Remark. This is under construction for the next Versions.
 
 \subsection{Orthogonality in the 2x3 matrix}
 
@@ -935,15 +1001,17 @@ Maybe this is easier, to take z from the mix with x and from the mix with y. And
 And if the last one can not be decided, is this an application for probability, to get this document full over the months?
 
 
-\subsection{Algebra and related}
+\subsection{Algebra}
 
-The last section is also the last i come to to study it for this article. Algebra.
-It is possible, that the section moves, but first i have to complete my research.
+TODO
 
+\subsubsection{K-Vectorspace}
 
-\subsubsection{K-Vectorspace and Modulns}
+Move to the beginning. But do not change emphasizement on the design of the coordinate system on the plane.
 
 The euclidean space is a K-Vectorspace.
+
+TODO
 
 \subsubsection{Quotient rooms}
 
@@ -955,15 +1023,13 @@ Inside of the topic. Equivalenceclasses are written in Brackets. They have prope
 
 I recently got into the topic and am learning more about. This section can be updated in some hours.\\
 
-\subsection{Differentiability of the function version}
 
-\subsubsection{Integration}
+\subsection{Integration}
 
-Since the function is continuous, it is possible to measure the objects, and to integrate over the surfaces, to get some areas and volumes together.\\
+Since the function is continuous, it is possible to measure the objects, or to integrate over the surfaces, to get some areas and volumes together.\\
 
-Remark. More TODO.
-
-A big lack in this document is, that the estimations are not ready.\\
+\begin{displaymath}
+\end{displaymath}
 
 \section{Deconstructing and proving the 2x3 basis or not}
 
@@ -1053,17 +1119,9 @@ Secondly, we substitute the cosine and sine terms with simple letters. Sine, cos
     sin = \frac{opposite}{hypotenuse}
 \end{displaymath}
 
-\textbf{Remark}. Today i prepared this decomposition.\\
-
-Remark. I think, this can be also done with Gram-Schmidt. Gram-Schmidt is an iterative process, to reduce the first vector, then with the information the second and so on. But i have not tried it since my first excercise with. \\
-
-Remark II. Underways i broke my head a few times. The periodic function can be modeled with modulo operations, some algebraic definition of. Else the possible zeros would blow the try up. 
-
-Remark III. Here i am missing more experience in Ring Theory and related. Up to the set theory.
-
 \subsection{Lefthanded and righthanded system}
 
-Without calculating them, but concluding them from the existing, i get the following matrices, which look like bases, containing only zeros and ones.
+Without calculating them, but quick-concluding them from the existing, i get the following matrices, which look like bases, containing only zeros and ones. With the quick issue, that the length of the columns with two ones is square root of two, while zero and one has length one.\\
 
 \begin{displaymath}
     E^{\mathbb{R}^{2\times{3}}}_{lefthand} = \begin{pmatrix}1&0&1\\0&1&1\end{pmatrix}
@@ -1078,7 +1136,6 @@ Without calculating them, but concluding them from the existing, i get the follo
 
 Remark. The linearity proofs should go together with the formula in the main part about.
 
-Remark. The remainder will be reordered and is TODO.
 
 \subsection{Dot product}
 
@@ -1165,10 +1222,30 @@ b_2 & b_3
 \end{vmatrix} \vec{i} - \begin{vmatrix}a_1 & a_3\\ b_1 & b_3\end{vmatrix} \vec{j} + \begin{vmatrix}a_1 & a_2\\b_1 & b_2\end{vmatrix} \vec{k}\right) \cdot \left(\vec{b}_{1}\vec{i} + \vec{b}_{2}\vec{j} + \vec{b}_{3}\vec{k}\right) =\nolimits^{?} 0
 \end{displaymath}
 
-
 \subsection{Normal vectors}
 
-Are perpendicular to the surface and give the orientation.
+Are perpendicular to the surface, a curve or another vector and give the orientation.\\
+
+For 2-D space, the normal vector of the standard basis $\begin{pmatrix}1&0\\0&1\end{pmatrix}$ is obtained by multiplying the vector with the standard normal matrix $\begin{pmatrix}0 & -1 \\ 1 & 0\end{pmatrix}$.\\
+
+\begin{center}
+$\boldsymbol{N}_{\mathbb{R}^{2}} := \begin{pmatrix}0 & -1 \\ 1 & 0\end{pmatrix}$\\
+\end{center}
+
+You should multply the 2x3 matrix with some vector and you will get a perpendicular vector back.
+
+\begin{center}
+$\vec{n} = \boldsymbol{N}\vec{w} = \begin{pmatrix}0 & -1 \\ 1 & 0\end{pmatrix} \cdot \begin{pmatrix}a\\b\end{pmatrix} = \begin{pmatrix}-b\\a\end{pmatrix}$
+\end{center}
+
+Proof. The resulting normal vector has to be perpendicular to the source vector, so their dot product must be zero.
+
+\begin{displaymath}
+\vec{n} \cdot \vec{w} = \sum_{i=1}^{2}\vec{n}_{i}\vec{w}_i = -ab + ab = 0
+\end{displaymath}
+
+For three dimensional vectors the proof is similar, and the dot product should also return zero for a proof. A perpendicular vector is obtained by permuting the identity matrix (standard basis) and changing sign.
+
 
 \subsection{About the norm}
 
@@ -1176,9 +1253,7 @@ Are perpendicular to the surface and give the orientation.
 
 The norm is the word for the vector length. Or better, it is the multidimensional \emph{absolute value} of a vector. Remember from single variable calculus that $|-x|=x$ and $|x|=x$. The norm kind of does this with all values and puts them together.\\
 
-Remark. Please write these explanations again, Edward..
-
-The norm used is the euclidean norm, or the 2-norm. This is the square root of the sum of the squares of the absolute values of the components $\|\vec{x}\| = \sqrt{\sum_{i=1}^{n}|x_{i}|^2}$. In linear algebra, functional analysis and topology lectures there are three fundamental properties of the norm repeating. Definiteness, homogenity and the triangle inequality.\\
+Our first norm used here is the euclidean norm, also known as the 2-norm. This is taking the square root of the sum of the squares of the absolute values of the components $\|\vec{x}\| = \sqrt{\sum_{i=1}^{n}|x_{i}|^2}$. In linear algebra, functional analysis and topology lectures there are three fundamental properties of the norm repeating. Definiteness, homogenity and the triangle inequality.\\
 
 \textbf{Definitness} Show that $\|\vec{x}\| = 0 \iff \vec{x} = 0$\\
 
@@ -1236,6 +1311,7 @@ Which is
 
 Remark. When reading myself, i am sure, this last step is wrong, and the two vectors left have to be squared, too. I will calculate that again and correct then.\\
 
+(I still think i am right with this correction, and i have already written this inequality down a couple of times with different orderings.)
 
 \textbf{Cauchy-Schwarz inequality} There is another interesting inequality.
 
@@ -1257,10 +1333,9 @@ The absolute value of the dot product squared is less or equal to the product of
 \end{displaymath}
 
 
-
 \textbf{Remark} This subsection is not complete. And may contain mistakes.\\
 
-\textbf{Remark} If i am reading right, it contains really a mistake. In the middle.
+\textbf{Remark} If i am reading right, it contains really a mistake. 
 
 \subsubsection{Matrix norms}
 
@@ -1457,8 +1532,6 @@ saying, that we loose the information generally, when going from two to three di
 enough information to restore the data. How far you can span up the z dimension vector. We will see, when i get
 here.
 
-
-
 TODO\\
 
 \section{An alternative graphics algorithm}
@@ -1514,7 +1587,7 @@ If you wish to introduce different units for different directions, you have to a
 basis to an object makes sure, it will be rotatable, but without side effects. If you would change the units of r on the projection, then the rotation will give unrealistic results, since suddenly the object stretches to an unexpected size, when entering the zone. \\
 
 The matrix applied locally is a 3x3 matrix $\begin{pmatrix} xBX & yBX & zBX\\ xBY & yBY & zBY\\ xBZ & yBZ & zBZ\end{pmatrix}$.
-For example is $\begin{pmatrix} 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{pmatrix}$ is the original and orthonormal (orthogonal and unit length vectors) standard basis for the $\mathbb{R}^{3}$ and the result is the same as if you do not apply any basis to the object, as the assumed default coordinate system in $\mathbb{R}^{3}$ is orthonormal.\\
+For example is $\begin{pmatrix} 1 & 0 & 0\\ 0 & 1 & 0\\ 0 & 0 & 1\end{pmatrix}$ is the original and orthonormal (orthogonal and unit length) standard basis for the $\mathbb{R}^{3}$ and the result is the same as if you do not apply any basis to the object, as the assumed default coordinate system in $\mathbb{R}^{3}$ is orthonormal.\\
 
 \begin{lstlisting}
 u = x, v = y, w = z;
@@ -1528,7 +1601,7 @@ This of course transforms the object by the directions and the length of the thr
 \subsubsection{Creating a 3x3 basis with cross products}
 \begin{lstlisting}
 function cross(a,b) {
-    // does not multiply with ijk the components, diy
+    // does not multiply with the ijk components, diy
     return [a[1]*b[2]-a[2]*b[1],-a[0]*b[2]+a[2]*b[0],a[0]*b[1]-a[1]*b[0]];
 }
 \end{lstlisting}
