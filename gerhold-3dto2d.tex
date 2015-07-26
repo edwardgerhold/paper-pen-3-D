@@ -753,12 +753,17 @@ Again we begin with $\vec{f}(\vec{x}) : V \subseteq \mathbb{R}^{3} \rightarrow W
 The first derivatives after the vector are the following by using the product rule and partial differentiation. 
 The scalar component of the input is gone, because the derivative is $1$ and the other summand of the derived product is zero, because the cosine or sine function are treated like either like a constant or like a function and become zero because there is the wrong variable to differentiate in the angle.\\
 
+\begin{center}
+$\partial_{1}(\vec{f}_{1}(\vec{x})) = r_{x}\cos\varphi_{x}$\\
+$\partial_{2}(\vec{f}_{2}(\vec{x})) = r_{x}\sin\varphi_{x}$\\
+\end{center}
+
 The derivatives of the angles are not taken. But it seems to be obvious, that the sin and cosine would be rotating around by 90 degrees each time the derivative of the derivative with respect to the angle is taken. The slope is the vector, because the point is moving by that vector from its current position a straight line, when multiplied.\\
 
 \begin{center}
-$\partial_{1}(\vec{f}(\vec{x})) = \vec{e}_{x}$
-$\partial_{2}(\vec{f}(\vec{x})) = \vec{e}_{y}$
-$\partial_{3}(\vec{f}(\vec{x})) = \vec{e}_{z}$
+$\partial_{1}(\vec{f}(\vec{x})) = \vec{e}_{x}$\\
+$\partial_{2}(\vec{f}(\vec{x})) = \vec{e}_{y}$\\
+$\partial_{3}(\vec{f}(\vec{x})) = \vec{e}_{z}$\\
 \end{center}
 
 The second derivatives are already zero, because the returned vectors are constants with respect to the taken input variable.
@@ -781,10 +786,21 @@ $\nabla\vec{f} := \left(\begin{array}{1}\vec{e}_{x}\\\vec{e}_{y}\\\vec{e}_{z}\\\
 Looks like we have to transpose the row vector again. Because the gradient seems to be the same as the 3 by 2 matrix $A^{T}$ and not like our original coordinate system.
 
 \begin{center}
-$\nabla\vec{f}^{T} := \begin{pmatrix}\vec{e}_{x} & \vec{e}_{y} &\vec{e}_{z}\\\end{pmatrix} = \boldsymbol{A} $
+$(\nabla\vec{f})^{T} := \begin{pmatrix}\vec{e}_{x} & \vec{e}_{y} &\vec{e}_{z}\\\end{pmatrix} = \boldsymbol{A} $
 \end{center}
 
-Now we could reuse the vector of vectors (the matrix) and multiply again with coordinates. 
+Now we could reuse the vector of vectors (the matrix) and multiply again with coordinates. But before, we come to another conclusion, which i had underways, after writing down the transposed gradient, the next morning, reading a lecture script about Analysis 2 (vector calculus).
+
+\begin{center}
+$(\nabla\vec{f})^{T} \Leftrightarrow \boldsymbol{J}(\vec{f}(\vec{x})) := \begin{pmatrix}\partial_{1}f_{1} & \partial_{2}f_{1} & \partial_{3}f_{1}\\\partial_{1}f_{2} & \partial_{2}f_{2} & \partial_{3}f_{2}\end{pmatrix}$
+\end{center}
+
+The transposed gradient of the vector function $\vec{f}(\vec{x}) : V \rightarrow W$ is the Jacobi Matrix, which is equal to the matrix, i discussed already. This possible makes another re-ordering neccessary. But first look yourself.\\
+
+
+
+
+
 
 \section{Summary}
 
