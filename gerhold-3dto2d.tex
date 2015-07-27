@@ -819,15 +819,6 @@ $\partial_{3}^{2}(\vec{f}(\vec{x})) = 0$\\
 
 Conclusion. The first derivatives represent the axis vectors. The gradient gives us the complete coordinate system back, but in a different order.\\
 
-I have set up a corollary earlier (\ref{alternative_def_using_dot}), which uses the two row vectors with the three cosines and the three sines for a dot product with the coordinate each. In the order of the gradient $\nabla\vec{f}(\vec{x})$, the axis vectors are column vectors themselves. The vector $\begin{pmatrix}x'\\y'\end{pmatrix}$ is a natural result of a dot product with the them.\\
-
-\begin{center}
-$\nabla\vec{f}(\vec{x}) \cdot \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}\sum_{i=1}^{3}(\nabla\vec{f}_{1})_{i}\vec{v}_{i}\\\sum_{i=1}^{3}(\nabla\vec{f}_{2})_{i}\vec{v}_{i}\end{pmatrix} = \begin{pmatrix}x'\\y'\end{pmatrix}$
-\end{center}
-
-Which is equal to \ref{alternative_def_using_dot} and of course the formula $\vec{w} = x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}$ again. You see some natural connections beetween the basic functional, our formula, the derivatives, other formulas and our other methods which result in the same plane projection.\\
-
-
 If we use the gradient then in another composition (with matrix vector multiplication with a three coordinate vector), we can apply the mapping again. \\
 
 \begin{center}
@@ -847,6 +838,15 @@ $(\nabla\vec{f})^{T} \Leftrightarrow  \boldsymbol{A}  \Leftrightarrow \boldsymbo
 \end{center}
 
 The transposed gradient of the vector function $\vec{f}(\vec{x}) : V \rightarrow W$ is the Jacobi Matrix, which is equal to the matrix, i discussed already. This possibly makes another re-ordering neccessary. But first look yourself.\\
+
+I have set up a corollary earlier (\ref{alternative_def_using_dot}), which uses the two row vectors with the three cosines and the three sines for a dot product with the coordinate each. In the order of the gradient $\nabla\vec{f}(\vec{x})$, the axis vectors are column vectors themselves. The vector $\begin{pmatrix}x'\\y'\end{pmatrix}$ is a natural result of a dot product with the them.\\
+
+\begin{center}
+$\nabla\vec{f}(\vec{x}) \cdot \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}\sum_{i=1}^{3}(\nabla\vec{f}_{1})_{i}\vec{v}_{i}\\\sum_{i=1}^{3}(\nabla\vec{f}_{2})_{i}\vec{v}_{i}\end{pmatrix} = \begin{pmatrix}x'\\y'\end{pmatrix}$
+\end{center}
+
+Which is equal to \ref{alternative_def_using_dot} and of course the formula $\vec{w} = x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}$ again. You see some natural connections beetween the basic functional, our formula, the derivatives, other formulas and our other methods which result in the same plane projection.\\
+
 
 \section{Cauchy Sequences and Convergence}
 
