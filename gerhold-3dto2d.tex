@@ -596,27 +596,6 @@ let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 \end{figure}
 
 
-\section{Main estimation}
-
-The absolute value of the transformed is less or equal to the originals absolute value.\\
-
-\begin{displaymath}
-(\|\boldsymbol{A}\vec{v}\| = \|x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}\| = \|\vec{f}(\vec{v})\|) \leq \|\vec{v}\| \mbox{ if there is no manipulation of the unit length or both 3-D and 2-D have equal unit length.} 
-\end{displaymath}
-
-Again. No matter, with which tool we transform it.\\
-
-\begin{center}
-$\|\boldsymbol{A}\vec{v}\| \leq \|\vec{v}\|$\\
-
-$\|x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}\| \leq \|\vec{v}\|$\\ 
-
-$\|\vec{f}(\vec{v})\| \leq \|\vec{v}\|$\\
-\end{center}
-
-Proof follows.\\
-
-As well as more meaningful estimations.\\
 
 \section{Important proofs of the transformation behaviour}
 
@@ -816,10 +795,10 @@ $\partial_{3}^{2}(\vec{f}(\vec{x})) = 0$\\
 Conclusion. The first derivative represents the axis vector. The gradient gives us the complete coordinate system. If we use the gradient then in another composition (with matrix vector multiplication with a three coordinate vector), we can apply the mapping again. \\
 
 \begin{center}
-$\nabla\vec{f} := \left(\begin{array}{1}\vec{e}_{x}\\\vec{e}_{y}\\\vec{e}_{z}\\\end{array}\right) = \boldsymbol{A}^{T} $
+$\nabla\vec{f} := \left(\begin{array}{1}\vec{e}_{x}\\\vec{e}_{y}\\\vec{e}_{z}\\\end{array}\right) 
 \end{center}
 
-Looks like we have to transpose the row vector again. Because the gradient seems to be the same as the 3 by 2 matrix $A^{T}$ and not like our original coordinate system.\\
+If we transpose the column vector again, we get a row vector, which contains the three vectors of the coordinate system.
 
 \begin{center}
 $(\nabla\vec{f})^{T} := \begin{pmatrix}\vec{e}_{x} & \vec{e}_{y} &\vec{e}_{z}\\\end{pmatrix} = \boldsymbol{A} $
@@ -952,6 +931,74 @@ Remark. This doesnt contain the right info. I should use basis and coordinate ax
 
 \section{Temporarily moved down MORE TODO}
 
+
+\section{Main estimation}
+
+This section should be moved down to the Appendix, where the temporary stuff is.
+
+\subsection{Wrong proposition}
+
+The absolute value of the transformed is less or equal to the originals absolute value.\\
+
+
+\textbf{This is wrong}\\
+
+\begin{displaymath}
+(\|\boldsymbol{A}\vec{v}\| = \|x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}\| = \|\vec{f}(\vec{v})\|) \leq \|\vec{v}\| \mbox{ if there is no manipulation of the unit length or both 3-D and 2-D have equal unit length.} 
+\end{displaymath}
+
+Again. No matter, with which tool we transform it. (Again. This is wrong and will not hold.)\\
+
+\textbf{This is wrong}\\
+
+\begin{center}
+$\|\boldsymbol{A}\vec{v}\| \st \|\vec{v}\|$\\
+
+$\|x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}\| \leq \|\vec{v}\|$\\ 
+
+$\|\vec{f}(\vec{v})\| \leq \|\vec{v}\|$\\
+\end{center}
+
+\textbf{This is wrong}\\
+
+Proof follows.\\
+
+i) In words. First i thought, geometrically i would be right, because the image collapses in one dimension. And that is the problem.
+We add up three coordinates multiplied with a part of the axis vectors, we do that in both rows. The sums can be larger or smaller than the original values. \\
+
+ii) For a part of the proof, i tried it with vectors with numbers and took the absolute values of. The result was, that the $\|\boldsymbol{A}v\|$ values were many times larger than the $\|v\|$ values. This resembles one of my first results in measuring almost three or four weeks ago, when i started to investigate this topic. \\
+
+\subsection{Second proposition}
+
+Can be larger, equal, or smaller. Depends on the coordinate system. And what´s when is what i will figure out.
+
+
+I assume, it depends on the coordinate axes, in which angle they are related, how long the new position vector is going to be. If all components add up in one direction, it gets much longer. If we can subtract a direction, it gets smaller.
+
+\emph{Proposition - The length of the 2-D position vectors are dependent of the orientation of the axes. If they look into the same direction, e.g. all three into the positive x-direction, the number which adds up is larger, then when one of the axes is looking into the opposite direction}
+
+
+\subsection{Third proposition}
+
+Here i will solve this question for the lefthanded and the righthanded 
+
+\subsection{Final question - are the 2-D integrals smaller?}
+What do you think, are the integrals of the area and volumes also larger, or are they smaller, because it´s all flat now? I think here the latter is true, but like my first estimation proposition, it can be totally false.
+
+Remark. This section will be moved down until i prove.
+
+
+\subsection{Topology of the euclidean space}
+
+Topology is for example the study of the sets which continous functions access and generate.\\
+
+I had to start again with in english to get the words together. \\
+
+TODO.
+
+This will become a main part of the introduction to the mathematic backgrounds of the coordinate system.
+
+But shall become a very short part and no class.
 
 
 \subsection{Neighborhood } 
