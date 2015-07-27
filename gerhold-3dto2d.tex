@@ -17,9 +17,9 @@
 \maketitle
 
 
-Version 0.3.7\\
+Version 0.3.8\\
 
-\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX().\\ \emph{There must be a new emphasizement made on the normed vector space and some other points throughout the text. I will change it carefully over the next days.
+\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX().\\ \emph{There must be a new emphasizement made on the normed vector space (and the euclidean space and well known topology from undergraduate math) and some other points throughout the text. I will change it carefully over the next days.} There is some personal blabla in the unfinished parts, which is to be removed.
 
 }\\
 
@@ -82,6 +82,7 @@ With the arrangement around a circle, we get the right numbers, same lengths, in
 First draw three axes of a 3-D coordinate system on a piece of paper. Draw the horizontal x-Axis through the origin of the drawn coordinate system. You could directly add the y-axis, to see a 2-D coordinate system carrying your two dimensional 3-D system. A system with three vectors pointing into three directions, originating in the origin of the real R^2 space.\\
 
 \begin{figure}[ht]
+\label{handsystems}
 \includegraphics{handsystems.png}
 \caption{A left-handed and a right handed coordinate system. They just have different angles in our 2-D projection.}
 \end{figure}
@@ -267,7 +268,7 @@ The one lemma we need is this general theorem for multiplying a vector with the 
 \begin{displaymath}
     \boldsymbol{E}_{\mathbb{R}^2} = \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}    
 \end{displaymath}
-\caption{The standard basis for the $\mathbb{R}^{2}$ spans up the two dimensional space. The basis is true in $\mathbb{R}^{2\times{3}}$ but in $\mathbb{R}^{2}$ just a linear combination of $\lambda\begin{pmatrix}1\\0\end{pmatrix}$ and $\mu\begin{pmatrix}0\\1\end{pmatrix}$. }
+\caption{The standard basis for the $\mathbb{R}^{2}$ spans up the two dimensional space. The basis could maybe be in $\mathbb{R}^{2\times{3}}$ (this is a study in progress) but in $\mathbb{R}^{2}$ just a linear combination of $\lambda\begin{pmatrix}1\\0\end{pmatrix}$ and $\mu\begin{pmatrix}0\\1\end{pmatrix}$. }
 \end{figure}
 
 The plane gives us two possible directions, to go horizontal or vertical. And in a cartesian coordinate system with infinite points, we can choose any direction around a center point (x,y). Which is in the case of our coordinate system the origin at (0,0,0) or (0,0). We will see later, that the zero vector stays in the origin fo both systems.
@@ -409,12 +410,10 @@ The operator lives itself in L(V,W). L(V,W) contains all linear operators from V
 \newtheorem{Theorem}{My fundamental theorem of transforming 3-D Points into 2-D Points (Matrix)}
 \begin{Theorem}\\
 \label{Theorem}
-
 If you multiply \boldsymbol{A}, the 2x3 matrix of the three two-dimensional basis vectors,
 with the three-coordinate point $(x,y,z)$, the result is a two coordinate point, 
 $(x',y')$. This point $(x',y')$ is the correct point on the two dimensional plane,
 representing the point $(x,y,z)$ from the three dimensional coordinate system, you are transforming.\\
-
 \begin{displaymath}
 \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}
@@ -438,19 +437,20 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \end{figure}
 \end{Theorem}
 
+\subsection{Vectorbasis version}
 
-\subsection{Vectorbasis version }
+\subsubsection{Hamel-Basis with broken law of linear independence}
 
 \begin{displaymath}
 \vec{w} = \sum_{i=1}^{n}\vec{v}_{i}\vec{e}_{i}
 \end{displaymath}
 
-\newtheorem{VectorBasisVersion}{My fundamental theorem of transforming 3-D points into 2-D points (Vectorbasis)}
+\newtheorem{VectorBasisVersion}{Theorem. My fundamental theorem of transforming 3-D points into 2-D points (Vectorbasis)}
 \begin{VectorBasisVersion}
 If you multiply the three linear dependent two dimensional vectors with the three dimensional coordinates, they are mapped correctly onto the two dimensional coordinate system.
 \end{VectorBasisVersion}
 
-Remark. A Hamel-Basis requires a linearly independent set of basis vectors. Which we can not provide. We change the dimension.
+Remark. A Hamel-Basis requires a linearly independent set of basis vectors. Which we can not provide. We change the dimension and keep all three values.
 
 \begin{displaymath}
 \vec{v} = (x,y,z)^{T}
@@ -466,14 +466,35 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 
 TODO. 
 
-\newtheorem{VectorBasisBrokenLaw}{Breaking the rule of linear independence to map from 3-D to 2-D}
+
+\newtheorem{Theorem}{Theorem. Breaking the rule of linear independence to map from 3-D to 2-D}
 \begin{VectorBasisBrokenLaw}
+\label{broken_law_basis}
 To transfer the points from 3-D to 2-D with the same formula, as mapping ordinary points with a vector basis into 
 the corresponding coordinate system, it is o.k., to remove the third dimension from the basis and to multiply the
 3-D coordinates with three 2-D vectors to get a correct mapping onto the projection plane.
 \end{VectorBasisBrokenLaw}
 
 Remark. Formulation needs overworking.
+
+\subsubsection{ijk-Notation Version}
+
+Remark. New July 27. Needs formulation.
+
+In ijk-Notation, the new vector is the result of multiplying each basis vector in the sum with a constant (the coordinate) and then summing the three new vectors together.
+
+\begin{center}
+ $\vec{w} = x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}$
+\end{center}
+
+This is a very natural way. This is a real sum. The coordinates x,y,z multiply each a basis vector. This is the ordinary constant/scalar multiplication. Then the three scaled vectors are summed up together. I have explained this already earlier, you can use this notation for this purpose, now it is time to repeat it. For a picture, look at figures \ref{ijksystem} and \ref{handsystems}.
+
+\newtheorem{ijkVersion}
+\begin{ijkVersion}
+If you write the vector down in ijk-Notation using the three two dimensional axis vectors, instead of three three dimensional linear independent basis vectors, the sum of the products with ijk and the coordinates equals the new vector on the 2-D plane.
+\end{ijkVersion}
+
+Remark. This section was typed in quick and needs review and formulation by me (like other passages in this text)
 
 \subsection{Function version}
 
@@ -518,7 +539,7 @@ g(t) := \left(\begin{array}{1}t*Math.cos(t)\\t*Math.sin(t)\\t\end{array}\right)
 \begin{figure}
 \label{g_of_t_figure}
 \includegraphics[scale=0.5]{conicalhelix2.png}
-\caption{This is $g(t)$ from \ref{g_of_t_code} plotted with the cheap3danimate.html code within $[-2,2] \times [-2,2]$.}
+\caption{This is $g(t)$ from \ref{g_of_t_code} in implement.html where implement.js from the repository is used once.}
 \end{figure}
 
 Example 2. $g(x,y)=(x,y,z)$ this function will give us a surface plot. See figure \ref{g_of_x_y_figure}.\\
@@ -729,7 +750,7 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)+ zr_t\sin(\varph
 The same method can be used, to convert points or vectors from any other number of dimensions, down to the $xy$-plane. It can also be used in a general m by n case.\footnote{http://de.wikipedia.org/wiki/Abbildungsmatrix, shows the m by n case.}
 
 \subsection{Alternative definition of the transformation by using dot products}
-
+\label{alternative_def_using_dot}
 Underways, i came to another conclusion. If i pull the two row vectors out of the matrix and define them as two column vectors,
 then i can dot each with the coordinate vector and write the dot product into the component of the resulting vector.\\
 
@@ -743,7 +764,7 @@ then i can dot each with the coordinate vector and write the dot product into th
 
 The result is $\vec{w} \in W$, $W \subseteq R^2$.\\
 
-This can also be done with up to infinite dimensions which result in two coordinates then. Just add the dimensions to $\vec{v}, \vec{c}, \vec{s}$ and see.\\
+This operation can also be extended into any finite number of dimensions, and will result in two coordinates then. Just add the dimensions to $\vec{v}, \vec{c}, \vec{s}$ and see.\\
 
 \textbf{Proof}:
 
@@ -754,6 +775,7 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right
 \end{displaymath}
 
 
+Meanwhile it is clear, that this operation is the same as $\nabla\vec{f}(\vec{x}) \cdot \vec{v}$, which is the natural dot product of the gradient vector of our linear functional $\vec{f}(\vec{x})$ with the coordinate vector.
 
 
 \section{Derivatives of $\vec{f}(\vec{x}) : V \rightarrow W$ }
@@ -773,7 +795,10 @@ $\partial_{1}(\vec{f}_{1}(\vec{x})) = r_{x}\cos\varphi_{x}$\\
 $\partial_{2}(\vec{f}_{2}(\vec{x})) = r_{x}\sin\varphi_{x}$\\
 \end{center}
 
-The derivatives of the angles are not taken. But it seems to be obvious, that the sin and cosine would be rotating around by 90 degrees each time the derivative of the derivative with respect to the angle is taken. The slope is the vector, because the point is moving by that vector from its current position a straight line, when multiplied.\\
+The derivatives of the angles are not taken. I thought about setting a six argument function up for, and about six component vectors.
+But not now.\\
+
+In our derivative the slope is the axis vector. Because the point is moving by that vector. From its current position along a straight line, when multiplied.\\
 
 \begin{center}
 $\partial_{1}(\vec{f}(\vec{x})) = \vec{e}_{x}$\\
@@ -781,10 +806,10 @@ $\partial_{2}(\vec{f}(\vec{x})) = \vec{e}_{y}$\\
 $\partial_{3}(\vec{f}(\vec{x})) = \vec{e}_{z}$\\
 \end{center}
 
-The second derivatives are already zero, because the returned vectors are constants with respect to the taken input variable.
-In a different meaning, there is no second derivative, because the coordinate system is linear. It is a straight line. It has
-no curves, so no tangent. There is no curvature, so no second derivative. But it is perfect. And calculus is right, because the three vectors are three straight lines.
+The second derivatives are already zero, because the returned vectors are constants with respect to the taken input variable.\\
 
+In a different meaning, there is no second derivative, because the coordinate system is linear. It is a straight line. It has
+no curves, so no tangent. There is no curvature, so no second derivative. But it is perfect. And calculus is right, because the three vectors are three straight lines. When multiplying the axes with the coordinates, the point moves along straight lines. \\
 
 \begin{center}
 $\partial_{1}^{2}(\vec{f}(\vec{x})) = 0$\\
@@ -792,10 +817,21 @@ $\partial_{2}^{2}(\vec{f}(\vec{x})) = 0$\\
 $\partial_{3}^{2}(\vec{f}(\vec{x})) = 0$\\
 \end{center}
 
-Conclusion. The first derivative represents the axis vector. The gradient gives us the complete coordinate system. If we use the gradient then in another composition (with matrix vector multiplication with a three coordinate vector), we can apply the mapping again. \\
+Conclusion. The first derivatives represent the axis vectors. The gradient gives us the complete coordinate system back, but in a different order.\\
+
+I have set up a corollary earlier (\ref{alternative_def_using_dot}), which uses the two row vectors with the three cosines and the three sines for a dot product with the coordinate each. In the order of the gradient $\nabla\vec{f}(\vec{x})$, the axis vectors are column vectors themselves. The vector $\begin{pmatrix}x'\\y'\end{pmatrix}$ is a natural result of a dot product with the them.\\
 
 \begin{center}
-$\nabla\vec{f} := \left(\begin{array}{1}\vec{e}_{x}\\\vec{e}_{y}\\\vec{e}_{z}\\\end{array}\right) 
+$\nabla\vec{f}(\vec{x}) \cdot \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}\sum_{i=1}^{3}(\nabla\vec{f}_{1})_{i}\vec{v}_{i}\\\sum_{i=1}^{3}(\nabla\vec{f}_{2})_{i}\vec{v}_{i}\end{pmatrix} = \begin{pmatrix}x'\\y'\end{pmatrix}$
+\end{center}
+
+Which is equal to \ref{alternative_def_using_dot} and of course the formula $\vec{w} = x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}$ again. You see some natural connections beetween the basic functional, our formula, the derivatives, other formulas and our other methods which result in the same plane projection.\\
+
+
+If we use the gradient then in another composition (with matrix vector multiplication with a three coordinate vector), we can apply the mapping again. \\
+
+\begin{center}
+$\nabla\vec{f} := \left(\begin{array}{1}\vec{e}_{x}\\\vec{e}_{y}\\\vec{e}_{z}\\\end{array}\right) $
 \end{center}
 
 If we transpose the column vector again, we get a row vector, which contains the three vectors of the coordinate system.
@@ -804,15 +840,17 @@ If we transpose the column vector again, we get a row vector, which contains the
 $(\nabla\vec{f})^{T} := \begin{pmatrix}\vec{e}_{x} & \vec{e}_{y} &\vec{e}_{z}\\\end{pmatrix} = \boldsymbol{A} $
 \end{center}
 
-Now we could reuse the vector of vectors (the matrix) and multiply again with coordinates. But before, we come to another conclusion, which i had underways, after writing down the transposed gradient, the next morning, reading a lecture script about Analysis 2 (vector calculus).
+Now we could reuse the vector of vectors (the matrix) and multiply again with coordinates. But before, we come to another conclusion, which i had underways, after writing down the transposed gradient at the next morning, reading a lecture script about Analysis 2 (vector calculus).
 
 \begin{center}
-$(\nabla\vec{f})^{T} \Leftrightarrow \boldsymbol{J}(\vec{f}(\vec{x})) := \begin{pmatrix}\partial_{1}f_{1} & \partial_{2}f_{1} & \partial_{3}f_{1}\\\partial_{1}f_{2} & \partial_{2}f_{2} & \partial_{3}f_{2}\end{pmatrix}$
+$(\nabla\vec{f})^{T} \Leftrightarrow  \boldsymbol{A}  \Leftrightarrow \boldsymbol{J}(\vec{f}(\vec{x})) := \begin{pmatrix}\partial_{1}f_{1} & \partial_{2}f_{1} & \partial_{3}f_{1}\\\partial_{1}f_{2} & \partial_{2}f_{2} & \partial_{3}f_{2}\end{pmatrix}$
 \end{center}
 
-The transposed gradient of the vector function $\vec{f}(\vec{x}) : V \rightarrow W$ is the Jacobi Matrix, which is equal to the matrix, i discussed already. This possible makes another re-ordering neccessary. But first look yourself.\\
+The transposed gradient of the vector function $\vec{f}(\vec{x}) : V \rightarrow W$ is the Jacobi Matrix, which is equal to the matrix, i discussed already. This possibly makes another re-ordering neccessary. But first look yourself.\\
 
 \section{Cauchy Sequences and Convergence}
+
+Remark. This section is not formulated.
 
 Convergence means, that a sequence comes step by step closer together, until the sequence items come so close together, that the distance goes to zero. The sequence itself gets closer and closer to the point. When the n goes to infinity, the distance goes to zero.\\
 
@@ -834,7 +872,7 @@ $\lim\nolimits_{n\rightarrow\infty} v_{n} \rightarrow \vec{v}$\\
 The norm or the distance goes to zero, after going under epsilon at some point $n_{0}$.
 
 \begin{center}
-$\|v_{n}-v_{m}\| = d(v_{n}-v_{m}) \rightarrow 0$
+$(\|v_{n}-v_{m}\| = d(v_{n},v_{m})) \rightarrow 0$
 \end{center}
 
 
@@ -853,10 +891,15 @@ $(\boldsymbol{A}v_{n})_{n\in\mathbb{N}^{+}} \rightarrow \boldsymbol{A}\vec{v}$
 
 Second. It is better to put the matrix outside of the parens, if you let a computer calculate this.\\
 
-For the proof it is maybe neccessary, to put the $\boldsymbol{A}$ back into the parens. But ractically i would like to know the rule and then take the smallest calculation.\\
+For the proof it is maybe neccessary, to put the $\boldsymbol{A}$ back into the parens. But practically i would like to know the rule and then take the smallest calculation.\\
 
 \begin{center}
-$(\boldsymbol{A}v_{n}) = \boldsymbol{A}(v_{n})$\\
+$(\boldsymbol{A}v_{n}) = \boldsymbol{A}\vec{v} = \boldsymbol{A}(v_{n})$\\
+\end{center}
+
+If i write the matrix in the parens of the sequence, i state, that the matrix is a part of the formula of the sequence. I think i may use this notation, as long as i explain it here. 
+
+\begin{center}
 $\boldsymbol{A}(v_{n})} \rightarrow \boldsymbol{A}\vec{v}$
 \end{center}
 
@@ -874,6 +917,11 @@ We start at $n=1$ and when   when the distance shrinks under epsilon, there is s
 \begin{center}
 $\|\boldsymbol{A}v_{n} - \boldsymbol{A}v_{m}\| \leq \epsilon,  \forall m,n > n_{0}$
 \end{center}
+
+TODO\\
+
+Remark. This section is not finished, and at the change of dimensions or at the use of two different sets with different norms, the epsilon-delta version is required, too. It should say, that if the one goes below epsilon, the other goes below delta.\\
+
 
 \section{Summary}
 
@@ -978,14 +1026,8 @@ I assume, it depends on the coordinate axes, in which angle they are related, ho
 \emph{Proposition - The length of the 2-D position vectors are dependent of the orientation of the axes. If they look into the same direction, e.g. all three into the positive x-direction, the number which adds up is larger, then when one of the axes is looking into the opposite direction}
 
 
-\subsection{Third proposition}
+Remark. TODO I have removed the other crap i wrote here. I will test all possibilities with two independent, with three mixed vectors in all possible combinations of directions with the dot product over the next days. I have drawn the systems already on a few backsides of my strang book, being underways later again.
 
-Here i will solve this question for the lefthanded and the righthanded 
-
-\subsection{Final question - are the 2-D integrals smaller?}
-What do you think, are the integrals of the area and volumes also larger, or are they smaller, because it´s all flat now? I think here the latter is true, but like my first estimation proposition, it can be totally false.
-
-Remark. This section will be moved down until i prove.
 
 
 \subsection{Topology of the euclidean space}
