@@ -1,12 +1,32 @@
 (function (exports) {
 
+
+
 function rad(deg) { 
     return Math.PI/180*deg; 
 }
 
+function deg(rad) { 
+	return PI/180*rad; 
+}
+
+
 var r_x = 1, r_y = 1, r_z = 1;
 
-var phi_x = rad(210), phi_y = rad(330), phi_z = rad(90);
+var phi_x = rad(200), phi_y = rad(340), phi_z = rad(90);
+
+
+function setlefthanded() {
+    phi_x = rad(0), 
+    phi_y = rad(90), 
+    phi_z = rad(45);
+}
+function setrighthanded() {
+    phi_x = rad(200), 
+    phi_y = rad(340), 
+    phi_z = rad(90);
+}
+
 
 var xAxisCos = r_x * Math.cos(phi_x),
     yAxisCos = r_y * Math.cos(phi_y),
@@ -52,6 +72,23 @@ function gettrans() {
     }; 
 }
 
+function draw2dVectorField(ctx, points2, scale) {
+    ctx.save();
+    scale = scale || 1;
+    var x,y,u,v;
+    for (var i = 0, j = points2.length; i < j; i+=2) {
+	x = scale * points2[i][0],   y = scale * points2[i][1];
+	u = scale * points2[i+1][0], v = scale * points2[i+1][1];
+	ctx.beginPath();
+	ctx.moveTo(x,-y);
+	ctx.lineTo(u,-v);
+	ctx.stroke();
+	ctx.closePath();
+    }
+
+    ctx.restore();
+}
+
 function draw2dAll(ctx, points2, scale) {
     ctx.save();
     scale = scale || 1;
@@ -66,6 +103,10 @@ function draw2dAll(ctx, points2, scale) {
     ctx.closePath();
     ctx.stroke();
     ctx.restore();
+}
+
+
+function fill2dAll(ctx, curves, scale) {
 }
 
 function rotate3dAll(xAngleRad,yAngleRad,zAngleRad, points3) {
@@ -175,25 +216,50 @@ function normOfAll(points) {
 }
 
 function compareAll(points3, points2, callback) {
-    var p, q, results = [];
-    for (var i = 0, j = points3.length; i < j; i++) {
-	p = points3[i];
-	q = points2[i];
-	results.push(callback(p,q));
+    var results = [];
+    for (var i = 0, j = points3.length; i < j; i++) {		
+		results.push(callback(points3[i],points2[i]));
     }
     return results;
 }
+
 
 function distanceOf(p,q) {
     var n = p.length;
     var k = 0;
     var d = 0;
     while (k < n) {
-	d += Math.pow(p[k]-q[k], 2);
-	k++;
+		d += Math.pow(p[k]-q[k], 2);
+		k++;
     }
     return Math.sqrt(d);
 }
+
+function norm(a,p) {
+    var sum = 0;
+    if (p===undefined) p = 2;
+    if (p===Infinity) {
+        var max = 0;
+        for (var i = 0, j = a.length; i < j; i++) {
+            max = Math.max(Math.abs(a[i]), max);
+        }
+        return max;
+    }
+    for (var i = 0, j = a.length; i < j; i++) sum += Math.pow(Math.abs(a[i]),p);
+    for (i = 2; i <= p; i++) sum = Math.sqrt(sum);
+    return sum;
+}
+
+function cross(a,b) {
+    return [a[1]*b[2]-a[2]*b[1],-a[0]*b[2]+a[2]*b[0],a[0]*b[1]-a[1]*b[0]];
+}
+
+function dot(a,b) {
+    var sum = 0;
+    for (var i = 0, j = a.length; i < j; i++) sum += a[i]*b[i];
+    return sum;
+}
+
 
 exports.gettrans = gettrans;
 exports.settrans = settrans;
@@ -210,7 +276,14 @@ exports.normOfAll = normOfAll;
 exports.compareAll = compareAll;
 exports.distanceOf = distanceOf;
 exports.rad = rad;
+exports.deg = deg;
 exports.draw2dAll = draw2dAll;
+exports.draw2dVectorField = draw2dVectorField;
+exports.fill2dAll = fill2dAll;
+exports.norm = norm;
+exports.cross = cross;
+exports.dot = dot;
+
 
 }(typeof exports != "undefined" ? exports : this));
 

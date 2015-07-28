@@ -350,7 +350,7 @@ mathematicians would start to smile. But i will do my best to correct any of my 
 \section{The $\mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$ through $\mathbb{R}^{2\times{3}}$ transformation}
 
 Let $V$ be the set of all points $(x,y,z) \in V \subseteq R^3$ which are about to become transformed. $V := \{ \vec{v}=(x,y,z)^T | x,y,z \in \mathbb{R}, \vec{v} \in V \subseteq \mathbb{R}^{3} \}$.
-Let $W$ be the set of all points $(x',y') \in W \subseteq R^2$ which are the result of the transformation $W ;= \{ \vec{w}=(x',y')^T | \vec{w} \in W \subseteq \mathbb{R}^{2} x',y' \in \mathbb{R}, \boldsymbol{A}\vec{v}=(x',y')\}$.\\
+Let $W$ be the set of all points $(x',y') \in W \subseteq R^2$ which are the result of the transformation $W ;= \{ \vec{w}=(x',y')^T | \vec{w} \in W \subseteq \mathbb{R}^{2} x',y' \in \mathbb{R}, \boldsymbol{A}\vec{v}=(x',y')^{T}\}$.\\
 
 Remark. The topology has still to be defined extensivly in this document.\\
 
@@ -534,7 +534,7 @@ Example 1. A call to $g(t)$ is returning a vector $\vec{v}$ passed to $f(\vec{x}
 
 \begin{displaymath}
 \label{g_of_t_code}
-g(t) := \left(\begin{array}{1}t*Math.cos(t)\\t*Math.sin(t)\\t\end{array}\right)
+g(t) := \left(\begin{array}{1}t\cos t\\t\sin t\\t\end{array}\right)
 \end{displaymath}
 
 
@@ -548,7 +548,7 @@ Example 2. $g(x,y)=(x,y,z)$ this function will give us a surface plot. See figur
 
 \begin{displaymath}
 \label{g_of_x_y_code}
-g(x,y) := \left(\begin{array}{1}x\\y\\\exp{-x^{2} - y^{2}}\end{array}\right)
+g(x,y) := \left(\begin{array}{1}x\\y\\e^{-x^{2} - y^{2}}\end{array}\right)
 \end{displaymath}
 
 \begin{figure}
@@ -561,10 +561,18 @@ Example 3. A $g(x,y,z)$ or $g(\vec{x})$ a three-d or vector-valued function retu
 
 \begin{displaymath}
 \label{g_of_x_y_z_code}
-g(x,y,z) := \left(\begin{array}{1}next\\next\\next\end{array}\right)
+g(x,y,z) := \left(\begin{array}{1}x+1\\y\\z-1\end{array}\right)
 \end{displaymath}
 
-The vector field.
+The vector field of this formula is shown in figure \ref{vector_field_image}.
+
+\begin{figure}
+\includegraphics[scale=0.5]{vectorfield.png}
+\label{vector_field_image}
+\caption{A 3-D vector field of a cubic section, this time of some random formula.}
+\end{figure}
+
+Remark. The vector field demo is primitive at this point.
 
 \begin{center}
 $g(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{3}$\\
