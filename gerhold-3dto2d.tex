@@ -17,11 +17,9 @@
 \maketitle
 
 
-Version 0.3.8\\
+Version 0.3.9-rewriting-the-explaining-text\\
 
-\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX().\\ \emph{There must be a new emphasizement made on the normed vector space (and the euclidean space and well known topology from undergraduate math) and some other points throughout the text. I will change it carefully over the next days.} There is some personal blabla in the unfinished parts, which is to be removed.
-
-}\\
+\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX() but not my last.\\ 
 
 
 \end{center} 
@@ -58,15 +56,13 @@ tell you directly, what happens, when we multiply the coordinates with the matri
 \item Derive the generic case of transforming coordinate systems down to the plane.
 \end{enumerate}
 
+\chapter{1}
+
 \section{Designing a $\mathbb{R}^{2\times{3}}$ coordinate system for our transformation from $\mathbb{R}^{3}$ to $\mathbb{R}^{2}$}
 
 \subsection{Axis vector}
 
-Remark. July, 25.\\
-
-You will not read it during the text. Due to the problems with the linear independence definitions i will introduce the word \emph{axis vector}. \\
-
-Remark. A coordinate system is known to linear algebra. And the formulas are obviously the same combination. Only the three two dimensional axis vectors i talk about are missing. For myself, i am the first one to write about.\\
+The words basis, axis vectors, coordinate systems  are used interchangably. And from those choices we talk about a coordinate system.
 
 \subsection{The $_{n}$ index for $_x,_y,_z$ with $_x=1$, $_y=2$ and $_z=3$}
 \index{index}
@@ -84,25 +80,24 @@ First draw three axes of a 3-D coordinate system on a piece of paper. Draw the h
 \begin{figure}[ht]
 \label{handsystems}
 \includegraphics{handsystems.png}
-\caption{A left-handed and a right handed coordinate system. They just have different angles in our 2-D projection.}
+\caption{A right handed (z-up) and a left handed coordinate system. They just have different angles in our 2-D projection.}
 \end{figure}
 
 Each of the three vectors has an angle, counted from the horizontal positive x-axis, going counterclockwise around the origin. The
 angle between the axes themselves isn´t what we want. We want the angle beginning on the real 2-D x-axis, to feed the cos and sin functions with, when calculating the real numbers of each basis vector.\\
 
 In this document, i will call the angles $\angle \varphi_{n}$ or just $\varphi_{n}$. If they are measured in degrees or radians depends
-on the cosine and sine functions you use. And on how you would like to read your own definition.
+on the cosine and sine functions you use. And on how you would like to read your own definition.\\
 
 Let $\varphi_{n}$ be the set of axis angles, one for each axis. I put them into a set in this document to simplify the access by
-using the index $_{n}$ together with $_x, _y, _z$ or $1,2,3$. $\varphi_x$ or $\varphi_1$ is the angle of the x-axis. $\varphi_y$ or $\varphi_2$ is the angle of the x-axis and $\varphi_z$ or $\varphi_3$ is the angle of the x-axis. 
+using the index $_{n}$ together with $_x, _y, _z$ or $1,2,3$. $\varphi_x$ or $\varphi_1$ is the angle of the x-axis. $\varphi_y$ or $\varphi_2$ is the angle of the x-axis and $\varphi_z$ or $\varphi_3$ is the angle of the x-axis. \\
 
 
 \begin{displaymath}
 \varphi_{n} := \{\varphi_x, \varphi_y, \varphi_z\} = \{ \varphi_1, \varphi_2, \varphi_3 \}
 \end{displaymath}
 
-We will need the three angles for the axes shortly. So don´t forget it over the next lines.
-
+We will need the three angles for the axes shortly. So don´t forget this over the next lines.\\
 
 \subsubsection{Degrees or radians?}
 
@@ -118,7 +113,7 @@ The function rad converts degrees to radians, it´s useful for computer function
 
 
 Here is an example of three angles. The three axes have an angle of 120 degrees between each. But since we start counting counterclockwise and from the real horizontal axis of the plane, the angles are 210, 330, 90 in degrees, respectivly. And
-because of the cosine and sine functions taking radians, we convert the values to radians.
+because of the cosine and sine functions taking radians, we convert the values to radians.\\
  
 \begin{displaymath}
 \varphi_x = \text{rad(210)}, \varphi_y = \text{rad(330)}, \varphi_z = \text{rad(90)}
@@ -146,13 +141,13 @@ The first example was for the righthand coordinate system. Here are the angles f
 \end{displaymath}
 
 
-If you would like to get hands on angles, cosines, sines, or need a refresher, \cite{Corral2} is a good choice. And as well \cite{Corral1} and \cite{Strang2} teach unit circles, polar coordinates, sines, cosines and wonderful mathematics.
+If you would like to get hands on angles, cosines, sines, or need a refresher, \cite{Corral2} is a good choice. And as well \cite{Corral1} and \cite{Strang2} teach unit circles, polar coordinates, sines, cosines and wonderful mathematics.\\
 
 \subsection{$r_{n}$ is the length of the unit on each axis}
 
 Before i show you the three vectors, and how to use them, we have to clear another piece of information belonging to each
 basis vector. In this document it is called $r_{n}$. The r is from radius. And it stands for the length of the basis vector.
-The length of the basis vector defines, how far a point in this direction will go by one unit.
+The length of the basis vector defines, how far a point in this direction will go by one unit.\\
 \begin{displaymath}
 r_{n} := \{ r_{x}, r_{y}, r_{z} \} = \{ r_{1}, r_{2}, r_{3} \}
 \end{displaymath}
@@ -174,6 +169,7 @@ easy.\\
 
 \subsubsection{Taking the norm of $\vec{e}_n$ to obtain $r_n$}
 
+
 If you have some existing basis and you would like to figure out, how long r is, you can go the other way round and take the
 norm of the vector. Taking the norm means to measure the length of the vector. This is done with the euclidean norm, or the
 2-norm for regular purposes.\\
@@ -182,9 +178,9 @@ $r_{n} = \sqrt{\vec{e}_{n}\cdot\vec{e}_{n}}$ = $\sqrt{(\vec{e}_{n},\vec{e}_{n})}
 
 With this formula you can not only measure the length of the basis vectors, but any vector in the $\mathbb{R}^{3}$ and the $\mathbb{R}^{2}$ space. 
 More advanced measurements include the p-Norm, which is $\sqrt[p]{\sum_{i=1}^{n}|\vec{x}_{i}|^{p}} 1 \leq p \leq \infty$ and $\sup_{i=1..n} |\vec{x}_{i}|$ for $p=\infty}$ and the max-Norm $\|\vec{x}\|_{\infty}$= $\sup_{} \{|\vec{x}_{i}| \}$. There are matrix norms like $\|A\| = \max_{i=1..m} \sum_{j=1}^{n}A_{ij}$, which for example yields the largest row of a m by n matrix. Norms are used everywhere ing mathematics for measuring the lenghts or getting the absolut values of the vectors and matrices. And the distance function $d(\vec{x},\vec{y}) = \|\vec{x}-\vec{y}\|$ is used to measure the distance between to points or two vector tips. A vector space V with a distance function $d(x,y)=\|x-y\|$. 
-  is called a metric space $(V,d)$. And a complete metric space with a norm, written $(V, \|\cdot\|)$, is a Banach space. 
+  is called a metric space $(V,d)$. And a complete metric space with a norm, written $(V, \|\cdot\|)$, is a Banach space. \\
 
-A vector can be normalized to give $\|\vec{x}\| = 1$, by dividing the vector components by the length, say $\vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|}$. See the appendix for more on norms and for example for a proof of the normalization.
+A vector can be normalized to give $\|\vec{x}\| = 1$, by dividing the vector components by the length, say $\vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|}$. See the appendix for more on norms and for example for a proof of the normalization.\\
 
 \subsection{$\vec{e}_{n}$ are the three 2-D basis vectors}
 
@@ -239,54 +235,53 @@ we get the following three two dimensional basis vectors. They point along the c
 \vec{e}_z := (r_z\cos(\varphi_z), r_z\sin(\varphi_z) )^T = \left(\begin{array}{1}r_z\cos(\varphi_z)\\r_z\sin(\varphi_z) \end{array}\right)\\
 \end{displaymath}\\
 
-Each component of (x,y,z) has now an own basis vector. By multiplying the cos terms for the x' and the sin terms for y' with the corresponding component of (x,y,z) and summing the three products up for each of x' and y', we directly obtain the right coordinate on the plane. All we would have to do is to connect the points again, or to fill the space between. 
+Each component of (x,y,z) has now an own basis vector. By multiplying the cos terms for the x' and the sin terms for y' with the corresponding component of (x,y,z) and summing the three products up for each of x' and y', we directly obtain the right coordinate on the plane. All we would have to do is to connect the points again, or to fill the space between. \\
 
 \begin{figure}[ht]
 \includegraphics[scale=2]{unitcircle.png}
 \caption{A picture of the unit circle, the hypotenuse r, the adjacent cosine, the opposite sine and the angle $\varphi$. It is a circle of radius r, and no longer the unit circle, if $r \neq 1$.}
 \end{figure}
 
-\subsection{About the vector basis lemma}\\
+\subsection{Now we need the vector basis theorem}\\
 
-\subsubsection{The general formula like the Hamel Basis}
+\subsubsection{The general formula for importing a vector into a coordinate system}
 
-Remark. This section needs to be formulated again.\\
-
-Remark II. Meanwhile i am sure, that Hamel-Basis is the right term to use here for the "generic formula". TODO.\\
-
-I am talking about multiplying the coordinates with the new vector basis, which i state to be the same as the coordinate system we drew on a piece of paper at the beginning. We wrote down the angles, made out the unit length, and wrote down the three basis vectors with the information. Where is this coming from?\\
+Last section i am talking about multiplying the coordinates with the new vector basis. Which i state to be the same as the coordinate system, we drew on a piece of paper at the beginning. We wrote down the angles, made out the unit length, and wrote down the three basis vectors with the information. Where is this coming from?\\
 
 Every mathematics, physics or related course has a lesson, where the orthogonal basis of an object it's coordinate system is introduced. Orthogonality has some wonderful properties, and solving differential equations and other complicated systems take help from orthogonal vector sets.\\
 
-A orthogonal basis is a set of 2 or three or up to infinite orthogonal or perpendicular vectors. They describe the coordinate system, the space, the dimensions, and one has to show for excercises, that the basis is linearly independent, that each basis vector points into it´s own dimension and not into the others.\\
+A orthogonal basis is a set of 2 or three or up to infinite orthogonal (perpendicular) vectors. They describe the coordinate system, the space, the dimensions, and one has to show for excercises, that the basis is linearly independent, that each basis vector points into it´s own dimension and not into the others. \\
 
 Another excercise is to orthogonalize the existing vectors with Gram-Schmidt. \\
 
+We want to design a coordinate system with three coordinates and two dimensions. At least one vector has to be linearly dependent of both basis vectors. We want to design a basis, or better a linear mapping, or best a coordinate system, which is a mix of both dimensions. We will use cosine and sine. We combine the three coordinates for three proportional horizontal moves. We combine the three coordinates for three vertical moves. Proportional to the coordinates and possibly with positive or negative amounts (up or down with sine, right or left with cosine) depending on the direction of the coordinate axis.\\
+
+Remark. My article broke in when first time touching the linear dependence after being sure this formula works and "i have got some basis, right?". But i think, we are making progress. Now let us continue designing the axis vectors. We will look at the formula now.\\
+
 The one lemma we need is this general theorem for multiplying a vector with the a basis of a target coordinate system.\\
 
-\begin{figure}
-\begin{displaymath}
-    \boldsymbol{E}_{\mathbb{R}^2} = \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}    
-\end{displaymath}
-\caption{The standard basis for the $\mathbb{R}^{2}$ spans up the two dimensional space. The basis could maybe be in $\mathbb{R}^{2\times{3}}$ (this is a study in progress) but in $\mathbb{R}^{2}$ just a linear combination of $\lambda\begin{pmatrix}1\\0\end{pmatrix}$ and $\mu\begin{pmatrix}0\\1\end{pmatrix}$. }
-\end{figure}
+The first time i had the idea, it was, "now try multiplying the coordinates with a basis." "But hey, they must be 2-D."\\
 
 The plane gives us two possible directions, to go horizontal or vertical. And in a cartesian coordinate system with infinite points, we can choose any direction around a center point (x,y). Which is in the case of our coordinate system the origin at (0,0,0) or (0,0). We will see later, that the zero vector stays in the origin fo both systems.
 Any not straight move will go horizontally or vertically by componentwise amounts. Any straight move horizontally or vertically will go by one of the components only.\\
 
-\textbf{Remark} Edward was doing it right, then wrong (wrong with his pseudo-term). The basis is correct, but the space was $\mathbb{R}^{2\times{3}}$. In $\mathbb{R}^{2\times{3}}$ the basis can be shown. In R2 it is just a linear combination of three scalars with three vectors. I will be able to formulate this out in the next versions and have nice images for explanation in mind, which i will draw for.
 \begin{figure}
 \includegraphics{mediator.png}
 \caption{A temporary picture of the process. We multiply the 3-D points with the 2x3 matrix and get the 2-D points back.}
 \end{figure}
 
-The point is, the general formula holds with a 2x3 basis.
+The point is, the general formula holds with a 2x3 basis.\\
 
-The basis acts as a middler beetween the two spaces. We walk through the $\mathbb{R}^{2\times{3}}$ when going from $\mathbb{R}^{3}$ to $\mathbb{R}^{2}.$\\
+\begin{figure}
+\begin{displaymath}
+    \boldsymbol{E}_{\mathbb{R}^2} = \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}    \mbox{          }
+    \boldsymbol{E}_{\mathbb{R}^3} = \begin{pmatrix}1 & 0 & 0\\ 0 & 1 & 0 \\ 0 & 0 & 1\end{pmatrix}    
+    \boldsymbol{E}_{\mathbb{R}^{2\times3}} = \begin{pmatrix}r_x\cos\varphi_x&r_y\cos\varphi_y&r_z\cos\varphi_z\\r_x\sin\varphi_x&r_y\sin\varphi_y&r_z\sin\varphi_z\end{pmatrix} 
+\end{displaymath}
+\caption{The standard basis for the $\mathbb{R}^{2}$ spans up the two dimensional space. When the three coordinates, which were a linear combination of $\lambda\begin{pmatrix}1\\0\\0\end{pmatrix} + \mu\begin{pmatrix}0\\1\\0\end{pmatrix} + \nu\begin{pmatrix}0\\0\\1\end{pmatrix}$ are combined into two coordinates, they become a linear combination of $\lambda\begin{pmatrix}1\\0\end{pmatrix}$ and $\mu\begin{pmatrix}0\\1\end{pmatrix}$. For sure, $\lambda$ is the sum of the cosine terms with the coordinates and $\mu$ is the sum of the sine terms with the coordinates in the two dimensions. }
+\end{figure}
 
-In $\mathbb{R}^{2}$ the basis is linearly dependent, and not a basis, but multiplying the coordinates with, yield the right image of the set of points processed. On the other side, in $\mathbb{R}^{2\times{3}}$ the basis can be explained, what i will do in the next versions. Have to read the text again, to catch my thread.\\
-
-The formula for multiplying a vector with a base to get a new vector is this.\footnote{The formula can be found in many mathematics, chemistry and physics lecture scripts, and a good introduction is \cite{Strang1}.\\}
+The formula for multiplying a vector with a base to get a new vector is this.\footnote{The formula can be found in many mathematics, chemistry and physics lecture scripts, and a good introduction is \cite{Strang1}.}\\
 
 \begin{displaymath}
 \vec{w} = \displaystyle\sum_{i=1}^{n} \vec{v}_{i}\vec{e}_{i}
@@ -297,11 +292,11 @@ We are summing three products for each component of the new vector. Our old $\ve
 With $\vec{v}_{i}$ as the coordinate component and $\vec{e}_{i}$ as the corresponding basis vector in the right component. 
 $\vec{w}$ is the resulting new vector.  The new vector $\vec{w}$ is a $\vec{w} \in \mathbb{R}^2$.\\
 
-In our scenario is $V \subseteq \mathbb{R}^{3}, \vec{v} \in V$ and $W \subseteq \mathbb{R}^{2}, \vec{w} \in W$.
+In our scenario is $V \subseteq \mathbb{R}^{3}, \vec{v} \in V$ and $W \subseteq \mathbb{R}^{2}, \vec{w} \in W$.\\
 
 \subsubsection{Connection to ijk-Notation}
 
-This is also equal to
+This is also equal to\\
 
 \begin{displaymath}
 \vec{v} = x\vec{i} + y\vec{j} + z\vec{k}
@@ -315,18 +310,19 @@ With a 3x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is equal to \left(\
 
 \subsubsection{Coordinate system}
 
-Remark. Needs to be formulated. New on July 23
+In the second week i have a little trouble, you may still spot it, what kind of basis this coordinate system is.\\
 
-The best i can do in the future editions of this text and for the concrete definition, is to say coordinate axes and coordinate system, without needing to know the horrible mathematic details, whose basis is used and whose not, and what words are right or wrong for.
+Remark. I will try to find out, if it is a real basis in $\mathbb{R}^{2\times3}$.\\
 
-The three vectors build the three coordinate axes of a three dimensional coordinate system in two dimensions. Nothing else.
+Whether it is a basis in $\mathbb{R}^{2\times3}$ or not, it is a coordinate system. And all the formulas hold precisly,
+like for a vector basis.\\
 
-The coordinates are transferred absolutely correct, they move along the vectors. They move the right units and only sidewards and upwards. The proportions are exact and can be controlled.
+Did i say all? I mean, the linear mapping of the coordinates onto the projection plane. Like the HTML5 Canvas2DRenderingContext for example.\\
 
-More rational is to say, a human designed this coordinate system and has put it right way round into the matrix, no matter how difficult another view of mathematics on the same vectors could become.
+Remark. I did not mean, that all the properties of the orthogonal vector spaces exist. But the mapping has nice properties,
+of which i already discovered some in the section \ref{important_proofs}.\\
 
-It is for the practical use, to use after plotting to project something 3-D onto the 2-D plane.
-
+Remark. I will try to uncover the rest. But the best in this development version of the article is to go for axis vectors and coordinate system, when i still speak of a basis.\\
 
 \subsection{Time to show the operation}
 
@@ -345,20 +341,18 @@ Right, this small formula brings over the $\mathbb{R}^{2\times{3}}$ the unexpect
 \caption{The path a point goes from the origin. Along the first axis, then from that parallel to the second along that axis, and last parallel to the third axis as many units as the coordinate says. You can not see on this picture, how it is deconstructed by cosine and sine into left and right moves. To see, just draw the two missing sides of the triangles under each move. The z axis has a cosine of 0. I will paint a new picture for.}
 \end{figure}\\
 
-It is almost time to finish the matrix and to go through a set of points to draw the new set of resulting points.
-For this i close the explaining chapters and come to the part of the formal mathematical definitions.\\
+It is almost time to finish the matrix. And to go through a set of points. To draw the new set of resulting points.
+For this i close the explaining chapters. And come to the part of the formal mathematical definitions.\\
 
-\textbf{Remark.} \LaTeX and i are new to each other. For the theorems, proofs, defintions, corollaries, examples there is the possibility of a personal layout.\\
+\textbf{Remark.} \LaTeX and i are new to each other. For the theorems, proofs, defintions, corollaries, examples there is the possibility of a personal layout, which i have not prepared yet. And additionally, the following will contain some things, where real
+mathematicians would start to smile. But i will do my best to correct any of my passages over the next time until i reach v1.0.0.\\
 
 \section{The $\mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$ through $\mathbb{R}^{2\times{3}}$ transformation}
-
 
 Let $V$ be the set of all points $(x,y,z) \in V \subseteq R^3$ which are about to become transformed. $V := \{ \vec{v}=(x,y,z)^T | x,y,z \in \mathbb{R}, \vec{v} \in V \subseteq \mathbb{R}^{3} \}$.
 Let $W$ be the set of all points $(x',y') \in W \subseteq R^2$ which are the result of the transformation $W ;= \{ \vec{w}=(x',y')^T | \vec{w} \in W \subseteq \mathbb{R}^{2} x',y' \in \mathbb{R}, \boldsymbol{A}\vec{v}=(x',y')\}$.\\
 
-\textbf{Remark} study in progress.
-
-Remark. What about the prime behind x and y. x', y' looks bad.
+Remark. The topology has still to be defined extensivly in this document.\\
 
 \subsection{Matrix version}
 
@@ -393,22 +387,25 @@ column. You get a rectangular 2x3 matrix $\boldsymbol{A} \in \mathbb{R}^{2\times
     r_x\sin(\varphi_x) & r_y\sin(\varphi_y) & r_z\sin(\varphi_z) \\
     \end{pmatrix}
 \end{displaymath}\\
+\end{Definition}
 
 
+Remark. The operator definition should be defined differently.\\
 
-$\boldsymbol{A}$ should be treated as operator $\boldsymbol{A} \in \mathbb{R}^{2\times{3}} : \mathbb{R}^3 \rightarrow \mathbb{R}^2$. $(\boldymbol{A})(\vec{x})=\boldsymbol{A}\vec{x}$, ($\vec{x}) \mapsto \boldsymbol{A}\vec{x}$. \\
-\end{Definition}\\
+\newtheorem{DefinitionOperator}{Definition. A is a linear operator}
+\begin{DefinitionOperator}
+$\boldsymbol{A}$ is the linear operator $\boldsymbol{A} \in \mathbb{R}^{2\times{3}} : \mathbb{R}^3 \rightarrow \mathbb{R}^2$. This operator maps coordinates from a subset of the $\mathbb{R}^{3}$ to the $\mathbb{R}^{2}$. ($\vec{x}) \mapsto \boldsymbol{A}\vec{x}$. 
+This operator is a matrix. But this operator is not invertible, because it is not square. It is not needed to be square, because we map directly from the preimage to the image. The operator is mapping surjective, but since we interpret three dimensions on two, there may be covered points on the plane, or overlaying of whole planes.
+\end{DefinitionOperator}\\
 
-Remark. Make this another definition.\\
+Remark. The operator definition contains more than one definition. And the formulation is not good. TODO.\\
 
-The operator lives itself in L(V,W). L(V,W) contains all linear operators from V to W. A is mapping the input, which is 3-D from $V \subseteq \mathbb{R}^{3}$. onto the 2-D subset $W \subseteq \mathbb{R}^{2}$. The operator is NOT invertible due to a loss of one dimension and a lack of linear independence.\\
-
-\textbf{Remark} This chapter needs to be overworked.
+Remark. About the matrix norm $\|A\|_{Frob}$. The number, after counting the components squares together and pulling the root is $\sqrt{3}$. Pulling the norm chapter out of the introduction and introducing the measurements and estimations, also to myself, is new on the TODO.
 
 
 \index{Theorem}
 \newtheorem{Theorem}{My fundamental theorem of transforming 3-D Points into 2-D Points (Matrix)}
-\begin{Theorem}\\
+\begin{Theorem}
 \label{Theorem}
 If you multiply \boldsymbol{A}, the 2x3 matrix of the three two-dimensional basis vectors,
 with the three-coordinate point $(x,y,z)$, the result is a two coordinate point, 
@@ -437,37 +434,43 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \end{figure}
 \end{Theorem}
 
+
 \subsection{Vectorbasis version}
 
 \subsubsection{Hamel-Basis with broken law of linear independence}
 
+The theorem from Hamel says, that every vector space has a basis. And he gives a formula for this. The new vector in the new coordinate system is the sum of the coordinates multiplied with the basis vectors. \\
+
 \begin{displaymath}
 \vec{w} = \sum_{i=1}^{n}\vec{v}_{i}\vec{e}_{i}
 \end{displaymath}
+
+Remark. Have to fetch the Hamel-Theorem.\\
+
+A Hamel-Basis requires a linearly independent set of basis vectors. Which we can not provide. We change the dimension. The mapping yields the right image. So i will say, it is o.k. to break the rule of linear independence. This coordinate system is a special case.\\
 
 \newtheorem{VectorBasisVersion}{Theorem. My fundamental theorem of transforming 3-D points into 2-D points (Vectorbasis)}
 \begin{VectorBasisVersion}
 If you multiply the three linear dependent two dimensional vectors with the three dimensional coordinates, they are mapped correctly onto the two dimensional coordinate system.
 \end{VectorBasisVersion}
 
-Remark. A Hamel-Basis requires a linearly independent set of basis vectors. Which we can not provide. We change the dimension and keep all three values.
+The operation is equal, but instead of working with three components in the new vector, we work with two components in the new vector. For each component we build the sum of the basis component multiplied by the belonging to coordinate, like we would do in the original form. \\
 
 \begin{displaymath}
-\vec{v} = (x,y,z)^{T}
+\vec{v} = \begin{pmatrix}x\\y\\z\end{pmatrix}
 \end{displaymath}
 \begin{displaymath}    
-\vec{w} = x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} \mbox{ which is equal to } x\vec{i} + y\vec{j} + z\vec{k} \\
+\vec{w} = x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z}
 \end{displaymath}    
 \begin{displaymath}
-    \vec{w} = \sum_{i=1}^{n}\vec{v}_{i}\vec{e}_{i} = \left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
+    \sum_{i=1}^{n}\vec{v}_{i}\vec{e}_{i} = \left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
-\end{array}\right) = \begin{pmatrix}x'\\y'\end{pmatrix}
+\end{array}\right) = \begin{pmatrix}x'\\y'\end{pmatrix} = \vec{w}
 \end{displaymath}
 
-TODO. 
+The difference is that we have a dimension less than coordinates, and with that at least one axis, that must be a mix of the other two. By default our image in our coordinate system is a linear combination of $\lambda\begin{pmatrix}1\\0\end{pmatrix} + \mu\begin{pmatrix}0\\1\end{pmatrix}$, but before that, we map with a linear function from three dimensions to two dimensions, by using our coordinate system as or like a basis. \\
 
-
-\newtheorem{Theorem}{Theorem. Breaking the rule of linear independence to map from 3-D to 2-D}
+\newtheorem{VectorBasisBrokenLaw}{Theorem. Breaking the rule of linear independence to map from 3-D to 2-D}
 \begin{VectorBasisBrokenLaw}
 \label{broken_law_basis}
 To transfer the points from 3-D to 2-D with the same formula, as mapping ordinary points with a vector basis into 
@@ -475,32 +478,31 @@ the corresponding coordinate system, it is o.k., to remove the third dimension f
 3-D coordinates with three 2-D vectors to get a correct mapping onto the projection plane.
 \end{VectorBasisBrokenLaw}
 
-Remark. Formulation needs overworking.
-
 \subsubsection{ijk-Notation Version}
 
-Remark. New July 27. Needs formulation.
-
-In ijk-Notation, the new vector is the result of multiplying each basis vector in the sum with a constant (the coordinate) and then summing the three new vectors together.
+The ijk-Notation is well known from describing vectors, from calculating cross products over determinants, from coordinate systems showing the normalized ijk vectors along the axes. The formula is this\\
 
 \begin{center}
  $\vec{w} = x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}$
 \end{center}
 
-This is a very natural way. This is a real sum. The coordinates x,y,z multiply each a basis vector. This is the ordinary constant/scalar multiplication. Then the three scaled vectors are summed up together. I have explained this already earlier, you can use this notation for this purpose, now it is time to repeat it. For a picture, look at figures \ref{ijksystem} and \ref{handsystems}.
+This is a very natural way. This is a real sum. The coordinates x,y,z multiply each a basis vector. This is the ordinary constant or scalar multiplication. Then the three scaled vectors are summed up together. This gives us a new vector, the sum of the three vectors. I have explained this already earlier, you can use this notation for this purpose, now it is time to repeat it. For a picture, look at figures \ref{ijksystem} and \ref{handsystems}.\\
 
-\newtheorem{ijkVersion}
+\newtheorem{ijkVersion}{Theorem. The fundamental theorem of transforming 3-D points into 2-D points (ijk-Notation)}
 \begin{ijkVersion}
-If you write the vector down in ijk-Notation using the three two dimensional axis vectors, instead of three three dimensional linear independent basis vectors, the sum of the products with ijk and the coordinates equals the new vector on the 2-D plane.
+If you write the vector down in ijk-Notation using the three two dimensional axis vectors, instead of three three dimensional linear independent basis vectors, the sum of the products with ijk and the coordinates, which is a new vector, equals the right vector on the 2-D plane.
 \end{ijkVersion}
 
-Remark. This section was typed in quick and needs review and formulation by me (like other passages in this text)
+\textbf{Proof:}\\
+\begin{displaymath}
+ x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z} = x\begin{pmatrix}r_x\cos\varphi_x\\r_x\sin\varphi_x\end{pmatrix} + y\begin{pmatrix}r_y\cos\varphi_y\\r_y\sin\varphi_y\end{pmatrix} + z\begin{pmatrix}r_z\cos\varphi_z\\r_z\sin\varphi_z\end{pmatrix} = \sum_{i=1}^{3}\vec{e}_{i}\vec{v}_{i} = \vec{w} = \begin{pmatrix}x'\\y'\end{pmatrix}
+\end{displaymath}
 
 \subsection{Function version}
 
 The first days, i could not see the forest, because of all these trees. 
 The operation can be written as function, or as part of a composition of functions.
-A big gain for this point by point transformation is the easy usability. For example, 
+The big thing for this point by point transformation is the easy usability. For example, 
 to create surface plots and other functional graphs from three dimensional space on a flat screen or printed paper.\\
 
 \subsubsection{The functional $f(\vec{x})$}
@@ -570,6 +572,9 @@ $f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$\\
 \end{center}
 
 
+Remark. This section is not finished. Not only the plot for the vector field, some sophisticated demo with a physics formula, but the compositions are themselves not explained. Additionally in the section about differentiation, the compositions have to be veryfied.\\
+
+
 \subsection{Computer implementations of the transformation}
 \subsubsection{Generic computer code}
 
@@ -587,6 +592,12 @@ y_ = x*r*sin(alpha) + y*r*sin(beta) + z*r*sin(gamma)
 
 \end{example}\\
 
+\newtheorem{CodeTheorem}{Only two lines of code needed to go from 3-D to 2-D points. (Computer Version)}
+\begin{CodeTheorem}
+The only two lines of code you need to convert the coordinates on the computer. The new x value
+is summed up by multiplying each coordinate with the cosine term of the related axis vector. The new y value
+is a sum of products of the coordinates with the sine terms of the related axis vectors.
+\end{CodeTheorem}
 
 \subsubsection{JavaScript computer code}
 \begin{example}
@@ -616,11 +627,8 @@ let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 \caption{A conical helix (t/2*Math.cos(t), t*Math.sin(t), t) shown as (x,y,z)=f(t) with implement.html on a Canvas2DRenderingContext testing the javascript example code.}
 \end{figure}
 
-
-
 \section{Important proofs of the transformation behaviour}
-
-Remark. This document is still under construction. 
+\label{important_proofs}
 
 A very important thing is to show, that the linearity of the transformation is in order. With a wrong function, bad thing can happen.
 With the right functions, linear combinations should stay in the subspace.
@@ -798,7 +806,10 @@ $\partial_{2}(\vec{f}_{2}(\vec{x})) = r_{x}\sin\varphi_{x}$\\
 The derivatives of the angles are not taken. I thought about setting a six argument function up for, and about six component vectors.
 But not now.\\
 
-In our derivative the slope is the axis vector. Because the point is moving by that vector. From its current position along a straight line, when multiplied.\\
+In our derivative the slope is the axis vector. Because the point is moving by that vector. From its current position along a straight line, when multiplied. It is a linear function and the point is moving only along a line, the slope is right.\\
+
+Remark. All points passed to the derived function would land on the point of the vector, because the coordinate is gone after differentiating it once. The function is kind of useless from here on, if we do not utilize it another way. There are possibilities,
+i will show some already.\\
 
 \begin{center}
 $\partial_{1}(\vec{f}(\vec{x})) = \vec{e}_{x}$\\
@@ -825,13 +836,13 @@ If we use the gradient then in another composition (with matrix vector multiplic
 $\nabla\vec{f} := \left(\begin{array}{1}\vec{e}_{x}\\\vec{e}_{y}\\\vec{e}_{z}\\\end{array}\right) $
 \end{center}
 
-If we transpose the column vector again, we get a row vector, which contains the three vectors of the coordinate system.
+If we transpose the column vector again, we get a row vector, which contains the three vectors of the coordinate system.\\d
 
 \begin{center}
 $(\nabla\vec{f})^{T} := \begin{pmatrix}\vec{e}_{x} & \vec{e}_{y} &\vec{e}_{z}\\\end{pmatrix} = \boldsymbol{A} $
 \end{center}
 
-Now we could reuse the vector of vectors (the matrix) and multiply again with coordinates. But before, we come to another conclusion, which i had underways, after writing down the transposed gradient at the next morning, reading a lecture script about Analysis 2 (vector calculus).
+Now we could reuse the vector of vectors (the matrix) and multiply again with coordinates. But before, we come to another conclusion, which i had underways, after writing down the transposed gradient at the next morning, reading a lecture script about Analysis 2 (vector calculus).\\
 
 \begin{center}
 $(\nabla\vec{f})^{T} \Leftrightarrow  \boldsymbol{A}  \Leftrightarrow \boldsymbol{J}(\vec{f}(\vec{x})) := \begin{pmatrix}\partial_{1}f_{1} & \partial_{2}f_{1} & \partial_{3}f_{1}\\\partial_{1}f_{2} & \partial_{2}f_{2} & \partial_{3}f_{2}\end{pmatrix}$
@@ -845,7 +856,18 @@ I have set up a corollary earlier (\ref{alternative_def_using_dot}), which uses 
 $\nabla\vec{f}(\vec{x}) \cdot \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}\sum_{i=1}^{3}(\nabla\vec{f}_{1})_{i}\vec{v}_{i}\\\sum_{i=1}^{3}(\nabla\vec{f}_{2})_{i}\vec{v}_{i}\end{pmatrix} = \begin{pmatrix}x'\\y'\end{pmatrix}$
 \end{center}
 
-Which is equal to \ref{alternative_def_using_dot} and of course the formula $\vec{w} = x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}$ again. You see some natural connections beetween the basic functional, our formula, the derivatives, other formulas and our other methods which result in the same plane projection.\\
+Which is equal to \ref{alternative_def_using_dot} and of course the formula $\vec{w} = x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}$ again. You see some natural connections between the basic functional, our formula, the derivatives, other formulas and our other methods which result in the same planar projection.\\
+
+
+\section{Projecting just z onto a vector}
+
+What i did not get before was the projection onto a vector. I wondered about how to add the third axis. We already have seen the three independent axes. Now i have found out, how to project just the z coordinate into the $\mathbb{R}^{2}$ system and to keep the $xy$-plane the same. 
+
+\begin{displaymath}
+\begin{pmatrix}x\\y\end{pmatrix} + z\begin{pmatrix}r_z\cos\varphi_z\\r_z\sin\varphi_z\end{pmatrix} = \begin{pmatrix}x'\\y'\end{pmatrix} = \vec{w}
+\end{displaymath}
+
+I can explain what is happening. By the formulas we already have seen, the two vectors are summed together. The first one carries the x and the y coordinates. The second one, multiplies the z-axis vector with the z-coordinate. Like you know from before, this moves the point along or parallel to along the z-axis vector. And of course stops at the right place.
 
 
 \section{Cauchy Sequences and Convergence}
@@ -941,10 +963,9 @@ I am nativly a german speaking man. To reduce the risk of misunderstanding me, i
 
 Remark. This doesnt contain the right info. I should use basis and coordinate axes interchangably, but i use other words.
 
-\begin{tabular}{-l-l-l}
+\begin{tabular}{-l-l-l-}
     assumed english & german & personal definition \\
 
-\hline
     basis &     Basis &     A system of vectors, with which any coordinate has to be transformed.\\
     & & A basis transforms your coordinates into your desired coordinate system.\\
     & & A basis is regularly a set of linearly independent vectors. They span the space.\\    
@@ -952,17 +973,17 @@ Remark. This doesnt contain the right info. I should use basis and coordinate ax
     & & $(3,4)$ is a combination of $3\times(1,0)$ and $4\times(0,1)$,\\
     & & The basis is also synonymous for the coordinate axes.\\
 
-\hline    
+
     vector, point, coordinate & Vektor, Punkt, Koordinate & A vector has a length and a direction. \\
     & & The tails of the vectors here meet in the origin. The point is the tip\\
     & & of the vector, or the word for the coordinates in the cartesian system. \\
     & & The words point, vector, coordinate are used interchangably in this text and depend \\
     & & on what your numbers mean.\\
-\hline 
+
     component & Komponente & A component of a vector or a matrix or a point is one of the scalars
     inside. For a (x,y,z) Vector, x is a component.\\
 
-\hline 
+
     operator & Operator & A matrix is a linear map or a linear operator. The former is linear algebra\\
     & & and the latter is functional analysis. Well, a better application for the transformation is to visualize\\
     & & both, so both should be used. But possibly i currenly intermingle these words a bit, trying to find the right.\\
@@ -974,7 +995,6 @@ Remark. This doesnt contain the right info. I should use basis and coordinate ax
 \textbf{Remark} incomplete.
 
 \appendix
-
 
 
 \section{Temporarily moved down MORE TODO}
@@ -1030,19 +1050,6 @@ Remark. TODO I have removed the other crap i wrote here. I will test all possibi
 
 
 
-\subsection{Topology of the euclidean space}
-
-Topology is for example the study of the sets which continous functions access and generate.\\
-
-I had to start again with in english to get the words together. \\
-
-TODO.
-
-This will become a main part of the introduction to the mathematic backgrounds of the coordinate system.
-
-But shall become a very short part and no class.
-
-
 \subsection{Neighborhood } 
 
 Remark. This should come together with topology. With metrics and distance. Maybe i can move the metric stuff from downwards up to this.
@@ -1055,13 +1062,13 @@ The neighborhood of a point (x,y,z) is a ball or a sphere with a radius r. The b
 
 \subsection{Convex sets}
 
-Convex sets contain the path beetween two points inside the set. That means, that the direct way from a to be is not crossing the borders of the set. This can be imagined with real borders of a set. A round set, or a rectangle have all points inside together with their path. A star for example, where you have two points at two of the tips is not convex, the direct path, the straight line would cross the border of the star, leave the star, and reenter the star. There is a formula, which gives the points on the path.
+Convex sets contain the path between two points inside the set. That means, that the direct way from a to be is not crossing the borders of the set. This can be imagined with real borders of a set. A round set, or a rectangle have all points inside together with their path. A star for example, where you have two points at two of the tips is not convex, the direct path, the straight line would cross the border of the star, leave the star, and reenter the star. There is a formula, which gives the points on the path.
 
 \begin{displaymath}
 u = \lambda\vec{x} + (1-\lambda)\vec{y}, \lambda \in [0,1], x,y \in V \implies u \in V
 \end{displaymath}
 
-The factor lambda lies beetween 0 and 1. If $\lambda = 0.1$ then is $(1-\lambda) = 0.9$, if $\lambda = 0.2$ then is $(1-\lambda) = 0.8$ and so on. The result is lying on the straight line beetween $\vec{x}$ and $\vec{y}$. I have taken two vectors $\vec{x}, \vec{y} \in R^2$ and drawn them. The points lie on the line beetween the two points.
+The factor lambda lies between 0 and 1. If $\lambda = 0.1$ then is $(1-\lambda) = 0.9$, if $\lambda = 0.2$ then is $(1-\lambda) = 0.8$ and so on. The result is lying on the straight line between $\vec{x}$ and $\vec{y}$. I have taken two vectors $\vec{x}, \vec{y} \in R^2$ and drawn them. The points lie on the line between the two points.
 
 There is an inequality, which convex functions have to satisfy. And you may know it. It is the \emph{triangle inequality}
 
@@ -1100,9 +1107,7 @@ Probably already found. 2-D (in each column, the two rows) mapping orthogonal, 3
 I mean. In each of the three column vectors, the map to the plane is defined by orthogonality of the two rows. Even if we change
 from the perpendicular sine and cosine to some weird nbers, it would be interpreted as x and y and depend on the base used in the R2.\\
 
-Funny Remark. For the advanced mathematician. Seeing cross products, euler doing cross formulas, is it some idea, to take three 2x2 matrices, to cross them over, maybe restore the xy dimensions correctly and take the third one over the difference of the two?
-Maybe this is easier, to take z from the mix with x and from the mix with y. And if it can not be decided, because of the point being covered by more than one position (where these algebra classes land on the same value)?
-And if the last one can not be decided, is this an application for probability, to get this document full over the months?
+Is it possible with three 2x2 matrices to find the difference of each? to restore the mapping?
 
 
 \subsection{Algebra}
@@ -1624,7 +1629,7 @@ TODO\\
 
 In a lecture script about numerical linear algebra i found the formulas for the pseudo inverses.\\
 
-Remark. In \cite{Strang1} there is a whole chapter about least squares. 
+Remark. In \cite{Strang1} there is a whole chapter about least squares. \\
 
 For a m by n matrix with m < n it is $A^T(AA^{T})^{-1}$\\
 
@@ -1638,9 +1643,19 @@ here.
 
 TODO\\
 
+\subsection{Singular Value Decomposition}
+
+TODO\\
+
+Remark. A rectangular matrix has no eigenvalue equation. But there is a singular value decomposition, which can tell some proper things about the matrix. \\
+
+The $A^{T}A$ is needed for the SVD. So with the last two chapter we are fine.\\
+
 \section{Computer Error Estimation}
 
 TODO
+
+Remark. The roundoff error of the floating point is a basic for every computer class.
 
 \section{An alternative graphics algorithm}
 
@@ -1804,7 +1819,7 @@ function norm(a,p) {
 
 \subsection {Metric}
 
-The distance function gives us the distance beetween two points, that is the length of the vector from tip to tip.
+The distance function gives us the distance between two points, that is the length of the vector from tip to tip.
 
 \begin{lstlisting}
 function d(a,b) {
