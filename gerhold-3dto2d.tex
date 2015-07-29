@@ -1162,19 +1162,20 @@ TODO. The Frobenius norm is $\sqrt{3}$ for $r_n = 1$ summing up 6 squares of thr
 \newtheorem{PropositionMatrixNorm}{Proposition. The matrix norm of the coordinate systems matrix.}
 \begin{PropositionMatrixNorm}
 \label{proposition_matrix_norm}
-The euclidean norm of our matrix, the Frobenius Norm, counting together the rows and columns, componentwise and squared, then pulling the root out of the whole sum, is the square root of $(r_x+r_y+r_z)$. The sines squared and cosines squared add up to 1 each, are a factor for the $r_n$. Each $r_n$ belongs to pair of sine and cosine.
+The euclidean norm of our matrix, the Frobenius Norm, counting together the rows and columns, componentwise and squared, then pulling the root out of the whole sum, is the square root of $(r_{x}^{2}+r_{y}^{2}+r_{z}^{2})$. The sines squared and cosines squared add up to 1 each, are a factor for the $r_{n}^{2}$. Each $r_{n}^{2}$ belongs to pair of sine and cosine. When sine and cosine squares are added, the $r_{n}^{2}$ has to be factored out first, it can not add to two.
 \begin{displaymath}
-\|\boldsymbol{A}\|_{Frobenius} = (r_x+r_y+r_z)^{\frac{1}{2}}
+\|\boldsymbol{A}\|_{Frobenius} = (r_{x}^{2}+r_{y}^{2}+r_{z}^{2})^{\frac{1}{2}}
 \end{displaymath}
 \end{PropositionMatrixNorm}
+
 
 \textbf{Proof:}\\
 \begin{displaymath}
 \begin{align}
 \|\boldsymbol{A}\|_{Frobenius} = (\sum_{i=1,2;j=x,y,z}\vec{e}_{ij}^{2})^{\frac{1}{2}} \\
-&= (\sum_{i=1}^{3}r_n\cos\varphi_n^{2} + \sum_{i=1}^{3}r_n\sin\varphi_n^{2})^{\frac{1}{2}}\\
-&= (\sum_{i=1}^{3}r_n(\cos\varphi_n^{2} + \sin\varphi_n^{2}))^{\frac{1}{2}}\\
-&= \sqrt{r_x+r_y+r_z}\\
+&= (\sum_{i=1}^{3}r_{n}^{2}\cos\varphi_n^{2} + \sum_{i=1}^{3}r_{n}^{2}\sin\varphi_n^{2})^{\frac{1}{2}}\\
+&= (\sum_{i=1}^{3}r_{n}^{2}(\cos\varphi_n^{2} + \sin\varphi_n^{2}))^{\frac{1}{2}}\\
+&= \sqrt{r_{x}^{2}+r_{y}^{2}+r_{z}^{2}}\\
 \end{align}
 \end{displaymath}
 
