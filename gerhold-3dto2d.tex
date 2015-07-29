@@ -344,7 +344,7 @@ Right, this small formula brings over the $\mathbb{R}^{2\times{3}}$ the unexpect
 It is almost time to finish the matrix. And to go through a set of points. To draw the new set of resulting points.
 For this i close the explaining chapters. And come to the part of the formal mathematical definitions.\\
 
-\textbf{Remark.} \LaTeX and i are new to each other. For the theorems, proofs, defintions, corollaries, examples there is the possibility of a personal layout, which i have not prepared yet. And additionally, the following will contain some things, where real
+\textbf{Remark about the document structure.} \LaTeX and i are new to each other. For the theorems, proofs, defintions, corollaries, examples there is the possibility of a personal layout, which i have not prepared yet. And additionally, the following will contain some things, where real
 mathematicians would start to smile. But i will do my best to correct any of my passages over the next time until i reach v1.0.0.\\
 
 \section{The $\mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$ through $\mathbb{R}^{2\times{3}}$ transformation}
@@ -924,6 +924,11 @@ Second. It is better to put the matrix outside of the parens, if you let a compu
 For the proof it is maybe neccessary, to put the $\boldsymbol{A}$ back into the parens. But practically i would like to know the rule and then take the smallest calculation.\\
 
 \begin{center}
+
+\subsubsection{The pseudo-inverse $\boldsymbol{A}^{+}$ and least squares}
+For a m by n matrix with m < n it is $A^T(AA^{T})^{-1}$\\
+For a m by n matrix with m > n it is $(A^{T}A)^{-1}A^T$\\
+TODO\\
 $(\boldsymbol{A}v_{n}) = \boldsymbol{A}\vec{v} = \boldsymbol{A}(v_{n})$\\
 \end{center}
 
@@ -969,104 +974,18 @@ About the word \emph{unit}. I am not really sure, if i have to use \emph{base ve
 
 I am nativly a german speaking man. To reduce the risk of misunderstanding me, i will write down the terms, which i use in this document. So you can read from my definition, what i mean with and decide by yourself, what´s the correct word, i wanted to use.\\
 
-Remark. This doesnt contain the right info. I should use basis and coordinate axes interchangably, but i use other words.
+
 
 \begin{tabular}{-l-l-l-}
-    assumed english & german & personal definition \\
-
-    basis &     Basis &     A system of vectors, with which any coordinate has to be transformed.\\
-    & & A basis transforms your coordinates into your desired coordinate system.\\
-    & & A basis is regularly a set of linearly independent vectors. They span the space.\\    
-    & & For example are $(1,0)$ and $(0,1)$ the basis for the $\mathbb{R}^{2}$ and\\
-    & & $(3,4)$ is a combination of $3\times(1,0)$ and $4\times(0,1)$,\\
-    & & The basis is also synonymous for the coordinate axes.\\
-
-
-    vector, point, coordinate & Vektor, Punkt, Koordinate & A vector has a length and a direction. \\
-    & & The tails of the vectors here meet in the origin. The point is the tip\\
-    & & of the vector, or the word for the coordinates in the cartesian system. \\
-    & & The words point, vector, coordinate are used interchangably in this text and depend \\
-    & & on what your numbers mean.\\
-
-    component & Komponente & A component of a vector or a matrix or a point is one of the scalars
-    inside. For a (x,y,z) Vector, x is a component.\\
-
-
-    operator & Operator & A matrix is a linear map or a linear operator. The former is linear algebra\\
-    & & and the latter is functional analysis. Well, a better application for the transformation is to visualize\\
-    & & both, so both should be used. But possibly i currenly intermingle these words a bit, trying to find the right.\\
-    & & The definition of the 2x3 operator is not complete, it is for example not invertible, has no determinant, \\
-    & & looses the third dimensions also, when restoring, with say least squares, \\
 
 \end{tabular}
 
-\textbf{Remark} incomplete.
+TODO.
 
 \appendix
 
 
 \section{Temporarily moved down MORE TODO}
-
-
-\section{Main estimation}
-
-This section should be moved down to the Appendix, where the temporary stuff is.
-
-\subsection{Wrong proposition}
-
-The absolute value of the transformed is less or equal to the originals absolute value.\\
-
-
-\textbf{This is wrong}\\
-
-\begin{displaymath}
-(\|\boldsymbol{A}\vec{v}\| = \|x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}\| = \|\vec{f}(\vec{v})\|) \leq \|\vec{v}\| \mbox{ if there is no manipulation of the unit length or both 3-D and 2-D have equal unit length.} 
-\end{displaymath}
-
-Again. No matter, with which tool we transform it. (Again. This is wrong and will not hold.)\\
-
-\textbf{This is wrong}\\
-
-\begin{center}
-$\|\boldsymbol{A}\vec{v}\| \st \|\vec{v}\|$\\
-
-$\|x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}\| \leq \|\vec{v}\|$\\ 
-
-$\|\vec{f}(\vec{v})\| \leq \|\vec{v}\|$\\
-\end{center}
-
-\textbf{This is wrong}\\
-
-Proof follows.\\
-
-i) In words. First i thought, geometrically i would be right, because the image collapses in one dimension. And that is the problem.
-We add up three coordinates multiplied with a part of the axis vectors, we do that in both rows. The sums can be larger or smaller than the original values. \\
-
-ii) For a part of the proof, i tried it with vectors with numbers and took the absolute values of. The result was, that the $\|\boldsymbol{A}v\|$ values were many times larger than the $\|v\|$ values. This resembles one of my first results in measuring almost three or four weeks ago, when i started to investigate this topic. \\
-
-\subsection{Second proposition}
-
-Can be larger, equal, or smaller. Depends on the coordinate system. And what´s when is what i will figure out.
-
-
-I assume, it depends on the coordinate axes, in which angle they are related, how long the new position vector is going to be. If all components add up in one direction, it gets much longer. If we can subtract a direction, it gets smaller.
-
-\emph{Proposition - The length of the 2-D position vectors are dependent of the orientation of the axes. If they look into the same direction, e.g. all three into the positive x-direction, the number which adds up is larger, then when one of the axes is looking into the opposite direction}
-
-
-Remark. TODO I have removed the other crap i wrote here. I will test all possibilities with two independent, with three mixed vectors in all possible combinations of directions with the dot product over the next days. I have drawn the systems already on a few backsides of my strang book, being underways later again.
-
-
-
-\subsection{Neighborhood } 
-
-Remark. This should come together with topology. With metrics and distance. Maybe i can move the metric stuff from downwards up to this.
-
-The neighborhood of a point (x,y,z) is a ball or a sphere with a radius r. The ball has inner points, the sphere just is the border of the ball. The ball got the formula $B_{r}{ (x,y,z) : x^{2} + y^{2} + z^{2} <= r }$ and the sphere collects all points around with the radius of one $B_{r}(\vec{v}) :={ (x,y,z) : x^{2} + y^{2} + z^{2} = r }$.\\
-
-
-
-
 
 \subsection{Convex sets}
 
@@ -1104,51 +1023,18 @@ By the rule of linearity.
 Remark. To be studied within the next days. 
 
 
-\subsection{Orthogonality in the 2x3 matrix}
-
-Remark. This is my note, just a few days old. I am sorry for the crap inside the document. Ok. Its a dev version. I said that. But my first words about the right angle of the xy plane, for whose two axes the three inputs are combined to one final position, are stumbled a little.
-
-I think this is more about the right angle in the two dimensions and the linear combination of the three input values, once for each direction of the right angle here. It is still the 3-D on 2-D coordinate system with image and it should do exactly that.\\
-
-Probably already found. 2-D (in each column, the two rows) mapping orthogonal, 3-D is linear (three moves left-right, three up-down) in the 2x3. In the 3x2 case the converse. Do never forget, that cos and sin are $\perp$ and form a right angle. TODO.\\
-
-I mean. In each of the three column vectors, the map to the plane is defined by orthogonality of the two rows. Even if we change
-from the perpendicular sine and cosine to some weird nbers, it would be interpreted as x and y and depend on the base used in the R2.\\
-
-Is it possible with three 2x2 matrices to find the difference of each? to restore the mapping?
-
-
-\subsection{Algebra}
-
-TODO
-
-\subsubsection{K-Vectorspace}
-
-Move to the beginning. But do not change emphasizement on the design of the coordinate system on the plane.
-
-The euclidean space is a K-Vectorspace.
-
-TODO
-
-\subsubsection{Quotient rooms}
-
-Taking away the z coordinate and setting it to zero shows us a parallel projection of the xy plane.
-
-This is a quotient room of the three dimensional room. Written V/W. A quotient room collapses a dimension or more.
-
-Inside of the topic. Equivalenceclasses are written in Brackets. They have properties like [v]+[w]=[v+w].
-
-I recently got into the topic and am learning more about. This section can be updated in some hours.\\
-
-
-\subsection{Integration}
-
-Since the function is continuous, it is possible to measure the objects, or to integrate over the surfaces, to get some areas and volumes together.\\
 
 \begin{displaymath}
 \end{displaymath}
 
 \section{Deconstructing and proving the 2x3 basis or not}
+
+\subsection{Orthogonality in the 2x3 matrix}
+
+When going from three to two dimensions, three numbers are taken and are combined. Once for the x part, and one for the y part. The new x and y are orthogonal. The other way round, the three numbers came from an orthogonal system. 
+
+TODO.
+
 
 \subsection{2x3 standard basis}
 
@@ -1471,6 +1357,15 @@ Column wise. Sum up each column vector, and return the largest. This is the colu
 \|A\|_{column} = \max_{j=1..n} { \sum_{i=1} |A_{i}j| }
 \end{displaymath}
 
+TODO. The Frobenius norm is $\sqrt{3}$ for summing up 6 squares of three sines and three cosines, coz sine and cosine squared add up to one, and that three times.
+
+\begin{displaymath}
+\|A\|_{Frobenius} = (\sum_{i=1..2,j=1..3}A_{ij}^{2})^{\frac12}
+\end{displaymath}
+
+
+
+
 \subsubsection{Operator norms}
 
 The operatornorm is a dependent norm. It depends on the currently used norm. 
@@ -1619,45 +1514,39 @@ A little bit refined the 3x3 matrix becomes this. Also, to forget about $r_n$ is
 
 \textbf{Remark} Missing are $|\boldsymbol{A}\boldsymbol{A}^T|$ and $|\boldsymbol{A}^T\boldsymbol{A}|$ and $(\boldsymbol{A}\boldsymbol{A}^T)^{-1}$ and $(\boldsymbol{A}^T\boldsymbol{A})^{-1}$ and various tries to combine them to $P$ = $\boldsymbol{A}(\boldsymbol{A}^T\boldsymbol{A})^{-1}\boldsymbol{A}^T$.\\
 
-The determinant of the 
-
-Remark. I would like to post a picture of the handwritten page with the abstract sums of the 2x2 determinant, but i have no camera. I wish i had one, but that will be another day, another month, maybe in another year, until i can afford one.
-
-Remark. The stuff possibly moves. 
-
+The determinant of the
 A 2x2 determinant and inverse have the following formulas.
 A 3x3 determinant and inverse have the following formulas.
 
-Remark. I thought about creating three crossover 2x2 matrices from the original and to invert them, to look if we can puzzle the right information back together. But it will take more days, by time i have and can give until i get to.
+TODO\\
 
+Without checking the importance of the transposes in the first three weeks since i started this document, i kept this begun calculation. Meanwhile i figured out why:
+
+$((A^{T}A)-\lambda{I})=0$ and $((AA^{T})-\lambda{I})=0$ want to be solved, and then we want the SVD.
+
+\subsubsection{Singular Value Decomposition}
 
 TODO\\
 
-\subsection{The pseudo-inverse \boldsymbol{A}^{+} and least squares}
+This a mxm orthogonal times nxm diagonal times nxn orthogonal. To get the orthogonal we have to take the eigenvectors from the products with the transpose. TODO.
 
-In a lecture script about numerical linear algebra i found the formulas for the pseudo inverses.\\
+\begin{displaymath}
+    \boldsymbol{A} = \boldsymbol{U}\boldsymbol{\Sigma}\boldsymbol{V}^{T}
+\end{displaymath}
 
-Remark. In \cite{Strang1} there is a whole chapter about least squares. \\
+Remark. A rectangular matrix has no eigenvalue equation. But there is a singular value decomposition, which can tell some proper things about the matrix. For that, the eigenvalues are taken from the products with the transpose. And then the decomposition continues.\\
 
+The $A^{T}A$ and $AA^{T}$ are needed for the SVD. First we extract the eigenvalues and eigenvectors of the symmetric square matrices.
+Then we build So with the last two chapter we are fine.\\
+
+Remark. Nice to get some excercise for this topic, which can not be solved from outside with any good excercise or motivating lecture.
+
+
+\subsubsection{The pseudo-inverse $\boldsymbol{A}^{+}$ and least squares}
 For a m by n matrix with m < n it is $A^T(AA^{T})^{-1}$\\
-
 For a m by n matrix with m > n it is $(A^{T}A)^{-1}A^T$\\
-
-Least squares gives the possibility, to restore at last two of the three coordinates. How deep i can get
-in restoring the third dimension approximatly? I think i could close the case with the incomplete restauration,
-saying, that we loose the information generally, when going from two to three dimensions, because we have not 
-enough information to restore the data. How far you can span up the z dimension vector. We will see, when i get
-here.
-
 TODO\\
 
-\subsection{Singular Value Decomposition}
-
-TODO\\
-
-Remark. A rectangular matrix has no eigenvalue equation. But there is a singular value decomposition, which can tell some proper things about the matrix. \\
-
-The $A^{T}A$ is needed for the SVD. So with the last two chapter we are fine.\\
 
 \section{Computer Error Estimation}
 
@@ -2042,7 +1931,6 @@ while (i < n) {
 
 \subsection{Another orthographic projection possible}
 
-
 Remark. Before i figured out, how to compose three 2-D vectors for an orthographic projection, i did it wrong. But when doing it false, i had the most intelligent idea. I simply added z to y, after turning the plane around. I wanted to turn the axes, but failed, because i used the wrong formula. \emph{After moving this paragraph out of the corollaries, i think, i can write the story again. In the next versions.}\\
 
 
@@ -2062,16 +1950,17 @@ w = \left(\begin{array}{1}x'\\y'+z\end{array}\right)
 
 
 \textbf{Example}
-This is an EcmaScript 5 code. First rotate the xy plane to point downwards. Then add the z coordinate to y. That moves the point upwards again for the z-value. This results in an orthographic projection. Which is less flexible, but still one.
+This is an EcmaScript 5 code example. First rotate the xy plane to point downwards. Then add the z coordinate to y. That moves the point upwards again for the z-value. This results in an orthographic projection. Which is less flexible, but still one.
 \begin{example}
 \begin{lstlisting}
+// once
 var angle = 1.25*Math.PI; // 225 deg
 var cos = Math.cos(angle), sin = Math.sin(angle);
-// for each point now
+// for each point
 var u = x, w = y;
-x = cos * u - sin * w; // rotate the point like we rotate the xy plane
-y = sin * u + cos * w; // let the positive x,y axes point downwards 
-y += z; // the trick, let z now go upwards by just adding it to the vertical coord.
+x = cos*u -sin*w; 
+y = sin*u +cos*w; 
+y += z; 
 \end{lstlisting}
 \end{example}
 
