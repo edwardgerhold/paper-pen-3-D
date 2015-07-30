@@ -17,9 +17,9 @@
 \maketitle
 
 
-Version 0.3.10-\\
+Version 0.3.11-working-\\
 
-\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX() but not my last.\\ 
+\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX() but not my last.\\
 
 
 \end{center} 
@@ -54,6 +54,7 @@ tell you directly, what happens, when we multiply the coordinates with the matri
 \item Read the example source code for a computer function, which is exactly two lines long. One for the new $x$ and one for the new $y$.
 \item Read other versions of the transformation, with functions, for example.
 \item Derive the generic case of transforming coordinate systems down to the plane.
+
 \end{enumerate}
 
 \chapter{1}
@@ -62,7 +63,7 @@ tell you directly, what happens, when we multiply the coordinates with the matri
 
 \subsection{Axis vector}
 
-The words basis, axis vectors, coordinate systems  are used interchangably. And from those choices we talk about a coordinate system.
+The words basis, axis vectors, coordinate system are used interchangably. And from those choices we talk about a coordinate system.
 
 \subsection{The $_{n}$ index for $_x,_y,_z$ with $_x=1$, $_y=2$ and $_z=3$}
 \index{index}
@@ -410,7 +411,7 @@ Remark. About the matrix norm $\|A\|_{Frob}$. The number, after counting the com
 
 
 \index{Theorem}
-\newtheorem{Theorem}{My fundamental theorem of transforming 3-D Points into 2-D Points (Matrix)}
+\newtheorem{Theorem}{Proposition. My fundamental theorem of transforming 3-D Points into 2-D Points (Matrix)}
 \begin{Theorem}
 \label{Theorem}
 If you multiply \boldsymbol{A}, the 2x3 matrix of the three two-dimensional basis vectors,
@@ -443,7 +444,7 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 
 \subsection{Vectorbasis version}
 
-\subsubsection{Hamel-Basis with broken law of linear independence}
+\subsubsection{Hamelbasis with broken law of linear independence (or just a linear mapping)}
 
 The theorem from Hamel says, that every vector space has a basis. And he gives a formula for this. The new vector in the new coordinate system is the sum of the coordinates multiplied with the basis vectors. \\
 
@@ -453,9 +454,9 @@ The theorem from Hamel says, that every vector space has a basis. And he gives a
 
 Remark. Have to fetch the Hamel-Theorem.\\
 
-A Hamel-Basis requires a linearly independent set of basis vectors. Which we can not provide. We change the dimension. The mapping yields the right image. So i will say, it is o.k. to break the rule of linear independence. This coordinate system is a special case.\\
+A Hamelbasis requires a linearly independent set of basis vectors. Which we can not provide. We change the dimension. The mapping yields the right image. So i will say, it is o.k. to break the rule of linear independence. This coordinate system is a special case.\\
 
-\newtheorem{VectorBasisVersion}{Theorem. My fundamental theorem of transforming 3-D points into 2-D points (Vectorbasis)}
+\newtheorem{VectorBasisVersion}{Proposition. My fundamental theorem of transforming 3-D points into 2-D points (Vectorbasis)}
 \begin{VectorBasisVersion}
 If you multiply the three linear dependent two dimensional vectors with the three dimensional coordinates, they are mapped correctly onto the two dimensional coordinate system.
 \end{VectorBasisVersion}
@@ -476,7 +477,7 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 
 The difference is that we have a dimension less than coordinates, and with that at least one axis, that must be a mix of the other two. By default our image in our coordinate system is a linear combination of $\lambda\begin{pmatrix}1\\0\end{pmatrix} + \mu\begin{pmatrix}0\\1\end{pmatrix}$, but before that, we map with a linear function from three dimensions to two dimensions, by using our coordinate system as or like a basis. \\
 
-\newtheorem{VectorBasisBrokenLaw}{Theorem. Breaking the rule of linear independence to map from 3-D to 2-D}
+\newtheorem{VectorBasisBrokenLaw}{Proposition. Breaking the rule of linear independence to map from 3-D to 2-D}
 \begin{VectorBasisBrokenLaw}
 \label{broken_law_basis}
 To transfer the points from 3-D to 2-D with the same formula, as mapping ordinary points with a vector basis into 
@@ -494,7 +495,7 @@ The ijk-Notation is well known from describing vectors, from calculating cross p
 
 This is a very natural way. This is a real sum. The coordinates x,y,z multiply each a basis vector. This is the ordinary constant or scalar multiplication. Then the three scaled vectors are summed up together. This gives us a new vector, the sum of the three vectors. I have explained this already earlier, you can use this notation for this purpose, now it is time to repeat it. For a picture, look at figures \ref{ijksystem} and \ref{handsystems}.\\
 
-\newtheorem{ijkVersion}{Theorem. The fundamental theorem of transforming 3-D points into 2-D points (ijk-Notation)}
+\newtheorem{ijkVersion}{Proposition. The fundamental theorem of transforming 3-D points into 2-D points (ijk-Notation)}
 \begin{ijkVersion}
 If you write the vector down in ijk-Notation using the three two dimensional axis vectors, instead of three three dimensional linear independent basis vectors, the sum of the products with ijk and the coordinates, which is a new vector, equals the right vector on the 2-D plane.
 \end{ijkVersion}
@@ -524,8 +525,9 @@ f(\vec{x}) := \left(\begin{array}{1}\vec{x}_{1}r_x\cos\varphi_x + \vec{x}_{2}r_y
 \end{displaymath}
 
 
-\newtheorem{FunctionalVersion}{My fundamental theorem of transforming 3-D points into 2-D points (Functional))}
+\newtheorem{FunctionalVersion}{Proposition. My fundamental theorem of transforming 3-D points into 2-D points (Functional))}
 \begin{FunctionalVersion}
+The linear functional $\vec{f}(\vec{x})$ maps the points correctly from 3-D to 2-D. It is continuous in every point, the zero vector maps onto the zero vector. Passing a vector with three coordinates to the function results in a vector with two coordinates, which are the right coordinates on the 2-D screen.
 \end{FunctionalVersion}
 
 
@@ -799,9 +801,6 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right
 
 Meanwhile it is clear, that this operation is the same as $\nabla\vec{f}(\vec{x}) \cdot \vec{v}$, which is the natural dot product of the gradient vector of our linear functional $\vec{f}(\vec{x})$ with the coordinate vector.
 
-\subsection{}
-
-
 \section{Derivatives of $\vec{f}(\vec{x}) : V \rightarrow W$ }
 
 Again we begin with $\vec{f}(\vec{x}) : V \subset \mathbb{R}^{3} \rightarrow W \subset \mathbb{R}^{2}$.
@@ -911,7 +910,7 @@ I tried to choose the constant, for the first time, and thought it could be the 
 
 \begin{displaymath}
 \begin{align}
-c := \max_{\vec{v} \in V}\{ \frac{\|\boldsymbol{A}\vec{v}\|}{\|\vec{v}\|} \} = \frac{\|(\boldsymbol{A}\vec{v})_{max}\|}{\|\vec{v}\|}
+c := \max_{\vec{v} \in V}\{ \frac{\|\boldsymbol{A}\vec{v}\|}{\|\vec{v}\|} \} = \frac{\|\max\{\boldsymbol{A}\vec{v}\}\|}{\|\vec{v}\|}
 \end{align}
 \end{displaymath}
 
@@ -919,8 +918,8 @@ If i use this c, i get that the norm of any Av is less than or equal to the maxi
 
 \begin{displaymath}
 \begin{align}
-\|\boldsymbol{A}\vec{v}\| \leq \frac{\|(\boldsymbol{A}\vec{v})_{max}\|}{\|\vec{v}\|}\|\vec{v}\| \\
-&= \|\boldsymbol{A}\vec{v}\| \leq \|(\boldsymbol{A}\vec{v})_{max}\|\\
+\|\boldsymbol{A}\vec{v}\| \leq \frac{\|\max\{\boldsymbol{A}\vec{v}\}\|}{\|\vec{v}\|}\|\vec{v}\| \\
+&= \|\boldsymbol{A}\vec{v}\| \leq \|\max\{\boldsymbol{A}\vec{v}\}\|\\
 &= \|\vec{w}\| \leq c\|\vec{v}\| \\
 \end{align}
 \end{displaymath}
@@ -1164,7 +1163,7 @@ This equation says, that "the square sum of the parallelogram", on the left side
 \end{align}
 \end{displaymath}
 
-\textbf{Polarisation equation}
+\subsection{Polarisation equation}
 
 Remark. I have written this into my linear algebra i script\footnote{see footnote 1}, on the backside of the previous four pages, underways, 
 in the subway, after solving the parallelogram equation (equation, not inequality) in less then a minute. 
@@ -1188,41 +1187,58 @@ It must have a simple meaning.
 
 Why is this formula looking important to know? The dot product of v and w is the same as a quarter of v+w`s norm squared minus v-w`s norm squared, reading off the formula. The script says in the Satz 22 Polarisationsformel: "Das Skalarprodukt ist durch die zugeh\"orige Norm also eindeutig bestimmt."\footnote{On page 54.} Maybe not correctly translated but meaning the same it says "So the dot product is uniquely defined by the related norm."
 
-\subsubsection{Matrix norms}
+\subsection{Matrix norms}
 
 There are a few possible ways to measure the multidimensional absolute values of a matrix.
 
 Row wise. Sum up each row vector, and return the largest. This is the row norm.
 
 \begin{displaymath}
-\|A\|_{row} = \max_{i=1..n} { \sum_{j=1} |A_{ij}| }
+\|A\|_{row} = \max_{i=1..m} { \sum_{j=1}^{n} |A_{ij}| }
 \end{displaymath}
+
+For our matrix this is
+
+\begin{displaymath}
+\|A\|_{row} = \max_{i=1..m} { \sum_{j=1}^{n} |A_{ij}| } = \max\{ \sum_{j=1}^{n} |r_n\cos\varphi_n|, \sum_{j=1}^{n} |r_n\sin\varphi_n| \}
+\end{displaymath}
+
 
 Column wise. Sum up each column vector, and return the largest. This is the column norm.
 
+\begin{displaymath}
+\|A\|_{column} = \max_{j=1..n} { \sum_{i=1}^{m} |A_{i}j| }
+\end{displaymath}
 
 \begin{displaymath}
-\|A\|_{column} = \max_{j=1..n} { \sum_{i=1} |A_{i}j| }
+\|A\|_{column} = \max_{i=1..n} { \sum_{i=1}^{m} |A_{ij}| } = \max_{j=1..3}\{ |r_j\cos\varphi_j| + |r_j\sin\varphi_j| \}
 \end{displaymath}
 
 TODO. The Frobenius norm is $\sqrt{3}$ for $r_n = 1$ summing up 6 squares of three sines and three cosines.
 
 \begin{displaymath}
 \|A\|_{Frobenius} = (\sum_{i=1..2,j=1..3}A_{ij}^{2})^{\frac12}
+\|A\vec{v}\|_{Frobenius} = (\sum_{i=1..2,j=1..3}\vec{v}_{i}^{2}A_{ij}^{2})^{\frac12}
 \end{displaymath}
 
 
 \newtheorem{PropositionMatrixNorm}{Proposition. The matrix norm of the coordinate systems matrix.}
 \begin{PropositionMatrixNorm}
 \label{proposition_matrix_norm}
-The euclidean norm of our matrix, the Frobenius Norm, counting together the rows and columns, componentwise and squared, then pulling the root out of the whole sum, is the square root of $(r_{x}^{2}+r_{y}^{2}+r_{z}^{2})$. The sines squared and cosines squared add up to 1 each, are a factor for the $r_{n}^{2}$. Each $r_{n}^{2}$ belongs to pair of sine and cosine. When sine and cosine squares are added, the $r_{n}^{2}$ has to be factored out first, it can not add to two.
+The euclidean norm of our matrix, the Frobenius Norm, counting together the rows and columns, componentwise and squared, then pulling the root out of the whole sum, is, without $\vec{v}$ the square root $\sqrt{r_{x}^{2}+r_{y}^{2}+r_{z}^{2}}$. The sines squared and cosines squared add up to 1 each, and are a factor for the $r_{n}^{2}$. Each $r_{n}^{2}$ belongs to pair of sine and cosine. When sine and cosine squares are added, the $r_{n}^{2}$ has to be factored out first, it can not add up to two, what could be miscounted easily. If the coordinates $x,y,z$, say, the vector $\vec{w}$, are applied to the matrix and the Frobenius Norm is taken, the norm for $\|Av\|$ is $x^{2}r_{x}^{2}+y^{2}r_{y}^{2}+z^{2}r_{z}^{2})^{\frac{1}{2}}$. The Frobenius norm is like the $\|\cdot\|_{2}$ norm taken, but accounts for the matrix elements, too.\\
+
+Remark. Needs definitly new formulation and not the algebraic simplification as the proposition.\\
+
 \begin{displaymath}
-\|\boldsymbol{A}\|_{Frobenius} = (r_{x}^{2}+r_{y}^{2}+r_{z}^{2})^{\frac{1}{2}}
+\begin{align}
+\|\boldsymbol{A}\|_{Frobenius} = (r_{x}^{2}+r_{y}^{2}+r_{z}^{2})^{\frac{1}{2}}\\
+\|\boldsymbol{A}\vec{v}\|_{Frobenius} = (x^{2}r_{x}^{2}+y^{2}r_{y}^{2}+z^{2}r_{z}^{2})^{\frac{1}{2}}
+\end{align}
 \end{displaymath}
 \end{PropositionMatrixNorm}
 
-
 \textbf{Proof:}\\
+Without the elements of a vector 
 \begin{displaymath}
 \begin{align}
 \|\boldsymbol{A}\|_{Frobenius} = (\sum_{i=1,2;j=x,y,z}\vec{e}_{ij}^{2})^{\frac{1}{2}} \\
@@ -1231,10 +1247,21 @@ The euclidean norm of our matrix, the Frobenius Norm, counting together the rows
 &= \sqrt{r_{x}^{2}+r_{y}^{2}+r_{z}^{2}}\\
 \end{align}
 \end{displaymath}
+And with applying the vector to A
+\begin{displaymath}
+\begin{align}
+\|\boldsymbol{A}\vec{v}\|_{Frobenius} = (\sum_{i=1,2;j=x,y,z}\vec{v}_{i}^{2}\vec{e}_{ij}^{2})^{\frac{1}{2}} \\
+&= (\sum_{n=1}^{3}\vec{v}_{n}^{2}r_{n}^{2}\cos\varphi_n^{2} + \sum_{n=1}^{3}\vec{v}_{n}^{2}r_{n}^{2}\sin\varphi_n^{2})^{\frac{1}{2}}\\
+&= (\sum_{n=1}^{3}\vec{v}_{n}^{2}r_{n}^{2}(\cos\varphi_n^{2} + \sin\varphi_n^{2}))^{\frac{1}{2}}\\
+&= \sqrt{x^{2}r_{x}^{2}+y^{2}r_{y}^{2}+z^{2}r_{z}^{2}}\\
+\end{align}
+\end{displaymath}
 
+Remark. Ongoing research.
 
+\subsection{Operator norms}
 
-\subsubsection{Operator norms}
+TODO.
 
 The operatornorm is a dependent norm. It depends on the currently used norm. 
 
@@ -1243,9 +1270,6 @@ The operatornorm is a dependent norm. It depends on the currently used norm.
 \end{displaymath}
 
 Remark. This is by heart. But i sure i am not through with using it correctly.
-
-
-
 
 \subsection{Dot product}
 
