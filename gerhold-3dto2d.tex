@@ -17,7 +17,7 @@
 \maketitle
 
 
-Version 0.3.9-rewriting-the-explaining-text\\
+Version 0.3.10-\\
 
 \textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX() but not my last.\\ 
 
@@ -799,6 +799,8 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right
 
 Meanwhile it is clear, that this operation is the same as $\nabla\vec{f}(\vec{x}) \cdot \vec{v}$, which is the natural dot product of the gradient vector of our linear functional $\vec{f}(\vec{x})$ with the coordinate vector.
 
+\subsection{}
+
 
 \section{Derivatives of $\vec{f}(\vec{x}) : V \rightarrow W$ }
 
@@ -866,23 +868,72 @@ The transposed gradient of the vector function $\vec{f}(\vec{x}) : V \rightarrow
 
 I have set up a corollary earlier (\ref{alternative_def_using_dot}), which uses the two row vectors with the three cosines and the three sines for a dot product with the coordinate each. In the order of the gradient $\nabla\vec{f}(\vec{x})$, the axis vectors are column vectors themselves. The vector $\begin{pmatrix}x'\\y'\end{pmatrix}$ is a natural result of a dot product with the them.\\
 
-\begin{center}
-$\nabla\vec{f}(\vec{x}) \cdot \begin{pmatrix}x\\y\\z\end{pmatrix} = \begin{pmatrix}\sum_{i=1}^{3}(\nabla\vec{f}_{1})_{i}\vec{v}_{i}\\\sum_{i=1}^{3}(\nabla\vec{f}_{2})_{i}\vec{v}_{i}\end{pmatrix} = \begin{pmatrix}x'\\y'\end{pmatrix}$
-\end{center}
+\begin{displaymath}
+\begin{align}
+\nabla\vec{f}(\vec{x}) \cdot \begin{pmatrix}x\\y\\z\end{pmatrix} &= \begin{pmatrix}\sum_{i=1}^{3}(\nabla\vec{f}_{1})_{i}\vec{v}_{i}\\\sum_{i=1}^{3}(\nabla\vec{f}_{2})_{i}\vec{v}_{i}\end{pmatrix}\\ &= \begin{pmatrix}x'\\y'\end{pmatrix}
+\end{align}
+\end{displaymath}
 
 Which is equal to \ref{alternative_def_using_dot} and of course the formula $\vec{w} = x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}$ again. You see some natural connections between the basic functional, our formula, the derivatives, other formulas and our other methods which result in the same planar projection.\\
 
 
 \section{Projecting just z onto a vector}
 
+
+\label{projecting_just_z}
 What i did not get before was the projection onto a vector. I wondered about how to add the third axis. We already have seen the three independent axes. Now i have found out, how to project just the z coordinate into the $\mathbb{R}^{2}$ system and to keep the $xy$-plane the same. 
 
 \begin{displaymath}
-\begin{pmatrix}x\\y\end{pmatrix} + z\begin{pmatrix}r_z\cos\varphi_z\\r_z\sin\varphi_z\end{pmatrix} = \begin{pmatrix}x'\\y'\end{pmatrix} = \vec{w}
+\begin{align}
+\begin{pmatrix}x\\y\end{pmatrix} + z\begin{pmatrix}r_z\cos\varphi_z\\r_z\sin\varphi_z\end{pmatrix} &= \begin{pmatrix}x+zr_{z}\cos\varphi_z\\y+zr_{z}\sin\varphi_z\end{pmatrix}\\ &= \begin{pmatrix}x'\\y'\end{pmatrix}\\ &= \vec{w}
+\end{align}
 \end{displaymath}
 
 I can explain what is happening. By the formulas twe already have seen, the two vectors are summed together. The first one carries the x and the y coordinates. The second one, multiplies the z-axis vector with the z-coordinate. Like you know from before, this moves the point along or parallel to along the z-axis vector. And of course stops at the right place.
 
+
+\section{Estimation}
+
+I was thinking about, how $\|\boldsymbol{A}\vec{x}\|$ and $\|\vec{x}\|$ behave.\\
+
+Definitly wrong is, that $\|\boldsymbol{A}\vec{x}\| \leq \|\vec{x}\|$. The two-d position vectors get a little longer, after summing three components up each component.\\ 
+
+But for sure, by a theorem of uniformed boundedness, and by what i´ve noticed already,
+there is the possibility, that a constant $c \in \mathbb{R}$ exists, such that $\|\boldsymbol{A}\vec{x}\| \leq c\|\vec{x}\|$.\\
+
+\begin{displaymath}
+\begin{align}
+\exists c \in \mathbb{R}: \|\boldsymbol{A}\vec{v}\| \leq c\|\vec{v}\|
+\end{align}
+\end{displaymath}
+
+I tried to choose the constant, for the first time, and thought it could be the maximum of the norm of Ax over the norm of x.
+
+\begin{displaymath}
+\begin{align}
+c := \max_{\vec{v} \in V}\{ \frac{\|\boldsymbol{A}\vec{v}\|}{\|\vec{v}\|} \} = \frac{\|(\boldsymbol{A}\vec{v})_{max}\|}{\|\vec{v}\|}
+\end{align}
+\end{displaymath}
+
+If i use this c, i get that the norm of any Av is less than or equal to the maximum of all norms of Av, which means, w is bounded by the largest w, since the norm of v cancels in this term.
+
+\begin{displaymath}
+\begin{align}
+\|\boldsymbol{A}\vec{v}\| \leq \frac{\|(\boldsymbol{A}\vec{v})_{max}\|}{\|\vec{v}\|}\|\vec{v}\| \\
+&= \|\boldsymbol{A}\vec{v}\| \leq \|(\boldsymbol{A}\vec{v})_{max}\|\\
+&= \|\vec{w}\| \leq c\|\vec{v}\| \\
+\end{align}
+\end{displaymath}
+
+Looks a bit ridiculous, because the norm is after simplification bounded by its largest value, because the two norms of v cancel the fraction. But it isn´t really. I am sure, we are making progress here soon.\\
+
+The theorem of uniformed boundedness is a part of functional analysis. I have not proven it´s correctness in my case, or not read right, but i think, this works here.\\
+
+Remark. To be continued.\\
+
+Remark. To be connected with the introduction to norms from the appendix.
+
+Remark. And to be continued.\\
 
 \section{Cauchy Sequences and Convergence}
 
@@ -957,6 +1008,8 @@ $\|\boldsymbol{A}v_{n} - \boldsymbol{A}v_{m}\| \leq \epsilon,  \forall m,n > n_{
 TODO\\
 
 Remark. This section is not finished, and at the change of dimensions or at the use of two different sets with different norms, the epsilon-delta version is required, too. It should say, that if the one goes below epsilon, the other goes below delta.\\
+
+
 
 
 \section{Summary}
@@ -1125,8 +1178,8 @@ It must have a simple meaning.
 
 \begin{displaymath}
 \begin{align}
-\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} &= \frac{1}{4}(\sum_{i=1}^{n}(\vec{v}_{i}+\vec{w}_{i})^{2} - (\sum_{i=1}^{n}(\vec{v}_{i}-\vec{w}_{i})^{2})) \\
-\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} &= \frac{1}{4}(\sum_{i=1}^{n}(\vec{v}_{i}^{2}+2\vec{v}_{i}\vec{w}_{i}\vec{w}_{i}^{2})-\sum_{i=1}^{n}(\vec{v}_{i}^{2}-2\vec{v}_{i}\vec{w}_{i}\vec{w}_{i}^{2})\\
+\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} &= \frac{1}{4}(\sum_{i=1}^{n}(\vec{v}_{i}+\vec{w}_{i})^{2} - \sum_{i=1}^{n}(\vec{v}_{i}-\vec{w}_{i})^{2}) \\
+\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} &= \frac{1}{4}(\sum_{i=1}^{n}(\vec{v}_{i}^{2}+2\vec{v}_{i}\vec{w}_{i}+\vec{w}_{i}^{2})-\sum_{i=1}^{n}(\vec{v}_{i}^{2}-2\vec{v}_{i}\vec{w}_{i}+\vec{w}_{i}^{2}))\\
 &= \frac{1}{4}(\sum_{i=1}^{n}4\vec{v}_{i}\vec{w}_{i})\\
 &= \frac{1}{4}(4\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i})\\
 &= \sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}\\
@@ -1173,8 +1226,8 @@ The euclidean norm of our matrix, the Frobenius Norm, counting together the rows
 \begin{displaymath}
 \begin{align}
 \|\boldsymbol{A}\|_{Frobenius} = (\sum_{i=1,2;j=x,y,z}\vec{e}_{ij}^{2})^{\frac{1}{2}} \\
-&= (\sum_{i=1}^{3}r_{n}^{2}\cos\varphi_n^{2} + \sum_{i=1}^{3}r_{n}^{2}\sin\varphi_n^{2})^{\frac{1}{2}}\\
-&= (\sum_{i=1}^{3}r_{n}^{2}(\cos\varphi_n^{2} + \sin\varphi_n^{2}))^{\frac{1}{2}}\\
+&= (\sum_{n=1}^{3}r_{n}^{2}\cos\varphi_n^{2} + \sum_{n=1}^{3}r_{n}^{2}\sin\varphi_n^{2})^{\frac{1}{2}}\\
+&= (\sum_{n=1}^{3}r_{n}^{2}(\cos\varphi_n^{2} + \sin\varphi_n^{2}))^{\frac{1}{2}}\\
 &= \sqrt{r_{x}^{2}+r_{y}^{2}+r_{z}^{2}}\\
 \end{align}
 \end{displaymath}
@@ -1441,7 +1494,7 @@ It should result in
 
 Remark. My first conclusions, while inventing the chapter and the excercise. To be removed.
 
-From trigonometry, we know, that cosine and sine form a right angle. They are perpendicular to each other. But taking the norm of the vector results in r, not in 0, because $sin^{2}+cos^{2}=1$. $r sin^{2}+r cos^{2}=r^{2}$. This is not orthogonal in terms of the dot product, which should result in 0, if the angle is 90 degrees.\\
+From trigonometry, we know, that cosine and sine form a right angle. They are perpendicular to each other. But taking the norm of the vector results in r, not in 0, because $sin^{2}+cos^{2}=1$. $r^{2}\sin^{2}+r^{2}\cos^{2}\ =r^{2}$. This is not orthogonal in terms of the dot product, which should result in 0, if the angle is 90 degrees.\\
 
 For simplification we should do a few things. First, we assume $r_x = r_y = r_z = 1$. Without a factor in front of sine and cosine, they both together have unit length of one. With $\|\begin{pmatrix}\frac{r_x\cos\varphi_x}{r_x}\\\frac{r_x\sin\varphi_x}{r_x}\end{pmatrix}\| = 1$ the vector is normalized. \\
 
@@ -2026,42 +2079,72 @@ while (i < n) {
 
 \end{lstlisting}
 
-\subsection{Another orthographic projection possible}
+\section{How i was wrong the first time. Turning $xy$-around and adding $z$ in.}
 
-Remark. Before i figured out, how to compose three 2-D vectors for an orthographic projection, i did it wrong. But when doing it false, i had the most intelligent idea. I simply added z to y, after turning the plane around. I wanted to turn the axes, but failed, because i used the wrong formula. \emph{After moving this paragraph out of the corollaries, i think, i can write the story again. In the next versions.}\\
+Remark. This was the transformation i found before i invented the axes. This lead me to the invention.\\
 
+Before i figured out, how to create three axes, i did it wrong. I wanted to turn three axes around, but did only rotate the $xy$-plane. With the well known formula for rotating around the z-axis in the $\mathbb{R}^{2}$. I tried to combine this for the other axes, but failed. But i had an idea, as the $xy$-axes where pointing downwards. I was writing it on the computer, the hardware $y$-axis was free after rotation. I added the z-coordinate to the y coordinate, believing it would shift the point upwards vertically. I found an interpretation of the righthanded coordinate system.\\
 
-Even less difficult to create a 3-D righthand coordinate system is this. Rotate the $xy$-plane by for example 225 degrees or $\frac{\pi}{180}\times225=\frac{15\pi}{12}=\frac{5}{4}\pi = 1.25\pi$ radians. Now the x-axis and the y-axis point downwards. This means, the real y-axis on the real 2-D coordinate system is now 'free'. So add the z-coordinate in by just adding it to y.
+\begin{enumerate}
+ \item{Rotate the $xy$-plane by for example 225 degrees or $\frac{\pi}{180}\times225=\frac{15\pi}{12}=\frac{5}{4}\pi = 1.25\pi$ radians.}
+ \item{Now the x-axis and the y-axis point downwards. This means, the real y-axis on the real 2-D coordinate system is now 'free'.}
+ \item{So add the z-coordinate in by just adding it to y.}
+}\\
 
+I will show it again now step by step.\\
+The angle to turn each point around.
 \begin{displaymath}
-\begin{center}
-
-\angle{a} = 1.25\pi\\
-A = \begin{pmatrix}\cos \angle{a}& -\sin \angle{a} \\ \sin \angle{a} & \cos \angle{a} \end{pmatrix}\\
-v = (x,y,z)^T, w = (v_1, v_2)^T = (x,y)^T\\
-\boldsymbol{A}\left(\begin{array}{1}x\\y\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)\\
-w = \left(\begin{array}{1}x'\\y'+z\end{array}\right)
-
-\end{center}
+\angle{\alpha} = 1.25\pi\\
 \end{displaymath}
-
+The rotation matrix for two dimensions, turns the plane around the z-axis which points invisible orthogonally out of the screen.
+\begin{displaymath}
+\boldsymbol{R} = \begin{pmatrix}\cos \angle{\alpha}& -\sin \angle{\alpha} \\ \sin \angle{\alpha} & \cos \angle{\alpha} \end{pmatrix}\\
+\end{displaymath}
+v is the input vector, and w is the output vector.
+\begin{displaymath}
+v = (x,y,z)^T, w = (v_1, v_2)^T = (x,y)^T\\
+\end{displaymath}
+Then we rotate each point containing only the x,y coordinate of the triple v.
+\begin{displaymath}
+\boldsymbol{R}\left(\begin{array}{1}x\\y\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right) = \vec{w}'\\
+\end{displaymath}
+The x,y image is pointing downwards. I add each points z coordinate now to y, which moves the point upwards by the amount of z.
+\begin{displaymath}
+\left(\begin{array}{1}x'\\y'+z\end{array}\right) = \vec{w}''
+\end{displaymath}
+After this i discovered adding three proportional parts for each coordinates and decided quickly to use cos and sin and the circle to create axes by angles.\\
 
 \textbf{Example}
-This is an EcmaScript 5 code example. First rotate the xy plane to point downwards. Then add the z coordinate to y. That moves the point upwards again for the z-value. This results in an orthographic projection. Which is less flexible, but still one.
+This is the EcmaScript 5 code example for rotating xy and addign z in.
 \begin{example}
 \begin{lstlisting}
+
 // once
+
 var angle = 1.25*Math.PI; // 225 deg
 var cos = Math.cos(angle), sin = Math.sin(angle);
-// for each point
-var u = x, w = y;
-x = cos*u -sin*w; 
-y = sin*u +cos*w; 
-y += z; 
+
+function trans(vec3) {
+    // for each point
+
+    var u = x = vec3[0], 
+        v = y = vec3[1], 
+            z = vec3[2];
+
+    // rotate x and y
+    x = cos*u -sin*v; 
+    y = sin*u +cos*v; 
+    
+    // add z vertically
+    y += z; 
+
+    // return 2d point
+    return [x,y];
+}
+
 \end{lstlisting}
 \end{example}
 
-Remark. Have to write this again.
 
 
 \begin{thebibliography}    
