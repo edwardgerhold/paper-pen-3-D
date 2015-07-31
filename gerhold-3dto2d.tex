@@ -17,7 +17,7 @@
 \maketitle
 
 
-Version 0.3.11-working-\\
+Version 0.3.12-working-\\
 
 \textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX() but not my last.\\
 
@@ -317,20 +317,6 @@ With a 3x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is equal to \left(\
 
 \subsubsection{Coordinate system}
 
-In the second week i have a little trouble, you may still spot it, what kind of basis this coordinate system is.\\
-
-Remark. I will try to find out, if it is a real basis in $\mathbb{R}^{2\times3}$.\\
-
-Whether it is a basis in $\mathbb{R}^{2\times3}$ or not, it is a coordinate system. And all the formulas hold precisly,
-like for a vector basis.\\
-
-Did i say all? I mean, the linear mapping of the coordinates onto the projection plane. Like the HTML5 Canvas2DRenderingContext for example.\\
-
-Remark. I did not mean, that all the properties of the orthogonal vector spaces exist. But the mapping has nice properties,
-of which i already discovered some in the section \ref{important_proofs}.\\
-
-Remark. I will try to uncover the rest. But the best in this development version of the article is to go for axis vectors and coordinate system, when i still speak of a basis.\\
-
 \subsection{Time to show the operation}
 
 The operation of multiplying the (x,y,z) coordinate with our $\mathbb{R}^{2\times{3}}$ coordinate axis vectors in order is the following:\\
@@ -341,7 +327,9 @@ xr_x\cos\varphi_x + yr_y\cos\varphi_y + zr_z\cos\varphi_z\\
 xr_x\sin\varphi_x + yr_y\sin\varphi_y + zr_z\sin\varphi_z\end{array}\right)\\
 \end{displaymath}\\
 
-Right, this small formula brings over the $\mathbb{R}^{2\times{3}}$ the unexpected images of the preimage from $R^3$ to $R^2$.\\
+Right, this small formula brings over the $\mathbb{R}^{2\times{3}}$ the unexpected images of the preimage from $R^3$ to $R^2$.
+
+Remark. Meanwhile i am ready to say $\mathbb{R}^{2\times{3}}$ image, and to believe, that this coordinate system is spanning the $\mathbb{R}^{2\times{3}}$ up (spread into the three dimensions) on the plane.\\
 
 \begin{figure}[ht]
 \includegraphics{pathcoords.png}
@@ -349,14 +337,34 @@ Right, this small formula brings over the $\mathbb{R}^{2\times{3}}$ the unexpect
 \end{figure}\\
 
 It is almost time to finish the matrix. And to go through a set of points. To draw the new set of resulting points.
-For this i close the explaining chapters. And come to the part of the formal mathematical definitions.\\
+For this i close the explaining chapters. And come to the part of the formal mathematical definitions. (Were i will
+find alternatives for the matrix and related rules and laws, helpful for the understanding of the happenings.)\\
 
 \textbf{Remark about the document structure.} \LaTeX and i are new to each other. For the theorems, proofs, defintions, corollaries, examples there is the possibility of a personal layout, which i have not prepared yet. And additionally, the following will contain some things, where real
 mathematicians would start to smile. But i will do my best to correct any of my passages over the next time until i reach v1.0.0.\\
 
-\section{The $\mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$ through $\mathbb{R}^{2\times{3}}$ transformation}
+\section{The transformation $\mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$ yields a $\mathbb{R}^{2\times{3}}$ image}
 
-Let $V$ be the set of all points $(x,y,z) \in V \subset R^3$ which are about to become transformed. $V := \{ \vec{v}=(x,y,z)^T | x,y,z \in \mathbb{R}, \vec{v} \in V \subset \mathbb{R}^{3} \}$.
+\subsection{Defining the Topology on the }
+
+Remark. This subsection is started on July 31. 
+
+Let $V$ be an open set in $\mathbb{R}^{3}$.\\
+
+Let $B(\vec{v}, \epsilon)_{3}$ be a standard environment in the 3-space.\\
+
+Let $W$ be an open set in $\mathbb{R}^{2}$.\\
+
+Let $B(\vec{v}, \epsilon)_{2}$ be a standard environment in the 2-space.\\
+
+Let the euclidean norm $\|\cdot\|_{2}$ be the default norm for three and two dimensions.\\
+
+Let the $d(x,y)_{2} = \|x-y\|$ be the according metric.\\
+
+Let $f:V\rightarrow W$ be a continuous functional, and $A:V\rightarrow W$ be a rectangular matrix. Both map with equal operations V to W.\\
+
+Let $V$ be the set of all points $(x,y,z) \in V \subset R^3$ which are about to become transformed. $V := \{ \vec{v}=(x,y,z)^T | x,y,z \in \mathbb{R}, \vec{v} \in V \subset \mathbb{R}^{3} \}$.\\
+
 Let $W$ be the set of all points $(x',y') \in W \subset R^2$ which are the result of the transformation $W ;= \{ \vec{w}=(x',y')^T | \vec{w} \in W \subset \mathbb{R}^{2} x',y' \in \mathbb{R}, \boldsymbol{A}\vec{v}=(x',y')^{T}\}$.\\
 
 Remark. The topology has still to be defined extensivly in this document.\\
@@ -397,17 +405,17 @@ column. You get a rectangular 2x3 matrix $\boldsymbol{A} \in \mathbb{R}^{2\times
 \end{Definition}
 
 
-Remark. The operator definition should be defined differently.\\
+%Remark. The operator definition should be defined differently.\\
 
-\newtheorem{DefinitionOperator}{Definition. A is a linear operator}
-\begin{DefinitionOperator}
-$\boldsymbol{A}$ is the linear operator $\boldsymbol{A} \in \mathbb{R}^{2\times{3}} : \mathbb{R}^3 \rightarrow \mathbb{R}^2$. This operator maps coordinates from a subset of the $\mathbb{R}^{3}$ to the $\mathbb{R}^{2}$. ($\vec{x}) \mapsto \boldsymbol{A}\vec{x}$. 
-This operator is a matrix. But this operator is not invertible, because it is not square. It is not needed to be square, because we map directly from the preimage to the image. The operator is mapping surjective, but since we interpret three dimensions on two, there may be covered points on the plane, or overlaying of whole planes.
-\end{DefinitionOperator}\\
+%\newtheorem{DefinitionOperator}{Definition. A is a linear operator}
+%\begin{DefinitionOperator}
+%$\boldsymbol{A}$ is the linear operator $\boldsymbol{A} \in \mathbb{R}^{2\times{3}} : \mathbb{R}^3 \rightarrow \mathbb{R}^2$. This %operator maps coordinates from a subset of the $\mathbb{R}^{3}$ to the $\mathbb{R}^{2}$. ($\vec{x}) \mapsto \boldsymbol{A}\vec{x}$. 
+%This operator is a matrix. But this operator is not invertible, because it is not square. It is not needed to be square, because we %map directly from the preimage to the image. The operator is mapping surjective, but since we interpret three dimensions on two, %there may be covered points on the plane, or overlaying of whole planes.
+%\end{DefinitionOperator}\\
 
-Remark. The operator definition contains more than one definition. And the formulation is not good. TODO.\\
+Remark. I commented the "linear map operator" definition out (linear map and operator is correct), because i have to write it again.
 
-Remark. About the matrix norm $\|A\|_{Frob}$. The number, after counting the components squares together and pulling the root is $\sqrt{3}$. Pulling the norm chapter out of the introduction and introducing the measurements and estimations, also to myself, is new on the TODO.
+%Remark. About the matrix norm $\|A\|_{Frob}$. The number, after counting the components squares together and pulling the root is %$\sqrt{3}$. Pulling the norm chapter out of the introduction and introducing the measurements and estimations, also to myself, is %new on the TODO.
 
 
 \index{Theorem}
@@ -504,6 +512,7 @@ If you write the vector down in ijk-Notation using the three two dimensional axi
 \begin{displaymath}
  x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z} = x\begin{pmatrix}r_x\cos\varphi_x\\r_x\sin\varphi_x\end{pmatrix} + y\begin{pmatrix}r_y\cos\varphi_y\\r_y\sin\varphi_y\end{pmatrix} + z\begin{pmatrix}r_z\cos\varphi_z\\r_z\sin\varphi_z\end{pmatrix} = \sum_{i=1}^{3}\vec{e}_{i}\vec{v}_{i} = \vec{w} = \begin{pmatrix}x'\\y'\end{pmatrix}
 \end{displaymath}
+
 
 \subsection{Function version}
 
@@ -795,13 +804,14 @@ This operation can also be extended into any finite number of dimensions, and wi
 \begin{displaymath}
 \left(\begin{array}{1}\vec{v}\cdot\vec{c}\\\vec{v}\cdot\vec{s}\end{array}\right) = \left(\begin{array}{1}
 xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
-xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
+xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\rigght) = \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}
 
 
 Meanwhile it is clear, that this operation is the same as $\nabla\vec{f}(\vec{x}) \cdot \vec{v}$, which is the natural dot product of the gradient vector of our linear functional $\vec{f}(\vec{x})$ with the coordinate vector.
 
 \section{Derivatives of $\vec{f}(\vec{x}) : V \rightarrow W$ }
+\subsection{Derivative}
 
 Again we begin with $\vec{f}(\vec{x}) : V \subset \mathbb{R}^{3} \rightarrow W \subset \mathbb{R}^{2}$.
 
@@ -875,6 +885,31 @@ I have set up a corollary earlier (\ref{alternative_def_using_dot}), which uses 
 
 Which is equal to \ref{alternative_def_using_dot} and of course the formula $\vec{w} = x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}$ again. You see some natural connections between the basic functional, our formula, the derivatives, other formulas and our other methods which result in the same planar projection.\\
 
+\subsection{Integral}
+
+If i sum the three integrals $\vec{f}(\vec{x}) = \int\vec{e}_{x}\partial{x}$ + $\int\vec{e}_{y}\partial{y}$ + $\int\vec{e}_{z}\partial{z}$. I get the function back. 
+
+\begin{displaymath}
+\begin{align}
+\int\vec{e}_{x}\partial{x} &= x\begin{pmatrix}r_x\cos\varphi_x\\r_x\sin\varphi_x\end{pmatrix} + \vec{C}_{1} = x\vec{e}_{x} + \vec{C}_{1}\\
+\int\vec{e}_{y}\partial{y} &= y\begin{pmatrix}r_y\cos\varphi_y\\r_y\sin\varphi_y\end{pmatrix} + \vec{C}_{2} = y\vec{e}_{y} + \vec{C}_{2}\\
+\int\vec{e}_{z}\partial{z} &= z\begin{pmatrix}r_z\cos\varphi_z\\r_z\sin\varphi_z\end{pmatrix} + \vec{C}_{3} = z\vec{e}_{z} + \vec{C}_{3}\\
+\vec{C}_{1} + \vec{C}_{2} + \vec{C}_{3} &= \vec{C}\\
+\vec{f}(\vec{x}) &= x\vec{e}_{x} +y\vec{e}_{y} +z\vec{e}_{z} + \vec{C}\\
+\end{align}
+\end{displaymath}
+
+What about the vector of the integration constants, $\vec{C}$? We can solve easily. We know about the transformation, that the zero vector maps to the zero vector. So we can set the function to zero and solve for the constant vector.\\
+
+\begin{displaymath}
+\begin{align}
+\vec{f}(\vec{x}) &= x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} + \vec{C}\\
+\vec{f}(\vec{0}) &= 0\vec{e}_{x} + 0\vec{e}_{y} + 0\vec{e}_{z} + \vec{C} = \vec{0}\\
+\vec{C} &= \vec{0}
+\end{align}
+\end{displaymath}
+
+Remark. The constant looks like a valuable extension of the function. Looks like a fixed additional translation away from the null origin to me. 
 
 \section{Projecting just z onto a vector}
 
@@ -888,7 +923,7 @@ What i did not get before was the projection onto a vector. I wondered about how
 \end{align}
 \end{displaymath}
 
-I can explain what is happening. By the formulas twe already have seen, the two vectors are summed together. The first one carries the x and the y coordinates. The second one, multiplies the z-axis vector with the z-coordinate. Like you know from before, this moves the point along or parallel to along the z-axis vector. And of course stops at the right place.
+I can explain what is happening. By the formulas we already have seen, the two vectors are summed together. The first one carries the x and the y coordinates. The second one, multiplies the z-axis vector with the z-coordinate. Like you know from before, this moves the point along or parallel to along the z-axis vector. And of course stops at the right place.
 
 
 \section{Estimation}
@@ -910,7 +945,7 @@ I tried to choose the constant, for the first time, and thought it could be the 
 
 \begin{displaymath}
 \begin{align}
-c := \max_{\vec{v} \in V}\{ \frac{\|\boldsymbol{A}\vec{v}\|}{\|\vec{v}\|} \} = \frac{\|\max\{\boldsymbol{A}\vec{v}\}\|}{\|\vec{v}\|}
+c := \max_{\vec{v} \in V}\{ \frac{\|\boldsymbol{A}\vec{v}\|}{\|\vec{v}\|} \} = \frac{\max\{\|\boldsymbol{A}\vec{v}\|\}}{\|\vec{v}\|}
 \end{align}
 \end{displaymath}
 
@@ -918,8 +953,8 @@ If i use this c, i get that the norm of any Av is less than or equal to the maxi
 
 \begin{displaymath}
 \begin{align}
-\|\boldsymbol{A}\vec{v}\| \leq \frac{\|\max\{\boldsymbol{A}\vec{v}\}\|}{\|\vec{v}\|}\|\vec{v}\| \\
-&= \|\boldsymbol{A}\vec{v}\| \leq \|\max\{\boldsymbol{A}\vec{v}\}\|\\
+\|\boldsymbol{A}\vec{v}\| \leq \frac{\max\{\|\boldsymbol{A}\vec{v}\|\}}{\|\vec{v}\|}\|\vec{v}\| \\
+&= \|\boldsymbol{A}\vec{v}\| \leq \max\{\|\boldsymbol{A}\vec{v}\|\}\\
 &= \|\vec{w}\| \leq c\|\vec{v}\| \\
 \end{align}
 \end{displaymath}
@@ -1108,7 +1143,10 @@ Which is
 
 Remark. In this case we have equality. Meanwhile i have written down a dozen of with dot products, mixed with norms, and with sums, and the other way round. \\
 
-Remark. This is the spot to show the equality the other way round.\\
+
+Remark. This is the spot to show the inequality the other way round.\\
+
+
 
 
 \textbf{Cauchy-Schwarz inequality} There is another interesting inequality.
@@ -1165,7 +1203,7 @@ This equation says, that "the square sum of the parallelogram", on the left side
 
 \subsection{Polarisation equation}
 
-Remark. I have written this into my linear algebra i script\footnote{see footnote 1}, on the backside of the previous four pages, underways, 
+Remark. I have written this into my linear algebra i script \cite{FerusLA}\footnote{see footnote 1}, on the backside of the previous four pages, underways, 
 in the subway, after solving the parallelogram equation (equation, not inequality) in less then a minute. 
 
 \begin{displaymath}
@@ -1185,7 +1223,9 @@ It must have a simple meaning.
 \end{align}
 \end{displaymath}
 
-Why is this formula looking important to know? The dot product of v and w is the same as a quarter of v+w`s norm squared minus v-w`s norm squared, reading off the formula. The script says in the Satz 22 Polarisationsformel: "Das Skalarprodukt ist durch die zugeh\"orige Norm also eindeutig bestimmt."\footnote{On page 54.} Maybe not correctly translated but meaning the same it says "So the dot product is uniquely defined by the related norm."
+Why is this formula looking important to know? The dot product of v and w is the same as a quarter of v+w`s norm squared minus v-w`s norm squared, reading off the formula. A lecture script \cite{FerusLA} says in the Satz 22 Polarisationsformel: "Das Skalarprodukt ist durch die zugeh\"orige Norm also eindeutig bestimmt."\footnote{On page 54.} Maybe not correctly translated but meaning the same it says "So the dot product is uniquely defined by the related norm."
+
+Remark. The Parallelogram Equation and the Polarisationformula hold both for Hilbert Spaces and must be true if the space claims to be a Hilbert space.
 
 \subsection{Matrix norms}
 
@@ -1275,12 +1315,13 @@ Remark. This is by heart. But i sure i am not through with using it correctly.
 
 The dot product, scalar product or inner product.
 It is the most important vector vector multiplication defined in space.
+It makes calculations with angles and detection of orthogonality possible.\\
 
 It is the sum of the vector component products with either itself, or another vector.\\
 
 If you pull the square root out of the dot product with a vector and itself, you obtain the current length of the vector.
 Dividing the vector by it`s length will normalize the vector to a length of 1. $\|\vec{x}\| = 1$ is called the unit length.
-The formula and proof of the normalization of a vector is in \ref{normalizing_a_vector}
+The formula and proof of the normalization of a vector is in \ref{normalizing_a_vector}\\
 
 $(\vec{v}, \vec{w})$ is $\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}$.  \\
 
@@ -1298,7 +1339,7 @@ A product with the zero vector.
     (\vec{0},w) = \sum_{i=1}^{n}\vec{0}_{i}\vec{w}_{i} = 0
 \end{displaymath}
 
-Linear combinations.
+Algebraic simplifications and linear combinations.
 
 \begin{displaymath}
     (\lambda\vec{v},\vec{w}) = \sum_{i=1}^{n}\lambda\vec{v}_{i}\vec{w}_{i}
@@ -1689,11 +1730,15 @@ Without checking the importance of the transposes in the first three weeks since
 
 $((A^{T}A)-\lambda{I})=0$ and $((AA^{T})-\lambda{I})=0$ want to be solved, and then we want the SVD.
 
+\subsubsection{Crossing three 2x2 matrices (experiment)}
+
+Remark. What is the outcome if we cross compute with three 2x2 matrices and take the differences. Can we estimate the original coordinates except for overlays? Like the cross product, we could split the 2x3 into three 2x2 matrices. Then we can take the differences.\\
+
 \subsubsection{Singular Value Decomposition}
 
 TODO\\
 
-This a mxm orthogonal times nxm diagonal times nxn orthogonal. To get the orthogonal we have to take the eigenvectors from the products with the transpose. TODO.
+This a mxm orthogonal times nxm diagonal times nxn orthogonal. To get the orthogonal we have to take the eigenvectors from the products with the transpose. TODO.\\
 
 \begin{displaymath}
     \boldsymbol{A} = \boldsymbol{U}\boldsymbol{\Sigma}\boldsymbol{V}^{T}
@@ -1704,8 +1749,7 @@ Remark. A rectangular matrix has no eigenvalue equation. But there is a singular
 The $A^{T}A$ and $AA^{T}$ are needed for the SVD. First we extract the eigenvalues and eigenvectors of the symmetric square matrices.
 Then we build So with the last two chapter we are fine.\\
 
-Remark. Nice to get some excercise for this topic, which can not be solved from outside with any good excercise or motivating lecture.
-
+Remark. Nice to get some excercise for this topic, which can not be solved from an outsider without any good excercise or motivating lecture. I think this excercise is fun enough.\\
 
 \subsubsection{The pseudo-inverse $\boldsymbol{A}^{+}$ and least squares}
 For a m by n matrix with m < n it is $A^T(AA^{T})^{-1}$\\
@@ -1717,7 +1761,8 @@ TODO\\
 
 TODO
 
-Remark. The roundoff error of the floating point is a basic for every computer class.
+Remark. The roundoff error of the floating point and the condition of a matrix is basic knowledge for every computer class.
+
 
 \section{An alternative graphics algorithm}
 
@@ -1903,7 +1948,12 @@ function d(a,b) {
 
 \subsection{Code Example}
 
-Here is an implementation of these function together with the EcmaScript 6 snippet in modern EcmaScript 5.
+Here is an implementation of these function together with the EcmaScript 6 snippet in modern EcmaScript 5.\\
+
+These functions are not optimized for speed. Each of the -all functions take the whole set of points, so 
+the complexity rises to n times iterating over the point sets. To create faster code, you got to inline your
+code and do everything in the right order in one loop. Anyways, that is not difficult and intuitive to programmers.\\
+
 
 \begin{lstlisting}
 (function (exports) {
@@ -2105,9 +2155,9 @@ while (i < n) {
 
 \section{How i was wrong the first time. Turning $xy$-around and adding $z$ in.}
 
-Remark. This was the transformation i found before i invented the axes. This lead me to the invention.\\
+Remark. This was the transformation i found before i invented the axes. This brought me to the invention.\\
 
-Before i figured out, how to create three axes, i did it wrong. I wanted to turn three axes around, but did only rotate the $xy$-plane. With the well known formula for rotating around the z-axis in the $\mathbb{R}^{2}$. I tried to combine this for the other axes, but failed. But i had an idea, as the $xy$-axes where pointing downwards. I was writing it on the computer, the hardware $y$-axis was free after rotation. I added the z-coordinate to the y coordinate, believing it would shift the point upwards vertically. I found an interpretation of the righthanded coordinate system.\\
+Before i figured out, how to create three axes, i did it wrong. I wanted to turn three axes around, but did only rotate the $xy$-plane. With the well known formula for rotating around the z-axis in the $\mathbb{R}^{2}$. I tried to combine this for the other axes, but failed. But i had an idea, as the $xy$-axes were pointing downwards. I was writing it on the computer, the hardware $y$-axis was free after rotation. I added the z-coordinate to the y coordinate, believing it would shift the point upwards vertically. I found an interpretation of the righthanded coordinate system.\\
 
 \begin{enumerate}
  \item{Rotate the $xy$-plane by for example 225 degrees or $\frac{\pi}{180}\times225=\frac{15\pi}{12}=\frac{5}{4}\pi = 1.25\pi$ radians.}
@@ -2170,31 +2220,55 @@ function trans(vec3) {
 \end{example}
 
 
+\section{Declaration of authorship}
+
+Remark. Have to fetch the english version of the Selbstaendigkeitserklaerung over the internet.\\
+
+With this here i promise, i invented the thing alone, and did copy no proof nowhere and used only
+the books and the lecture scripts for reference i acknowledge in the bibliography.\\
+
+Remark. Got to fetch the formal version of this declaration.\\
+
+\section{License}
+
+Remark. Informal version. Same opinion.\\
+
+I think, mathematics are "Allmende" (for the people). For everyone in the world mathematics should be freely accessible.
+I missed this coordinate system in the mainline of introductory texts, lectures, and books about computer graphics and 
+close to lessons about surface plots.
+If you have use for, just use it. Transform your coordinates with. Or study the mathematics behind by yourself.
+I think this gives better understanding of all those topics mentioned and of course the euclidean spaces.
+But that´s my personal opinion, if you just want the points for the plane. The thing is two lines of code, plus
+the preparation of repeating code. Repeating are angle variables, one time sine and cosine calls, axis unit length. It is
+compatible with frustum and premultiplication, before projection, you can do any kind of affine transformation or three dimensional deformation on your set of points.
+After transforming, you could apply more, then to the two dimensional coordinates, and maybe even save time computing,
+regarding linearity rules, that you can do some stuff after transformation, like scalar multiplication, as well.
+This code is free. Free for anyone, and i would appreciate, if you use it, that you don´t make a secret out of it. It 
+is just a two liner of code projection, which i couldn´t even find in Wikipedia. Nothing special. And nothing to patent.\\
+
+Remark. Informal version. Same opinion.\\
 
 \begin{thebibliography}    
-
     \bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
-        Vector Calculus, GNU Free Documentation License, http://mecmath.net 
-        
+    Vector Calculus, GNU Free Documentation License, http://mecmath.net (Gerhold: I am attending a german translation for 2015)
     \bibitem{Corral2} \textit{Michael Corral, Schoolcraft College},
-        Trigonometry, GNU Free Documentation License, http://mecmath.net         
-        
+        Trigonometry, GNU Free Documentation License, http://mecmath.net (Gerhold: I am attending a german translation for 2015)
     \bibitem{Strang1} \textit{Gilbert Strang, MIT},
-        Linear Algebra and it´s Applications. Fourth Edition.
-        
+        Linear Algebra and it´s Applications. Fourth Edition.        
     \bibitem{Strang2} \textit{Gilbert Strang, MIT},
             Calculus. MIT OpenCourseWare Supplemental Resources. http://ocw.mit.edu    
-            
+    \bibitem{Ferus1} \textit{Prof. Dr. em. D. Ferus, TU-Berlin},
+            Lecture Script, Lineare Algebra 1+2 (german), 2000, http://pages.math.tu-berlin/~ferus/skripten.html
+    \bibitem{Kuehn1} \textit{Franziska K\"uhn, Technische Universit\"at Dresden},
+            Lecture Script, Lineare Algebra und analytische Geometrie 1+2, http://tu-dresden.de
     \bibitem{Corral3} \textit{Michael Corral, Schoolcraft College},
-            Latex Mini Tutorial, http://mecmath.net            
-            
+            Latex Mini Tutorial, http://mecmath.net                    
     \bibitem{Jürgens,Feuerstack} \textit{Manuela J\"urgens, Thomas Feuerstack, Fernuniversit\"at Hagen},
-            LaTeX, eine Einf\"uhrung und ein bisschen mehr..., a026\_latex\_einf.pdf
-            
+            LaTeX, eine Einf\"uhrung und ein bisschen mehr..., a026\_latex\_einf.pdf            
     \bibitem{Rudl} \textit{Dr.Jan Rudl, Technische Universit\"at Dresden, Fachbereich Mathematik},
             Einf\"uhrung in LaTeX, LaTeX-Kurs.pdf            
-
 \end{thebibliography}
+
 
 
 \printindex
