@@ -119,6 +119,7 @@ The function rad converts degrees to radians, it´s useful for computer function
 \end{displaymath}
 
 \textbf{Example 2}
+\label{120_degrees}
 Here is an example of three angles. The three axes have an angle of 120 degrees between each. But since we start counting counterclockwise and from the real horizontal axis of the plane, the angles are 210, 330, 90 in degrees, respectivly. And
 because of the cosine and sine functions taking radians, we convert the values to radians.\\
  
@@ -899,7 +900,7 @@ If i sum the three integrals $\vec{f}(\vec{x}) = \int\vec{e}_{x}\partial{x}$ + $
 \end{align}
 \end{displaymath}
 
-What about the vector of the integration constants, $\vec{C}$? We can solve easily. We know about the transformation, that the zero vector maps to the zero vector. So we can set the function to zero and solve for the constant vector.\\
+What about the vector of the integration constants, $\vec{C}$? We can solve easily. We know about the transformation, that the zero vector maps to the zero vector. But anyways we have to set the function to zero and solve for the constant vector.\\
 
 \begin{displaymath}
 \begin{align}
@@ -909,7 +910,30 @@ What about the vector of the integration constants, $\vec{C}$? We can solve easi
 \end{align}
 \end{displaymath}
 
-Remark. The constant looks like a valuable extension of the function. Looks like a fixed additional translation away from the null origin to me. 
+Remark. The constant looks like a valuable extension of the function. Looks like a fixed additional translation away from the null origin to me. \\
+
+\newtheorem{CorollaryConstant}{Corollary. \vec{f}(\vec{0}) equals the integration constant $\vec{f}{\vec{0}}=\vec{C}$.}
+\begin{CorollaryConstant}
+Corollary. If the result of $\vec{f}{\vec{0}}=?$ does not equal zero, one can solve for the constant c, which is the translation from the origin. If the normal result of $\vec{f}({\vec{0}})$ is $\vec{f}({\vec{0}})=\vec{0}$ then $\vec{f}({\vec{0}})=\vec{C}$.
+\end{CorollaryConstant}
+
+\begin{displaymath}
+\begin{align}
+\vec{f}(\vec{x}) &= x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} + \vec{C}\\ &= \vec{w} = \begin{pmatrix}a\\b\end{pmatrix}\\
+\vec{f}(\vec{0}) &= 0\vec{e}_{x} + 0\vec{e}_{y} + 0\vec{e}_{z} + \vec{C} = \begin{pmatrix}12\\7\end{pmatrix}\\
+\vec{C} &= \begin{pmatrix}12\\7\end{pmatrix}\\
+\end{align}
+\end{displaymath}
+
+The vector $\begin{pmatrix}12\\7\end{pmatrix}$ is an example for a translation added to each point just using a function, which returns $\begin{pmatrix}12\\7\end{pmatrix}$ on $\vec{f}({\vec{0})$ fulfilling all requirements of a continuous linear map from V to W. After examining $\vec{f}({\vec{0})$ we find out, whether our map is shifted away from the origin or not. But when we explore the constant again. Each coordinate axis contributed a part to the translation. Each Integral gave one integration constant, which in our case is a two-d vector with one constant for the x and one constant for the y. What is the best deconstruction? $\frac{1}{3}$ will not 
+
+\begin{displaymath}
+\begin{align}
+\vec{C} = \vec{C}_{1} + \vec{C}_{2} + \vec{C}_{3} 
+\end{align}
+\end{displaymath}
+
+
 
 \section{Projecting just z onto a vector}
 
@@ -927,6 +951,8 @@ I can explain what is happening. By the formulas we already have seen, the two v
 
 
 \section{Estimation}
+
+\subsection{First guess}
 
 I was thinking about, how $\|\boldsymbol{A}\vec{x}\|$ and $\|\vec{x}\|$ behave.\\
 
@@ -969,6 +995,13 @@ Remark. To be connected with the introduction to norms from the appendix.
 
 Remark. And to be continued.\\
 
+\subsection{$r_n$ as bounding constant}
+
+When looking at sine and cosine, which add up to one, if squared and summed. And looking at the factor $r_n$, which is known as the radius $r$ or as the unit multiplier in polar coordinates, in physics one writes the letters A,B,C times sine function. When going from 3-space to 2-space, $r_n$ could enlarge the coordinates.
+
+So i find one bound by substituting the radius into the estimation. $\|\vec{x}\| $\leq \product\frac{1}{r_n}\|\boldsymbol{A}\vec{x}\|$
+
+
 \section{Cauchy Sequences and Convergence}
 
 Remark. This section is not formulated.
@@ -978,7 +1011,7 @@ Convergence means, that a sequence comes step by step closer together, until the
 For myself, i imagine it is like it is going the path of $1,\bar{9}$ and said to converge against $2$.\\
 
 \begin{center}
-$\forall \epsilon > 0 : \exists n_{0} \in \mathbb{N} : \forall n \geq n_{0} : \|v_{m}-v_{n}\| \less \epsilon$
+$\forall \epsilon > 0 : \exists n_{0} \in \mathbb{N} : \forall n \geq n_{0} : \|v_{m}-v_{n}\| < \epsilon$
 \end{center}
 
 For every $\epsilon$ greater than 0 exists some index $n_{0}$ of the sequence. Which has not to be the first index because of the zero,
@@ -1052,8 +1085,8 @@ Remark. This section is not finished, and at the change of dimensions or at the 
 \begin{enumerate}
 \item Lay out the three basis vectors around a circle and write down the angles $\varphi_{n}$. Programmers have to write down a variable for anyways.
 \item Write down the basis vectors $\vec{e}_{n}$ as $r_{n} \cos \varphi_{n}$ and $r_{n} \sin \varphi_{n}$ (two dimensional). Don´t multiply with $r_{n}$ for a unit length of $1$ or multiply with $r_{n}$ to change the length of the basis vector.
-\item Put the three basis vectors $\vec{e}_{n}$ into a matrix \bigsymbol{A}. Programmers can directly code the two lines of multiplication and forget the formal rest.
-\item Iterate over your points and multiply each $(x,y,z)$ with the matrix \boldsymbol{A}, which acts as a linear operator, and put $(x',y')$ into your new set.\footnote{Alternativly you can use the dot product to dot $(x,y,z)$ with the cosine vector for x' and dot $(x,y,z)$ with the sine vector for y'. The calculation is identical then.}
+\item Put the three basis vectors $\vec{e}_{n}$ into a matrix $\boldsymbol{A}$. Programmers can directly code the two lines of multiplication and forget the formal rest.
+\item Iterate over your points and multiply each $(x,y,z)$ with the matrix $\boldsymbol{A}$, which acts as a linear operator, and put $(x',y')$ into your new set.\footnote{Alternativly you can use the dot product to dot $(x,y,z)$ with the cosine vector for x' and dot $(x,y,z)$ with the sine vector for y'. The calculation is identical then.}
 \end{enumerate}
 
 \textbf{Remark}\\
@@ -1265,7 +1298,7 @@ TODO. The Frobenius norm is $\sqrt{3}$ for $r_n = 1$ summing up 6 squares of thr
 \newtheorem{PropositionMatrixNorm}{Proposition. The matrix norm of the coordinate systems matrix.}
 \begin{PropositionMatrixNorm}
 \label{proposition_matrix_norm}
-The euclidean norm of our matrix, the Frobenius Norm, counting together the rows and columns, componentwise and squared, then pulling the root out of the whole sum, is, without $\vec{v}$ the square root $\sqrt{r_{x}^{2}+r_{y}^{2}+r_{z}^{2}}$. The sines squared and cosines squared add up to 1 each, and are a factor for the $r_{n}^{2}$. Each $r_{n}^{2}$ belongs to pair of sine and cosine. When sine and cosine squares are added, the $r_{n}^{2}$ has to be factored out first, it can not add up to two, what could be miscounted easily. If the coordinates $x,y,z$, say, the vector $\vec{w}$, are applied to the matrix and the Frobenius Norm is taken, the norm for $\|Av\|$ is $x^{2}r_{x}^{2}+y^{2}r_{y}^{2}+z^{2}r_{z}^{2})^{\frac{1}{2}}$. The Frobenius norm is like the $\|\cdot\|_{2}$ norm taken, but accounts for the matrix elements, too.\\
+The euclidean norm of our matrix, the Frobenius Norm, counting together the rows and columns, componentwise and squared, then pulling the root out of the whole sum, is, without $\vec{v}$ the square root $\sqrt{r_{x}^{2}+r_{y}^{2}+r_{z}^{2}}$. The sines squared and cosines squared add up to $1$ each, and are a factor for the $r_{n}^{2}$. Each $r_{n}^{2}$ belongs to pair of sine and cosine. When sine and cosine squares are added, the $r_{n}^{2}$ has to be factored out first, it can not add up to two, what could be miscounted easily. If the coordinates $x,y,z$, say, the vector $\vec{w}$, are applied to the matrix and the Frobenius Norm is taken, the norm for $\|Av\|$ is $\sqrt{x^{2}r_{x}^{2}+y^{2}r_{y}^{2}+z^{2}r_{z}^{2}}$. The Frobenius norm is like the $\|\cdot\|_{2}$ norm taken, but counts matrix elements instead of vector elements.\\
 
 Remark. Needs definitly new formulation and not the algebraic simplification as the proposition.\\
 
@@ -1299,6 +1332,8 @@ And with applying the vector to A
 
 Remark. Ongoing research.
 
+
+
 \subsection{Operator norms}
 
 TODO.
@@ -1320,7 +1355,7 @@ It makes calculations with angles and detection of orthogonality possible.\\
 It is the sum of the vector component products with either itself, or another vector.\\
 
 If you pull the square root out of the dot product with a vector and itself, you obtain the current length of the vector.
-Dividing the vector by it`s length will normalize the vector to a length of 1. $\|\vec{x}\| = 1$ is called the unit length.
+Dividing the vector by it`s length will normalize the vector to a length of $1$. $\|\vec{x}\| = 1$ is called the unit length.
 The formula and proof of the normalization of a vector is in \ref{normalizing_a_vector}\\
 
 $(\vec{v}, \vec{w})$ is $\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}$.  \\
@@ -1416,7 +1451,7 @@ For 2-D space, the normal vector of the standard basis $\begin{pmatrix}1&0\\0&1\
 $\boldsymbol{N}_{\mathbb{R}^{2}} := \begin{pmatrix}0 & -1 \\ 1 & 0\end{pmatrix}$\\
 \end{center}
 
-You should multply the 2x3 matrix with some vector and you will get a perpendicular vector back.
+You should multiply the 2x3 matrix with some vector and you will get a perpendicular vector back.
 
 \begin{center}
 $\vec{n} = \boldsymbol{N}\vec{w} = \begin{pmatrix}0 & -1 \\ 1 & 0\end{pmatrix} \cdot \begin{pmatrix}a\\b\end{pmatrix} = \begin{pmatrix}-b\\a\end{pmatrix}$
@@ -1429,9 +1464,6 @@ Proof. The resulting normal vector has to be perpendicular to the source vector,
 \end{displaymath}
 
 For three dimensional vectors the proof is similar, and the dot product should also return zero for a proof. A perpendicular vector is obtained by permuting the identity matrix (standard basis) and changing sign.
-
-
-
 
 
 
@@ -1451,7 +1483,6 @@ There is an inequality, which convex functions have to satisfy. And you may know
 \|\lambda\vec{x} + (1-\lambda)\vec{y}\| \leq \lambda\|\vec{x}\| + (1-\lamda)\|\vec{y}\|
 \end{displaymath}
 
-
 or what expresses, that a function is convex.
 
 \begin{displaymath}
@@ -1470,8 +1501,6 @@ By the rule of linearity.
 
 Remark. To be studied within the next days. 
 
-
-
 \begin{displaymath}
 \end{displaymath}
 
@@ -1479,10 +1508,24 @@ Remark. To be studied within the next days.
 
 \subsection{Orthogonality in the 2x3 matrix}
 
-When going from three to two dimensions, three numbers are taken and are combined. Once for the x part, and one for the y part. The new x and y are orthogonal. The other way round, the three numbers came from an orthogonal system. 
+When going from three to two dimensions. We lose information about the third dimension.
+It gets packed into both remaining dimensions. Three numbers are taken and are combined into two.
+They are multiplied with the axis vectors length and magnitude to move the numbers of the right place.
+Once for the x part, and once for the y part. The new x and y coordinates are interpreted by an orthogonal basis.
+The well known and underestimated basis of the $\mathbb{R}^{2}$. The cos Terms multiply the coordinates to get 
+three pieces of horizontal share, to move to the right place horizontally. The sin Terms multiply the three coordinates
+again to move the numbers of the y coordinate up or down. The axis vectors are orthogonal by their components, like
+real basis vectors are. The difference is, we map one number more than two, we have three directions on one flat screen.\\
+
+Remark. I am sitting on the Quotient or Factor Rooms, and know that the 2x3 image is a true 2x3 image and with that the 2x3 space
+is describable. Like i did the last lines, for example. But i can not bring it. I have a leak, a lag, a lack in the topic, which is making me unsure. I have to read another teacher for, to get the final point, to make 2/3 a 3/2 and explain 2x3 as 2x3. It is not 
+b*** what i write, it is a promise i wish to fulfill. I mean i want to get, what it got to do with a quotient room, and what with
+the 2x3.
+
+If i want to map them back, sure, we have to draw then 3 orthogonal vectors in a 3x2 matrix, which take the share of the vectors and span them up. Values like 120 degress (Example 2 in \ref{120_degress}) could be easier to break into parts. I am not sure how to break by the angle. But i remember from lecture scripts, that breaking a 1 into many parts to multiply something together, is useful
+in such situations\\
 
 TODO.
-
 
 \subsection{2x3 standard basis}
 
@@ -1586,9 +1629,6 @@ Remark. This section is incomplete, almost meaningless yet, and better not to be
 \textbf{Remark} Proof or contradictions TODO
 
 \section{Vector space tools}\\
-
-
-
 
 \subsection{Normalizing a vector}
 \label{normalizing_a_vector}
@@ -2244,17 +2284,19 @@ compatible with frustum and premultiplication, before projection, you can do any
 After transforming, you could apply more, then to the two dimensional coordinates, and maybe even save time computing,
 regarding linearity rules, that you can do some stuff after transformation, like scalar multiplication, as well.
 This code is free. Free for anyone, and i would appreciate, if you use it, that you don´t make a secret out of it. It 
-is just a two liner of code projection, which i couldn´t even find in Wikipedia. Nothing special. And nothing to patent.\\
+is just a two lines of code long projection, which i couldn´t even find in Wikipedia. Nothing special. And nothing to patent.\\
 
 Remark. Informal version. Same opinion.\\
 
+Remark. What you can do with does not belong into the license. Hmm. Another short text to summarize the features (but better then) is an idea.
+
 \begin{thebibliography}    
     \bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
-    Vector Calculus, GNU Free Documentation License, http://mecmath.net (Gerhold: I am attending a german translation for 2015)
+        Vector Calculus, GNU Free Documentation License, http://mecmath.net 
     \bibitem{Corral2} \textit{Michael Corral, Schoolcraft College},
-        Trigonometry, GNU Free Documentation License, http://mecmath.net (Gerhold: I am attending a german translation for 2015)
+            Trigonometry, GNU Free Documentation License, http://mecmath.net
     \bibitem{Strang1} \textit{Gilbert Strang, MIT},
-        Linear Algebra and it´s Applications. Fourth Edition.        
+            Linear Algebra and it´s Applications. Fourth Edition.        
     \bibitem{Strang2} \textit{Gilbert Strang, MIT},
             Calculus. MIT OpenCourseWare Supplemental Resources. http://ocw.mit.edu    
     \bibitem{Ferus1} \textit{Prof. Dr. em. D. Ferus, TU-Berlin},
