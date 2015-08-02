@@ -12,13 +12,13 @@
 \begin{document}
 \begin{center}
 \title{Three dimensional coordinates into two dimensional coordinates transformation}\\
-\author{Edward Gerhold \\http://linux-swt.de/gerhold-3dto2d.pdf}
+\author{Edward Gerhold}
 \city{Berlin, Germany}
 \date{\today}
 \maketitle
 
 
-Version 0.3.13\\
+Version 0.3.14\\
 
 \textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last.\\
 
@@ -1011,24 +1011,9 @@ Remark. To be connected with the introduction to norms from the appendix.
 
 Remark. And to be continued.\\
 
-\subsection{Are the bounds influenced by the $r_n$-values?}
+\subsection{Bounds with $r_n$ values}
 
-Remark. This section has no consensus.
-
-When looking at sine and cosine, if squared and summed, they add up to one. In our case this often simplifies work with the trig functions. For example when squaring for the norm. The sin and cos terms add up to one after squaring and factoring out the multipliers in front of them.\\
-
-Another piece of the linear map is the factor $r_n$. The length of the vector is unit length times the factor r, $1 \times r$.
-$r_n$ originates in polar coordinates as radius of the circle, on which the x and y coordinates ly. The line gets longer if $r > 1$ and short if $0 < r < 1$, and disappears if $r = 0$, and changes the direction by $180^{\circ}$, if the sign is negative.\\
-
-Our question here is, which influence has $r_n$ on the norm or the size of the vectors, and which influence has this on the results of comparing the two vectors from 3-space and 2-space.
-
-First i try substituting the radius into the estimation, and see what happens algebraicly. $\|\boldsymbol{A}\vec{v}\| \leq $r_n$\|\vec{v}\|$\\
-
-Secondly i have no plan, what this says.
-
-Third
-
-Remark. Has to be examined, what kind of influence the r value has.
+Remark. This section has no consensus. TODO
 
 \subsection{Equality of norms}
 
@@ -1041,6 +1026,8 @@ Norms are said to be equal if there are two constant $c$,$C$ such that
     c\|\vec{v}\| \leq \|\boldsymbol{A}\vec{v}\| \leq C\|\vec{v}\|
 \end{align}
 \end{displaymath}
+
+Remark. TODO.
 
 \section{Cauchy Sequences and Convergence}
 
@@ -1145,32 +1132,49 @@ TODO.
 
 \appendix
 
-
-\section{Temporarily moved down MORE TODO}
-
-\subsection{Important mathematics in the vector spaces}
+\section{Introducing and reviewing vector mathematics}
 
 \subsubsection{K-Vectorspace}
 
-The euclidean space, the well known 2-D and 3-D spaces, are themselves so called K-Vectorspaces.\\
+The following table shows the dimensions of euclidean spaces, and an excerpt of a few more spaces, not showing the many many spaces like $L^{p}$ (Lebesgue integratable functions) and $l^{p}$ (quadratic summarizable sequences), Fock spaces, Hardy Spaces, or Sobolev Spaces from Differential Equations, because currently all that is beyond scope of this document. 
 
-A $\mathbb{K}$-Vectorspace V over a body $\mathbb{K} = \mathbb{R}$ or $\mathbb{K} = \mathbb{C}$ is a set $V$ with two operations $+, \cdot$. Written as ring it is written as $(V, +, \cdot)$.\\
+\begin{tabular}{-l-l-l-}
+\label{vector_space_table}
+Dimensions & Sets & Type & Description\\
+$0$ & $\{\emptyset\}$ & &The empty set. It is just empty. \\
+$1$ & $\mathbb{R}$ & &The one-dimensional space is a line\\
+&&& The coordinate is a scalar.\\
+$2$ & $\mathbb{R}\times\mathbb{R}$ & Euclidean &The best known $\mathbb{R}^{2}$ is the $xy$-coordinate system.\\
+&&& The coordinates are written (x,y)\\
+$3$ & $\mathbb{R}\times\mathbb{R}\times\mathbb{R}$ & Euclidean &The three dimensional $\mathbb{R}^{3}$ has width,                                        height and depth like reality.\\
+&&& The coordinates are written (x,y,z).\\
+$4$ & $\mathbb{R}^{3}\times\mathbb{R}$ & Minkowski &The four dimensional $\mathbb{R}^{4}$ has width,                                        height, depth and also a time \\
+&&& component and is related to physics.\\
+$\infty$&\mathbb{R}\times...\times\mathbb{R}& Hilbert-Spaces & The infinite dimensional space belongs into the category of \\
+&&&Hilbert-Spaces, which are normed and equipped with a dot product.
+\end{tabular}\\
 
-The vector space possesses the addition $+: V \times V \rightarrow V, (\vec{v},\vec{w}) \mapsto \vec{v}+\vec{w}$ and the scalar multiplication $\cdot: K \times V \rightarrow V, (\lambda, \vec{v}) \mapsto \lambda\vec{v}$.\\
+A $\mathbb{K}$-Vectorspace V over a body $\mathbb{K} = \mathbb{R}$ or $\mathbb{K} = \mathbb{C}$ is a set $V$ with the two operations $+$ and $\cdot$.\\
 
-To become a K vector space, the vector space must fulfill the following axioms.\\
+In this document, unless edited and stated, we speak about a vector space of real numbers with $\mathbb{K} = \mathbb{R}$.\\
 
+Written as ring it is written as $(V, +, \cdot)$. The vector space possesses two operations.\\
+
+Addition: $+: V \times V \rightarrow V, (\vec{v},\vec{w}) \mapsto \vec{v}+\vec{w}$\\
+Scalar multiplication: $\cdot: K \times V \rightarrow V, (\lambda, \vec{v}) \mapsto \lambda\vec{v}$.\\
+
+A K vector space V must fulfill the following axioms.\\
 
 \begin{enumerate}
-\item $\vec{a}+(\vec{b}+\vec{c}) = (\vec{a}+\vec{b})+\vec{c}$ (associativity)
-\item $\vec{a} + \vec{a}' = 0 = \vec{a}' + \vec{a} \forall a \in V$ (additive inverse)
-\item $1\vec{a} = \vec{a}$    (1 is an identity operator)
-\item
-\item
-\item
-\item
-\item
-
+\label{kvs_axioms}
+\item $\forall \vec{a},\vec{b} \in V. \vec{a}+(\vec{b}+\vec{c}) = (\vec{a}+\vec{b})+\vec{c}$ (associativity)
+\item $\forall \vec{a},\vec{a}' \in V. \vec{a} + \vec{a}' = 0 = \vec{a}' + \vec{a} \forall a \in V$ (additive inverse)
+\item $\forall \vec{a} \in V. 1\vec{a} = \vec{a}$    (1 is an identity operator)
+\item $\forall \vec{a},\vec{b} \in V.  \vec{a}+\vec{b}=\vec{b}+\vec{a}$ (commutativity)
+\item $\exists \vec{0} \in V,\forall \vec{a} \in V. \vec{0}+\vec{a}=\vec{a}$ (zero element)
+\item $\forall \lambda,\mu \in K, \forall \vec{a} \in V. \lambda(\mu\vec{a})=\lambda\mu\vec{a}=\mu(\lambda\vec{a})$ (scalar associativity)
+\item $\forall \lambda,\mu \in K, \forall \vec{a} \in V. (\lambda + \mu)\vec{a} = \lambda\vec{a}+\mu\vec{a}$
+\item $\forall \lambda \in K, \forall \vec{a}, \vec{b} \in V. \lambda(\vec{a}+\vec{b}) = \lambda\vec{a}+\lambda\vec{b}$  (distributive)
 \end{enumerate}
 
 \subsubsection{Norms: Absolute values of vectors and matrices}
@@ -1690,7 +1694,7 @@ Secondly, we substitute the cosine and sine terms with simple letters. Sine, cos
 
 Without calculating them, but quick-concluding them from the existing, i get the following matrices, which look like bases, containing only zeros and ones. With the quick issue, that the length of the columns with two ones is square root of two, while a zero-one vector has length one.\\
 
-\begin{displaymath}
+\begin{displaymath}$\mathbb{K} = \mathbb{R}$
     E^{\mathbb{R}^{2\times{3}}}_{lefthand} = \begin{pmatrix}1&0&1\\0&1&1\end{pmatrix}
 \end{displaymath}
 \begin{displaymath}
@@ -2348,16 +2352,19 @@ This code is free of charge, free for anyone to use. You are welcome to accredit
 But it is not neccessary to do so. It is not neccessary to ask for permissions for using this projects results
 in your own. You are free to use, modify the formula and the source codes. You just convert your points or found
 something to enhance something existing in your code. Edward is honest to help you with this article.
-You are allowed to use the formula(s) in your own projects. You are not welcome to claim, you have invented this
+You are allowed to use the formula(s) in your own projects. You are not welcome to claim, you have invented this,
 and Edward only wrote it up for you. But why should one? This project is interesting, but nothing to patent with.
-Regarding real laws, this is copyrighted 2015 by Edward Gerhold, and permission is granted for anyone to use the 
-transformation. \\
+Regarding real laws, this is copyrighted 2015 by Edward Gerhold, and permission is granted for anyone to use and
+work out the transformation for commercial and non-commercial purposes. \\
 
 Remark. Formulation lacks.\\
 
 
+
+
 \begin{thebibliography}
 % books
+
     \bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
         Vector Calculus, GNU Free Documentation License, http://mecmath.net 
     \bibitem{Corral2} \textit{Michael Corral, Schoolcraft College},
@@ -2368,22 +2375,20 @@ Remark. Formulation lacks.\\
             Calculus. MIT OpenCourseWare Supplemental Resources. http://ocw.mit.edu    
 % lecture scripts english
     \bibitem{Toplogy} \textit{ ,  },
-            Lecture Script, Topology Notes, Math 240
+            Lecture Script, Topology Notes (english), Math 240
     \bibitem{Functional1} \textit{},
-            Lecture Script, Functional Analysis,    
-    \bibitem{Functional2} \textit{},
+            Lecture Script, Functional Analysis (english),    
+    \bibitem{Functional2} \textit{TODO},
             Lecture Script, 
-    \bibitem{Functional3} \textit{},
+    \bibitem{Functional3} \textit{TODO},
             Lecture Script,
 % lecture scripts in german
     \bibitem{Ferus1} \textit{Dirk Ferus, TU-Berlin, em.},
             Lecture Script, Lineare Algebra 1+2, 2000, http://page.math.tu-berlin/~ferus/skripten.html
-    \bibitem{Ferus2} \textit{Dirk Ferus, TU-Berlin, em.},   
-            Lecture Script, Analysis II, 2008, http://page.math.tu-berlin/~ferus/skripten.html            
     \bibitem{Kuehn1} \textit{Franziska K\"uhn, Technische Universit\"at Dresden},
             Lecture Script, Lineare Algebra und analytische Geometrie I+II, http://fkuehn.de/download/LAAG.pdf
     \bibitem{Wittbold} \textit{Petra Wittbold, TU-berlin},  
-        Lecture Script, Funktionalanalysis I,  http://www3.math.tu-berlin.de/Vorlesungen/SS09/FA1/Doc/Funkana1-SS06-08.06.09.pdf
+            Lecture Script, Funktionalanalysis I,  http://www3.math.tu-berlin.de/Vorlesungen/SS09/FA1/Doc/Funkana1-SS06-08.06.09.pdf
 % latex tutorials 
     \bibitem{Corral3} \textit{Michael Corral, Schoolcraft College},
             Latex Mini Tutorial, http://mecmath.net                    
