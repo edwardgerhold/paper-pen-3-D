@@ -7,19 +7,20 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{listings}
+\usepackage{natbib}
 %\makeindex
 \begin{document}
 \begin{center}
 \title{Three dimensional coordinates into two dimensional coordinates transformation}\\
-\author{Edward Gerhold}
+\author{Edward Gerhold \\http://linux-swt.de/gerhold-3dto2d.pdf}
 \city{Berlin, Germany}
 \date{\today}
 \maketitle
 
 
-Version 0.3.12-working-\\
+Version 0.3.13\\
 
-\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX() but not my last.\\
+\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last.\\
 
 
 \end{center} 
@@ -604,7 +605,11 @@ Remark. This section is not finished. Not only the plot for the vector field, so
 \subsection{Computer implementations of the transformation}
 \subsubsection{Generic computer code}
 
-This should be in a border box.
+One of the \emph{main goals of this document} is to show the simplicity of transforming 3-D points into 2-D points for the use in small computer applications. For example for hand written small web applications. Say, you just want to draw a graph, 3-D on the 
+2-D Canvas and do not have the need for WebGL, or it is not available on your old target systems, which was the reason for me, to try it myself anyways.\\
+
+This should be in a border box.\\
+
 
 \begin{example}
 \fbox{
@@ -750,10 +755,12 @@ which is a standard formulation of the rule of linearity. For example, you can f
 
 \subsection{Converting four Dimensions down to two dimensions}\\
 
-The theorem can be used to handle more dimensions, for example can four two-dimensional
+The proposed theorem can be used to handle more dimensions, for example can four two-dimensional
 vectors represent a 4-D space on the 2-D plane. They get converted into the correct
-2-D points. For Example, if you use a 2x4 matrix and convert all points at each 
-instance of $t$ you have a moving object into the direction of the fourth basis vector. \\
+2-D points by giving each dimension a direction vector around the unit circle and relying the
+horizontal and vertical amounts of cosine and sine. For Example, if you use a 2x4 matrix 
+and convert all points at each instance of $t$ you have a moving object into the direction 
+of the fourth basis vector. \\
 
 \begin{displaymath}
 \boldsymbol{A} := \begin{pmatrix}
@@ -781,7 +788,12 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)+ zr_t\sin(\varph
 &= x\vec{e}_x + y\vec{e}_y + z\vec{e}_z + t\vec{e}_t &= \sum_{n} \vec{e}_{n}\vec{x}_{n} &= \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}\\
 
-The same method can be used, to convert points or vectors from any other number of dimensions, down to the $xy$-plane. It can also be used in a general m by n case.\footnote{http://de.wikipedia.org/wiki/Abbildungsmatrix, shows the m by n case.}
+The same method can be used, to convert points or vectors from any other number of dimensions, down to the $xy$-plane. 
+It can so be used in a general $m \times n$ case, where one goes from $n$ dimensions down to $m$ dimensions.\footnote{http://de.wikipedia.org/wiki/Abbildungsmatrix, shows the m by n case.} 
+
+Remark. The other directions to add a new dimension is more difficult, if
+you have to split the numbers up and have less equations than variables. For the best reconstruction of the three dimensions i am
+currently between guessing how, researching and preparing SVD, and will provide information, when they are ready.\\
 
 \subsection{Alternative definition of the transformation by using dot products}
 \label{alternative_def_using_dot}
@@ -805,7 +817,7 @@ This operation can also be extended into any finite number of dimensions, and wi
 \begin{displaymath}
 \left(\begin{array}{1}\vec{v}\cdot\vec{c}\\\vec{v}\cdot\vec{s}\end{array}\right) = \left(\begin{array}{1}
 xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
-xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\rigght) = \left(\begin{array}{1}x'\\y'\end{array}\right)
+xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
 \end{displaymath}
 
 
@@ -912,7 +924,7 @@ What about the vector of the integration constants, $\vec{C}$? We can solve easi
 
 Remark. The constant looks like a valuable extension of the function. Looks like a fixed additional translation away from the null origin to me. \\
 
-\newtheorem{CorollaryConstant}{Corollary. \vec{f}(\vec{0}) equals the integration constant $\vec{f}{\vec{0}}=\vec{C}$.}
+\newtheorem{CorollaryConstant}{Corollary. $\vec{f}(\vec{0})$ equals the summed integration constant $\vec{f}(\vec{0})=\vec{C}$.}
 \begin{CorollaryConstant}
 Corollary. If the result of $\vec{f}{\vec{0}}=?$ does not equal zero, one can solve for the constant c, which is the translation from the origin. If the normal result of $\vec{f}({\vec{0}})$ is $\vec{f}({\vec{0}})=\vec{0}$ then $\vec{f}({\vec{0}})=\vec{C}$.
 \end{CorollaryConstant}
@@ -925,14 +937,18 @@ Corollary. If the result of $\vec{f}{\vec{0}}=?$ does not equal zero, one can so
 \end{align}
 \end{displaymath}
 
-The vector $\begin{pmatrix}12\\7\end{pmatrix}$ is an example for a translation added to each point just using a function, which returns $\begin{pmatrix}12\\7\end{pmatrix}$ on $\vec{f}({\vec{0})$ fulfilling all requirements of a continuous linear map from V to W. After examining $\vec{f}({\vec{0})$ we find out, whether our map is shifted away from the origin or not. But when we explore the constant again. Each coordinate axis contributed a part to the translation. Each Integral gave one integration constant, which in our case is a two-d vector with one constant for the x and one constant for the y. What is the best deconstruction? $\frac{1}{3}$ will not 
+The vector $\begin{pmatrix}12\\7\end{pmatrix}$ is an example for an additional translation. By examining $\vec{f}(\vec{0})$, we can see, whether our image is shifted or not away from the origin. Because in a non-manipulated system, the origin maps to the origin. \\
 
+\emph{About the constant of integration}\\
+
+The three integration constants can be different from zero and then add up to zero together. So there can a little more detail be hidden in $\vec{f}(\vec{0}_{\mathbb{R}^{3}}) = \vec{0}_{\mathbb{R}^{2}}$.\\
 \begin{displaymath}
 \begin{align}
-\vec{C} = \vec{C}_{1} + \vec{C}_{2} + \vec{C}_{3} 
+\vec{C} &= \vec{C}_{1} + \vec{C}_{2} + \vec{C}_{3} \\
+\vec{0} &= \begin{pmatrix}-1\\0\end{pmatrix}+\begin{pmatrix}1\\-1\end{pmatrix}+\begin{pmatrix}0\\1\end{pmatrix}
 \end{align}
 \end{displaymath}
-
+The good news. Currently i can not imagine a case, where we have this situation.\\
 
 
 \section{Projecting just z onto a vector}
@@ -995,12 +1011,36 @@ Remark. To be connected with the introduction to norms from the appendix.
 
 Remark. And to be continued.\\
 
-\subsection{$r_n$ as bounding constant}
+\subsection{Are the bounds influenced by the $r_n$-values?}
 
-When looking at sine and cosine, which add up to one, if squared and summed. And looking at the factor $r_n$, which is known as the radius $r$ or as the unit multiplier in polar coordinates, in physics one writes the letters A,B,C times sine function. When going from 3-space to 2-space, $r_n$ could enlarge the coordinates.
+Remark. This section has no consensus.
 
-So i find one bound by substituting the radius into the estimation. $\|\vec{x}\| $\leq \product\frac{1}{r_n}\|\boldsymbol{A}\vec{x}\|$
+When looking at sine and cosine, if squared and summed, they add up to one. In our case this often simplifies work with the trig functions. For example when squaring for the norm. The sin and cos terms add up to one after squaring and factoring out the multipliers in front of them.\\
 
+Another piece of the linear map is the factor $r_n$. The length of the vector is unit length times the factor r, $1 \times r$.
+$r_n$ originates in polar coordinates as radius of the circle, on which the x and y coordinates ly. The line gets longer if $r > 1$ and short if $0 < r < 1$, and disappears if $r = 0$, and changes the direction by $180^{\circ}$, if the sign is negative.\\
+
+Our question here is, which influence has $r_n$ on the norm or the size of the vectors, and which influence has this on the results of comparing the two vectors from 3-space and 2-space.
+
+First i try substituting the radius into the estimation, and see what happens algebraicly. $\|\boldsymbol{A}\vec{v}\| \leq $r_n$\|\vec{v}\|$\\
+
+Secondly i have no plan, what this says.
+
+Third
+
+Remark. Has to be examined, what kind of influence the r value has.
+
+\subsection{Equality of norms}
+
+Remark. Not finished.
+
+Norms are said to be equal if there are two constant $c$,$C$ such that
+
+\begin{displaymath}
+\begin{align}
+    c\|\vec{v}\| \leq \|\boldsymbol{A}\vec{v}\| \leq C\|\vec{v}\|
+\end{align}
+\end{displaymath}
 
 \section{Cauchy Sequences and Convergence}
 
@@ -1109,6 +1149,29 @@ TODO.
 \section{Temporarily moved down MORE TODO}
 
 \subsection{Important mathematics in the vector spaces}
+
+\subsubsection{K-Vectorspace}
+
+The euclidean space, the well known 2-D and 3-D spaces, are themselves so called K-Vectorspaces.\\
+
+A $\mathbb{K}$-Vectorspace V over a body $\mathbb{K} = \mathbb{R}$ or $\mathbb{K} = \mathbb{C}$ is a set $V$ with two operations $+, \cdot$. Written as ring it is written as $(V, +, \cdot)$.\\
+
+The vector space possesses the addition $+: V \times V \rightarrow V, (\vec{v},\vec{w}) \mapsto \vec{v}+\vec{w}$ and the scalar multiplication $\cdot: K \times V \rightarrow V, (\lambda, \vec{v}) \mapsto \lambda\vec{v}$.\\
+
+To become a K vector space, the vector space must fulfill the following axioms.\\
+
+
+\begin{enumerate}
+\item $\vec{a}+(\vec{b}+\vec{c}) = (\vec{a}+\vec{b})+\vec{c}$ (associativity)
+\item $\vec{a} + \vec{a}' = 0 = \vec{a}' + \vec{a} \forall a \in V$ (additive inverse)
+\item $1\vec{a} = \vec{a}$    (1 is an identity operator)
+\item
+\item
+\item
+\item
+\item
+
+\end{enumerate}
 
 \subsubsection{Norms: Absolute values of vectors and matrices}
 
@@ -1221,7 +1284,7 @@ Remark. Think i have corrected it.
 2(\|v\|^{2} + \|w\|^{2}) = \|v+w\|^{2}+\|v-w\|^{2}
 \end{displaymath}
 
-This equation says, that "the square sum of the parallelogram", on the left side of the equation, "equals the square sum of the four sides", on the right side of the equation. \footnote{The text in quotes is a translated citation of a german lecture script. http://pages.math.tu-berlin.de/~ferus/skripten.html from Lineare Algebra I. I took the Parallelogram equation and Polarisation formla from, too.}\\
+This equation says, that "the square sum of the parallelogram", on the left side of the equation, "equals the square sum of the four sides", on the right side of the equation. \footnote{The text in quotes is a translated citation of a german lecture script. http://page.math.tu-berlin.de/~ferus/skripten.html from Lineare Algebra I. I took the Parallelogram equation and Polarisation formla from, too.}\\
 
 \textbf{Proof}:
 
@@ -1291,7 +1354,7 @@ TODO. The Frobenius norm is $\sqrt{3}$ for $r_n = 1$ summing up 6 squares of thr
 
 \begin{displaymath}
 \|A\|_{Frobenius} = (\sum_{i=1..2,j=1..3}A_{ij}^{2})^{\frac12}
-\|A\vec{v}\|_{Frobenius} = (\sum_{i=1..2,j=1..3}\vec{v}_{i}^{2}A_{ij}^{2})^{\frac12}
+\|A\circ\vec{v}\|_{Frobenius} = (\sum_{i=1..2,j=1..3}\vec{v}_{i}^{2}A_{ij}^{2})^{\frac12}
 \end{displaymath}
 
 
@@ -1305,7 +1368,7 @@ Remark. Needs definitly new formulation and not the algebraic simplification as 
 \begin{displaymath}
 \begin{align}
 \|\boldsymbol{A}\|_{Frobenius} = (r_{x}^{2}+r_{y}^{2}+r_{z}^{2})^{\frac{1}{2}}\\
-\|\boldsymbol{A}\vec{v}\|_{Frobenius} = (x^{2}r_{x}^{2}+y^{2}r_{y}^{2}+z^{2}r_{z}^{2})^{\frac{1}{2}}
+\|\boldsymbol{A}\circ\vec{v}\|_{Frobenius} = (x^{2}r_{x}^{2}+y^{2}r_{y}^{2}+z^{2}r_{z}^{2})^{\frac{1}{2}}
 \end{align}
 \end{displaymath}
 \end{PropositionMatrixNorm}
@@ -1323,7 +1386,7 @@ Without the elements of a vector
 And with applying the vector to A
 \begin{displaymath}
 \begin{align}
-\|\boldsymbol{A}\vec{v}\|_{Frobenius} = (\sum_{i=1,2;j=x,y,z}\vec{v}_{i}^{2}\vec{e}_{ij}^{2})^{\frac{1}{2}} \\
+\|\boldsymbol{A}\circ\vec{v}\|_{Frobenius} = (\sum_{i=1,2;j=x,y,z}\vec{v}_{i}^{2}\vec{e}_{ij}^{2})^{\frac{1}{2}} \\
 &= (\sum_{n=1}^{3}\vec{v}_{n}^{2}r_{n}^{2}\cos\varphi_n^{2} + \sum_{n=1}^{3}\vec{v}_{n}^{2}r_{n}^{2}\sin\varphi_n^{2})^{\frac{1}{2}}\\
 &= (\sum_{n=1}^{3}\vec{v}_{n}^{2}r_{n}^{2}(\cos\varphi_n^{2} + \sin\varphi_n^{2}))^{\frac{1}{2}}\\
 &= \sqrt{x^{2}r_{x}^{2}+y^{2}r_{y}^{2}+z^{2}r_{z}^{2}}\\
@@ -1451,7 +1514,7 @@ For 2-D space, the normal vector of the standard basis $\begin{pmatrix}1&0\\0&1\
 $\boldsymbol{N}_{\mathbb{R}^{2}} := \begin{pmatrix}0 & -1 \\ 1 & 0\end{pmatrix}$\\
 \end{center}
 
-You should multiply the 2x3 matrix with some vector and you will get a perpendicular vector back.
+You should multiply the 2x2 matrix with some vector and you will get a perpendicular vector back.
 
 \begin{center}
 $\vec{n} = \boldsymbol{N}\vec{w} = \begin{pmatrix}0 & -1 \\ 1 & 0\end{pmatrix} \cdot \begin{pmatrix}a\\b\end{pmatrix} = \begin{pmatrix}-b\\a\end{pmatrix}$
@@ -1468,6 +1531,16 @@ For three dimensional vectors the proof is similar, and the dot product should a
 
 
 \subsection{Convex sets}
+
+\begin{flushleft}
+\begin{figure}[ht]
+
+\includegraphics[scale=0.5]{filling.png}
+\caption{TODO. Can we find a simple triangulation or just simplification to use the fill() method on strictly convex sets?}
+
+\end{figure}
+\end{flushleft}
+
 
 Convex sets contain the path between two points inside the set. That means, that the direct way from a to be is not crossing the borders of the set. This can be imagined with real borders of a set. A round set, or a rectangle have all points inside together with their path. A star for example, where you have two points at two of the tips is not convex, the direct path, the straight line would cross the border of the star, leave the star, and reenter the star. There is a formula, which gives the points on the path.
 
@@ -2271,26 +2344,20 @@ Remark. Got to fetch the formal version of this declaration.\\
 
 \section{License}
 
-Remark. Informal version. Same opinion.\\
+This code is free of charge, free for anyone to use. You are welcome to accredit Edward Gerhold for his work.
+But it is not neccessary to do so. It is not neccessary to ask for permissions for using this projects results
+in your own. You are free to use, modify the formula and the source codes. You just convert your points or found
+something to enhance something existing in your code. Edward is honest to help you with this article.
+You are allowed to use the formula(s) in your own projects. You are not welcome to claim, you have invented this
+and Edward only wrote it up for you. But why should one? This project is interesting, but nothing to patent with.
+Regarding real laws, this is copyrighted 2015 by Edward Gerhold, and permission is granted for anyone to use the 
+transformation. \\
 
-I think, mathematics are "Allmende" (for the people). For everyone in the world mathematics should be freely accessible.
-I missed this coordinate system in the mainline of introductory texts, lectures, and books about computer graphics and 
-close to lessons about surface plots.
-If you have use for, just use it. Transform your coordinates with. Or study the mathematics behind by yourself.
-I think this gives better understanding of all those topics mentioned and of course the euclidean spaces.
-But that´s my personal opinion, if you just want the points for the plane. The thing is two lines of code, plus
-the preparation of repeating code. Repeating are angle variables, one time sine and cosine calls, axis unit length. It is
-compatible with frustum and premultiplication, before projection, you can do any kind of affine transformation or three dimensional deformation on your set of points.
-After transforming, you could apply more, then to the two dimensional coordinates, and maybe even save time computing,
-regarding linearity rules, that you can do some stuff after transformation, like scalar multiplication, as well.
-This code is free. Free for anyone, and i would appreciate, if you use it, that you don´t make a secret out of it. It 
-is just a two lines of code long projection, which i couldn´t even find in Wikipedia. Nothing special. And nothing to patent.\\
+Remark. Formulation lacks.\\
 
-Remark. Informal version. Same opinion.\\
 
-Remark. What you can do with does not belong into the license. Hmm. Another short text to summarize the features (but better then) is an idea.
-
-\begin{thebibliography}    
+\begin{thebibliography}
+% books
     \bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
         Vector Calculus, GNU Free Documentation License, http://mecmath.net 
     \bibitem{Corral2} \textit{Michael Corral, Schoolcraft College},
@@ -2299,10 +2366,25 @@ Remark. What you can do with does not belong into the license. Hmm. Another shor
             Linear Algebra and it´s Applications. Fourth Edition.        
     \bibitem{Strang2} \textit{Gilbert Strang, MIT},
             Calculus. MIT OpenCourseWare Supplemental Resources. http://ocw.mit.edu    
-    \bibitem{Ferus1} \textit{Prof. Dr. em. D. Ferus, TU-Berlin},
-            Lecture Script, Lineare Algebra 1+2 (german), 2000, http://pages.math.tu-berlin/~ferus/skripten.html
+% lecture scripts english
+    \bibitem{Toplogy} \textit{ ,  },
+            Lecture Script, Topology Notes, Math 240
+    \bibitem{Functional1} \textit{},
+            Lecture Script, Functional Analysis,    
+    \bibitem{Functional2} \textit{},
+            Lecture Script, 
+    \bibitem{Functional3} \textit{},
+            Lecture Script,
+% lecture scripts in german
+    \bibitem{Ferus1} \textit{Dirk Ferus, TU-Berlin, em.},
+            Lecture Script, Lineare Algebra 1+2, 2000, http://page.math.tu-berlin/~ferus/skripten.html
+    \bibitem{Ferus2} \textit{Dirk Ferus, TU-Berlin, em.},   
+            Lecture Script, Analysis II, 2008, http://page.math.tu-berlin/~ferus/skripten.html            
     \bibitem{Kuehn1} \textit{Franziska K\"uhn, Technische Universit\"at Dresden},
-            Lecture Script, Lineare Algebra und analytische Geometrie 1+2, http://tu-dresden.de
+            Lecture Script, Lineare Algebra und analytische Geometrie I+II, http://fkuehn.de/download/LAAG.pdf
+    \bibitem{Wittbold} \textit{Petra Wittbold, TU-berlin},  
+        Lecture Script, Funktionalanalysis I,  http://www3.math.tu-berlin.de/Vorlesungen/SS09/FA1/Doc/Funkana1-SS06-08.06.09.pdf
+% latex tutorials 
     \bibitem{Corral3} \textit{Michael Corral, Schoolcraft College},
             Latex Mini Tutorial, http://mecmath.net                    
     \bibitem{Jürgens,Feuerstack} \textit{Manuela J\"urgens, Thomas Feuerstack, Fernuniversit\"at Hagen},
@@ -2316,3 +2398,4 @@ Remark. What you can do with does not belong into the license. Hmm. Another shor
 \printindex
 
 \end{document}
+
