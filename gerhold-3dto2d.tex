@@ -453,7 +453,6 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 
 
 \subsection{Vectorbasis version}
-
 \subsubsection{Hamelbasis with broken law of linear independence (or just a linear mapping)}
 
 The theorem from Hamel says, that every vector space has a basis. And he gives a formula for this. The new vector in the new coordinate system is the sum of the coordinates multiplied with the basis vectors. \\
@@ -922,7 +921,7 @@ What about the vector of the integration constants, $\vec{C}$? We can solve easi
 \end{align}
 \end{displaymath}
 
-Remark. The constant looks like a valuable extension of the function. Looks like a fixed additional translation away from the null origin to me. \\
+Remark. The constant looks like a valuable extension of the function. Looks like a fixed additional translation away from the null origin to me. $x=a+Ax$ is a formula of affine transformations, with translation included, and this seems to match, too.\\
 
 \newtheorem{CorollaryConstant}{Corollary. $\vec{f}(\vec{0})$ equals the summed integration constant $\vec{f}(\vec{0})=\vec{C}$.}
 \begin{CorollaryConstant}
@@ -950,6 +949,23 @@ The three integration constants can be different from zero and then add up to ze
 \end{displaymath}
 The good news. Currently i can not imagine a case, where we have this situation.\\
 
+\emph{About integrating a coordinate}\\
+
+If i take the coordinates as limits of integration from 0 to x, 0 to y, 0 to z, i probably get the transformation again.
+Let us try to integrate $\begin{pmatrix}3\\1\\7\end{pmatrix}$. I have had the idea in the bus, to check this way out, too.
+
+\begin{displaymath}
+\begin{align}
+\int_{0}^{3}\vec{e}_{x}\partial{x} &+
+\int_{0}^{1}\vec{e}_{y}\partial{y} +
+\int_{0}^{7}\vec{e}_{z}\partial{z} =\\
+&= (3\vec{e}_{x}-0\vec{e}_{x}+\vec{C}_{1}) + (1\vec{e}_{y}-0\vec{e}_{y}+\vec{C}_{2}) + (7\vec{e}_{z}-0\vec{e}_{z}+\vec{C}_{3})\\
+&= 3\vec{e}_{x} + 1\vec{e}_{y} + 7\vec{e}_{z} + \vec{C}\\
+\end{align}
+\end{displaymath}
+
+Which is then summed up as a two dimensional vector, by multiplying each basis vector with the coordinate, and building a final sum.
+Seems to be fine for us and equal.\\
 
 \section{Projecting just z onto a vector}
 
@@ -964,6 +980,29 @@ What i did not get before was the projection onto a vector. I wondered about how
 \end{displaymath}
 
 I can explain what is happening. By the formulas we already have seen, the two vectors are summed together. The first one carries the x and the y coordinates. The second one, multiplies the z-axis vector with the z-coordinate. Like you know from before, this moves the point along or parallel to along the z-axis vector. And of course stops at the right place.
+
+
+\begin{example}
+Example JavaScript code
+\begin{lstlisting}
+var zAngle = rad(45);
+var zAxisCos = Math.cos(zAngle);
+var zAxisSin = Math.sin(zAngle);
+function transform(points3) {
+    var points2 = [];
+    var p,x,y,z;
+    for (var i = 0, j = points3.length; i < j; i++) {
+        p = points3[i];
+        x = p[0], y = p[1], z = p[2];
+        points2.push([
+            x+z*zAxisCos,
+            y+z*zAxisSin
+        ]);
+    }
+    return points2;
+}
+\end{lstlisting}
+\end{example}
 
 
 \section{Estimation}
@@ -1229,24 +1268,17 @@ This can be simplified. Now assume i split the left side up into three sums. And
 2(\vec{v},\vec{w}) \leq 2(\vec{v},\vec{v})^{\frac{1}{2}}(\vec{w},\vec{w})^{\frac{1}{2}}
 \end{displaymath}
 
-Now i square it again to get rid of the square roots, and compare finally.
+Now i divide the two out. 
 
 \begin{displaymath}
-4(\vec{v}, \vec{w})^{2} \leq 4(\vec{v},\vec{v})(\vec{w},\vec{w}) 
+(\vec{v},\vec{w}) \leq (\vec{v},\vec{v})^{\frac{1}{2}}(\vec{w},\vec{w})^{\frac{1}{2}}
 \end{displaymath}
 
-Which is 
+Now get rid of the square root by squaring it again. This is the Cauchy Schwarz inequality.
 
 \begin{displaymath}
-4\sum_{j=1}^{n}\sum_{i=1}^{n}\vec{v}_{i}^{2}\vec{w}_{j}^{2} \leq 4\sum_{j=1}^{n}\sum_{i=1}^{n}\vec{v}_{i}^{2}\vec{w}_{j}^{2}
+(\vec{v},\vec{w})^{2} \leq (\vec{v},\vec{v})(\vec{w},\vec{w})
 \end{displaymath}
-
-Remark. In this case we have equality. Meanwhile i have written down a dozen of with dot products, mixed with norms, and with sums, and the other way round. \\
-
-
-Remark. This is the spot to show the inequality the other way round.\\
-
-
 
 
 \textbf{Cauchy-Schwarz inequality} There is another interesting inequality.
