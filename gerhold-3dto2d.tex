@@ -2305,41 +2305,47 @@ The x,y image is pointing downwards. I add each points z coordinate now to y, wh
 \end{displaymath}
 After this i discovered adding three proportional parts for each coordinates and decided quickly to use cos and sin and the circle to create axes by angles.\\
 
-\textbf{Example}
+\textbf{Example}\\
 This is the EcmaScript 5 code example for rotating xy and addign z in.
 \begin{example}
 \begin{lstlisting}
+function transform(points3) {
 
-// once
-
-var angle = 1.25*Math.PI; // 225 deg
-var cos = Math.cos(angle), sin = Math.sin(angle);
-
-function trans(vec3) {
-    // for each point
-
-    var u = x = vec3[0], 
-        v = y = vec3[1], 
-            z = vec3[2];
-
-    // rotate x and y
-    x = cos*u -sin*v; 
-    y = sin*u +cos*v; 
+    var angle = 1.25*Math.PI;  // 225 deg
+    var cos = Math.cos(angle), // prevent from
+        sin = Math.sin(angle); // repeating calls
+    var points2 = [];          // new points
+    var p;                     // current point
+    var x,y,u,w,z;             // coordinates
     
-    // add z vertically
-    y += z; 
+    for (var i = 0, j = points3.length; i < j; i++) {
 
-    // return 2d point
-    return [x,y];
+        p = points3[i];
+        u = p[0], 
+        v = p[1], 
+        z = p[2];
+
+        // rotate x and y 
+        x = cos*u -sin*v; 
+        y = sin*u +cos*v; 
+    
+        // add z vertically
+        y += z; 
+        // could do it on one line with the previous y
+
+        // add new point to list
+        points2.push([x,y]);
+    }
+
+    return points2;
 }
-
 \end{lstlisting}
 \end{example}
 
 
 \section{Declaration of authorship}
 
-Remark. Have to fetch the english version of the Selbstaendigkeitserklaerung over the internet.\\
+Remark. Have to fetch the english version of the Selbst\"andigkeitserklaerung over the internet.\\
 
 With this here i promise, i invented the thing alone, and did copy no proof nowhere and used only
 the books and the lecture scripts for reference i acknowledge in the bibliography.\\
@@ -2353,14 +2359,11 @@ But it is not neccessary to do so. It is not neccessary to ask for permissions f
 in your own. You are free to use, modify the formula and the source codes. You just convert your points or found
 something to enhance something existing in your code. Edward is honest to help you with this article.
 You are allowed to use the formula(s) in your own projects. You are not welcome to claim, you have invented this,
-and Edward only wrote it up for you. But why should one? This project is interesting, but nothing to patent with.
+and Edward only wrote it up at the same time. But why should one? This project is interesting, but nothing to patent.
 Regarding real laws, this is copyrighted 2015 by Edward Gerhold, and permission is granted for anyone to use and
-work out the transformation for commercial and non-commercial purposes. \\
+work out the transformation for commercial and non-commercial purposes with giving me respect for my late (re)discovery.
 
-Remark. Formulation lacks.\\
-
-
-
+Remark. Formulation lacks. Obviously a standard public domain license will work.\\
 
 \begin{thebibliography}
 % books
