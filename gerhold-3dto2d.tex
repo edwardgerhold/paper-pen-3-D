@@ -216,8 +216,7 @@ There we have the set for the three basis vectors. We give them the letter $e$ a
 \caption{The three basis vectors point into the positive directions of the desired coordinate axes each. They are arranged around a circle with the trigonometric functions of cosine and sine. The coordinate system shown is a righthanded coordinate system.}
 \end{figure}
 
-\begin{figure}[ht]
-\includegraphics[scale=0.5]{lefthandbasis.png}
+\begin{figure}[ht]\includegraphics[scale=0.5]{lefthandbasis.png}
 \caption{The three two dimensional basis vectors $\in \mathbb{R}^{2\times{3}}$ as a lefthanded coordinate system.}
 \end{figure}
 
@@ -959,13 +958,15 @@ Let us try to integrate $\begin{pmatrix}3\\1\\7\end{pmatrix}$. I have had the id
 \int_{0}^{3}\vec{e}_{x}\partial{x} &+
 \int_{0}^{1}\vec{e}_{y}\partial{y} +
 \int_{0}^{7}\vec{e}_{z}\partial{z} =\\
-&= (3\vec{e}_{x}-0\vec{e}_{x}+\vec{C}_{1}) + (1\vec{e}_{y}-0\vec{e}_{y}+\vec{C}_{2}) + (7\vec{e}_{z}-0\vec{e}_{z}+\vec{C}_{3})\\
-&= 3\vec{e}_{x} + 1\vec{e}_{y} + 7\vec{e}_{z} + \vec{C}\\
+&= (3\vec{e}_{x}+\vec{C}_{1}-0\vec{e}_{x}-\vec{C}_{1}) + (1\vec{e}_{y}+\vec{C}_{2}-0\vec{e}_{y}-\vec{C}_{2}) + (7\vec{e}_{z}+\vec{C}_{3}-0\vec{e}_{z}-\vec{C}_{3})\\
+&= 3\vec{e}_{x} + 1\vec{e}_{y} + 7\vec{e}_{z}\\
 \end{align}
 \end{displaymath}
 
-Which is then summed up as a two dimensional vector, by multiplying each basis vector with the coordinate, and building a final sum.
-Seems to be fine for us and equal.\\
+Which is then summed up as a two dimensional vector. 
+
+Remark. Notation stuff. I used the partial symbol for the differential. The physicists could write this $\int_{0}^{3}d^{2}x\vec{e}_{x}+...$. It is just dx,dy,dz and per axis vector componentwise, because $\vec{e}_{n}$ are vectors, if somebody asks.
+
 
 \section{Projecting just z onto a vector}
 
@@ -1175,7 +1176,7 @@ TODO.
 
 \subsubsection{K-Vectorspace}
 
-The following table shows the dimensions of euclidean spaces, and an excerpt of a few more spaces, not showing the many many spaces like $L^{p}$ (Lebesgue integratable functions) and $l^{p}$ (quadratic summarizable sequences), Fock spaces, Hardy Spaces, or Sobolev Spaces from Differential Equations, because currently all that is beyond scope of this document. 
+The following table shows the dimensions of euclidean spaces, and an excerpt of a few more spaces, not showing the many many spaces like $L^{p}$ (Lebesgue integrable functions) and $l^{2}$ (quadratic summarizable sequences), Fock spaces, Hardy Spaces, or Sobolev Spaces from Differential Equations, because currently all that is beyond scope of this document. 
 
 \begin{tabular}{-l-l-l-}
 \label{vector_space_table}
@@ -2401,7 +2402,7 @@ Remark. Formulation lacks. Obviously a standard public domain license will work.
 % books
 
     \bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
-        Vector Calculus, GNU Free Documentation License, http://mecmath.net 
+            Vector Calculus, GNU Free Documentation License, http://mecmath.net 
     \bibitem{Corral2} \textit{Michael Corral, Schoolcraft College},
             Trigonometry, GNU Free Documentation License, http://mecmath.net
     \bibitem{Strang1} \textit{Gilbert Strang, MIT},
@@ -2410,7 +2411,7 @@ Remark. Formulation lacks. Obviously a standard public domain license will work.
             Calculus. MIT OpenCourseWare Supplemental Resources. http://ocw.mit.edu    
 % lecture scripts english
     \bibitem{Toplogy} \textit{ ,  },
-            Lecture Script, Topology Notes (english), Math 240
+            Lecture Script, Topology (english),
     \bibitem{Functional1} \textit{},
             Lecture Script, Functional Analysis (english),    
     \bibitem{Functional2} \textit{TODO},
