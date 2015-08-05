@@ -18,10 +18,12 @@
 \maketitle
 
 
-Version 0.3.14\\
+Version 0.3.15\\
 
-\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last.\\
+\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last.\\}
 
+\fbox{The sections need definitly a new ordering because of shifted priorities.}\\
+We come to solve for the purpose of the real R2x3 very soon. See appendix for hints.\\
 
 \end{center} 
 
@@ -91,6 +93,9 @@ Each of the three vectors has an angle, counted from the horizontal positive x-a
 angle between the axes themselves isn´t what we want. We want the angle beginning on the real 2-D x-axis, to feed the cos and sin functions with, when calculating the real numbers of each basis vector.\\
 
 In this document, i will call the angles $\angle \varphi_{n}$ or just $\varphi_{n}$. If they are measured in degrees or radians depends on the cosine and sine functions you use. And on how you would like to read your own definition.\\
+
+\fbox{We will arrange the three axes for x, y and z around the circle by choosing angles.}\\
+
 
 Let $\varphi_{n}$ be the set of axis angles, one for each axis. I put them into a set in this document to simplify the access by
 using the index $_{n}$ together with $_x, _y, _z$ or $1,2,3$. $\varphi_x$ or $\varphi_1$ is the angle of the x-axis. $\varphi_y$ or $\varphi_2$ is the angle of the x-axis and $\varphi_z$ or $\varphi_3$ is the angle of the x-axis. \\
@@ -165,6 +170,8 @@ In polar coordinates the cosine and sine are multiplied with r. Also to change t
 the vector $\vec{r}$, which is the third side to a triangle by cosine, sine and r. 
 If r is left away, the length of the basis vector is 1. Or in other words, the distance $d((0,0),(x,y))$ from the origin to $(x,y)=($$r \cos \varphi$$, $$r \sin \varphi$$)$ is $1$, if $r=1$ or if r is left away completely.\\
 
+\fbox{The number $r$ is for the length of one unit on each axis.}\\
+
 Pay attention to this point now, to keep the affine transformation, especially under rotation, correct. You should give all three
 axes the same r-value. I will define them in this document as $r_{n}$ with one $r_x, r_y$ and $r_z$ for each coordinate axis,
 to keep it complete. But if you would like to change the units on your objects, i have to recommend, that you apply a local
@@ -230,6 +237,7 @@ with $r$ and $\varphi$ into a 2x1 vector with two components. So any (x,y) on on
 
 Which can alternativly be written like $(x,y) = (r \cos \varphi, r \sin \varphi)$.\\
 
+
 Modeling the three two dimensional basis vectors with this information,
 we get the following three two dimensional basis vectors. They point along the coordinate axes and are the ruler for our transformation.\\
 
@@ -249,6 +257,7 @@ Each component of (x,y,z) has now an own basis vector. By multiplying the cos te
 \includegraphics[scale=2]{unitcircle.png}
 \caption{A picture of the unit circle, the hypotenuse r, the adjacent cosine, the opposite sine and the angle $\varphi$. It is a circle of radius r, and no longer the unit circle, if $r \neq 1$.}
 \end{figure}
+
 
 \subsection{Now we need the vector basis theorem}\\
 
@@ -279,6 +288,8 @@ Any not straight move will go horizontally or vertically by componentwise amount
 \end{figure}
 
 The point is, the general formula holds with a 2x3 basis.\\
+
+\fbox{By taking 2-D vectors for three coordinates, we map directly onto the plane.}\\
 
 \begin{figure}
 \begin{displaymath}
@@ -924,7 +935,7 @@ Remark. The constant looks like a valuable extension of the function. Looks like
 
 \newtheorem{CorollaryConstant}{Corollary. $\vec{f}(\vec{0})$ equals the summed integration constant $\vec{f}(\vec{0})=\vec{C}$.}
 \begin{CorollaryConstant}
-Corollary. If the result of $\vec{f}{\vec{0}}=?$ does not equal zero, one can solve for the constant c, which is the translation from the origin. If the normal result of $\vec{f}({\vec{0}})$ is $\vec{f}({\vec{0}})=\vec{0}$ then $\vec{f}({\vec{0}})=\vec{C}$.
+Corollary. If the result of $\vec{f}({\vec{0}})=\vec{w}$ does not equal zero ($\vec{0}$), one can solve for the constant c, which is the translation from the origin. If the normal result of $\vec{f}({\vec{0}})$ is $\vec{f}({\vec{0}})=\vec{0}$ then $\vec{f}({\vec{0}})=\vec{C}$.
 \end{CorollaryConstant}
 
 \begin{displaymath}
@@ -948,10 +959,10 @@ The three integration constants can be different from zero and then add up to ze
 \end{displaymath}
 The good news. Currently i can not imagine a case, where we have this situation.\\
 
-\emph{About integrating a coordinate}\\
+\emph{Integration with positive coordinates}\\
 
 If i take the coordinates as limits of integration from 0 to x, 0 to y, 0 to z, i probably get the transformation again.
-Let us try to integrate $\begin{pmatrix}3\\1\\7\end{pmatrix}$. I have had the idea in the bus, to check this way out, too.
+Let us try to integrate $\begin{pmatrix}3\\1\\7\end{pmatrix}$. I have had the idea in the bus, to check this possibility out, too.\\
 
 \begin{displaymath}
 \begin{align}
@@ -963,11 +974,40 @@ Let us try to integrate $\begin{pmatrix}3\\1\\7\end{pmatrix}$. I have had the id
 \end{align}
 \end{displaymath}
 
-Which is then summed up as a two dimensional vector. 
+Which is then summed up as a two dimensional vector. \\
 
-Remark. Notation stuff. I used the partial symbol for the differential. The physicists could write this $\int_{0}^{3}d^{2}x\vec{e}_{x}+...$. It is just dx,dy,dz and per axis vector componentwise, because $\vec{e}_{n}$ are vectors, if somebody asks.
+Remark. Notation stuff. I used the partial symbol for the differential. The physicists could write this $\int_{0}^{3}d^{2}x\vec{e}_{x}+...$. It is just dx,dy,dz and per axis vector componentwise, because $\vec{e}_{n}$ are vectors, if somebody asks.\\
+
+\newtheorem{CorollaryLimitsIntegration}{Corollary. Integration Limits.}
+\begin{CorollaryLimitsIntegration}
+To integrate the coordinates, which results in the three two-d vectors, which build a final sum of the final coordinate vector, the x coordinate is the limit from [0,x] on the first integral, y is from [0,y] and z is from [0,z] on the last integral.
+\end{CorollaryLimitsIntegration}
+
+\emph{Integration again with negative coordinates}.\\
+
+Let us try to integrate $\begin{pmatrix}-3\\-1\\-7\end{pmatrix}$. After examining wether [-3,0] or -[0,3] is the right way to integrate negative coordinates, i come to the conclusion, integrate from [0,3] and subtract the integrals.\\
+
+\begin{displaymath}
+\begin{align}
+-\int_{0}^{3}\vec{e}_{x}\partial{x} &-
+\int_{0}^{1}\vec{e}_{y}\partial{y} -
+\int_{0}^{7}\vec{e}_{z}\partial{z} =\\
+&= -(3\vec{e}_{x}+\vec{C}_{1}-0\vec{e}_{x}-\vec{C}_{1}) - (1\vec{e}_{y}+\vec{C}_{2}-0\vec{e}_{y}-\vec{C}_{2}) - (7\vec{e}_{z}+\vec{C}_{3}-0\vec{e}_{z}-\vec{C}_{3})\\
+&= -3\vec{e}_{x} - 1\vec{e}_{y} - 7\vec{e}_{z}\\
+\end{align}
+\end{displaymath}
+
+Integration of [-3, 0] would fail, since $0\vec{e}_{x} - (-3)\vec{e}_{x}$ would result in $3\vec{e}_{x}$. And integration from 0 to -3 is not what i have read in the books, the negative number would be the lower and not the upper limit of integration, so i conclude,
+that the integrals have to be subtracted when negative coordinates are used.\\
+
+\newtheorem{CorollaryLimitsIntegration}{Corollary. Negative Coordinates and Limits of Integration. Subtract the integrals.}
+\begin{CorollaryLimitsIntegration}
+To integrate negative coordinates, the limits of integration become the positive coordinates, and the integrals, which are affected are subtracted from the others. Integrating from [0,-x] or from [-x,0] would results in a positive result or be impossible by definition.
+\end{CorollaryLimitsIntegration}
 
 
+Remark. Chapter needs to be cleaned up.
+ 
 \section{Projecting just z onto a vector}
 
 
@@ -1616,6 +1656,64 @@ Remark. To be studied within the next days.
 
 \section{Deconstructing and proving the 2x3 basis or not}
 
+
+\subsection{Definition of \mathbb{R}^{2\times3}}
+
+Remark. August, 5. This document exists almost a month. It broke once in after a week, touching the broken rule of linear independence and the algebraic construction of R2x3. The former is solved, it is written, that it is good, to break this rule for this special case. The latter is still a topic, for which i have to dig in Algebra, Topology, Analysis, to find the right words. But i am getting closer and closer.\\
+ 
+Remark. The following will be re-interpreted over the next days in August, as i think, i am gonna solve this.\\
+
+
+
+I think rationally, this space is giving the two dimensional image of three dimensional input coordinates. Or in other words, this space takes three dimensional input coordinates. Or other words, it creates 2-D images from 3-D vectors.\\
+
+\newtheorem{Definition}{Definition. My human definition of \mathbb{R}^{2\times3}}
+\begin{Definition}
+The $\mathbb{R}^{2\times3}$ space is rationally viewed, the 2-D space of three input coordinates. The images over $\mathbb{R}^{2\times3}$ are two dimensional. But the input coordinates for the image are three dimensional. Instead of getting abstract and universal, the $\mathbb{R}^{2\times3}$ is rationally the space of the 2-D image of 3-D data.
+\end{Definition}\\
+
+This means we have three ways instead of two, to move the point over the image to the right spot.\\
+
+\newtheorem{Corollary}{Corollary. Each of the three input coordinates contributes to the two final coordinates.}
+\begin{Corollary}
+The $\mathbb{R}^{2\times3}$ has three axes instead of two. Since the output dimensions are less than the input dimensions, all three coordinates contribute their parts to the two coordinates.
+\end{Corollary}
+
+Maybe the following definition is a theorem. The 2x3 basis is not orthogonal.
+
+\newtheorem{Definition}{The three axes of $\mathbb{R}^{2\times3}$ are not orthogonal.}
+\begin{Definition}
+The coordinate system of the $\mathbb{R}^{2\times3}$ is not a regular orthogonal coordinate system. The best way to lay the three axes out on two dimensions is around the circle, which is available in two dimensions. 
+\end{Definition}
+
+
+In a $\mathbb{R}^{3\times{n}}$ with $n>3$ we would use the sphere. If you think about 3x4 and additional translations, you get the point as another vector pointing from the origin of the sphere into the translations direction.\\
+
+\newtheorem{Corollary}{The three axes of $\mathbb{R}^{2\times3}$ are linearly dependent.}
+\begin{Corollary}
+The coordinate system of the $\mathbb{R}^{2\times3}$ is not a regular orthogonal coordinate system. A minimum of one axis has to be dependent of the other. Regarding, that we print onto the real $R^{2}$ standard basis, all three axes are linear combinations for use with the two dimensional standard basis.
+\end{Corollary}
+
+\newtheorem{Definition}{The three axes of $\mathbb{R}^{2\times3}$ are best laid out around the circle.}
+\begin{Definition}
+The coordinate system of the $\mathbb{R}^{2\times3}$ is not a regular orthogonal coordinate system. The circle is available in two dimensions. The circle gives optimal freedom of arrangement. Together with the parametrization r cos angle, r sin angle for three instead of two input coordinates, each coordinate moves proportionally from the origin or the actual position on to the right destination.
+\end{Definition}
+
+The 2x3 image is describable in polar coordinates.
+
+\newtheorem{Corollary}{The 2x3 image is optimally describable in polar coordinates.}
+\begin{Corollary}
+The coordinate system of the $\mathbb{R}^{2\times3}$ which is layed out around the circle is best viewed with polar coordinates. 
+It is the 2-D space for a 3-D image in polar coordinates.
+\end{Corollary}
+
+Proposition: The R2x3 IS the 2-D space for 3-D in polar coordinates, like i started this chapter. It is the 2-D space of a 3-D image.\\
+
+Remark. This is incomplete and needs review by myself between shopping and returning.\\
+
+\fbox{this section needs review and to be overworked by me, the definition of r2x3 is important}
+
+
 \subsection{Orthogonality in the 2x3 matrix}
 
 When going from three to two dimensions. We lose information about the third dimension.
@@ -1628,9 +1726,15 @@ again to move the numbers of the y coordinate up or down. The axis vectors are o
 real basis vectors are. The difference is, we map one number more than two, we have three directions on one flat screen.\\
 
 Remark. I am sitting on the Quotient or Factor Rooms, and know that the 2x3 image is a true 2x3 image and with that the 2x3 space
-is describable. Like i did the last lines, for example. But i can not bring it. I have a leak, a lag, a lack in the topic, which is making me unsure. I have to read another teacher for, to get the final point, to make 2/3 a 3/2 and explain 2x3 as 2x3. It is not 
+is describable. Like i did the last lines, for example. But i can not bring it. I have a leak, a lag, a lack in the topic, which is making me unsure. I have to read another teacher for, to get the final point, to understand 2/3 a 3/2 and explain 2x3 as 2x3. It is not 
 b*** what i write, it is a promise i wish to fulfill. I mean i want to get, what it got to do with a quotient room, and what with
 the 2x3.
+Remark. The dimension formula is 
+\begin{displaymath}
+dim(U)+dim(V) = dim(U\cap{V}) + dim(U+V)
+\end{displaymath}
+Remark. This has nothing to do with this text. Reminder. This is a dev version with chaotic parts.
+
 
 If i want to map them back, sure, we have to draw then 3 orthogonal vectors in a 3x2 matrix, which take the share of the vectors and span them up. Values like 120 degress (Example 2 in \ref{120_degress}) could be easier to break into parts. I am not sure how to break by the angle. But i remember from lecture scripts, that breaking a 1 into many parts to multiply something together, is useful
 in such situations\\
@@ -1639,7 +1743,10 @@ TODO.
 
 \subsection{2x3 standard basis}
 
+
 A 2x3 basis is a set of six matrices being constructed out of five basis vectors. In the Appendix of \cite{Strang1}, there is a basis of a 2x3 matrix printed, together with a few arguments. The professor constructed a 2x3 standard basis by multiplying the 2-D standard basis vectors with the 3-D standard vectors.\\
+
+\fbox{Remark. August 5. The 2x3 example \cite{Strang1} seems to be for and about R6. This is different.}
 
 \begin{displaymath}
 
@@ -1737,6 +1844,11 @@ Without calculating them, but quick-concluding them from the existing, i get the
 Remark. This section is incomplete, almost meaningless yet, and better not to be taken as is.
 
 \textbf{Remark} Proof or contradictions TODO
+
+
+\fbox{Remark. August 5. The 2x3 basis is different from the R6 basis by purpose.}\\
+
+Remark. August. I will work on this chapter the next days. Proving it is a 2-D image of 3 input coordinates.\\
 
 \section{Vector space tools}\\
 
