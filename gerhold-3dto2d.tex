@@ -975,11 +975,35 @@ wrong, hold on a moment.\\
 \end{align}
 \end{displaymath}
 
+\emph{The integral needs to be fixed:}\\
 
-\textbf{\emph{The integral needs to be fixed:}}\\
+Must i change the sign any time by myself. We can change the limits of integration which changes the sign of the integral.
 
-We can fix the integral, which can not be changed manually each time, by looking whether the coordinates are positive or negative.
-Using the absolute value in the limits of integration and the sign function in front of the integrals make the thing work automatically for any coordinate, and we could integrate over each coordinate.\\
+%\hline
+\begin{displaymath}
+\begin{align}
+-\int_{x}^{0}\vec{e}_{x}\partial{x} &
+-\int_{y}^{0}\vec{e}_{y}\partial{y} +
+\int_{0}^{z}\vec{e}_{z}\partial{z} \\
+&= -\vec{e}_{x} -\vec{e}_{y} +\vec{e}_{z}\\
+\end{align}
+\end{displaymath}
+
+The operator for this would be defined for changing the limits on negative coordinates and taking the absolut values. So the operator would define two integrals depending on the input.
+
+\begin{displaymath}
+I_{n}(x) := \left\{\begin{array}{1}
+-\int_{x}^{0}\vec{e}_{n}\partial{x} (\forall x < 0) \\
+\\
+\int_{0}^{x}\vec{e}_{n}\partial{x} (\forall x \geq 0) 
+\end{array}\\
+\end{displaymath}
+\begin{displaymath}
+I(\vec{v}) := I_{x}(\vec{v}_{1}) + I_{y}(\vec{v}_{2}) + I_{z}(\vec{v}_{3})
+\end{displaymath}
+
+
+We can fix the integral another way. By using sgn(x) in front of and abs(x) in the upper limit of the integral.\\
 
 %\hline
 \begin{displaymath}
@@ -987,12 +1011,16 @@ Using the absolute value in the limits of integration and the sign function in f
 sign(x)\int_{0}^{|x|}\vec{e}_{x}\partial{x} &+
 sign(y)\int_{0}^{|y|}\vec{e}_{y}\partial{y} +
 sign(z)\int_{0}^{|z|}\vec{e}_{z}\partial{z} \\
-&= \pm|x|\vec{e}_{x} \pm|y|\vec{e}_{y} \pm|z|\vec{e}_{z}\\
+&= \pm{x}\vec{e}_{x} \pm{y}\vec{e}_{y} \pm{z}\vec{e}_{z}\\
 \end{align}
 \end{displaymath}
-\hline
-\section{Projecting just z onto a vector}
 
+Which will do the job. But meanwhile i am also satisfied with the former definition.\\Meanwhile i am satisfied with the former definition.
+
+
+What does the integral anyways? It moves a point along a line, and returns the vector of the straight line. Done with three integrals, we get the vector of the right coordinate on the 2-D plane back.\\
+
+\section{Projecting just z onto a vector}
 
 \label{projecting_just_z}
 What i did not get before was the projection onto a vector. I wondered about how to add the third axis. We already have seen the three independent axes. Now i have found out, how to project just the z coordinate into the $\mathbb{R}^{2}$ system and to keep the $xy$-plane the same. 
@@ -2486,15 +2514,9 @@ Remark. Got to fetch the formal version of this declaration.\\
 \section{License}
 
 This code is free of charge, free for anyone to use. You are welcome to accredit Edward Gerhold for his work.
-But it is not neccessary to do so. It is not neccessary to ask for permissions for using this projects results
-in your own. You are free to use, modify the formula and the source codes. You just convert your points or found
-something to enhance something existing in your code. Edward is honest to help you with this article.
-You are allowed to use the formula(s) in your own projects. You are not welcome to claim, you have invented this,
-and Edward only wrote it up at the same time. But why should one? This project is interesting, but nothing to patent.
-Regarding real laws, this is copyrighted 2015 by Edward Gerhold, and permission is granted for anyone to use and
-work out the transformation for commercial and non-commercial purposes with giving me respect for my late (re)discovery.
+But it is not neccessary to do so.
 
-Remark. Formulation lacks. Obviously a standard public domain license will work.\\
+Remark. Formulation lacks. Obviously a standard public domain or creative commons license will work.\\
 
 \begin{thebibliography}
 % books
