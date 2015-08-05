@@ -18,12 +18,12 @@
 \maketitle
 
 
-Version 0.3.15\\
+Version 0.3.16\\
 
 \textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last.\\}
 
 \fbox{The sections need definitly a new ordering because of shifted priorities.}\\
-We come to solve for the purpose of the real R2x3 very soon. See appendix for hints.\\
+
 
 \end{center} 
 
@@ -181,22 +181,6 @@ stretch the head, if you rotate it to the side, where the unit for example is lo
 So for the coordinate system, the best setting is $r_x = r_y = r_z$. Keeping them equal, you can rotate it realistic. But you
 don´t need to keep the unit length of 1 for the vector. Elonginating the units on the axes make zooming transformations very
 easy.\\
-
-\subsubsection{Taking the norm of $\vec{e}_n$ to obtain $r_n$ from some existing coordinate system}
-
-Remark Maybe the use case is too unrealistic
-
-If you have some existing basis and you would like to figure out, how long r is, you can go the other way round and take the
-norm of the vector. Taking the norm means to measure the length of the vector. This is done with the euclidean norm, or the
-2-norm for regular purposes.\\
-
-$r_{n} = \sqrt{\vec{e}_{n}\cdot\vec{e}_{n}}$ = $\sqrt{(\vec{e}_{n},\vec{e}_{n})}$ = $\left(\Sigma_{i=1}^{2} \vec{e}_{i}^2\right)^{\frac{1}{2}}$ = $\|\vec{e}_{n}\|$\\itt
-
-With this formula you can not only measure the length of the basis vectors, but any vector in the $\mathbb{R}^{3}$ and the $\mathbb{R}^{2}$ space. 
-More advanced measurements include the p-Norm, which is $\sqrt[p]{\sum_{i=1}^{n}|\vec{x}_{i}|^{p}} 1 \leq p \leq \infty$ and $\sup_{i=1..n} |\vec{x}_{i}|$ for $p=\infty}$ and the max-Norm $\|\vec{x}\|_{\infty}$= $\sup_{} \{|\vec{x}_{i}| \}$. There are matrix norms like $\|A\| = \max_{i=1..m} \sum_{j=1}^{n}A_{ij}$, which for example yields the largest row of a m by n matrix. Norms are used everywhere ing mathematics for measuring the lenghts or getting the absolut values of the vectors and matrices. And the distance function $d(\vec{x},\vec{y}) = \|\vec{x}-\vec{y}\|$ is used to measure the distance between to points or two vector tips. A vector space V with a distance function $d(x,y)=\|x-y\|$. 
-  is called a metric space $(V,d)$. And a complete metric space with a norm, written $(V, \|\cdot\|)$, is a Banach space. \\
-
-A vector can be normalized to give $\|\vec{x}\| = 1$, by dividing the vector components by the length, say $\vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|}$. See the appendix for more on norms and for example for a proof of the normalization.\\
 
 \subsection{$\vec{e}_{n}$ are the three 2-D basis vectors}
 
@@ -909,7 +893,7 @@ Which is equal to \ref{alternative_def_using_dot} and of course the formula $\ve
 
 \subsection{Integral}
 
-If i sum the three integrals $\vec{f}(\vec{x}) = \int\vec{e}_{x}\partial{x}$ + $\int\vec{e}_{y}\partial{y}$ + $\int\vec{e}_{z}\partial{z}$. I get the function back. 
+If i sum the three integrals $\vec{f}(\vec{x}) = \int\vec{e}_{x}\partial{x}$ + $\int\vec{e}_{y}\partial{y}$ + $\int\vec{e}_{z}\partial{z}$. I get the function back. But we will see after integration of positive and negative values, it has to be fixed once for those case. But we will do it below.\\
 
 \begin{displaymath}
 \begin{align}
@@ -935,7 +919,7 @@ Remark. The constant looks like a valuable extension of the function. Looks like
 
 \newtheorem{CorollaryConstant}{Corollary. $\vec{f}(\vec{0})$ equals the summed integration constant $\vec{f}(\vec{0})=\vec{C}$.}
 \begin{CorollaryConstant}
-Corollary. If the result of $\vec{f}({\vec{0}})=\vec{w}$ does not equal zero ($\vec{0}$), one can solve for the constant c, which is the translation from the origin. If the normal result of $\vec{f}({\vec{0}})$ is $\vec{f}({\vec{0}})=\vec{0}$ then $\vec{f}({\vec{0}})=\vec{C}$.
+Corollary. If the result of $\vec{f}({\vec{0}})=\vec{w}$ does not equal zero ($\vec{0}$), one can solve for the constant $\vec{C}$, which is the translation from the origin. If the normal result of $\vec{f}({\vec{0}})$ is $\vec{f}({\vec{0}})=\vec{0}$ then $\vec{f}({\vec{0}})=\vec{C}$.
 \end{CorollaryConstant}
 
 \begin{displaymath}
@@ -976,16 +960,10 @@ Let us try to integrate $\begin{pmatrix}3\\1\\7\end{pmatrix}$. I have had the id
 
 Which is then summed up as a two dimensional vector. \\
 
-Remark. Notation stuff. I used the partial symbol for the differential. The physicists could write this $\int_{0}^{3}d^{2}x\vec{e}_{x}+...$. It is just dx,dy,dz and per axis vector componentwise, because $\vec{e}_{n}$ are vectors, if somebody asks.\\
-
-\newtheorem{CorollaryLimitsIntegration}{Corollary. Integration Limits.}
-\begin{CorollaryLimitsIntegration}
-To integrate the coordinates, which results in the three two-d vectors, which build a final sum of the final coordinate vector, the x coordinate is the limit from [0,x] on the first integral, y is from [0,y] and z is from [0,z] on the last integral.
-\end{CorollaryLimitsIntegration}
-
 \emph{Integration again with negative coordinates}.\\
 
-Let us try to integrate $\begin{pmatrix}-3\\-1\\-7\end{pmatrix}$. After examining wether [-3,0] or -[0,3] is the right way to integrate negative coordinates, i come to the conclusion, integrate from [0,3] and subtract the integrals.\\
+Let us try to integrate $\begin{pmatrix}-3\\-1\\-7\end{pmatrix}$. After examining whether [-3,0] or -[0,3] is the right way to integrate negative coordinates, i come to the conclusion, integrate from [0,3] and subtract the integrals. If you think, i am
+wrong, hold on a moment.\\
 
 \begin{displaymath}
 \begin{align}
@@ -997,17 +975,22 @@ Let us try to integrate $\begin{pmatrix}-3\\-1\\-7\end{pmatrix}$. After examinin
 \end{align}
 \end{displaymath}
 
-Integration of [-3, 0] would fail, since $0\vec{e}_{x} - (-3)\vec{e}_{x}$ would result in $3\vec{e}_{x}$. And integration from 0 to -3 is not what i have read in the books, the negative number would be the lower and not the upper limit of integration, so i conclude,
-that the integrals have to be subtracted when negative coordinates are used.\\
 
-\newtheorem{CorollaryLimitsIntegration}{Corollary. Negative Coordinates and Limits of Integration. Subtract the integrals.}
-\begin{CorollaryLimitsIntegration}
-To integrate negative coordinates, the limits of integration become the positive coordinates, and the integrals, which are affected are subtracted from the others. Integrating from [0,-x] or from [-x,0] would results in a positive result or be impossible by definition.
-\end{CorollaryLimitsIntegration}
+\textbf{\emph{The integral needs to be fixed:}}\\
 
+We can fix the integral, which can not be changed manually each time, by looking whether the coordinates are positive or negative.
+Using the absolute value in the limits of integration and the sign function in front of the integrals make the thing work automatically for any coordinate, and we could integrate over each coordinate.\\
 
-Remark. Chapter needs to be cleaned up.
- 
+%\hline
+\begin{displaymath}
+\begin{align}
+sign(x)\int_{0}^{|x|}\vec{e}_{x}\partial{x} &+
+sign(y)\int_{0}^{|y|}\vec{e}_{y}\partial{y} +
+sign(z)\int_{0}^{|z|}\vec{e}_{z}\partial{z} \\
+&= \pm|x|\vec{e}_{x} \pm|y|\vec{e}_{y} \pm|z|\vec{e}_{z}\\
+\end{align}
+\end{displaymath}
+\hline
 \section{Projecting just z onto a vector}
 
 
@@ -1486,6 +1469,25 @@ The operatornorm is a dependent norm. It depends on the currently used norm.
 
 Remark. This is by heart. But i sure i am not through with using it correctly.
 
+\subsection{(moved b4 del) Taking the norm of $\vec{e}_n$ to obtain $r_n$ from some existing coordinate system}
+
+Remark Maybe the use case is too unrealistic
+
+If you have some existing basis and you would like to figure out, how long r is, you can go the other way round and take the
+norm of the vector. Taking the norm means to measure the length of the vector. This is done with the euclidean norm, or the
+2-norm for regular purposes.\\
+
+$r_{n} = \sqrt{\vec{e}_{n}\cdot\vec{e}_{n}}$ = $\sqrt{(\vec{e}_{n},\vec{e}_{n})}$ = $\left(\Sigma_{i=1}^{2} \vec{e}_{i}^2\right)^{\frac{1}{2}}$ = $\|\vec{e}_{n}\|$\\itt
+
+With this formula you can not only measure the length of the basis vectors, but any vector in the $\mathbb{R}^{3}$ and the $\mathbb{R}^{2}$ space. 
+More advanced measurements include the p-Norm, which is $\sqrt[p]{\sum_{i=1}^{n}|\vec{x}_{i}|^{p}} 1 \leq p \leq \infty$ and $\sup_{i=1..n} |\vec{x}_{i}|$ for $p=\infty}$ and the max-Norm $\|\vec{x}\|_{\infty}$= $\sup_{} \{|\vec{x}_{i}| \}$. There are matrix norms like $\|A\| = \max_{i=1..m} \sum_{j=1}^{n}A_{ij}$, which for example yields the largest row of a m by n matrix. Norms are used everywhere ing mathematics for measuring the lenghts or getting the absolut values of the vectors and matrices. And the distance function $d(\vec{x},\vec{y}) = \|\vec{x}-\vec{y}\|$ is used to measure the distance between to points or two vector tips. A vector space V with a distance function $d(x,y)=\|x-y\|$. 
+  is called a metric space $(V,d)$. And a complete metric space with a norm, written $(V, \|\cdot\|)$, is a Banach space. \\
+
+A vector can be normalized to give $\|\vec{x}\| = 1$, by dividing the vector components by the length, say $\vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|}$. See the appendix for more on norms and for example for a proof of the normalization.\\
+
+
+
+
 \subsection{Dot product}
 
 The dot product, scalar product or inner product.
@@ -1654,99 +1656,82 @@ Remark. To be studied within the next days.
 \begin{displaymath}
 \end{displaymath}
 
-\section{Deconstructing and proving the 2x3 basis or not}
+\section{Deconstructing the 2x3}
 
+
+Remark. A version earlier i brought more arguments. But proving the R2x3 to be an unique space fails. It is a subspace of R2, and an Algebra taking three coordinates to combine them with coefficients into two. Some kind of R[x] is a 2x3. I have got to read Algebra.\\
+
+\fbox{The whole section about R2x3 is to be continued very soon}
 
 \subsection{Definition of \mathbb{R}^{2\times3}}
 
-Remark. August, 5. This document exists almost a month. It broke once in after a week, touching the broken rule of linear independence and the algebraic construction of R2x3. The former is solved, it is written, that it is good, to break this rule for this special case. The latter is still a topic, for which i have to dig in Algebra, Topology, Analysis, to find the right words. But i am getting closer and closer.\\
- 
-Remark. The following will be re-interpreted over the next days in August, as i think, i am gonna solve this.\\
+
+\newtheorem{Proposition}{Proposition. The $\mathbb{R}^{2\times3}$ is the 2-D space of 3-D images}
+\begin{Proposition}
+The R2x3 combines three coordinates into two. For the human nature the most valuable and logical use for the 2x3 is to present the 2-D images of 3-D coordinates by feeding the R2x3 algebra with three coordinates and taking the 2-D image from.
+\end{Proposition}
 
 
+\newtheorem{Proposition}{Proposition. Polar coordinates are optimal for laying out three axes for $\mathbb{R}^{2\times3}$ }
+\begin{Proposition}
+It is the virtual 3-D coordinate system which is brought by R2x3 into the R2 is best layed out with polar coordinates, because using the trigonometric functions makes optimal arrangement possible by choosing angles for each axis. 
+\end{Proposition}
 
-I think rationally, this space is giving the two dimensional image of three dimensional input coordinates. Or in other words, this space takes three dimensional input coordinates. Or other words, it creates 2-D images from 3-D vectors.\\
+The $\mathbb{R}^{2\times3}$ is NOT a K-vectorspace.\\
 
-\newtheorem{Definition}{Definition. My human definition of \mathbb{R}^{2\times3}}
-\begin{Definition}
-The $\mathbb{R}^{2\times3}$ space is rationally viewed, the 2-D space of three input coordinates. The images over $\mathbb{R}^{2\times3}$ are two dimensional. But the input coordinates for the image are three dimensional. Instead of getting abstract and universal, the $\mathbb{R}^{2\times3}$ is rationally the space of the 2-D image of 3-D data.
-\end{Definition}\\
+Several axioms do not hold. If you put three coordinates into, they will be combined into 2 coordinates. The identity operator for example can not return the same number.\\
 
-This means we have three ways instead of two, to move the point over the image to the right spot.\\
+What kind of vector space on its own it is, i can not say today, if it is. I have to continue learning higher algebra.\\
 
-\newtheorem{Corollary}{Corollary. Each of the three input coordinates contributes to the two final coordinates.}
-\begin{Corollary}
-The $\mathbb{R}^{2\times3}$ has three axes instead of two. Since the output dimensions are less than the input dimensions, all three coordinates contribute their parts to the two coordinates.
-\end{Corollary}
+But the $\mathbb{R}^{2\times3}$ is an Algebra on $\mathbb{R}^{2}$.\\
 
-Maybe the following definition is a theorem. The 2x3 basis is not orthogonal.
-
-\newtheorem{Definition}{The three axes of $\mathbb{R}^{2\times3}$ are not orthogonal.}
-\begin{Definition}
-The coordinate system of the $\mathbb{R}^{2\times3}$ is not a regular orthogonal coordinate system. The best way to lay the three axes out on two dimensions is around the circle, which is available in two dimensions. 
-\end{Definition}
+It combines three numbers into two.\\
 
 
-In a $\mathbb{R}^{3\times{n}}$ with $n>3$ we would use the sphere. If you think about 3x4 and additional translations, you get the point as another vector pointing from the origin of the sphere into the translations direction.\\
+\newtheorem{Proposition}{Proposition. The $\mathbb{R}^{2\times3}$ Algebra maps 3-D coordinates optimally onto 2-D coordinates}
+\begin{Proposition}
+Functionals and matrices from R2x3 
+\end{Proposition}
 
-\newtheorem{Corollary}{The three axes of $\mathbb{R}^{2\times3}$ are linearly dependent.}
-\begin{Corollary}
-The coordinate system of the $\mathbb{R}^{2\times3}$ is not a regular orthogonal coordinate system. A minimum of one axis has to be dependent of the other. Regarding, that we print onto the real $R^{2}$ standard basis, all three axes are linear combinations for use with the two dimensional standard basis.
-\end{Corollary}
+R2x3 is a place for operators, mediators. They provide a path from R3 to R2. It is a one-way-street.
 
-\newtheorem{Definition}{The three axes of $\mathbb{R}^{2\times3}$ are best laid out around the circle.}
-\begin{Definition}
-The coordinate system of the $\mathbb{R}^{2\times3}$ is not a regular orthogonal coordinate system. The circle is available in two dimensions. The circle gives optimal freedom of arrangement. Together with the parametrization r cos angle, r sin angle for three instead of two input coordinates, each coordinate moves proportionally from the origin or the actual position on to the right destination.
-\end{Definition}
-
-The 2x3 image is describable in polar coordinates.
-
-\newtheorem{Corollary}{The 2x3 image is optimally describable in polar coordinates.}
-\begin{Corollary}
-The coordinate system of the $\mathbb{R}^{2\times3}$ which is layed out around the circle is best viewed with polar coordinates. 
-It is the 2-D space for a 3-D image in polar coordinates.
-\end{Corollary}
-
-Proposition: The R2x3 IS the 2-D space for 3-D in polar coordinates, like i started this chapter. It is the 2-D space of a 3-D image.\\
-
-Remark. This is incomplete and needs review by myself between shopping and returning.\\
-
-\fbox{this section needs review and to be overworked by me, the definition of r2x3 is important}
+Remark. The formulation is more stumbled than in the last version, i simply deleted all again, because the R2x3 fails the vector space test and survives the home of operators and being an algebra on R2 but i have to analyse exactly the latter again. Formerly i had no experience, but writing a few group operations into a table.
 
 
 \subsection{Orthogonality in the 2x3 matrix}
 
-When going from three to two dimensions. We lose information about the third dimension.
-It gets packed into both remaining dimensions. Three numbers are taken and are combined into two.
-They are multiplied with the axis vectors length and magnitude to move the numbers of the right place.
-Once for the x part, and once for the y part. The new x and y coordinates are interpreted by an orthogonal basis.
-The well known and underestimated basis of the $\mathbb{R}^{2}$. The cos Terms multiply the coordinates to get 
-three pieces of horizontal share, to move to the right place horizontally. The sin Terms multiply the three coordinates
-again to move the numbers of the y coordinate up or down. The axis vectors are orthogonal by their components, like
-real basis vectors are. The difference is, we map one number more than two, we have three directions on one flat screen.\\
+The mapping from the three dimensional input to the two dimensional output can not be orthogonal for all three two dimensional axes. \\
 
-Remark. I am sitting on the Quotient or Factor Rooms, and know that the 2x3 image is a true 2x3 image and with that the 2x3 space
-is describable. Like i did the last lines, for example. But i can not bring it. I have a leak, a lag, a lack in the topic, which is making me unsure. I have to read another teacher for, to get the final point, to understand 2/3 a 3/2 and explain 2x3 as 2x3. It is not 
-b*** what i write, it is a promise i wish to fulfill. I mean i want to get, what it got to do with a quotient room, and what with
-the 2x3.
-Remark. The dimension formula is 
-\begin{displaymath}
-dim(U)+dim(V) = dim(U\cap{V}) + dim(U+V)
-\end{displaymath}
-Remark. This has nothing to do with this text. Reminder. This is a dev version with chaotic parts.
+The $\mathbb{R}^{2\times3}$ Algebra maps the three coordinates onto three vectors on the plane.\\
 
+The R2-x coordinate combines three coefficients multiplied with the three coordinates to a sum of a horizontal or x-axis displacement.
+And the R2-y coordinate combines three coefficients multiplied with the three coordinates to a sum of a vertical or y-axis displacement.\\
 
-If i want to map them back, sure, we have to draw then 3 orthogonal vectors in a 3x2 matrix, which take the share of the vectors and span them up. Values like 120 degress (Example 2 in \ref{120_degress}) could be easier to break into parts. I am not sure how to break by the angle. But i remember from lecture scripts, that breaking a 1 into many parts to multiply something together, is useful
-in such situations\\
+The mapping is onto an orthogonal R2 system.\\
 
-TODO.
+Remark. The covered points (the points virtually behind a point in from) lie all on one line each. There is an infinite number of lines from the front of the viewer orthogonally out of the plane which cover points behind the nearest point to the front.
 
 \subsection{2x3 standard basis}
 
 
-A 2x3 basis is a set of six matrices being constructed out of five basis vectors. In the Appendix of \cite{Strang1}, there is a basis of a 2x3 matrix printed, together with a few arguments. The professor constructed a 2x3 standard basis by multiplying the 2-D standard basis vectors with the 3-D standard vectors.\\
+Remark. This example seems to be about R6.\\
+\subsubsection{Taking the norm of $\vec{e}_n$ to obtain $r_n$ from some existing coordinate system}
 
-\fbox{Remark. August 5. The 2x3 example \cite{Strang1} seems to be for and about R6. This is different.}
+Remark Maybe the use case is too unrealistic
+
+If you have some existing basis and you would like to figure out, how long r is, you can go the other way round and take the
+norm of the vector. Taking the norm means to measure the length of the vector. This is done with the euclidean norm, or the
+2-norm for regular purposes.\\
+
+$r_{n} = \sqrt{\vec{e}_{n}\cdot\vec{e}_{n}}$ = $\sqrt{(\vec{e}_{n},\vec{e}_{n})}$ = $\left(\Sigma_{i=1}^{2} \vec{e}_{i}^2\right)^{\frac{1}{2}}$ = $\|\vec{e}_{n}\|$\\itt
+
+With this formula you can not only measure the length of the basis vectors, but any vector in the $\mathbb{R}^{3}$ and the $\mathbb{R}^{2}$ space. 
+More advanced measurements include the p-Norm, which is $\sqrt[p]{\sum_{i=1}^{n}|\vec{x}_{i}|^{p}} 1 \leq p \leq \infty$ and $\sup_{i=1..n} |\vec{x}_{i}|$ for $p=\infty}$ and the max-Norm $\|\vec{x}\|_{\infty}$= $\sup_{} \{|\vec{x}_{i}| \}$. There are matrix norms like $\|A\| = \max_{i=1..m} \sum_{j=1}^{n}A_{ij}$, which for example yields the largest row of a m by n matrix. Norms are used everywhere ing mathematics for measuring the lenghts or getting the absolut values of the vectors and matrices. And the distance function $d(\vec{x},\vec{y}) = \|\vec{x}-\vec{y}\|$ is used to measure the distance between to points or two vector tips. A vector space V with a distance function $d(x,y)=\|x-y\|$. 
+  is called a metric space $(V,d)$. And a complete metric space with a norm, written $(V, \|\cdot\|)$, is a Banach space. \\
+
+A vector can be normalized to give $\|\vec{x}\| = 1$, by dividing the vector components by the length, say $\vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|}$. See the appendix for more on norms and for example for a proof of the normalization.\\
+
+A 2x3 basis is a set of six matrices being constructed out of five basis vectors. In the Appendix of \cite{Strang1}, there is a basis of a 2x3 matrix printed, together with a few arguments. The professor constructed a 2x3 standard basis by multiplying the 2-D standard basis vectors with the 3-D standard vectors.\\
 
 \begin{displaymath}
 
@@ -1845,10 +1830,7 @@ Remark. This section is incomplete, almost meaningless yet, and better not to be
 
 \textbf{Remark} Proof or contradictions TODO
 
-
-\fbox{Remark. August 5. The 2x3 basis is different from the R6 basis by purpose.}\\
-
-Remark. August. I will work on this chapter the next days. Proving it is a 2-D image of 3 input coordinates.\\
+Remark. August 5. I will work on this chapter the next days. Proving it is a 2-D image of 3 input coordinates.\\
 
 \section{Vector space tools}\\
 
@@ -1900,7 +1882,7 @@ Metrics have three fundamental properties.
 \begin{displaymath}
 d(x,y) = 0 \iff x = y
 \end{displaymath}
-\item It does not matter, whether you read $d(x,y)$ or $d(y,x)$, the number must be equal. The absolute value function $|\pm n| = n, \pm n \in \mathbb{Q}$ makes sure
+\item It does not matter, whether you read $d(x,y)$ or $d(y,x)$, the number must be equal. The absolute value function $|\pm n| = n, \pm n \in \mathbb{R}$ makes sure
 \begin{displaymath}
 d(x,y) = d(y,x)
 \end{displaymath}
@@ -2411,6 +2393,8 @@ while (i < n) {
     rotate;
     scale;
 
+    i++;
+
 }
 
 \end{lstlisting}
@@ -2426,6 +2410,7 @@ Before i figured out, how to create three axes, i did it wrong. I wanted to turn
  \item{Now the x-axis and the y-axis point downwards. This means, the real y-axis on the real 2-D coordinate system is now 'free'.}
  \item{So add the z-coordinate in by just adding it to y.}
 }\\
+\end{enumerate}
 
 I will show it again now step by step.\\
 The angle to turn each point around.
