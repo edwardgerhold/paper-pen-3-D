@@ -18,11 +18,11 @@
 \maketitle
 
 
-Version 0.3.16\\
+Version 0.3.17\\
 
-\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last.\\}
+\textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last. If you ever print this, print 4 on 1. This saves paper. This document is unfinished and not completly shaped.\\}
 
-\fbox{The sections need definitly a new ordering because of shifted priorities.}\\
+\fbox{I think i have found the first words for my definition of R2x3 in the first of the sections about.}\\
 
 
 \end{center} 
@@ -60,7 +60,7 @@ tell you directly, what happens, when we multiply the coordinates with the matri
 
 \end{enumerate}
 
-\chapter{1}
+%\chapter{1}
 
 \section{Designing a $\mathbb{R}^{2\times{3}}$ coordinate system for our transformation from $\mathbb{R}^{3}$ to $\mathbb{R}^{2}$}
 
@@ -1070,17 +1070,12 @@ The theorem of uniformed boundedness is a part of functional analysis. I have no
 
 Remark. To be continued.\\
 
-Remark. To be connected with the introduction to norms from the appendix.
 
-Remark. And to be continued.\\
-
-\subsection{Bounds with $r_n$ values}
+\subsection{Bounds with $r_n$ values TODO)}
 
 Remark. This section has no consensus. TODO
 
-\subsection{Equality of norms}
-
-Remark. Not finished.
+\subsection{Equality of norms (TODO)}
 
 Norms are said to be equal if there are two constant $c$,$C$ such that
 
@@ -1167,8 +1162,6 @@ TODO\\
 Remark. This section is not finished, and at the change of dimensions or at the use of two different sets with different norms, the epsilon-delta version is required, too. It should say, that if the one goes below epsilon, the other goes below delta.\\
 
 
-
-
 \section{Summary}
 
 \subsection{Summary of all neccessary steps}
@@ -1195,7 +1188,7 @@ TODO.
 
 \appendix
 
-\section{Introducing and reviewing vector mathematics}
+\section{More vector mathematics to move into the right sections}
 
 \subsubsection{K-Vectorspace}
 
@@ -1656,80 +1649,88 @@ Remark. To be studied within the next days.
 \begin{displaymath}
 \end{displaymath}
 
-\section{Deconstructing the 2x3}
+\section{Definition of \mathbb{R}^{2\times3}!}
 
+The $\mathbb{R}^{2\times3}$ is NOT a K-vectorspace. The axioms of a body and a vector space can not be fulfilled.\\
 
-Remark. A version earlier i brought more arguments. But proving the R2x3 to be an unique space fails. It is a subspace of R2, and an Algebra taking three coordinates to combine them with coefficients into two. Some kind of R[x] is a 2x3. I have got to read Algebra.\\
+But the $\mathbb{R}^{2\times3}$ is a vector space. A vector space defines addition and scalar multiplication.\\
 
-\fbox{The whole section about R2x3 is to be continued very soon}
+And we have both. $Av + Az = A(v + z) = w$, and $\lambdaA(v) = A(\lambdaw)$ in the previous definitions.
 
-\subsection{Definition of \mathbb{R}^{2\times3}}
+Can you spot one difficulty in our vector space?\\
 
+\begin{displaymath}
+\lambda\vec{v} = \lambda\vec{w}
+\end{displaymath}\\
 
-\newtheorem{Proposition}{Proposition. The $\mathbb{R}^{2\times3}$ is the 2-D space of 3-D images}
+But it is a vector space? Yes. But note, that also \\
+
+\begin{displaymath}
+\vec{u} + \vec{v} = \vec{w} + \vec{x}
+\end{displaymath}\\
+
+With that i can certainly announce that, under human conditions and rational thoughts, that
+
+\newtheorem{Proposition}{Proposition. The $\mathbb{R}^{2x3}$ is the vector space of 2-D images made of 3-D coordinates.}
 \begin{Proposition}
-The R2x3 combines three coordinates into two. For the human nature the most valuable and logical use for the 2x3 is to present the 2-D images of 3-D coordinates by feeding the R2x3 algebra with three coordinates and taking the 2-D image from.
-\end{Proposition}
+For the human nature the most natural use of the $\mathbb{R}^{2x3}$ is to produce 2-D images of 3-D coordinates with. It
+is possible to configure the 2x3 space for other calculations, but the most reasonable, because of the perfect images is
+to translate 3-D points into 2-D points with. The $\mathbb{R}^{2x3}$ is the vector space of 2-D images made of 3-D coordinates.
+\end{Proposition}\\
 
+There is a point about topology i did not clear yet, except for myself. The 2-D image covers points from far back in the 3-D.
+They lie on a straight line which is normal to the plane. And there are infinite lines. But not anywhere must be covered points.\\
 
-\newtheorem{Proposition}{Proposition. Polar coordinates are optimal for laying out three axes for $\mathbb{R}^{2\times3}$ }
+\newtheorem{Proposition}{Proposition. Each set of covered points lies on a straight line which is normal to the 2-d plane.}
 \begin{Proposition}
-It is the virtual 3-D coordinate system which is brought by R2x3 into the R2 is best layed out with polar coordinates, because using the trigonometric functions makes optimal arrangement possible by choosing angles for each axis. 
-\end{Proposition}
+In the topology of the 2-D image, certain points on the plane represent more than one point in the image. All covered points lie on a straight line, which is normal to the plane. 
+\end{Proposition}\\
 
-The $\mathbb{R}^{2\times3}$ is NOT a K-vectorspace.\\
+Because of that problem there is no bijectivity, no inverse. Here is a problem, only approximations and knowledge about the object projected can approximate or approximatly solve.\\
 
-Several axioms do not hold. If you put three coordinates into, they will be combined into 2 coordinates. The identity operator for example can not return the same number.\\
-
-What kind of vector space on its own it is, i can not say today, if it is. I have to continue learning higher algebra.\\
-
-But the $\mathbb{R}^{2\times3}$ is an Algebra on $\mathbb{R}^{2}$.\\
-
-It combines three numbers into two.\\
-
-
-\newtheorem{Proposition}{Proposition. The $\mathbb{R}^{2\times3}$ Algebra maps 3-D coordinates optimally onto 2-D coordinates}
+\newtheorem{Proposition}{Proposition. The map is surjective.}
 \begin{Proposition}
-Functionals and matrices from R2x3 
-\end{Proposition}
+There is no bijection. Because there is no injection because of the covered points.
+\end{Proposition}\\
 
-R2x3 is a place for operators, mediators. They provide a path from R3 to R2. It is a one-way-street.
+Now i come to the part, to say so, that the 2x3 basis above is the correct one for the R2x3, by saying before, that the most
+natural is, to produce 2-D images of three coordinates with.\\
 
-Remark. The formulation is more stumbled than in the last version, i simply deleted all again, because the R2x3 fails the vector space test and survives the home of operators and being an algebra on R2 but i have to analyse exactly the latter again. Formerly i had no experience, but writing a few group operations into a table.
+\newtheorem{Proposition}{Proposition. The $\mathbb{R}^{2\times3}$ basis is arranged by three 2-D axes around the circle.}
+\begin{Proposition}
+The most natural configuration for a 3-D coordinate system in the 2-D space is the arrangement of the axes around the unit circle.
+The cosine and sine orthonormal standard basis vector (r cos phi, r sin phi) is the vector to choose for each of the three axes.
+The unit length of the axes can be chosen by modifying the value of r. This is exactly the behaviour of polar coordinates. The vectors of the axes are the values of the coefficients for the algebra transforming the three coordinates into the two.
+\end{Proposition}\\
 
+Which makes another thing clear. The linear combination of the axes is optimal.
+
+\newtheorem{Proposition}{Proposition. Linear independence can not be held by the $\mathbb{R}^{2\times3}$ basis.}
+\begin{Proposition}
+The three axes of a two dimensional image of a three dimensional coordinate systems are linear dependent in terms of
+the resulting 2-D image, concerning the result of the $\mathbb{R}^{2\times3}$ algebra being interpreted as a subset 
+of the regular $\mathbb{R}^{2}$ vector space. But for the conversion of the coordinates the linear combination is optimal.
+\end{Proposition}\\
+
+The basis of $\mathbb{R}^{2\times3} is arranged around a circle. The basis of $\mathbb{R}^{2}$ and $\mathbb{R}^{3}$ are linearly independent. The basis of $\mathbb{R}^{3\times4} for example would be arranged around a sphere.\\
+
+Remark. To be continued.
 
 \subsection{Orthogonality in the 2x3 matrix}
 
-The mapping from the three dimensional input to the two dimensional output can not be orthogonal for all three two dimensional axes. \\
+The thing consists of three horizontal moves to produce the new x. And of three vertical moves to produce the new y. Or in other words. It does not know about horizontal or vertical. It combines the three input values into one new by applying algebraicly coefficients to the input, or other way round by applying the input to the basis of the vector space, and returns a new 2-D vector, which can be interpreted by $\mathbb{R}^{2}$ or will be interpreted as flat $\mathbb{R}^{2\times3}$ image with three axes around a circle.\\
 
-The $\mathbb{R}^{2\times3}$ Algebra maps the three coordinates onto three vectors on the plane.\\
+Remark. To explain, that the R2 standard basis does the orthogonal interpretation of the 2-D x and y coordinates.
 
-The R2-x coordinate combines three coefficients multiplied with the three coordinates to a sum of a horizontal or x-axis displacement.
-And the R2-y coordinate combines three coefficients multiplied with the three coordinates to a sum of a vertical or y-axis displacement.\\
+Remark. Another good question to myself. Has R2x3 a standard basis of R2 for the result and a "2x3 basis" for the linear map? Does it come as double pack?
 
-The mapping is onto an orthogonal R2 system.\\
+\section{Deconstructing the 2x3} 
 
-Remark. The covered points (the points virtually behind a point in from) lie all on one line each. There is an infinite number of lines from the front of the viewer orthogonally out of the plane which cover points behind the nearest point to the front.
-
+\fbox{The whole section about R2x3 is to be continued very soon}
+\section{deprecated 2x3 todo}
 \subsection{2x3 standard basis}
 
-
-Remark. This example seems to be about R6.\\
-\subsubsection{Taking the norm of $\vec{e}_n$ to obtain $r_n$ from some existing coordinate system}
-
-Remark Maybe the use case is too unrealistic
-
-If you have some existing basis and you would like to figure out, how long r is, you can go the other way round and take the
-norm of the vector. Taking the norm means to measure the length of the vector. This is done with the euclidean norm, or the
-2-norm for regular purposes.\\
-
-$r_{n} = \sqrt{\vec{e}_{n}\cdot\vec{e}_{n}}$ = $\sqrt{(\vec{e}_{n},\vec{e}_{n})}$ = $\left(\Sigma_{i=1}^{2} \vec{e}_{i}^2\right)^{\frac{1}{2}}$ = $\|\vec{e}_{n}\|$\\itt
-
-With this formula you can not only measure the length of the basis vectors, but any vector in the $\mathbb{R}^{3}$ and the $\mathbb{R}^{2}$ space. 
-More advanced measurements include the p-Norm, which is $\sqrt[p]{\sum_{i=1}^{n}|\vec{x}_{i}|^{p}} 1 \leq p \leq \infty$ and $\sup_{i=1..n} |\vec{x}_{i}|$ for $p=\infty}$ and the max-Norm $\|\vec{x}\|_{\infty}$= $\sup_{} \{|\vec{x}_{i}| \}$. There are matrix norms like $\|A\| = \max_{i=1..m} \sum_{j=1}^{n}A_{ij}$, which for example yields the largest row of a m by n matrix. Norms are used everywhere ing mathematics for measuring the lenghts or getting the absolut values of the vectors and matrices. And the distance function $d(\vec{x},\vec{y}) = \|\vec{x}-\vec{y}\|$ is used to measure the distance between to points or two vector tips. A vector space V with a distance function $d(x,y)=\|x-y\|$. 
-  is called a metric space $(V,d)$. And a complete metric space with a norm, written $(V, \|\cdot\|)$, is a Banach space. \\
-
-A vector can be normalized to give $\|\vec{x}\| = 1$, by dividing the vector components by the length, say $\vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|}$. See the appendix for more on norms and for example for a proof of the normalization.\\
+Remark. This example concerning the book \cite{Strang1} seems to be about R6 and not match my interpretation.\\
 
 A 2x3 basis is a set of six matrices being constructed out of five basis vectors. In the Appendix of \cite{Strang1}, there is a basis of a 2x3 matrix printed, together with a few arguments. The professor constructed a 2x3 standard basis by multiplying the 2-D standard basis vectors with the 3-D standard vectors.\\
 
