@@ -18,11 +18,11 @@
 \maketitle
 
 
-Version 0.3.20\\
+Version 0.3.21\\
 
 \textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last. If you ever print this, print 4 on 1. This saves paper. This document is unfinished and not completly shaped.\\}
 
-\fbox{I think i have found the first words for my definition of R2x3 in the first of the sections about.}\\
+\fbox{The definition of the 2x3 operator space, which now has a basis is started, but now dirty.}
 
 
 \end{center} 
@@ -1191,31 +1191,57 @@ Remark. This section is not finished, and at the change of dimensions or at the 
 
 \section{Definition of \mathbb{R}^{2\times3} (WORKING ON)}
 
-\subsection{Defining the 2x3 as space of 2-D images of 3 coordinates}
+
+\subsection{Defining the 2x3 as transitional space to go from 3-D to 2-D}
 
 The $\mathbb{R}^{2\times3}$ is NOT a K-vectorspace. The axioms of a body and a vector space can not be fulfilled.\\
-But the $\mathbb{R}^{2\times3}$ is a vector space. A vector space defines addition and scalar multiplication.\\
-And we have both. $Av + Az = A(v + z) = w$, and $\lambdaA(v) = A(\lambdaw)$ in the previous definitions.
-Can you spot one difficulty in our vector space?
+
+And the $\mathbb{R}^{2\times3}$ is NOT a regular $n \times n$ vector space.\\
+
+A vector space defines addition and scalar multiplication.\\
 
 \begin{displaymath}
-\lambda\vec{v} = \lambda\vec{w}
+\lambda\vec{v} \rightarrow \lambda\vec{w}
 \end{displaymath}
 
-But it is a vector space? Yes. But note, that also 
+It has addition
 
 \begin{displaymath}
-\vec{u} + \vec{v} = \vec{w} + \vec{x}
+\vec{u} + \vec{v} \rightarrow \vec{w} + \vec{x}
 \end{displaymath}
 
-With that i can certainly announce that, under human conditions and rational thoughts, that
+Both assuming a 2x3 standard basis. The result of the operations with the 3-D vectors are 2-D vectors.\\
 
-\newtheorem{Proposition}{Proposition. The $\mathbb{R}^{2x3}$ is the vector space of 2-D images made of 3-D coordinates.}
+So, ok, we have both. $Av + Az = A(v + z) = w$, and $\lambdaA(v) = A(\lambdaw)$ in the previous definitions.
+Assume that A is now the basis of the 2x3. Right. That does not make a usable vector space out of the 2x3.
+Can you spot one difficulty in our vector space? Right at once our 3-D input turns into 2-D vectors, and
+we continue operating on R2 or will not be able to calculate more.
+
+So it is a vector space? Yes. And No. You can not work with vectors inside this space.
+
+They called it the space of the 2x3 matrices, or the space of the 2x3 operators, i think i can remember correctly.
+
+\newtheorem{Proposition2x3space}{Proposition. $\mathbb{R}^{2\times3}$ is the operator space for operators which map from 3-D to 2-D.}
+\begin{Proposition2x3space}
+The $\mathbb{R}^{2\times3}$ is not an ordinary vector space, in which you can do your calculations. Once you put a 3-D vector inside,
+a 2-D vector is the result. You can see the $\mathbb{R}^{2\times3}$ as a one-way-street from $\mathbb{R}^{3}$ to $\mathbb{R}^{2}$ 
+\end{Proposition2x3space}
+
+
+\newtheorem{Proposition}{Proposition. The $\mathbb{R}^{2x3}$ is the operator space for making 2-D images of 3-D coordinates.}
 \begin{Proposition}
 For the human nature the most natural use of the $\mathbb{R}^{2x3}$ is to produce 2-D images of 3-D coordinates with. It
 is possible to configure the 2x3 space for other calculations, but the most reasonable, because of the perfect images is
-to translate 3-D points into 2-D points with. The $\mathbb{R}^{2x3}$ is the vector space of 2-D images made of 3-D coordinates.
+to translate 3-D points into 2-D points with. The $\mathbb{R}^{2x3}$ is the transitional vector space of 2-D images made of 3-D coordinates. It maps onto $\mathbb{R}^{2}$.
 \end{Proposition}\\
+
+\fbox{The 2x3 maps from 3-D to 2-D. The result is a subset of $\mathbb{R}^{2}$.}
+
+\newtheorem{Proposition2x3space}{Proposition. $\mathbb{R}^{2\times3}$ is the operator space for operators which map from 3-D to 2-D.}
+\begin{Proposition2x3space}
+The $\mathbb{R}^{2\times3}$ is not an ordinary vector space, in which you can do your calculations. Once you put a 3-D vector inside,
+a 2-D vector is the result. You can see the $\mathbb{R}^{2\times3}$ as a one-way-street from $\mathbb{R}^{3}$ to $\mathbb{R}^{2}$ 
+\end{Proposition2x3space}
 
 There is a point about topology i did not clear yet, except for myself. The 2-D image covers points from far back in the 3-D.
 They lie on a straight line which is normal to the plane. And there are infinite lines. But not anywhere must be covered points.\\
@@ -1235,7 +1261,7 @@ There is no bijection. Because there is no injection because of the covered poin
 Now i come to the part, to say so, that the 2x3 basis above is the correct one for the R2x3, by saying before, that the most
 natural is, to produce 2-D images of three coordinates with.\\
 
-\newtheorem{PropositionD}{Proposition. The $\mathbb{R}^{2\times3}$ basis is arranged by three 2-D axes around the circle.}
+\newtheorem{PropositionD}{Proposition. The $\mathbb{R}^{2\times3}$ basis (or map operator) is arranged by three 2-D axes around the circle.}
 \begin{PropositionD}
 The most natural configuration for a 3-D coordinate system in the 2-D space is the arrangement of the axes around the unit circle.
 The cosine and sine orthonormal standard basis vector (r cos phi, r sin phi) is the vector to choose for each of the three axes.
@@ -1255,11 +1281,14 @@ The basis of $\mathbb{R}^{2\times3}$ is arranged around a circle. The basis of $
 
 Remark. To be continued.
 
+\fbox{This is definitly a draft to replace by the 2x3 space being the operator space from 3 to 2. }
+
 \subsection{Orthogonality in the 2x3 matrix}
 
-The thing consists of three horizontal moves to produce the new x. And of three vertical moves to produce the new y. Or in other words. It does not know about horizontal or vertical. It combines the three input values into one new by applying algebraicly coefficients to the input, or other way round by applying the input to the basis of the vector space, and returns a new 2-D vector, which can be interpreted by $\mathbb{R}^{2}$ or will be interpreted as flat $\mathbb{R}^{2\times3}$ image with three axes around a circle.\\
+The 2x3 is mapping the 3-D input onto a 2-D plane. The 2-D plane itself follows the rules of orthogonal basis vectors. The standard basis for the R2 is $\begin{pmatrix}1&0\\0&1\end{pmatrix}$. Onto this basis the output of the 2x3 operators will be mapped.\\
 
-Remark. TODO.
+Each of the three input coordinates, which regularly come from an orthogonal 3-D system contributes a piece of movement to the two dimensions of the target space.
+
 
 \subsection{Intuitive standard basis}
 
@@ -1285,9 +1314,21 @@ What else can you see? The standard basis of $\mathbb{R}^{2}$ embedded in the $\
     E^{\mathbb{R}^{2\times{3}}}_{xz} = \begin{pmatrix}1&2^{-\frac12}&0\\0&2^{-\frac12}&1\end{pmatrix} 
 \end{displaymath}
 
-Can you spot, what i did? I embedded the third axis in an orthogonal 2-D system.
+Can you spot, what i did? I embedded the third axis in an orthogonal 2-D system. Here the axes point into the same positive direction, this is a lefthand system.
+
+
+\begin{displaymath}
+    E^{\mathbb{R}^{2\times{3}}}_{xy} = \begin{pmatrix}1&0&-2^{-\frac12}\\0&1&-2^{-\frac12}\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{yz} = \begin{pmatrix}-2^{-\frac12}&0&1\\-2^{-\frac12}&1&0\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{xz} = \begin{pmatrix}1&-2^{-\frac12}&0\\0&-2^{-\frac12}&1\end{pmatrix} 
+\end{displaymath}
+
+Here the additional axis shows in the other direction. This is a righthand system.
 
 Remark. Incomplete. TODO.
+
+Remark II. The chapter deconstructing the basis will succeed through the above standard basis, as i can use these for examples of the SVD, i already calculated RRt, RtR, LLt and LtL for the righthand and lefthand systems, much easier than with the trig functions.
+This is to be written in the next days.
 
 \section{Summary}
 
