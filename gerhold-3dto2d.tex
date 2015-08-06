@@ -18,7 +18,7 @@
 \maketitle
 
 
-Version 0.3.17\\
+Version 0.3.20\\
 
 \textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last. If you ever print this, print 4 on 1. This saves paper. This document is unfinished and not completly shaped.\\}
 
@@ -596,7 +596,7 @@ Remark. This section is not finished. Not only the plot for the vector field, so
 
 
 \subsection{Computer implementations of the transformation}
-\subsubsection{Generic computer code}
+\subsubsection{Generic computer code (all you need)}
 
 One of the \emph{main goals of this document} is to show the simplicity of transforming 3-D points into 2-D points for the use in small computer applications. For example for hand written small web applications. Say, you just want to draw a graph, 3-D on the 
 2-D Canvas and do not have the need for WebGL, or it is not available on your old target systems, which was the reason for me, to try it myself anyways.\\
@@ -1056,7 +1056,6 @@ function transform(points3) {
 \end{lstlisting}
 \end{example}
 
-
 \section{Estimation}
 
 \subsection{First guess}
@@ -1190,6 +1189,106 @@ TODO\\
 Remark. This section is not finished, and at the change of dimensions or at the use of two different sets with different norms, the epsilon-delta version is required, too. It should say, that if the one goes below epsilon, the other goes below delta.\\
 
 
+\section{Definition of \mathbb{R}^{2\times3} (WORKING ON)}
+
+\subsection{Defining the 2x3 as space of 2-D images of 3 coordinates}
+
+The $\mathbb{R}^{2\times3}$ is NOT a K-vectorspace. The axioms of a body and a vector space can not be fulfilled.\\
+But the $\mathbb{R}^{2\times3}$ is a vector space. A vector space defines addition and scalar multiplication.\\
+And we have both. $Av + Az = A(v + z) = w$, and $\lambdaA(v) = A(\lambdaw)$ in the previous definitions.
+Can you spot one difficulty in our vector space?
+
+\begin{displaymath}
+\lambda\vec{v} = \lambda\vec{w}
+\end{displaymath}
+
+But it is a vector space? Yes. But note, that also 
+
+\begin{displaymath}
+\vec{u} + \vec{v} = \vec{w} + \vec{x}
+\end{displaymath}
+
+With that i can certainly announce that, under human conditions and rational thoughts, that
+
+\newtheorem{Proposition}{Proposition. The $\mathbb{R}^{2x3}$ is the vector space of 2-D images made of 3-D coordinates.}
+\begin{Proposition}
+For the human nature the most natural use of the $\mathbb{R}^{2x3}$ is to produce 2-D images of 3-D coordinates with. It
+is possible to configure the 2x3 space for other calculations, but the most reasonable, because of the perfect images is
+to translate 3-D points into 2-D points with. The $\mathbb{R}^{2x3}$ is the vector space of 2-D images made of 3-D coordinates.
+\end{Proposition}\\
+
+There is a point about topology i did not clear yet, except for myself. The 2-D image covers points from far back in the 3-D.
+They lie on a straight line which is normal to the plane. And there are infinite lines. But not anywhere must be covered points.\\
+
+\newtheorem{PropositionB}{Proposition. Each set of covered points lies on a straight line which is normal to the 2-d plane.}
+\begin{PropositionB}
+In the topology of the 2-D image, certain points on the plane represent more than one point in the image. All covered points lie on a straight line, which is normal to the plane. 
+\end{PropositionB}\\
+
+Because of that problem there is no bijectivity, no inverse. Here is a problem, only approximations and knowledge about the object projected can approximate or approximatly solve.\\
+
+\newtheorem{PropositionC}{Proposition. The map is surjective.}
+\begin{PropositionC}
+There is no bijection. Because there is no injection because of the covered points.
+\end{PropositionC}\\
+
+Now i come to the part, to say so, that the 2x3 basis above is the correct one for the R2x3, by saying before, that the most
+natural is, to produce 2-D images of three coordinates with.\\
+
+\newtheorem{PropositionD}{Proposition. The $\mathbb{R}^{2\times3}$ basis is arranged by three 2-D axes around the circle.}
+\begin{PropositionD}
+The most natural configuration for a 3-D coordinate system in the 2-D space is the arrangement of the axes around the unit circle.
+The cosine and sine orthonormal standard basis vector (r cos phi, r sin phi) is the vector to choose for each of the three axes.
+The unit length of the axes can be chosen by modifying the value of r. This is exactly the behaviour of polar coordinates. The vectors of the axes are the values of the coefficients for the algebra transforming the three coordinates into the two.
+\end{PropositionD}\\
+
+Which makes another thing clear. The linear combination of the axes is optimal.
+
+\newtheorem{PropositionE}{Proposition. Linear independence can not be held by the $\mathbb{R}^{2\times3}$ basis.}
+\begin{PropositionE}
+The three axes of a two dimensional image of a three dimensional coordinate systems are linear dependent in terms of
+the resulting 2-D image, concerning the result of the $\mathbb{R}^{2\times3}$ algebra being interpreted as a subset 
+of the regular $\mathbb{R}^{2}$ vector space. But for the conversion of the coordinates the linear combination is optimal.
+\end{PropositionE}\\
+
+The basis of $\mathbb{R}^{2\times3}$ is arranged around a circle. The basis of $\mathbb{R}^{2}$ and $\mathbb{R}^{3}$ are linearly independent. The basis of $\mathbb{R}^{3\times4}$ for example would be arranged around a sphere.\\
+
+Remark. To be continued.
+
+\subsection{Orthogonality in the 2x3 matrix}
+
+The thing consists of three horizontal moves to produce the new x. And of three vertical moves to produce the new y. Or in other words. It does not know about horizontal or vertical. It combines the three input values into one new by applying algebraicly coefficients to the input, or other way round by applying the input to the basis of the vector space, and returns a new 2-D vector, which can be interpreted by $\mathbb{R}^{2}$ or will be interpreted as flat $\mathbb{R}^{2\times3}$ image with three axes around a circle.\\
+
+Remark. TODO.
+
+\subsection{Intuitive standard basis}
+
+When deducing from the format of the R2x3 basis, the first suggestions are to use zeros and ones for the basis. The very intuitive first guess using our already defined lefthanded and righthanded systems are these:\\
+
+\begin{displaymath}
+    E^{\mathbb{R}^{2\times{3}}}_{lefthand} = \begin{pmatrix}1&0&1\\0&1&1\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{righthand} = \begin{pmatrix}-1&1&0\\-1&-1&1\end{pmatrix}
+\end{displaymath}
+
+The thing is, the vectors are not normalized in that case. We have to do so. If we have two ones, the squared sum is two. The square root out of two is the square root of two. $2^{-\frac12}$ is the normalized length of a vector containing two ones.\\
+
+\begin{displaymath}
+    E^{\mathbb{R}^{2\times{3}}}_{lefthand\_normalized} = \begin{pmatrix}1&0&2^{-\frac12}\\0&1&2^{-\frac12}\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{righthand\_normalized} = \begin{pmatrix}-2^{-\frac12}&2^{-\frac12}&0\\-2^{-\frac12}&-2^{-\frac12}&1\end{pmatrix}
+\end{displaymath}
+
+What else can you see? The standard basis of $\mathbb{R}^{2}$ embedded in the $\mathbb{R}^{2\times3}$ matrix.\\
+
+\begin{displaymath}
+    E^{\mathbb{R}^{2\times{3}}}_{xy} = \begin{pmatrix}1&0&2^{-\frac12}\\0&1&2^{-\frac12}\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{yz} = \begin{pmatrix}2^{-\frac12}&0&1\\2^{-\frac12}&1&0\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{xz} = \begin{pmatrix}1&2^{-\frac12}&0\\0&2^{-\frac12}&1\end{pmatrix} 
+\end{displaymath}
+
+Can you spot, what i did? I embedded the third axis in an orthogonal 2-D system.
+
+Remark. Incomplete. TODO.
+
 \section{Summary}
 
 \subsection{Summary of all neccessary steps}
@@ -1262,6 +1361,8 @@ A K vector space V must fulfill the following axioms.\\
 \end{enumerate}
 
 \subsubsection{Norms: Absolute values of vectors and matrices}
+
+
 
 The norm is the word for the vector length. Or better, it is the multidimensional \emph{absolute value} of a vector. Remember from single variable calculus that $|-x|=x$ and $|x|=x$. The norm kind of does this with all values and puts them together.
 Our first norm used here is the euclidean norm, also known as the 2-norm, written $\|\cdot\|_{2}$. \\
@@ -1404,6 +1505,67 @@ Why is this formula looking important to know? The dot product of v and w is the
 
 Remark. The Parallelogram Equation and the Polarisationformula hold both for Hilbert Spaces and must be true if the space claims to be a Hilbert space.
 
+
+\subsection{Normalizing a vector}
+\label{normalizing_a_vector}
+
+If you wish to take the length of the vector, you take the norm $\|\vec{v}\|_{V}$ in three dimensions. Or $\|\vec{w}\|_{W}$ in two dimensions. Whenever you wish or need to reduce or enlarge a vector to unit length, that $\|\vec{v}\|=1$ or $\|\vec{w}\|=1$.\\
+you can do this yourself,too.                     \\
+
+\begin{displaymath}
+    \vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|} \implies \|\vec{w}_{normalized}\| = 1
+\end{displaymath}
+
+Together with updating the vector or creating a new vector, you just have to divide the old vector components by the old vectors length. See the proof for details Taking the norm then, results in 1.\\                                                                     
+\textbf{Proof}:
+
+\begin{displaymath}
+\vec{w}  = \left(\begin{array}{1}a\\b\end{array}\right)
+\end{displaymath}
+\begin{displaymath}
+    \|\left(\begin{array}{1}a\\b\end{array}\right)\| = \sqrt{a^{2}+b^{2}}\\
+\end{displaymath}
+\begin{displaymath}
+    \vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|} 
+    = \left(\begin{array}{1}\frac{a}{\sqrt{a^{2}+b^{2}}}\\\frac{b}{\sqrt{a^{2}+b^{2}}}\end{array}\right)
+\end{displaymath}
+\begin{displaymath}
+    \|\vec{w}_{normalized}\| = \sqrt{\left(\frac{a}{\sqrt{a^{2}+b^{2}}}\right)^{2}+\left(\frac{b}{\sqrt{a^{2}+b^{2}}}\right)^{2}} = \sqrt{\frac{a^{2}+b^{2}}{a^{2}+b^{2}}} = \sqrt{1} = 1
+\end{displaymath}
+
+
+
+
+
+
+
+\subsection{Metrics}
+
+Where a norm is, there will be a metric induced.
+The measurement of the distance between two points is defined by the d-function. It is the length of the difference vector between the two points.\\
+
+\begin{displaymath}
+    d(\vec{x}, \vec{y}) = \|\vec{x}-\vec{y}\| = \sqrt{\sum_{i=1}^{n}|\vec{x}_{i}-\vec{y}_{i}|^2}
+\end{displaymath}
+
+Metrics have three fundamental properties.
+\begin{enumerate}
+\item If the distance is zero, the vectors are equal.
+\begin{displaymath}
+d(x,y) = 0 \iff x = y
+\end{displaymath}
+\item It does not matter, whether you read $d(x,y)$ or $d(y,x)$, the number must be equal. The absolute value function $|\pm n| = n, \pm n \in \mathbb{R}$ makes sure
+\begin{displaymath}
+d(x,y) = d(y,x)
+\end{displaymath}
+\item The third one is the triangle inequality. Going over another point is always a step longer.
+\begin{displaymath}
+d(x,z) \leq d(x,y) + d(y,z) 
+\end{displaymath}
+\end{enumerate}
+
+
+
 \subsection{Matrix norms}
 
 There are a few possible ways to measure the multidimensional absolute values of a matrix.
@@ -1439,7 +1601,7 @@ TODO. The Frobenius norm is $\sqrt{3}$ for $r_n = 1$ summing up 6 squares of thr
 \end{displaymath}
 
 
-\newtheorem{PropositionMatrixNorm}{Proposition. The matrix norm of the coordinate systems matrix.}
+\newtheorem{PropositionMatrixNorm}{Proposition. The matrix norms of the coordinate systems matrix.}
 \begin{PropositionMatrixNorm}
 \label{proposition_matrix_norm}
 The euclidean norm of our matrix, the Frobenius Norm, counting together the rows and columns, componentwise and squared, then pulling the root out of the whole sum, is, without $\vec{v}$ the square root $\sqrt{r_{x}^{2}+r_{y}^{2}+r_{z}^{2}}$. The sines squared and cosines squared add up to $1$ each, and are a factor for the $r_{n}^{2}$. Each $r_{n}^{2}$ belongs to pair of sine and cosine. When sine and cosine squares are added, the $r_{n}^{2}$ has to be factored out first, it can not add up to two, what could be miscounted easily. If the coordinates $x,y,z$, say, the vector $\vec{w}$, are applied to the matrix and the Frobenius Norm is taken, the norm for $\|Av\|$ is $\sqrt{x^{2}r_{x}^{2}+y^{2}r_{y}^{2}+z^{2}r_{z}^{2}}$. The Frobenius norm is like the $\|\cdot\|_{2}$ norm taken, but counts matrix elements instead of vector elements.\\
@@ -1604,6 +1766,8 @@ b_2 & b_3
 \end{vmatrix} \vec{i} - \begin{vmatrix}a_1 & a_3\\ b_1 & b_3\end{vmatrix} \vec{j} + \begin{vmatrix}a_1 & a_2\\b_1 & b_2\end{vmatrix} \vec{k}\right) \cdot \left(\vec{b}_{1}\vec{i} + \vec{b}_{2}\vec{j} + \vec{b}_{3}\vec{k}\right) =\nolimits^{?} 0
 \end{displaymath}
 
+
+
 \subsection{Normal vectors}
 
 Are perpendicular to the surface, a curve or another vector and give the orientation.\\
@@ -1627,6 +1791,8 @@ Proof. The resulting normal vector has to be perpendicular to the source vector,
 \end{displaymath}
 
 For three dimensional vectors the proof is similar, and the dot product should also return zero for a proof. A perpendicular vector is obtained by permuting the identity matrix (standard basis) and changing sign.
+
+
 
 
 
@@ -1677,93 +1843,15 @@ Remark. To be studied within the next days.
 \begin{displaymath}
 \end{displaymath}
 
-\section{Definition of \mathbb{R}^{2\times3}!}
-
-The $\mathbb{R}^{2\times3}$ is NOT a K-vectorspace. The axioms of a body and a vector space can not be fulfilled.\\
-
-But the $\mathbb{R}^{2\times3}$ is a vector space. A vector space defines addition and scalar multiplication.\\
-
-And we have both. $Av + Az = A(v + z) = w$, and $\lambdaA(v) = A(\lambdaw)$ in the previous definitions.
-
-Can you spot one difficulty in our vector space?\\
-
-\begin{displaymath}
-\lambda\vec{v} = \lambda\vec{w}
-\end{displaymath}\\
-
-But it is a vector space? Yes. But note, that also \\
-
-\begin{displaymath}
-\vec{u} + \vec{v} = \vec{w} + \vec{x}
-\end{displaymath}\\
-
-With that i can certainly announce that, under human conditions and rational thoughts, that
-
-\newtheorem{Proposition}{Proposition. The $\mathbb{R}^{2x3}$ is the vector space of 2-D images made of 3-D coordinates.}
-\begin{Proposition}
-For the human nature the most natural use of the $\mathbb{R}^{2x3}$ is to produce 2-D images of 3-D coordinates with. It
-is possible to configure the 2x3 space for other calculations, but the most reasonable, because of the perfect images is
-to translate 3-D points into 2-D points with. The $\mathbb{R}^{2x3}$ is the vector space of 2-D images made of 3-D coordinates.
-\end{Proposition}\\
-
-There is a point about topology i did not clear yet, except for myself. The 2-D image covers points from far back in the 3-D.
-They lie on a straight line which is normal to the plane. And there are infinite lines. But not anywhere must be covered points.\\
-
-\newtheorem{Proposition}{Proposition. Each set of covered points lies on a straight line which is normal to the 2-d plane.}
-\begin{Proposition}
-In the topology of the 2-D image, certain points on the plane represent more than one point in the image. All covered points lie on a straight line, which is normal to the plane. 
-\end{Proposition}\\
-
-Because of that problem there is no bijectivity, no inverse. Here is a problem, only approximations and knowledge about the object projected can approximate or approximatly solve.\\
-
-\newtheorem{Proposition}{Proposition. The map is surjective.}
-\begin{Proposition}
-There is no bijection. Because there is no injection because of the covered points.
-\end{Proposition}\\
-
-Now i come to the part, to say so, that the 2x3 basis above is the correct one for the R2x3, by saying before, that the most
-natural is, to produce 2-D images of three coordinates with.\\
-
-\newtheorem{Proposition}{Proposition. The $\mathbb{R}^{2\times3}$ basis is arranged by three 2-D axes around the circle.}
-\begin{Proposition}
-The most natural configuration for a 3-D coordinate system in the 2-D space is the arrangement of the axes around the unit circle.
-The cosine and sine orthonormal standard basis vector (r cos phi, r sin phi) is the vector to choose for each of the three axes.
-The unit length of the axes can be chosen by modifying the value of r. This is exactly the behaviour of polar coordinates. The vectors of the axes are the values of the coefficients for the algebra transforming the three coordinates into the two.
-\end{Proposition}\\
-
-Which makes another thing clear. The linear combination of the axes is optimal.
-
-\newtheorem{Proposition}{Proposition. Linear independence can not be held by the $\mathbb{R}^{2\times3}$ basis.}
-\begin{Proposition}
-The three axes of a two dimensional image of a three dimensional coordinate systems are linear dependent in terms of
-the resulting 2-D image, concerning the result of the $\mathbb{R}^{2\times3}$ algebra being interpreted as a subset 
-of the regular $\mathbb{R}^{2}$ vector space. But for the conversion of the coordinates the linear combination is optimal.
-\end{Proposition}\\
-
-The basis of $\mathbb{R}^{2\times3} is arranged around a circle. The basis of $\mathbb{R}^{2}$ and $\mathbb{R}^{3}$ are linearly independent. The basis of $\mathbb{R}^{3\times4} for example would be arranged around a sphere.\\
-
-Remark. To be continued.
-
-\subsection{Orthogonality in the 2x3 matrix}
-
-The thing consists of three horizontal moves to produce the new x. And of three vertical moves to produce the new y. Or in other words. It does not know about horizontal or vertical. It combines the three input values into one new by applying algebraicly coefficients to the input, or other way round by applying the input to the basis of the vector space, and returns a new 2-D vector, which can be interpreted by $\mathbb{R}^{2}$ or will be interpreted as flat $\mathbb{R}^{2\times3}$ image with three axes around a circle.\\
-
-Remark. To explain, that the R2 standard basis does the orthogonal interpretation of the 2-D x and y coordinates.
-
-Remark. Another good question to myself. Has R2x3 a standard basis of R2 for the result and a "2x3 basis" for the linear map? Does it come as double pack?
-
-\section{Deconstructing the 2x3} 
+\section{Deconstructing the 2x3 basis} 
 
 \fbox{The whole section about R2x3 is to be continued very soon}
-\section{deprecated 2x3 todo}
-\subsection{2x3 standard basis}
 
 Remark. This example concerning the book \cite{Strang1} seems to be about R6 and not match my interpretation.\\
 
-A 2x3 basis is a set of six matrices being constructed out of five basis vectors. In the Appendix of \cite{Strang1}, there is a basis of a 2x3 matrix printed, together with a few arguments. The professor constructed a 2x3 standard basis by multiplying the 2-D standard basis vectors with the 3-D standard vectors.\\
+In the Appendix of \cite{Strang1}, there is a basis of a 2x3 matrix printed, together with a few arguments. The professor constructed a 2x3 standard basis by multiplying the 2-D standard basis vectors with the 3-D standard vectors. A 2x3 basis is a set of six matrices being constructed out of five basis vectors according to the books. \\
 
 \begin{displaymath}
-
 \begin{center}
 e_{1}^{\mathbb{R}^{2}} = \begin{pmatrix}1\\0\end{pmatrix}
 e_{2}^{\mathbb{R}^{2}} = \begin{pmatrix}0\\1\end{pmatrix}\\
@@ -1788,7 +1876,7 @@ E^{\mathbb{R}^{2\times{3}}} =
 
 \end{displaymath}
 
-My task is now, to deconstruct our formula, to meet the requirements. 
+Replacing the ones with variables, we get the following.
 
 \begin{displaymath}
 \begin{center}
@@ -1831,100 +1919,13 @@ It should result in
 \end{center}
 \end{displaymath}
 
-Remark. My first conclusions, while inventing the chapter and the excercise. To be removed.
+That does not solve the problem. It is my first guess from the day, where i spotted the example.\\
 
-From trigonometry, we know, that cosine and sine form a right angle. They are perpendicular to each other. But taking the norm of the vector results in r, not in 0, because $sin^{2}+cos^{2}=1$. $r^{2}\sin^{2}+r^{2}\cos^{2}\ =r^{2}$. This is not orthogonal in terms of the dot product, which should result in 0, if the angle is 90 degrees.\\
+\section{Proving more rules of the main formula TODO}
 
-For simplification we should do a few things. First, we assume $r_x = r_y = r_z = 1$. Without a factor in front of sine and cosine, they both together have unit length of one. With $\|\begin{pmatrix}\frac{r_x\cos\varphi_x}{r_x}\\\frac{r_x\sin\varphi_x}{r_x}\end{pmatrix}\| = 1$ the vector is normalized. \\
+The 'hardest' part is the SVD of the rectangular matrix. I suspect the axis vectors to be the results, but can not prove until i calculate. And i suspect, that every angle changes the singular values, like it changes the eigenvalues of AAt and AtA.\\
 
-Secondly, we substitute the cosine and sine terms with simple letters. Sine, cosine and r form a triangle. Thinking of a triangle, and sin = opposite/hypotenuse and cos = adjacent/hypotenuse, will make it easier for us to find the factors and to solve this system.\\
-
-\begin{displaymath}
-    cos = \frac{adjacent}{hypotenuse} 
-    sin = \frac{opposite}{hypotenuse}
-\end{displaymath}
-
-\subsection{Lefthanded and righthanded system}
-
-Without calculating them, but quick-concluding them from the existing, i get the following matrices, which look like bases, containing only zeros and ones. With the quick issue, that the length of the columns with two ones is square root of two, while a zero-one vector has length one.\\
-
-\begin{displaymath}$\mathbb{K} = \mathbb{R}$
-    E^{\mathbb{R}^{2\times{3}}}_{lefthand} = \begin{pmatrix}1&0&1\\0&1&1\end{pmatrix}
-\end{displaymath}
-\begin{displaymath}
-    E^{\mathbb{R}^{2\times{3}}}_{righthand} = \begin{pmatrix}-1&1&0\\-1&-1&1\end{pmatrix}
-\end{displaymath}
-
-Remark. This section is incomplete, almost meaningless yet, and better not to be taken as is.
-
-\textbf{Remark} Proof or contradictions TODO
-
-Remark. August 5. I will work on this chapter the next days. Proving it is a 2-D image of 3 input coordinates.\\
-
-\section{Vector space tools}\\
-
-\subsection{Normalizing a vector}
-\label{normalizing_a_vector}
-
-If you wish to take the length of the vector, you take the norm $\|\vec{v}\|_{V}$ in three dimensions. Or $\|\vec{w}\|_{W}$ in two dimensions. Whenever you wish or need to reduce or enlarge a vector to unit length, that $\|\vec{v}\|=1$ or $\|\vec{w}\|=1$.\\
-you can do this yourself,too.                     \\
-
-\begin{displaymath}
-    \vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|} \implies \|\vec{w}_{normalized}\| = 1
-\end{displaymath}
-
-Together with updating the vector or creating a new vector, you just have to divide the old vector components by the old vectors length. See the proof for details Taking the norm then, results in 1.\\                                                                     
-\textbf{Proof}:
-
-\begin{displaymath}
-\vec{w}  = \left(\begin{array}{1}a\\b\end{array}\right)
-\end{displaymath}
-\begin{displaymath}
-    \|\left(\begin{array}{1}a\\b\end{array}\right)\| = \sqrt{a^{2}+b^{2}}\\
-\end{displaymath}
-\begin{displaymath}
-    \vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|} 
-    = \left(\begin{array}{1}\frac{a}{\sqrt{a^{2}+b^{2}}}\\\frac{b}{\sqrt{a^{2}+b^{2}}}\end{array}\right)
-\end{displaymath}
-\begin{displaymath}
-    \|\vec{w}_{normalized}\| = \sqrt{\left(\frac{a}{\sqrt{a^{2}+b^{2}}}\right)^{2}+\left(\frac{b}{\sqrt{a^{2}+b^{2}}}\right)^{2}} = \sqrt{\frac{a^{2}+b^{2}}{a^{2}+b^{2}}} = \sqrt{1} = 1
-\end{displaymath}
-
-
-
-
-
-
-
-\subsection{Metrics}
-
-Where a norm is, there will be a metric induced.
-The measurement of the distance between two points is defined by the d-function. It is the length of the difference vector between the two points.\\
-
-\begin{displaymath}
-    d(\vec{x}, \vec{y}) = \|\vec{x}-\vec{y}\| = \sqrt{\sum_{i=1}^{n}|\vec{x}_{i}-\vec{y}_{i}|^2}
-\end{displaymath}
-
-Metrics have three fundamental properties.
-\begin{enumerate}
-\item If the distance is zero, the vectors are equal.
-\begin{displaymath}
-d(x,y) = 0 \iff x = y
-\end{displaymath}
-\item It does not matter, whether you read $d(x,y)$ or $d(y,x)$, the number must be equal. The absolute value function $|\pm n| = n, \pm n \in \mathbb{R}$ makes sure
-\begin{displaymath}
-d(x,y) = d(y,x)
-\end{displaymath}
-\item The third one is the triangle inequality. Going over another point is always a step longer.
-\begin{displaymath}
-d(x,z) \leq d(x,y) + d(y,z) 
-\end{displaymath}
-\end{enumerate}
-
-
-\section{Proving more rules of the main formula}
-
-\textbf{Remark} This subsection is not complete and has to be continued. The plan is to measure or estimate now the differences between the original coordinates and the new planar coordinates. 
+The SVD is not that hard. Hard is the handwritten version without numbers with the trigonometric functions, because the terms become very long, and maybe substitution is neccessary to write. I will fix it soon.\\
 
 \subsection{Transpose and TODO}
 
