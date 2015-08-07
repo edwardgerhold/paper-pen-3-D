@@ -18,7 +18,7 @@
 \maketitle
 
 
-Version 0.3.22\\
+Version 0.3.23\\
 
 \textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last. If you ever print this, print 4 on 1. This saves paper. This document is unfinished and not completly shaped.\\}
 
@@ -1188,29 +1188,92 @@ Remark. This section is not finished, and at the change of dimensions or at the 
 \section{Definition of \mathbb{R}^{2\times3} (WORKING ON)}
 
 
-\subsection{Defining the $2x3\times1x3$ as transitional space to go from 3-D to 2-D}
+\subsection{Defining the $(2\times3)\cdot(1\times3)$ as transitional space to go from 3-D to 2-D}
 
 The $\mathbb{R}^{2\times3}$ is a K-vectorspace. 
 
-It has addition
+It has scalar multiplication
 
 \begin{displaymath}
-\lambda\vec{v} \rightarrow \lambda\vec{w}
+(\lambda, \vec{v}) \mapsto \lambda\vec{v} 
 \end{displaymath}
 
 It has multiplication.
 
 \begin{displaymath}
-\vec{u} + \vec{v} \rightarrow \vec{w} + \vec{x}
+(\vec{u}, \vec{w}) \mapsto \vec{u} + \vec{v}
 \end{displaymath}
 
-\fbox{Here i made my worst mistake ever and forgot about the rules}
+You can add 2x3 matrices to 2x3, subtract 2x3 matrices from 2x3 matrices.
+The addition of 2x3 matrices stays in the same subspaces.\\
+
+The multiplication of the 2x3 matrices from the left or from the right changes to
+the dimension of the resulting matrix.\\
+
+The rule of thumb for matrix multiplication is $(m\times c)\cdot(c\times n)=(m\times n)$.\\
+
+Here we multiply from the left, our 2x3 matrix is the right operand.\\
+
+\begin{tabular}{-l-l-l-l-}
+Left Operand & Right Operand & Resultant & Example\\
+1x2 & 2x3 & 1x3&\\
+2x2 & 2x3 & 2x3&\\
+3x2 & 2x3 & 3x3&\\
+4x2 & 2x3 & 4x3&\\
+\end{tabular}\\
+
+Here we multiply with the right, our matrix is the left operand.\\
+
+\begin{tabular}{-l-l-l-}
+Left Operand & Right Operand & Resultant\\
+\textbf{2x3} & \textbf{3x1} & \textbf{2x1}& 3-D to 2-D mapping\\
+2x3 & 3x2 & 2x2&\\
+2x3 & 3x3 & 2x3&\\
+2x3 & 3x4 & 2x4& 4-D to 2-D mapping\\
+\end{tabular}\\
+
+In my corollary about converting 4 dimensions onto the plane, there is this operation.
+
+\begin{tabular}{-l-l-l-}
+Left Operand & Right Operand & Resultant\\
+\textbf{2x4} & \textbf{4x1} & \textbf{2x1}& 4-D to 2-D mapping\\
+\end{tabular}\\
+
+\newtheorem{PropositionOpt}{Proposition. The \mathbb{R}^{2\times3} has infinite combination possibilities $(m\times c)\cdot(c\times n)=(m\times n)$}
+\begin{PropositionOpt}
+TODO
+\end{PropositionOpt}
+
+
+Well, we are not alone in R2x3 with our coordinate transformation.\\
+
+But. I want to come back to the main definition. \\
+
+\newtheorem{PropositionOpt}{Proposition. The $\mathbb{R}^{2\times3}$ matrix operator is optimal for transforming 3-D into 2-D.}
+\begin{PropositionOpt}
+With three coordinate axes as column vectors, arranged around the circle, derived from the 2x3 standard basis, the 2x3 matrix is
+an optimal operator for transforming 3x1 vectors (3-D vectors) into 2x1 vectors (2-D vectors).
+\end{PropositionOpt}
+
+Remark. Got to prove it. Will find a good prove for.
+
+Ok. I have to formulate this out again.
+
+
+
+
+
+
 
 \subsection{Orthogonality in the 2x3 matrix}
 
 The 2x3 is mapping the 3-D input onto a 2-D plane. The 2-D plane itself follows the rules of orthogonal basis vectors. The standard basis for the R2 is $\begin{pmatrix}1&0\\0&1\end{pmatrix}$. Onto this basis the output of the 2x3 operators will be mapped.\\
 
-Each of the three input coordinates, which regularly come from an orthogonal 3-D system contributes a piece of movement to the two dimensions of the target space.
+Each of the three input coordinates, which regularly come from an orthogonal 3-D system, contributes a piece of movement to the two dimensions of the target space.\\
+
+The 2x3 is combining 3 inputs into 2 outputs.\\
+
+The 2 outputs are then interpreted by the R2 standard basis.
 
 
 \subsection{Intuitive standard basis for multiplying with 3x1}
@@ -1252,6 +1315,8 @@ Remark. Incomplete. TODO.
 
 Remark II. The chapter deconstructing the basis will succeed through the above standard basis, as i can use these for examples of the SVD, i already calculated RRt, RtR, LLt and LtL for the righthand and lefthand systems, much easier than with the trig functions.
 This is to be written in the next days.
+
+
 
 \section{Summary}
 
