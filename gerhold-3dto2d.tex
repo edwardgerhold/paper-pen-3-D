@@ -18,12 +18,9 @@
 \maketitle
 
 
-Version 0.3.21\\
+Version 0.3.22\\
 
 \textbf{Remark. This is a development version. And has chaotic parts} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last. If you ever print this, print 4 on 1. This saves paper. This document is unfinished and not completly shaped.\\}
-
-\fbox{The definition of the 2x3 operator space, which now has a basis is started, but now dirty.}
-
 
 \end{center} 
 
@@ -104,11 +101,10 @@ using the index $_{n}$ together with $_x, _y, _z$ or $1,2,3$. $\varphi_x$ or $\v
 \varphi_{n} := \{\varphi_x, \varphi_y, \varphi_z\} = \{ \varphi_1, \varphi_2, \varphi_3 \}
 \end{displaymath}
 
-The angles are going around a circle, so they are limited by a modulus operation internally.
+The angles are going around a circle, so they are limited by a modulus operation internally.\\
 
-\begin{displaymath}
- \varphi_n \in [0,2\pi] \mbox{ in radians}, \varphi_n \in [0,360] \mbox{ in degrees}, \varphi_n \in \mathbb{R}
-\end{displaymath}
+
+We can say, that $\varphi_n \in [0,2\pi)$ in radians. Or that $\varphi_n \in [0,360)$ in degrees. And that $\varphi_n \in \mathbb{R}$.
 
 We will need the three angles for the axes shortly. So don´t forget this over the next lines.\\
 
@@ -172,11 +168,12 @@ If r is left away, the length of the basis vector is 1. Or in other words, the d
 
 \fbox{The number $r$ is for the length of one unit on each axis.}\\
 
-Pay attention to this point now, to keep the affine transformation, especially under rotation, correct. You should give all three
+Pay attention to this. To keep the affine transformation under rotation correct. You should give all three
 axes the same r-value. I will define them in this document as $r_{n}$ with one $r_x, r_y$ and $r_z$ for each coordinate axis,
 to keep it complete. But if you would like to change the units on your objects, i have to recommend, that you apply a local
-3x3 basis with the disjoint unit lengths. This will keep the rotation correct. In the other case, the object would suddenly
-stretch the head, if you rotate it to the side, where the unit for example is longer.\\
+3x3 basis containing the disjoint unit lengths. This will keep the scaling locally and under rotation correct.
+In the other case, the object would suddenly stretch the head, if you rotate it to the scaled side, and shrink the side, 
+which was scaled before.\\
 
 So for the coordinate system, the best setting is $r_x = r_y = r_z$. Keeping them equal, you can rotate it realistic. But you
 don´t need to keep the unit length of 1 for the vector. Elonginating the units on the axes make zooming transformations very
@@ -200,7 +197,7 @@ Multiplying the 2x3 basis with the 3x1 points later results in wonderful 2x1 poi
 \vec{e}_{n} := \{\vec{e}_x, \vec{e}_y, \vec{e}_z\} = \{\vec{e}_1, \vec{e}_2, \vec{e}_3\}\\
 \end{displaymath} 
 
-There we have the set for the three basis vectors. We give them the letter $e$ and a subscript for the coordinate component in the numeric order of $x=1, y=2, z=3$. To arrange these vectors we already got around the unit circle. To measure the angles, beginning on the horizontal coordinate axis or zero, until we reach the vector. The vectors point into the positive direction of the described axis.\\
+This is now a set of the three basis vectors. We give them the letter $e$ and a subscript for the coordinate component in the numeric order of $x=1, y=2, z=3$. To arrange these vectors we already got around the unit circle and layed them out there. To measure the angles, beginning on the horizontal coordinate axis or zero, until we reach the vector. The vectors point into the positive direction of the described axis.\\
 
 \begin{figure}[ht]
 \includegraphics[scale=1]{unitvectors.png}
@@ -211,7 +208,6 @@ There we have the set for the three basis vectors. We give them the letter $e$ a
 \caption{The three two dimensional basis vectors $\in \mathbb{R}^{2\times{3}}$ as a lefthanded coordinate system.}
 \end{figure}
 
-
 To reach all three (x,y) at the tips of the vectors, we will now pull out the cosine and sine functions and stuff them together
 with $r$ and $\varphi$ into a 2x1 vector with two components. So any (x,y) on one line from the origin to far distance can be reached like in polar coordinates\footnote{Interested readers may find in \cite{Corral1}, \cite{Corral2} and \cite{Strang2} everything about polar coordinates, parametrization of x and y with cosine and sine, the unit circle and the distance or radius r and more to these topics.} with the following parametrization.\\
 
@@ -220,7 +216,6 @@ with $r$ and $\varphi$ into a 2x1 vector with two components. So any (x,y) on on
 \end{displaymath}\\
 
 Which can alternativly be written like $(x,y) = (r \cos \varphi, r \sin \varphi)$.\\
-
 
 Modeling the three two dimensional basis vectors with this information,
 we get the following three two dimensional basis vectors. They point along the coordinate axes and are the ruler for our transformation.\\
@@ -235,12 +230,13 @@ we get the following three two dimensional basis vectors. They point along the c
 \vec{e}_z := (r_z\cos(\varphi_z), r_z\sin(\varphi_z) )^T = \left(\begin{array}{1}r_z\cos(\varphi_z)\\r_z\sin(\varphi_z) \end{array}\right)\\
 \end{displaymath}\\
 
-Each component of (x,y,z) has now an own basis vector. By multiplying the cos terms for the x' and the sin terms for y' with the corresponding component of (x,y,z) and summing the three products up for each of x' and y', we directly obtain the right coordinate on the plane. All we would have to do is to connect the points again, or to fill the space between. \\
+Each component of (x,y,z) has now it`s own basis vector. By multiplying the cos terms for the x' and the sin terms for y' with the corresponding component of (x,y,z) and summing the three products up for each of x' and y', we directly obtain the right coordinate on the plane. All we would have to do is to connect the points again, or to fill the space between. \\
 
 \begin{figure}[ht]
 \includegraphics[scale=2]{unitcircle.png}
 \caption{A picture of the unit circle, the hypotenuse r, the adjacent cosine, the opposite sine and the angle $\varphi$. It is a circle of radius r, and no longer the unit circle, if $r \neq 1$.}
 \end{figure}
+
 
 
 \subsection{Now we need the vector basis theorem}\\
@@ -1192,96 +1188,23 @@ Remark. This section is not finished, and at the change of dimensions or at the 
 \section{Definition of \mathbb{R}^{2\times3} (WORKING ON)}
 
 
-\subsection{Defining the 2x3 as transitional space to go from 3-D to 2-D}
+\subsection{Defining the $2x3\times1x3$ as transitional space to go from 3-D to 2-D}
 
-The $\mathbb{R}^{2\times3}$ is NOT a K-vectorspace. The axioms of a body and a vector space can not be fulfilled.\\
+The $\mathbb{R}^{2\times3}$ is a K-vectorspace. 
 
-And the $\mathbb{R}^{2\times3}$ is NOT a regular $n \times n$ vector space.\\
-
-A vector space defines addition and scalar multiplication.\\
+It has addition
 
 \begin{displaymath}
 \lambda\vec{v} \rightarrow \lambda\vec{w}
 \end{displaymath}
 
-It has addition
+It has multiplication.
 
 \begin{displaymath}
 \vec{u} + \vec{v} \rightarrow \vec{w} + \vec{x}
 \end{displaymath}
 
-Both assuming a 2x3 standard basis. The result of the operations with the 3-D vectors are 2-D vectors.\\
-
-So, ok, we have both. $Av + Az = A(v + z) = w$, and $\lambdaA(v) = A(\lambdaw)$ in the previous definitions.
-Assume that A is now the basis of the 2x3. Right. That does not make a usable vector space out of the 2x3.
-Can you spot one difficulty in our vector space? Right at once our 3-D input turns into 2-D vectors, and
-we continue operating on R2 or will not be able to calculate more.
-
-So it is a vector space? Yes. And No. You can not work with vectors inside this space.
-
-They called it the space of the 2x3 matrices, or the space of the 2x3 operators, i think i can remember correctly.
-
-\newtheorem{Proposition2x3space}{Proposition. $\mathbb{R}^{2\times3}$ is the operator space for operators which map from 3-D to 2-D.}
-\begin{Proposition2x3space}
-The $\mathbb{R}^{2\times3}$ is not an ordinary vector space, in which you can do your calculations. Once you put a 3-D vector inside,
-a 2-D vector is the result. You can see the $\mathbb{R}^{2\times3}$ as a one-way-street from $\mathbb{R}^{3}$ to $\mathbb{R}^{2}$ 
-\end{Proposition2x3space}
-
-
-\newtheorem{Proposition}{Proposition. The $\mathbb{R}^{2x3}$ is the operator space for making 2-D images of 3-D coordinates.}
-\begin{Proposition}
-For the human nature the most natural use of the $\mathbb{R}^{2x3}$ is to produce 2-D images of 3-D coordinates with. It
-is possible to configure the 2x3 space for other calculations, but the most reasonable, because of the perfect images is
-to translate 3-D points into 2-D points with. The $\mathbb{R}^{2x3}$ is the transitional vector space of 2-D images made of 3-D coordinates. It maps onto $\mathbb{R}^{2}$.
-\end{Proposition}\\
-
-\fbox{The 2x3 maps from 3-D to 2-D. The result is a subset of $\mathbb{R}^{2}$.}
-
-\newtheorem{Proposition2x3space}{Proposition. $\mathbb{R}^{2\times3}$ is the operator space for operators which map from 3-D to 2-D.}
-\begin{Proposition2x3space}
-The $\mathbb{R}^{2\times3}$ is not an ordinary vector space, in which you can do your calculations. Once you put a 3-D vector inside,
-a 2-D vector is the result. You can see the $\mathbb{R}^{2\times3}$ as a one-way-street from $\mathbb{R}^{3}$ to $\mathbb{R}^{2}$ 
-\end{Proposition2x3space}
-
-There is a point about topology i did not clear yet, except for myself. The 2-D image covers points from far back in the 3-D.
-They lie on a straight line which is normal to the plane. And there are infinite lines. But not anywhere must be covered points.\\
-
-\newtheorem{PropositionB}{Proposition. Each set of covered points lies on a straight line which is normal to the 2-d plane.}
-\begin{PropositionB}
-In the topology of the 2-D image, certain points on the plane represent more than one point in the image. All covered points lie on a straight line, which is normal to the plane. 
-\end{PropositionB}\\
-
-Because of that problem there is no bijectivity, no inverse. Here is a problem, only approximations and knowledge about the object projected can approximate or approximatly solve.\\
-
-\newtheorem{PropositionC}{Proposition. The map is surjective.}
-\begin{PropositionC}
-There is no bijection. Because there is no injection because of the covered points.
-\end{PropositionC}\\
-
-Now i come to the part, to say so, that the 2x3 basis above is the correct one for the R2x3, by saying before, that the most
-natural is, to produce 2-D images of three coordinates with.\\
-
-\newtheorem{PropositionD}{Proposition. The $\mathbb{R}^{2\times3}$ basis (or map operator) is arranged by three 2-D axes around the circle.}
-\begin{PropositionD}
-The most natural configuration for a 3-D coordinate system in the 2-D space is the arrangement of the axes around the unit circle.
-The cosine and sine orthonormal standard basis vector (r cos phi, r sin phi) is the vector to choose for each of the three axes.
-The unit length of the axes can be chosen by modifying the value of r. This is exactly the behaviour of polar coordinates. The vectors of the axes are the values of the coefficients for the algebra transforming the three coordinates into the two.
-\end{PropositionD}\\
-
-Which makes another thing clear. The linear combination of the axes is optimal.
-
-\newtheorem{PropositionE}{Proposition. Linear independence can not be held by the $\mathbb{R}^{2\times3}$ basis.}
-\begin{PropositionE}
-The three axes of a two dimensional image of a three dimensional coordinate systems are linear dependent in terms of
-the resulting 2-D image, concerning the result of the $\mathbb{R}^{2\times3}$ algebra being interpreted as a subset 
-of the regular $\mathbb{R}^{2}$ vector space. But for the conversion of the coordinates the linear combination is optimal.
-\end{PropositionE}\\
-
-The basis of $\mathbb{R}^{2\times3}$ is arranged around a circle. The basis of $\mathbb{R}^{2}$ and $\mathbb{R}^{3}$ are linearly independent. The basis of $\mathbb{R}^{3\times4}$ for example would be arranged around a sphere.\\
-
-Remark. To be continued.
-
-\fbox{This is definitly a draft to replace by the 2x3 space being the operator space from 3 to 2. }
+\fbox{Here i made my worst mistake ever and forgot about the rules}
 
 \subsection{Orthogonality in the 2x3 matrix}
 
@@ -1290,7 +1213,7 @@ The 2x3 is mapping the 3-D input onto a 2-D plane. The 2-D plane itself follows 
 Each of the three input coordinates, which regularly come from an orthogonal 3-D system contributes a piece of movement to the two dimensions of the target space.
 
 
-\subsection{Intuitive standard basis}
+\subsection{Intuitive standard basis for multiplying with 3x1}
 
 When deducing from the format of the R2x3 basis, the first suggestions are to use zeros and ones for the basis. The very intuitive first guess using our already defined lefthanded and righthanded systems are these:\\
 
