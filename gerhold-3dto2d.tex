@@ -13,7 +13,7 @@
 \begin{center}
 \title{Three dimensional coordinates into two dimensional coordinates transformation}\\
 \author{Edward Gerhold}
-\city{Berlin, Germany}
+Three dimensional coordinates into two dimensional coordinates transformation.
 \date{\today}
 \maketitle
 
@@ -103,10 +103,9 @@ using the index $_{n}$ together with $_x, _y, _z$ or $1,2,3$. $\varphi_x$ or $\v
 
 The angles are going around a circle, so they are limited by a modulus operation internally.\\
 
-
 We can say, that $\varphi_n \in [0,2\pi)$ in radians. Or that $\varphi_n \in [0,360)$ in degrees. And that $\varphi_n \in \mathbb{R}$.
 
-We will need the three angles for the axes shortly. So don´t forget this over the next lines.\\
+We will need the three angles for the axes in short time. So don´t forget over the next lines.\\
 
 \subsubsection{Degrees or radians?}
 
@@ -152,6 +151,30 @@ The first example was for the righthand coordinate system. Here are some angles 
 
 If you would like to get hands on angles, cosines, sines, or need a refresher, \cite{Corral2} is a good choice. And as well \cite{Corral1} and \cite{Strang2} teach unit circles, polar coordinates, sines, cosines and wonderful mathematics.\\
 
+\begin{figure}
+\begin{tabular}{-l-l-l-l-l-l-}
+Angle &     sin &   cos & tan & csc & sec & cot\\
+$0^{\circ}$  &    $0$&  $1$&  $0$&  undefined&  $1$&  undefined\\
+$30^{\circ}$ & $\frac12$ & $\frac{\sqrt{3}}{2}$ & $\frac{1}{\sqrt{3}}$ & $2$ & $\frac{2}{\sqrt{3}}$ & $\sqrt{3}$
+$45^{\circ}$ & $$& $$& $$& $$& $$& $$\\
+$60^{\circ}$ & $$& $$& $$& $$& $$& $$\\
+$90^{\circ}$ & $$& $$& $$& $$& $$& $$\\
+$120^{\circ}$ & $$& $$& $$& $$& $$& $$\\
+$135^{\circ}$ & $$& $$& $$& $$& $$& $$\\
+$150^{\circ}$ & $$& $$& $$& $$& $$& $$\\
+$180^{\circ}$ & $$& $$& $$& $$& $$& $$\\
+$210^{\circ}$ & $$& $$& $$& $$& $$& $$\\
+$225^{\circ}$ & $$& $$& $$& $$& $$& $$\\
+$240^{\circ}$ & $$& $$& $$& $$& $$& $$\\
+$270^{\circ}$ & $$& $$& $$& $$& $$& $$\\
+$300^{\circ}$ & $$& $$& $$& $$& $$& $$\\
+$315^{\circ}$ & $$& $$& $$& $$& $$& $$\\
+$330^{\circ}$ & $$& $$& $$& $$& $$& $$\\
+\end{tabular}
+
+\caption{Overview over the trigonometric function values. This table is written down from \cite{Corral2}.}
+\end{figure}
+
 \subsection{$r_{n}$ is the length of the unit on each axis}
 
 Before i show you the three vectors, and how to use them, we have to clear another piece of information belonging to each
@@ -167,6 +190,12 @@ the vector $\vec{r}$, which is the third side to a triangle by cosine, sine and 
 If r is left away, the length of the basis vector is 1. Or in other words, the distance $d((0,0),(x,y))$ from the origin to $(x,y)=($$r \cos \varphi$$, $$r \sin \varphi$$)$ is $1$, if $r=1$ or if r is left away completely.\\
 
 \fbox{The number $r$ is for the length of one unit on each axis.}\\
+
+\textbf{Example}
+\begin{Example}
+\begin{displaymath}
+TODO
+\end{displaymath}
 
 Pay attention to this. To keep the affine transformation under rotation correct. You should give all three
 axes the same r-value. I will define them in this document as $r_{n}$ with one $r_x, r_y$ and $r_z$ for each coordinate axis,
@@ -205,7 +234,7 @@ This is now a set of the three basis vectors. We give them the letter $e$ and a 
 \end{figure}
 
 \begin{figure}[ht]\includegraphics[scale=0.5]{lefthandbasis.png}
-\caption{The three two dimensional basis vectors $\in \mathbb{R}^{2\times{3}}$ as a lefthanded coordinate system.}
+\caption{The three two dimensional basis vectors as a lefthanded coordinate system.}
 \end{figure}
 
 To reach all three (x,y) at the tips of the vectors, we will now pull out the cosine and sine functions and stuff them together
@@ -368,7 +397,7 @@ A $m\times n$ matrix is a rectangle or square of numbers.\\
     \boldsymbol{A} = (a_{ij})_{i,j \in \mathbb{N}^{+}} = \begin{pmatrix}a_{11} & ... & a_{mn}\\\vdots&\ddots&\vdots\\a_{m1} & ... & a_{mn}\end{pmatrix}
 \end{displaymath}\\
 
-Matrix multiplication, from left to right in the matrix and from top to bottom in the vector, and that row by row, is achived by \\
+Matrix with vector multiplication, from left to right in the matrix and from top to bottom in the vector, and that row by row, is achived by \\
 
 \begin{displaymath}
     \boldsymbol{A}\vec{v} = (\sum_{j=1}^{n}a_{ij}\vec{v}_{j})_{i = 1..m} = \begin{pmatrix}a_{11}v_{1} + a_{12}v_{2} + ... + a_{1n}v_n\\\vdots \\a_{m1}v_{1} + a_{m2}v_{2} + ... + a_{mn}v_n\end{pmatrix} = \left(\begin{array}{1}w_{1}\\\vdots\\w_{m}\end{array}\right) = \vec{w}
@@ -396,6 +425,8 @@ column. You get a rectangular 2x3 matrix $\boldsymbol{A} \in \mathbb{R}^{2\times
 \end{displaymath}\\
 \end{Definition}
 
+
+Remark. If $r_x = r_y = r_z$ you can pull out $r$ and write it in front of the matrix or multiply after transformation. A possible redefinition of the r-value is approaching. Remark of August 8.
 
 %Remark. The operator definition should be defined differently.\\
 
@@ -504,7 +535,6 @@ If you write the vector down in ijk-Notation using the three two dimensional axi
  x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z} = x\begin{pmatrix}r_x\cos\varphi_x\\r_x\sin\varphi_x\end{pmatrix} + y\begin{pmatrix}r_y\cos\varphi_y\\r_y\sin\varphi_y\end{pmatrix} + z\begin{pmatrix}r_z\cos\varphi_z\\r_z\sin\varphi_z\end{pmatrix} = \sum_{i=1}^{3}\vec{e}_{i}\vec{v}_{i} = \vec{w} = \begin{pmatrix}x'\\y'\end{pmatrix}
 \end{displaymath}
 
-
 \subsection{Function version}
 
 The first days, i could not see the forest, because of all these trees. 
@@ -589,6 +619,26 @@ $f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$\\
 
 
 Remark. This section is not finished. Not only the plot for the vector field, some sophisticated demo with a physics formula, but the compositions are themselves not explained. Additionally in the section about differentiation, the compositions have to be veryfied.\\
+
+
+\subsection{Polar coordinate version}
+\label{polar_coord_func}
+
+The function can be written as a sum of three polar coordinate functions. The generic function for one component is this.
+
+\begin{displaymath}
+p(x, r, \theta) := xr\begin{pmatrix}\cos\theta\\\sin\theta\end{pmatrix}
+\end{displaymath}
+
+Remark. The author is unsure, if he would like to redefine the r-value again.
+
+The sum of the three vectors gives us our correct position vector again.
+
+\begin{displaymath}
+P(x,y,z,r_x,r_y,r_z,\theta_x,\theta_y,\theta_z) :=  P(\vec{x}, \vec{r}, \vec{\theta}) := p(x, r_x, \theta_x)+p(y, r_y, \theta_y)+p(z, r_z, \theta_z)\\
+\end{displaymath}
+
+Remark. TODO. This can be explained better, the function can be improved. An illustration is missing. The r-value is discussable again. \ref{polar_coord_func} added on August 8.
 
 
 \subsection{Computer implementations of the transformation}
@@ -1016,6 +1066,8 @@ Which will do the job. But meanwhile i am also satisfied with the former definit
 
 What does the integral anyways? It moves a point along a line, and returns the vector of the straight line. Done with three integrals, we get the vector of the right coordinate on the 2-D plane back.\\
 
+
+
 \section{Projecting just z onto a vector}
 
 \label{projecting_just_z}
@@ -1184,140 +1236,6 @@ TODO\\
 
 Remark. This section is not finished, and at the change of dimensions or at the use of two different sets with different norms, the epsilon-delta version is required, too. It should say, that if the one goes below epsilon, the other goes below delta.\\
 
-
-\section{Definition of \mathbb{R}^{2\times3} (WORKING ON)}
-
-
-\subsection{Defining the $(2\times3)\cdot(1\times3)$ as transitional space to go from 3-D to 2-D}
-
-The $\mathbb{R}^{2\times3}$ is a K-vectorspace. 
-
-It has scalar multiplication
-
-\begin{displaymath}
-(\lambda, \vec{v}) \mapsto \lambda\vec{v} 
-\end{displaymath}
-
-It has multiplication.
-
-\begin{displaymath}
-(\vec{u}, \vec{w}) \mapsto \vec{u} + \vec{v}
-\end{displaymath}
-
-You can add 2x3 matrices to 2x3, subtract 2x3 matrices from 2x3 matrices.
-The addition of 2x3 matrices stays in the same subspaces.\\
-
-The multiplication of the 2x3 matrices from the left or from the right changes to
-the dimension of the resulting matrix.\\
-
-The rule of thumb for matrix multiplication is $(m\times c)\cdot(c\times n)=(m\times n)$.\\
-
-Here we multiply from the left, our 2x3 matrix is the right operand.\\
-
-\begin{tabular}{-l-l-l-l-}
-Left Operand & Right Operand & Resultant & Example\\
-1x2 & 2x3 & 1x3&\\
-2x2 & 2x3 & 2x3&\\
-3x2 & 2x3 & 3x3&\\
-4x2 & 2x3 & 4x3&\\
-\end{tabular}\\
-
-Here we multiply with the right, our matrix is the left operand.\\
-
-\begin{tabular}{-l-l-l-}
-Left Operand & Right Operand & Resultant\\
-\textbf{2x3} & \textbf{3x1} & \textbf{2x1}& 3-D to 2-D mapping\\
-2x3 & 3x2 & 2x2&\\
-2x3 & 3x3 & 2x3&\\
-2x3 & 3x4 & 2x4& 4-D to 2-D mapping\\
-\end{tabular}\\
-
-In my corollary about converting 4 dimensions onto the plane, there is this operation.
-
-\begin{tabular}{-l-l-l-}
-Left Operand & Right Operand & Resultant\\
-\textbf{2x4} & \textbf{4x1} & \textbf{2x1}& 4-D to 2-D mapping\\
-\end{tabular}\\
-
-\newtheorem{PropositionOpt}{Proposition. The \mathbb{R}^{2\times3} has infinite combination possibilities $(m\times c)\cdot(c\times n)=(m\times n)$}
-\begin{PropositionOpt}
-TODO
-\end{PropositionOpt}
-
-
-Well, we are not alone in R2x3 with our coordinate transformation.\\
-
-But. I want to come back to the main definition. \\
-
-\newtheorem{PropositionOpt}{Proposition. The $\mathbb{R}^{2\times3}$ matrix operator is optimal for transforming 3-D into 2-D.}
-\begin{PropositionOpt}
-With three coordinate axes as column vectors, arranged around the circle, derived from the 2x3 standard basis, the 2x3 matrix is
-an optimal operator for transforming 3x1 vectors (3-D vectors) into 2x1 vectors (2-D vectors).
-\end{PropositionOpt}
-
-Remark. Got to prove it. Will find a good prove for.
-
-Ok. I have to formulate this out again.
-
-
-
-
-
-
-
-\subsection{Orthogonality in the 2x3 matrix}
-
-The 2x3 is mapping the 3-D input onto a 2-D plane. The 2-D plane itself follows the rules of orthogonal basis vectors. The standard basis for the R2 is $\begin{pmatrix}1&0\\0&1\end{pmatrix}$. Onto this basis the output of the 2x3 operators will be mapped.\\
-
-Each of the three input coordinates, which regularly come from an orthogonal 3-D system, contributes a piece of movement to the two dimensions of the target space.\\
-
-The 2x3 is combining 3 inputs into 2 outputs.\\
-
-The 2 outputs are then interpreted by the R2 standard basis.
-
-
-\subsection{Intuitive standard basis for multiplying with 3x1}
-
-When deducing from the format of the R2x3 basis, the first suggestions are to use zeros and ones for the basis. The very intuitive first guess using our already defined lefthanded and righthanded systems are these:\\
-
-\begin{displaymath}
-    E^{\mathbb{R}^{2\times{3}}}_{lefthand} = \begin{pmatrix}1&0&1\\0&1&1\end{pmatrix} \mbox{ and }
-    E^{\mathbb{R}^{2\times{3}}}_{righthand} = \begin{pmatrix}-1&1&0\\-1&-1&1\end{pmatrix}
-\end{displaymath}
-
-The thing is, the vectors are not normalized in that case. We have to do so. If we have two ones, the squared sum is two. The square root out of two is the square root of two. $2^{-\frac12}$ is the normalized length of a vector containing two ones.\\
-
-\begin{displaymath}
-    E^{\mathbb{R}^{2\times{3}}}_{lefthand\_normalized} = \begin{pmatrix}1&0&2^{-\frac12}\\0&1&2^{-\frac12}\end{pmatrix} \mbox{ and }
-    E^{\mathbb{R}^{2\times{3}}}_{righthand\_normalized} = \begin{pmatrix}-2^{-\frac12}&2^{-\frac12}&0\\-2^{-\frac12}&-2^{-\frac12}&1\end{pmatrix}
-\end{displaymath}
-
-What else can you see? The standard basis of $\mathbb{R}^{2}$ embedded in the $\mathbb{R}^{2\times3}$ matrix.\\
-
-\begin{displaymath}
-    E^{\mathbb{R}^{2\times{3}}}_{xy} = \begin{pmatrix}1&0&2^{-\frac12}\\0&1&2^{-\frac12}\end{pmatrix} \mbox{ and }
-    E^{\mathbb{R}^{2\times{3}}}_{yz} = \begin{pmatrix}2^{-\frac12}&0&1\\2^{-\frac12}&1&0\end{pmatrix} \mbox{ and }
-    E^{\mathbb{R}^{2\times{3}}}_{xz} = \begin{pmatrix}1&2^{-\frac12}&0\\0&2^{-\frac12}&1\end{pmatrix} 
-\end{displaymath}
-
-Can you spot, what i did? I embedded the third axis in an orthogonal 2-D system. Here the axes point into the same positive direction, this is a lefthand system.
-
-
-\begin{displaymath}
-    E^{\mathbb{R}^{2\times{3}}}_{xy} = \begin{pmatrix}1&0&-2^{-\frac12}\\0&1&-2^{-\frac12}\end{pmatrix} \mbox{ and }
-    E^{\mathbb{R}^{2\times{3}}}_{yz} = \begin{pmatrix}-2^{-\frac12}&0&1\\-2^{-\frac12}&1&0\end{pmatrix} \mbox{ and }
-    E^{\mathbb{R}^{2\times{3}}}_{xz} = \begin{pmatrix}1&-2^{-\frac12}&0\\0&-2^{-\frac12}&1\end{pmatrix} 
-\end{displaymath}
-
-Here the additional axis shows in the other direction. This is a righthand system.
-
-Remark. Incomplete. TODO.
-
-Remark II. The chapter deconstructing the basis will succeed through the above standard basis, as i can use these for examples of the SVD, i already calculated RRt, RtR, LLt and LtL for the righthand and lefthand systems, much easier than with the trig functions.
-This is to be written in the next days.
-
-
-
 \section{Summary}
 
 \subsection{Summary of all neccessary steps}
@@ -1325,7 +1243,7 @@ This is to be written in the next days.
 \item Lay out the three basis vectors around a circle and write down the angles $\varphi_{n}$. Programmers have to write down a variable for anyways.
 \item Write down the basis vectors $\vec{e}_{n}$ as $r_{n} \cos \varphi_{n}$ and $r_{n} \sin \varphi_{n}$ (two dimensional). Don´t multiply with $r_{n}$ for a unit length of $1$ or multiply with $r_{n}$ to change the length of the basis vector.
 \item Put the three basis vectors $\vec{e}_{n}$ into a matrix $\boldsymbol{A}$. Programmers can directly code the two lines of multiplication and forget the formal rest.
-\item Iterate over your points and multiply each $(x,y,z)$ with the matrix $\boldsymbol{A}$, which acts as a linear operator, and put $(x',y')$ into your new set.\footnote{Alternativly you can use the dot product to dot $(x,y,z)$ with the cosine vector for x' and dot $(x,y,z)$ with the sine vector for y'. The calculation is identical then.}
+\item Iterate over your points and multiply each $(x,y,z)$ with the matrix $\boldsymbol{A}$, which acts as a linear mapping operator, and put $(x',y')$ into your new set.
 \end{enumerate}
 
 \textbf{Remark}\\
@@ -1346,7 +1264,32 @@ TODO.
 
 \section{More vector mathematics to move into the right sections}
 
-\subsubsection{K-Vectorspace}
+\subsection{Two words about Homogenuous coordinates}
+
+A quick rush over homogenuous coordinates, which are used for computer graphics.\\
+
+The reason is to be able to multiply the transformation matrices together to one matrix.\\
+
+With a 4x4 system it is possible to move rotation AND translation into one matrix. To reach four coordinates,
+a fourth coordinate, the homogenuous coordinate is introduced. Most of the time it has nothing to say, but it
+is there. And used for OpenGL and any other 3-D graphics library of todays time.\\
+
+The fourth coordinate in  the vectors start with a value of $1$.\\
+
+\begin{displaymath}
+\vec{h} = \begin{pmatrix}x\\y\\z\\w\end{pmatrix} = \begin{pmatrix}x\\y\\z\\1\end{pmatrix} 
+\end{displaymath}
+
+To return the four coordinates into three coordinates, you have to divide by the fourth value.
+
+\begin{displaymath}
+\vec{g} = \frac{1}{w}\begin{pmatrix}x\\y\\z\end{pmatrix} =\begin{pmatrix}\frac{x}{w}\\\frac{y}{w}\\\frac{z}{w}\end{pmatrix} 
+\end{displaymath}
+
+There is nothing more to say in this document. This transformation needs no homogenuous coordinate and we begin with three components.
+
+
+\subsection{K-Vectorspace}
 
 The following table shows the dimensions of euclidean spaces, and an excerpt of a few more spaces, not showing the many many spaces like $L^{p}$ (Lebesgue integrable functions) and $l^{2}$ (quadratic summarizable sequences), Fock spaces, Hardy Spaces, or Sobolev Spaces from Differential Equations, because currently all that is beyond scope of this document. 
 
@@ -1389,7 +1332,7 @@ A K vector space V must fulfill the following axioms.\\
 \item $\forall \lambda \in K, \forall \vec{a}, \vec{b} \in V. \lambda(\vec{a}+\vec{b}) = \lambda\vec{a}+\lambda\vec{b}$  (distributive)
 \end{enumerate}
 
-\subsubsection{Norms: Absolute values of vectors and matrices}
+\subsection{Norms: Absolute values of vectors and matrices}
 
 
 
@@ -1867,16 +1810,166 @@ Our image is very precise, because we designed a real coordinate system. What is
 
 By the rule of linearity.
 
-Remark. To be studied within the next days. 
-
 \begin{displaymath}
 \end{displaymath}
 
-\section{Deconstructing the 2x3 basis} 
+
+
+\section{Definition of \mathbb{R}^{2\times3} (WORKING ON)}
+
+
+\subsection{Defining the $(2\times3)\cdot(1\times3)$ as transitional space to go from 3-D to 2-D}
+
+The $\mathbb{R}^{2\times3}$ is a K-vectorspace. \\
+
+It has scalar multiplication
+
+\begin{displaymath}
+(\lambda, \vec{v}) \mapsto \lambda\vec{v} 
+\end{displaymath}
+
+It has addition.
+
+\begin{displaymath}
+(\vec{u}, \vec{w}) \mapsto \vec{u} + \vec{v}
+\end{displaymath}
+
+You can add 2x3 matrices to 2x3, subtract 2x3 matrices from 2x3 matrices.
+The addition of 2x3 matrices stays in the same subspaces.\\
+
+The multiplication of the 2x3 matrices from the left or from the right changes to
+the dimension of the resulting matrix.\\
+
+The rule of thumb for matrix multiplication is $(m\times c)\cdot(c\times n)=(m\times n)$.\\
+
+Here we multiply from the left, our 2x3 matrix is the right operand.\\
+
+\begin{tabular}{-l-l-l-l-}
+Left Operand & Right Operand & Resultant & Example\\
+1x2 & 2x3 & 1x3&\\
+2x2 & 2x3 & 2x3&\\
+3x2 & 2x3 & 3x3&\\
+4x2 & 2x3 & 4x3&\\
+\end{tabular}\\
+
+Here we multiply with the right, our matrix is the left operand.\\
+
+\begin{tabular}{-l-l-l-}
+Left Operand & Right Operand & Resultant\\
+\textbf{2x3} & \textbf{3x1} & \textbf{2x1}& 3-D to 2-D mapping\\
+2x3 & 3x2 & 2x2&\\
+2x3 & 3x3 & 2x3&\\
+2x3 & 3x4 & 2x4& \\
+\end{tabular}\\
+
+In my corollary about converting 4 dimensions onto the plane, there is this operation.
+
+\begin{tabular}{-l-l-l-}
+Left Operand & Right Operand & Resultant\\
+\textbf{2x4} & \textbf{4x1} & \textbf{2x1}& 4-D to 2-D mapping\\
+\end{tabular}\\
+
+\newtheorem{PropositionOpt}{Proposition. The $\mathbb{R}^{2\times3}$ operators have infinite combination possibilities $(m\times c)\cdot(c\times n)=(m\times n)$}
+\begin{PropositionOpt}
+TODO
+\end{PropositionOpt}
+
+Well, we are not alone in R2x3 with our coordinate transformation.\\
+
+But. I want to come back to the main definition. \\
+
+\newtheorem{PropositionOpt}{Proposition. The $\mathbb{R}^{2\times3}$ matrix operator is optimal for transforming 3-D into 2-D.}
+\begin{PropositionOpt}
+With three coordinate axes as column vectors, arranged around the circle, derived from the 2x3 standard basis, the 2x3 matrix is
+an optimal operator for transforming 3x1 vectors (3-D vectors) into 2x1 vectors (2-D vectors).
+\end{PropositionOpt}
+
+Remark. Got to prove it. Will find a good proof for.
+
+Ok. I have to formulate this out again.
+
+
+\newtheorem{PropositionOpt}{Proposition. The linear dependent vector can not be removed from the 2x3 basis. }
+\begin{PropositionOpt}
+The 2x3 basis can not be reduced to the 2x1 basis with linear independent vectors, because the linear combination with the third vector is required to mix the coordinates for the image.
+\end{PropositionOpt}
+
+Remark. TODO
+
+Remark. (Lost the words i had in the bus)
+
+
+
+\subsection{Orthogonality in the 2x3 matrix}
+
+The 2x3 is mapping the 3-D input onto a 2-D plane. The 2-D plane itself follows the rules of orthogonal basis vectors. The standard basis for the R2 is $\begin{pmatrix}1&0\\0&1\end{pmatrix}$. Onto this basis the output of the 2x3 operators will be mapped.\\
+
+Each of the three input coordinates, which regularly come from an orthogonal 3-D system, contributes a piece of movement to the two dimensions of the target space.\\
+
+The 2x3 is combining 3 inputs into 2 outputs.\\
+
+The 2 outputs are then interpreted by the R2 standard basis.
+
+
+\subsection{Intuitive standard basis for multiplying with 3x1}
+
+When deducing from the format of the R2x3 basis, the first suggestions are to use zeros and ones for the basis. The very intuitive first guess using our already defined lefthanded and righthanded systems are these:\\
+
+\begin{displaymath}
+    E^{\mathbb{R}^{2\times{3}}}_{lefthand} = \begin{pmatrix}1&0&1\\0&1&1\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{righthand} = \begin{pmatrix}-1&1&0\\-1&-1&1\end{pmatrix}
+\end{displaymath}
+
+The thing is, the vectors are not normalized in that case. We have to do so. If we have two ones, the squared sum is two. The square root out of two is the square root of two. $2^{-\frac12}$ is the normalized length of a vector containing two ones.\\
+
+\begin{displaymath}
+    E^{\mathbb{R}^{2\times{3}}}_{lefthand\_normalized} = \begin{pmatrix}1&0&2^{-\frac12}\\0&1&2^{-\frac12}\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{righthand\_normalized} = \begin{pmatrix}-2^{-\frac12}&2^{-\frac12}&0\\-2^{-\frac12}&-2^{-\frac12}&1\end{pmatrix}
+\end{displaymath}
+
+What else can you see? The standard basis of $\mathbb{R}^{2}$ embedded in the $\mathbb{R}^{2\times3}$ matrix.\\
+
+\begin{displaymath}
+    E^{\mathbb{R}^{2\times{3}}}_{xy} = \begin{pmatrix}1&0&2^{-\frac12}\\0&1&2^{-\frac12}\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{yz} = \begin{pmatrix}2^{-\frac12}&0&1\\2^{-\frac12}&1&0\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{xz} = \begin{pmatrix}1&2^{-\frac12}&0\\0&2^{-\frac12}&1\end{pmatrix} 
+\end{displaymath}
+
+Can you spot, what i did? I embedded the third axis in some orthogonal 2-D system. Here the axes point into the same positive direction, this is a lefthand system. We look from the back into the z direction.
+
+
+\begin{displaymath}
+    E^{\mathbb{R}^{2\times{3}}}_{xy} = \begin{pmatrix}1&0&-2^{-\frac12}\\0&1&-2^{-\frac12}\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{yz} = \begin{pmatrix}-2^{-\frac12}&0&1\\-2^{-\frac12}&1&0\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{xz} = \begin{pmatrix}1&-2^{-\frac12}&0\\0&-2^{-\frac12}&1\end{pmatrix} 
+\end{displaymath}
+
+Here the additional axis shows in the other direction. This is a righthand system. We look from the front against the x direction.
+Which is pointing towards us, left down. The y axis is pointing to the right and the z axis to the up.\\
+
+\textbf{Dot product tests}\\
+
+To test the linear independence of two vectors, their dot product must equal zero.\\
+
+In our coordinate system, we have to test for $\vec{e}_{x}\cdot\vec{e}_{y}$, $\vec{e}_{x}\cdot\vec{e}_{z}$ and $\vec{e}_{y}\cdot\vec{e}_{z}$.
+
+We test the "embedded" coordinate system with the $\mathbb{R}^{2}$ standard basis and the one linear dependent vector. Here we suspect one pair of vectors to be orthogonal, of course. It is just for completeness and overview for us, to show that. But by 
+showing that, we will get another stoking result, of the cosine and sine terms being returned from the dot products.\\
+
+$\vec{e}_{x}\cdot\vec{e}_{y} =$
+$\vec{e}_{x}\cdot\vec{e}_{z} =$
+$\vec{e}_{y}\cdot\vec{e}_{z} =$
+
+
+
+
+
+
+\subsection{Deconstructing the 2x3 basis} 
 
 \fbox{The whole section about R2x3 is to be continued very soon}
 
-Remark. This example concerning the book \cite{Strang1} seems to be about R6 and not match my interpretation.\\
+Remark. This example concerning the book \cite{Strang1} seems to be about R6 and not to match my interpretation.\\
 
 In the Appendix of \cite{Strang1}, there is a basis of a 2x3 matrix printed, together with a few arguments. The professor constructed a 2x3 standard basis by multiplying the 2-D standard basis vectors with the 3-D standard vectors. A 2x3 basis is a set of six matrices being constructed out of five basis vectors according to the books. \\
 
@@ -2071,7 +2164,7 @@ Remark. The roundoff error of the floating point and the condition of a matrix i
 
 \textbf{Remark} This section is new on July 10.
 
-It is obvious, that we want to draw some graphics on our 2-D Canvas. This works on any graphics surface you can connect 2-D points or draw then directly.
+It is obvious, that we want to draw some graphics on our 2-D Canvas. This works on any graphics surface, where you can connect 2-D points with methods, or draw then directly, by changing pixels.
 
 Remark. Missing. The fill algorithm (the stuff is pretty long) and our view frustum (). Plus the remark, we do not try to replace computer graphics. But for small visualizations it is a quick tool, for handwritten code.\\
 
