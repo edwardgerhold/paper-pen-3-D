@@ -61,9 +61,7 @@ tell you directly, what happens, when we multiply the coordinates with the matri
 \end{enumerate}\\
 
 \textbf{Warning! Foreign author.}\\
-Edward Gerhold, who is writing this document, is nativly speaking german. He was good in english at school, but has to admit,
-that it became weak over the time. Today it is somewhat weaker than it normally was. Here and there are a few mistakes, wrong pronounciations, or simply ununderstandable phrases included under the other phrases in the document. But by accident. The author will do his best over the next time, to finish the explainings and to correct the wrong english by using a vocabulary book.\\
-
+Edward Gerhold, who is writing this document, is nativly speaking german. He was good in english at school, but lacks in many vocabularies today. Some of the parts can be mistaken or be misunderstood, while he is reading something, he understands. But that will be corrected also, by doing vocabularies for a while.\\
 %\chapter{1}
 
 \section{Designing a $\mathbb{R}^{2\times{3}}$ coordinate system for our transformation from $\mathbb{R}^{3}$ to $\mathbb{R}^{2}$}
@@ -86,7 +84,7 @@ It is easy to intermingle this with the word basis and to multiply with a basis.
 
 Remark [Import Definition Linear Combination here. It is not too much math for the beginning.]\\
 
-Mathematically speaking, it is quite dramatic to intermingle these, and during writing the document, i had mostly the problem of intermingling "linear combination of coordinates and the axis vectors" with "multiplying coordinates with the basis".\\
+Mathematically speaking, it is quite dramatic to intermingle these, and during writing the document, i had mostly the problem of intermingling "linear combination of coordinates and the axis vectors" with "multiplying coordinates with the basis". Or better than intermingling, misusing, because i knew little more about what i was doing, but find it today more dramatic than before.\\
 
 During the document we will see and prove, that it is impossible, to reduce the 2x3 system to a 2-D basis, and that the linear combination of the third axis is required, to calculate the new position vector correctly. And that anyways, all that works perfectly fine and gives exact 2-D images of our 3-D model.\\
 
@@ -1898,30 +1896,30 @@ Left Operand & Right Operand & Resultant\\
 \textbf{2x4} & \textbf{4x1} & \textbf{2x1}& 4-D to 2-D mapping\\
 \end{tabular}\\
 
-\newtheorem{PropositionOpt}{Proposition. The $\mathbb{R}^{2\times3}$ operators have infinite combination possibilities $(m\times c)\cdot(c\times n)=(m\times n)$}
-\begin{PropositionOpt}
+\newtheorem{PropositionOpt1}{Proposition. The $\mathbb{R}^{2\times3}$ operators have infinite combination possibilities $(m\times c)\cdot(c\times n)=(m\times n)$}
+\begin{PropositionOpt1}
 TODO
-\end{PropositionOpt}
+\end{PropositionOpt1}
 
 Well, we are not alone in R2x3 with our coordinate transformation.\\
 
 But. I want to come back to the main definition. \\
 
-\newtheorem{PropositionOpt}{Proposition. The $\mathbb{R}^{2\times3}$ matrix operator is optimal for transforming 3-D into 2-D.}
-\begin{PropositionOpt}
+\newtheorem{PropositionOpt2}{Proposition. The $\mathbb{R}^{2\times3}$ matrix operator is optimal for transforming 3-D into 2-D.}
+\begin{PropositionOpt2}
 With three coordinate axes as column vectors, arranged around the circle, derived from the 2x3 standard basis, the 2x3 matrix is
 an optimal operator for transforming 3x1 vectors (3-D vectors) into 2x1 vectors (2-D vectors).
-\end{PropositionOpt}
+\end{PropositionOpt2}
 
 Remark. Got to prove it. Will find a good proof for.
 
 Ok. I have to formulate this out again.
 
 
-\newtheorem{PropositionOpt}{Proposition. The linear dependent vector can not be removed from the 2x3 basis. }
-\begin{PropositionOpt}
+\newtheorem{PropositionOpt3}{Proposition. The linear dependent vector can not be removed from the 2x3 basis. }
+\begin{PropositionOpt3}
 The 2x3 basis can not be reduced to the 2x1 basis with linear independent vectors, because the linear combination with the third vector is required to mix the coordinates for the image.
-\end{PropositionOpt}
+\end{PropositionOpt3}
 
 Remark. TODO
 
@@ -1940,7 +1938,10 @@ The 2x3 is combining 3 inputs into 2 outputs.\\
 The 2 outputs are then interpreted by the R2 standard basis.
 
 
+
 \subsection{Intuitive standard basis for multiplying with 3x1}
+\label{intuitive_standard_basis}
+Remark. When talking of a basis here, we talk with a background of knowing that this is not a linear independent vector space basis, but the only right coordinate system, which is used like a basis, which induces a linear map or a linear combination of three vectors on two dimensions.\\
 
 When deducing from the format of the R2x3 basis, the first suggestions are to use zeros and ones for the basis. The very intuitive first guess using our already defined lefthanded and righthanded systems are these:\\
 
@@ -1983,16 +1984,23 @@ To test the linear independence of two vectors, their dot product must equal zer
 In our coordinate system, we have to test for $\vec{e}_{x}\cdot\vec{e}_{y}$, $\vec{e}_{x}\cdot\vec{e}_{z}$ and $\vec{e}_{y}\cdot\vec{e}_{z}$.
 
 We test the "embedded" coordinate system with the $\mathbb{R}^{2}$ standard basis and the one linear dependent vector. Here we suspect one pair of vectors to be orthogonal, of course. It is just for completeness and overview for us, to show that. But by 
-showing that, we will get another stoking result, of the cosine and sine terms being returned from the dot products.\\
+showing that, we will get another stoking result of our
 
-$\vec{e}_{x}\cdot\vec{e}_{y} =$
-$\vec{e}_{x}\cdot\vec{e}_{z} =$
-$\vec{e}_{y}\cdot\vec{e}_{z} =$
+For the righthand system:\\
 
+$\vec{e}_{x}\cdot\vec{e}_{y} = -2^{-\frac12}*1 + -2^{-\frac12}*0 = -2^{-\frac12} = \cos225^{\circ}$\\
+$\vec{e}_{x}\cdot\vec{e}_{z} = -2^{-\frac12}*0 + -2^{-\frac12}*1 = -2^{-\frac12} = \sin225^{\circ}$\\
+$\vec{e}_{y}\cdot\vec{e}_{z} = 1*0+0*1 = 0$\\
 
+Only the third pair is orthogonal. Two pairs are not. And that in the best case config for orthogonality.\\
 
+For the lefthand system:\\
 
+$\vec{e}_{x}\cdot\vec{e}_{y} = 1*0+0*1 = 0$
+$\vec{e}_{x}\cdot\vec{e}_{z} = 1*2^{-\frac12} + 0*2^{-\frac12} = 2^{-\frac12} = \cos45^{\circ}$\\
+$\vec{e}_{y}\cdot\vec{e}_{z} = 0*2^{-\frac12} + 1*2^{-\frac12} = 2^{-\frac12} = \sin45^{\circ}$\\
 
+Only the first pair is orthogonal. The other result in the sin and cosine parts, one for one of the two pairs, due to the mix with the orthogonal pair.\\
 
 \subsection{Deconstructing the 2x3 basis} 
 
@@ -2153,11 +2161,13 @@ TODO\\
 
 Without checking the importance of the transposes in the first three weeks since i started this document, i kept this begun calculation. Meanwhile i figured out why:
 
-$((A^{T}A)-\lambda{I})=0$ and $((AA^{T})-\lambda{I})=0$ want to be solved, and then we want the SVD.
+$((A^{T}A)-\lambda{I})x=0$ and $((AA^{T})-\lambda{I})x=0$ want to be solved, and then we want the SVD.
 
 \subsubsection{Crossing three 2x2 matrices (experiment)}
 
 Remark. What is the outcome if we cross compute with three 2x2 matrices and take the differences. Can we estimate the original coordinates except for overlays? Like the cross product, we could split the 2x3 into three 2x2 matrices. Then we can take the differences.\\
+
+Remark. Edwards Theory for the "overlayed" or covered, or what the word is, points is, that they are on one line normal to the plane. It is covered what is orthogonal to the plane and behind the first point on that line.\\
 
 \subsubsection{Singular Value Decomposition}
 
@@ -2174,9 +2184,95 @@ Remark. A rectangular matrix has no eigenvalue equation. But there is a singular
 The $A^{T}A$ and $AA^{T}$ are needed for the SVD. First we extract the eigenvalues and eigenvectors of the symmetric square matrices.
 Then we build So with the last two chapter we are fine.\\
 
-Remark. Nice to get some excercise for this topic, which can not be solved from an outsider without any good excercise or motivating lecture. I think this excercise is fun enough.\\
+\subsection{Eigenvalues and -vectors of the 2x2 $AA^{T}$ to reach U}
+\label{eig_2x3}
+Multiplying the intutitive standard basis from \ref{intuitive_standard_basis} gives
+
+\begin{displaymath}
+\boldsymbol{A}\boldsymbol{A}^{T} = \begin{pmatrix}\frac32&\frac12\\\frac32&\frac12\end{pmatrix}
+\end{displaymath}
+
+Solving $det(A-\lambdaI)=0$ gives us the characteristic polynom and after foiling and simplification
+
+\begin{displaymath}
+\begin{align}
+(\frac32-\lambda)^{2}-\frac14\\
+=& \lambda-3\lambda+2\\
+=& (\lambda-1)(\lambda-2)
+\end{align}
+\end{displaymath}
+
+This gives use the poles and the eigenvalues
+\begin{displaymath}
+\begin{align}
+\lambda_{1} &= 1\\
+\lambda_{2} &= 2
+\end{align}
+\end{displaymath}
+
+Subtracting the Eigenvalues from the matrix and solving for the eigenvectors gives me (quick notes from underways on the backside of \cite{Kuehn1})
+
+\begin{displaymath}
+\begin{align}
+\boldsymbol{A}\boldsymbol{A}^{T}-\lambda_{1}I &= \begin{pmatrix}{\frac12&\frac12\\\frac12&\frac12}\end{pmatrix}\\
+\xi_{1} &= \begin{pmatrix}1\\1\end{pmatrix}\\
+\boldsymbol{A}\boldsymbol{A}^{T}-\lambda_{2}I &= \begin{pmatrix}{-\frac12&\frac12\\\frac12&-\frac12}\end{pmatrix}\\
+\xi_{2} &= \begin{pmatrix}1\\-1\end{pmatrix}\\
+\end{align}
+\end{displaymath}
+
+This brings me to U of our SVD
+
+\begin{displaymath}
+\boldsymbol{U} = \begin{pmatrix}1&1\\1&-1\end{pmatrix}
+\end{displaymath}
+
+
+\subsection{Eigenvalues and -vectors of the 3x3 $A^{T}A$}
+
+After solving for the 2x2 i started solving for the 3x3 with a pen.
+
+\begin{displaymath}
+\boldsymbol{A}^{T}\boldsymbol{A} = \begin{pmatrix}1&-2^{-\frac12}&-2^{-\frac12}\\-2^{-\frac12}&1&0\\-2^{-\frac12}&0&1\end{pmatrix}
+\end{displaymath}
+
+Underways i subtracted lamda and solved for the determinant using the crossproduct and determinat formula for handwritten determinants of 3x3 matrices.\\
+
+\begin{displaymath}
+\boldsymbol{A}^{T}\boldsymbol{A} = \begin{pmatrix}1-\lambda&-2^{-\frac12}&-2^{-\frac12}\\-2^{-\frac12}&1-\lambda&0\\-2^{-\frac12}&0&1-\lambda\end{pmatrix}
+\end{displaymath}
+By the way. My notes say, the determinant is
+\begin{displaymath}
+|\boldsymbol{A}^{T}\boldsymbol{A}| = \frac32
+\end{displaymath}
+
+Mean, i wanted to fetch the notes, but can not find it. I remember from writing underways, that i only found one pole from
+\begin{displaymath}
+(1-\lambda)^{2}-(1-\lambda)
+\end{displaymath}
+which was the result of the determinant minus lambda or the characteristic polynomial. Yes, i only solved the first trivial pole
+\begin{displaymath}
+\lambda_{1}=1
+\end{displaymath}
+
+Solving then for the eigenvector, i got this possible solution for $(\boldsymbol{A}^{T}\boldsymbol{A}-\lambda I)\vec{x}=0$. The first one is 0 because subtracting lamda from the diagonal gave me zero on the whole diagonal.
+
+\begin{displaymath}
+\boldsymbol{A}^{T}\boldsymbol{A}-\lambda{I} = \begin{pmatrix}0&-2^{-\frac12}&-2^{-\frac12}\\-2^{-\frac12}&0&0\\-2^{-\frac12}&0&0\end{pmatrix}
+\end{displaymath}
+Solving for the non-zero vector, which results in the zero vector, gives me for $\lambda_{1}$
+\begin{displaymath}
+\vec{\xi}_{1} = \begin{pmatrix}0\\1\\-1\end{pmatrix}
+\end{displaymath}
+
+If this is correct, this is our first eigenvector. If not, i will verify it next time\\
+
+Somewhere here our journey with the bus and subways was over and i have got to come back to the topic soon.\\
+
+Remark. Nice to get some excercise for this topic.
 
 \subsubsection{The pseudo-inverse $\boldsymbol{A}^{+}$ and least squares}
+
 For a m by n matrix with m < n it is $A^T(AA^{T})^{-1}$\\
 For a m by n matrix with m > n it is $(A^{T}A)^{-1}A^T$\\
 TODO\\
@@ -2598,7 +2694,7 @@ The angle to turn each point around.
 \begin{displaymath}
 \angle{\alpha} = 1.25\pi\\
 \end{displaymath}
-The rotation matrix for two dimensions, turns the plane around the z-axis which points invisible orthogonally out of the screen.
+The rotation matrix for two dimensions, turns the plane around the z-axis. The z-axis points invisible and orthogonally out of the screen to the viewer.
 \begin{displaymath}
 \boldsymbol{R} = \begin{pmatrix}\cos \angle{\alpha}& -\sin \angle{\alpha} \\ \sin \angle{\alpha} & \cos \angle{\alpha} \end{pmatrix}\\
 \end{displaymath}
@@ -2606,15 +2702,15 @@ v is the input vector, and w is the output vector.
 \begin{displaymath}
 v = (x,y,z)^T, w = (v_1, v_2)^T = (x,y)^T\\
 \end{displaymath}
-Then we rotate each point containing only the x,y coordinate of the triple v.
+Now we rotate each point containing only the x,y coordinate of the triple v.
 \begin{displaymath}
 \boldsymbol{R}\left(\begin{array}{1}x\\y\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right) = \vec{w}'\\
 \end{displaymath}
-The x,y image is pointing downwards. I add each points z coordinate now to y, which moves the point upwards by the amount of z.
+The x,y image is pointing downwards. I add each point it`s z coordinate now to y. That moves the point upwards by the amount of z.
 \begin{displaymath}
 \left(\begin{array}{1}x'\\y'+z\end{array}\right) = \vec{w}''
 \end{displaymath}
-After this i discovered adding three proportional parts for each coordinates and decided quickly to use cos and sin and the circle to create axes by angles.\\
+After this i discovered adding three proportional parts. One for each coordinate. And decided quickly, to use cos and sin and the circle, to create axes by angles.\\
 
 \textbf{Example}\\
 This is the EcmaScript 5 code example for rotating xy and addign z in.
@@ -2623,8 +2719,8 @@ This is the EcmaScript 5 code example for rotating xy and addign z in.
 function transform(points3) {
 
     var angle = 1.25*Math.PI;  // 225 deg
-    var cos = Math.cos(angle), // prevent from
-        sin = Math.sin(angle); // repeating calls
+    var cos = Math.cos(angle), // prevent to
+        sin = Math.sin(angle); // repeat calls to
     var points2 = [];          // new points
     var p;                     // current point
     var x,y,u,w,z;             // coordinates
@@ -2685,11 +2781,7 @@ Remark. Formulation lacks. Obviously a standard public domain or creative common
     \bibitem{Toplogy} \textit{ ,  },
             Lecture Script, Topology (english),
     \bibitem{Functional1} \textit{},
-            Lecture Script, Functional Analysis (english),    
-    \bibitem{Functional2} \textit{TODO},
-            Lecture Script, 
-    \bibitem{Functional3} \textit{TODO},
-            Lecture Script,
+            Lecture Script, Functional Analysis (english),        
 % lecture scripts in german
     \bibitem{Ferus1} \textit{Dirk Ferus, TU-Berlin, em.},
             Lecture Script, Lineare Algebra 1+2, 2000, http://page.math.tu-berlin/~ferus/skripten.html
