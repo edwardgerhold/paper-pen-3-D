@@ -1,17 +1,8 @@
 # paper-pen-3-D
 Repository name may move to a new name 2x3-D or be corrected for pen-and-paper-3-D.
 
-Note August 9.
-Because of the amount of mistakes in my spoken and written english language,
-i attack a german translation, which is ready very soon, since it is a walkthrough
-to translate it into my native language. Then i will probably clean out the 
-unwanted logical errors, my falsy written english induces.
-
-About a 2x3 interpretation of a 3-D coordinate system for creating 2-D vertices 
-of 3-D verticesby multiplying the 2x3 with 3x1 vectors. A special case of a 
-linear map matrix, it is a non-invertible operator, which can only combine three
-coordinates into two, and not span the third dimension back up. But who could?
-End note.
+Remark. A german translation is in work. This helps me to find bad formulations
+in my original text, when translating them, and to correct them.
 
 The forgotten projection
 ========================

@@ -18,7 +18,7 @@ Three dimensional coordinates into two dimensional coordinates transformation.
 \maketitle
 
 
-Version 0.3.24\\
+Version 0.3.25\\
 
 \textbf{Remark. This is a development version. And has chaotic parts. And (only temporarily) some logical mathematical mistakes, which are of course going to be corrected.} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last. If you ever print this, print 4 on 1. This saves paper. This document is unfinished and not completly shaped.\\}
 
@@ -50,14 +50,19 @@ tell you directly, what happens, when we multiply the coordinates with the matri
 \textbf{What we will do in the document}
 
 \begin{enumerate}
-\item Choose angles for our coordinate axes around the unit circle to lay out three axes.
-\item Write down the basis vectors for each coordinate axis
-\item Assemble a matrix with the vector basis for a point by point transformation.
-\item Read the example source code for a computer function, which is exactly two lines long. One for the new $x$ and one for the new $y$.
-\item Read other versions of the transformation, with functions, for example.
-\item Derive the generic case of transforming coordinate systems down to the plane.
+\item We choose angles $\varphi$ for our coordinate axes. Around the unit circle we lay out three axes.
+\item We choose the unit length $r$ for one unit on the axis. For all axes or uniquely for each axis.
+\item We assemble a matrix $\boldsymbol{A}$ with the axis vectors. For a point by point transformation.
+\item We read the example source code for a computer function, which is exactly two lines long. One line is for the new $x$-coordinate and one line of code is for the new $y$-coordinate.
+\item We get the proofs for the linear behaviour of the transformation. That 0 stays in 0. And a point on the axis on the axis.
+\item We read other mathematical versions of the transformation. As a function, for example.
+\item We derive the generic case of transforming coordinate systems down to the plane.
+\item We will get some info about the background and environment of the transformation, which is explored by the author
+\end{enumerate}\\
 
-\end{enumerate}
+\textbf{Warning! Foreign author.}\\
+Edward Gerhold, who is writing this document, is nativly speaking german. He was good in english at school, but has to admit,
+that it became weak over the time. Today it is somewhat weaker than it normally was. Here and there are a few mistakes, wrong pronounciations, or simply ununderstandable phrases included under the other phrases in the document. But by accident. The author will do his best over the next time, to finish the explainings and to correct the wrong english by using a vocabulary book.\\
 
 %\chapter{1}
 
@@ -65,7 +70,27 @@ tell you directly, what happens, when we multiply the coordinates with the matri
 
 \subsection{Axis vector}
 
-The words basis, axis vectors, coordinate system are used interchangably. And from those choices we talk about a coordinate system.
+Before we get started, i have to clear something up, which will happen throughout this text over the next few editions, until it is formulated better.\\
+
+The words basis, axis vectors, coordinate system are used interchangably. And from those choices we talk about a coordinate system.\\
+
+Once this document was started, i intermingled axis vectors and basis vectors.\\
+
+A basis for a vector space is the smallest set of linear independent vectors possible. They span up the vector space, and any other vector in the space is a linear combination of the basis vectors.\\
+
+Remark. [Import Definition Basis here. It is not too much math for the beginning.]\\
+
+The axis vectors for our coordinate system are used like a basis. We multiply our coordinates with and add them up for a weighted sum. Once for each component. Means to sum up the products of the three coordinates with the three x-components of our three coordinate axes. And to sum up the products of the three coordinates with the three y-components of our three coordinate axis. The result is a 2-D vector, which is the new position vector on the plane, which is right.\\
+
+It is easy to intermingle this with the word basis and to multiply with a basis. The calculation is the same. But it is called differently. It is called a linear combination of our axis vectors with the coordinates. And the result is a linear map. And the matrix we use induces a linear map by its $m\times n$ dimension. More about (the full story) a little later.\\
+
+Remark [Import Definition Linear Combination here. It is not too much math for the beginning.]\\
+
+Mathematically speaking, it is quite dramatic to intermingle these, and during writing the document, i had mostly the problem of intermingling "linear combination of coordinates and the axis vectors" with "multiplying coordinates with the basis".\\
+
+During the document we will see and prove, that it is impossible, to reduce the 2x3 system to a 2-D basis, and that the linear combination of the third axis is required, to calculate the new position vector correctly. And that anyways, all that works perfectly fine and gives exact 2-D images of our 3-D model.\\
+
+Remark. Section of Aug. 9. 
 
 \subsection{The $_{n}$ index for $_x,_y,_z$ with $_x=1$, $_y=2$ and $_z=3$}
 \index{index}
