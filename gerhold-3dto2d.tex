@@ -18,7 +18,7 @@ Three dimensional coordinates into two dimensional coordinates transformation.
 \maketitle
 
 
-Version 0.3.25\\
+Version 0.3.26\\
 
 \textbf{Remark. This is a development version. And has chaotic parts. And (only temporarily) some logical mathematical mistakes, which are of course going to be corrected.} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last. If you ever print this, print 4 on 1. This saves paper. This document is unfinished and not completly shaped.\\}
 
@@ -1202,6 +1202,7 @@ Norms are said to be equal if there are two constant $c$,$C$ such that
 Remark. TODO.
 
 \section{Cauchy Sequences and Convergence}
+\subsection{Cauchy sequences in space}
 
 Remark. This section is not formulated.
 
@@ -1274,6 +1275,41 @@ $\|\boldsymbol{A}v_{n} - \boldsymbol{A}v_{m}\| \leq \epsilon,  \forall m,n > n_{
 TODO\\
 
 Remark. This section is not finished, and at the change of dimensions or at the use of two different sets with different norms, the epsilon-delta version is required, too. It should say, that if the one goes below epsilon, the other goes below delta.\\
+
+\subsection{Infinite series}
+
+First we start of with the infinite series for cosine and sine. The series are alternating and change the sign from term to term.
+This is the cosine series:\\
+\begin{displaymath}
+    \cos(x) = \sum_{i=0}^{n}\frac{(-1)^{n}}{(2n)!}x^{2n} = 1 - \frac{x^{2}}{2!} + \frac{x^{4}}{4!} - ... \pm\frac{x^{2n}}{(2n)!}
+\end{displaymath}
+You see, it is alternating and a sum of one over the faculties of the even numbers, times the angle to the power of 2n.
+And the sin series:\\
+\begin{displaymath}
+    \sin(x) = \sum_{i=0}^{n}\frac{(-1)^{n}}{(2n+1)!}x^{2n+1} = 1 - \frac{x^{3}}{3!} + \frac{x^{5}}{5!} - ... \pm\frac{x^{2n+1}}{(2n+1)!}
+\end{displaymath}\\
+
+Then what again is a infinite series? A infinite series is the sum of the infinite sequence. When the terms add up to a number, and the series converges, the result is a number. Which is the sum of all the terms summed.\\
+ 
+When the sum gets infinitly large and does not stop, because the distance between the items does not go below $\epsilon$ for three-space and $\delta$ over the two-by-three in the two-space, the series diverges.\\
+
+Our matrix looks with series like this (hope you have a caching computer function to store the cos and sin series results)
+\begin{displaymath}
+\boldsymbol{A}_{\text{series}} = \begin{pmatrix}
+r_x\sum_{i=0}^{n}\frac{(-1)^{n}}{(2n)!}\varphi_{x}^{2n}&
+r_y\sum_{i=0}^{n}\frac{(-1)^{n}}{(2n)!}\varphi_{y}^{2n}&
+r_z\sum_{i=0}^{n}\frac{(-1)^{n}}{(2n)!}\varphi_{z}^{2n}\\
+r_x\sum_{i=0}^{n}\frac{(-1)^{n}}{(2n+1)!}\varphi_{x}^{2n+1}&
+r_y\sum_{i=0}^{n}\frac{(-1)^{n}}{(2n+1)!}\varphi_{y}^{2n+1}&
+r_z\sum_{i=0}^{n}\frac{(-1)^{n}}{(2n+1)!}\varphi_{z}^{2n+1}
+\end{pmatrix}
+\end{displaymath}
+
+Of course do all these series converge to the right coordinates. The convergence of sin and cos is known.
+Does not look very useful to me. (Yet.)
+If $r_x \neq r_y \neq r_z$, the r value can not be pulled out of the matrix and placed in front of.\\
+
+Remark. Development Version. Edward breaks here and leaves home again. Maybe he will have interesting ideas for the series later.\\
 
 \section{Summary}
 
@@ -1830,13 +1866,13 @@ The factor lambda lies between 0 and 1. If $\lambda = 0.1$ then is $(1-\lambda) 
 There is an inequality, which convex functions have to satisfy. And you may know it. It is the \emph{triangle inequality}
 
 \begin{displaymath}
-\|\lambda\vec{x} + (1-\lambda)\vec{y}\| \leq \lambda\|\vec{x}\| + (1-\lamda)\|\vec{y}\|
+\|\lambda\vec{x} + (1-\lambda)\vec{y}\| \leq \lambda\|\vec{x}\| + (1-\lambda)\|\vec{y}\|
 \end{displaymath}
 
 or what expresses, that a function is convex.
 
 \begin{displaymath}
-f(\lambda\vec{x} + (1-\lambda)\vec{y}) \leq \lambda f(\vec{x}) + (1-\lamda)f(\vec{y})
+f(\lambda\vec{x} + (1-\lambda)\vec{y}) \leq \lambda f(\vec{x}) + (1-\lambda)f(\vec{y})
 \end{displaymath}
 
 What is again the \emph{triangle inequality}.
@@ -1849,15 +1885,11 @@ Our image is very precise, because we designed a real coordinate system. What is
 
 By the rule of linearity.
 
-\begin{displaymath}
-\end{displaymath}
-
-
 
 \section{Definition of \mathbb{R}^{2\times3} (WORKING ON)}
 
 
-\subsection{Defining the $(2\times3)\cdot(3\times1)$ as transitional space to go from 3-D to 2-D}
+\subsection{Defining the $(2\times3)\cdot(3\times1)$ as transitional operation to go from 3-D to 2-D}
 
 The $\mathbb{R}^{2\times3}$ is a K-vectorspace. \\
 
@@ -2322,7 +2354,6 @@ TODO\\
 TODO
 
 Remark. The roundoff error of the floating point and the condition of a matrix is basic knowledge for every computer class.
-
 
 \section{An alternative graphics algorithm}
 
@@ -2813,9 +2844,9 @@ Remark. Formulation lacks. Obviously a standard public domain or creative common
             Linear Algebra and it´s Applications. Fourth Edition.        
     \bibitem{Strang2} \textit{Gilbert Strang, MIT},
             Calculus. MIT OpenCourseWare Supplemental Resources. http://ocw.mit.edu    
-    \bibitem{Toplogy} \textit{ ,  },
+    \bibitem{Toplogy} \textit{John Rogues, Lecture Notes on Topology, following J.R.Munkers Textbook, for MAT3500/4500},
             Lecture Script, Topology (english),
-    \bibitem{Vershynin1} \textit{Roman Vershinin. Lectures in Functional Analysis. Department of Mathematics, University of Michigan},
+    \bibitem{Vershynin1} \textit{Roman Vershynin. Lectures in Functional Analysis. Department of Mathematics, University of Michigan},
             Lecture Script, http://,        
     \bibitem{Ferus1} \textit{Dirk Ferus, TU-Berlin, em.},
             Lecture Script, Lineare Algebra 1+2, 2000, http://page.math.tu-berlin/~ferus/skripten.html
@@ -2829,7 +2860,6 @@ Remark. Formulation lacks. Obviously a standard public domain or creative common
             LaTeX, eine Einf\"uhrung und ein bisschen mehr..., a026\_latex\_einf.pdf            
     \bibitem{Rudl} \textit{Dr.Jan Rudl, Technische Universit\"at Dresden, Fachbereich Mathematik},
             Einf\"uhrung in LaTeX, LaTeX-Kurs.pdf            
-
 \end{thebibliography}
 
 
