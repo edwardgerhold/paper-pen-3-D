@@ -18,11 +18,13 @@ Three dimensional coordinates into two dimensional coordinates transformation.
 \maketitle
 
 
-Version 0.3.26\\
+Version 0.3.3\\
 
 \textbf{Remark. This is a development version. And has chaotic parts. And (only temporarily) some logical mathematical mistakes, which are of course going to be corrected.} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last. If you ever print this, print 4 on 1. This saves paper. This document is unfinished and not completly shaped.\\}
 
-\fbox{To get the formalities right, a german translation version is now being worked out by me.}
+\fbox{To get the formalities right, a german translation version is now being worked out by me.}\\
+
+In the next versions i will clean up and finish the existing before examining more rules.\\
 
 \end{center} 
 
@@ -482,6 +484,7 @@ Remark. If $r_x = r_y = r_z$ you can pull out $r$ and write it in front of the m
 
 Remark. I commented the "linear map operator" definition out (linear map and operator is correct), because i have to write it again.
 
+
 %Remark. About the matrix norm $\|A\|_{Frob}$. The number, after counting the components squares together and pulling the root is %$\sqrt{3}$. Pulling the norm chapter out of the introduction and introducing the measurements and estimations, also to myself, is %new on the TODO.
 
 
@@ -663,6 +666,53 @@ $f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$\\
 
 
 Remark. This section is not finished. Not only the plot for the vector field, some sophisticated demo with a physics formula, but the compositions are themselves not explained. Additionally in the section about differentiation, the compositions have to be veryfied.\\
+
+\subsection{Vector valued function}
+\label{vector_valued_func}
+
+The book \cite{Corral1} defines a vector valued function like this:
+\begin{displaymath}
+f(t) = f_{1}(t)\vec{i}+f_{2}(t)\vec{j}+f_{3}(t)\vec{k}
+\end{displaymath}
+
+In our version this becomes a direct transformation onto the 2-D plane by using our 2x3 basis instead of a 3x3 basis.
+
+\begin{displaymath}
+f(t) = f_{1}(t)\begin{pmatrix}\cos\varphi_1\\\sin\varphi_1\end{pmatrix}
+        +f_{2}(t)\begin{pmatrix}\cos\varphi_2\\\sin\varphi_2\end{pmatrix}
+        +f_{3}(t)\begin{pmatrix}\cos\varphi_3\\\sin\varphi_3\end{pmatrix}
+\end{displaymath}
+
+Another philosophy to write $f_{n}(t)$ is to call the function after the variable like $x(t), y(t), z(t)$. I just want you to read this again.
+
+\begin{displaymath}
+f(t) = x(t)\vec{i}+y(t)\vec{j}+z(t)\vec{k}
+\end{displaymath}
+
+Which is simply the same as
+\begin{displaymath}
+f(t) = x(t)\begin{pmatrix}\cos\varphi_x\\\sin\varphi_x\end{pmatrix}
+        +y(t)\begin{pmatrix}\cos\varphi_y\\\sin\varphi_y\end{pmatrix}
+        +z(t)\begin{pmatrix}\cos\varphi_z\\\sin\varphi_z\end{pmatrix}
+\end{displaymath}
+
+Of course the number of arguments can vary.
+
+\begin{displaymath}
+f(\vec{x},t) = X(x,t)\begin{pmatrix}\cos\varphi_x\\\sin\varphi_x\end{pmatrix}
+        +Y(y,t)\begin{pmatrix}\cos\varphi_y\\\sin\varphi_y\end{pmatrix}
+        +Z(z,t)\begin{pmatrix}\cos\varphi_z\\\sin\varphi_z\end{pmatrix}
+\end{displaymath}
+
+Or 
+
+\begin{displaymath}
+f(x,y,z) = X(x)\begin{pmatrix}\cos\varphi_x\\\sin\varphi_x\end{pmatrix}
+        +Y(y)\begin{pmatrix}\cos\varphi_y\\\sin\varphi_y\end{pmatrix}
+        +Z(z)\begin{pmatrix}\cos\varphi_z\\\sin\varphi_z\end{pmatrix}
+\end{displaymath}
+
+They have all one thing in common. Instead of returning a 3-D vector, they return a 2-D vector, because we manipulated the basis.
 
 
 \subsection{Polar coordinate version}
@@ -1005,12 +1055,17 @@ What about the vector of the integration constants, $\vec{C}$? We can solve easi
 \end{align}
 \end{displaymath}
 
-Remark. The constant looks like a valuable extension of the function. Looks like a fixed additional translation away from the null origin to me. $x=a+Ax$ is a formula of affine transformations, with translation included, and this seems to match, too.\\
+%Remark. The constant looks like a valuable extension of the function. Looks like a fixed additional translation away from the null %origin to me. $x=a+Ax$ is a formula of affine transformations, with translation included, and this seems to match, too.\\
 
-\newtheorem{CorollaryConstant}{Corollary. $\vec{f}(\vec{0})$ equals the summed integration constant $\vec{f}(\vec{0})=\vec{C}$.}
-\begin{CorollaryConstant}
-Corollary. If the result of $\vec{f}({\vec{0}})=\vec{w}$ does not equal zero ($\vec{0}$), one can solve for the constant $\vec{C}$, which is the translation from the origin. If the normal result of $\vec{f}({\vec{0}})$ is $\vec{f}({\vec{0}})=\vec{0}$ then $\vec{f}({\vec{0}})=\vec{C}$.
-\end{CorollaryConstant}
+%\newtheorem{CorollaryConstant}{Corollary. $\vec{f}(\vec{0})$ equals the summed integration constant $\vec{f}(\vec{0})=\vec{C}$.}
+%\begin{CorollaryConstant}
+%Corollary. If the result of $\vec{f}({\vec{0}})=\vec{w}$ does not equal zero ($\vec{0}$), one can solve for the constant $\vec{C}$, which is the translation from the origin. If the normal result of $\vec{f}({\vec{0}})$ is $\vec{f}({\vec{0}})=\vec{0}$ then $\vec{f}({\vec{0}})=\vec{C}$.
+%\end{CorollaryConstant}
+
+The constant looks like a translation. In our functional the result should always be zero.\\
+
+But if some similar function got also this result when asking for the zero vector transformation, you get the translation vector back, which will be applied to each point.
+
 
 \begin{displaymath}
 \begin{align}
@@ -1098,9 +1153,9 @@ We can fix the integral another way. By using sgn(x) in front of and abs(x) in t
 %\hline
 \begin{displaymath}
 \begin{align}
-sign(x)\int_{0}^{|x|}\vec{e}_{x}\partial{x} &+
-sign(y)\int_{0}^{|y|}\vec{e}_{y}\partial{y} +
-sign(z)\int_{0}^{|z|}\vec{e}_{z}\partial{z} \\
+\hat{I}(x,y,z) := sign(x)\int_{0}^{|x|}\vec{e}_{x}dx &+
+sign(y)\int_{0}^{|y|}\vec{e}_{y}dy +
+sign(z)\int_{0}^{|z|}\vec{e}_{z}dz \\
 &= \pm{x}\vec{e}_{x} \pm{y}\vec{e}_{y} \pm{z}\vec{e}_{z}\\
 \end{align}
 \end{displaymath}
@@ -1108,8 +1163,10 @@ sign(z)\int_{0}^{|z|}\vec{e}_{z}\partial{z} \\
 Which will do the job. But meanwhile i am also satisfied with the former definition.\\Meanwhile i am satisfied with the former definition.
 
 
-What does the integral anyways? It moves a point along a line, and returns the vector of the straight line. Done with three integrals, we get the vector of the right coordinate on the 2-D plane back.\\
+What does the integral anyways? It moves a point along a line, and returns the vector of the straight line. Done with three integrals, we get the vector of the right coordinate on the 2-D plane back. It is still a linear combination of three integrals,
+to be concrete.\\
 
+Remark. to be continued and improved.
 
 
 \section{Projecting just z onto a vector}
@@ -1283,38 +1340,23 @@ Remark. This section is not finished, and at the change of dimensions or at the 
 
 \subsection{Infinite series}
 
+\begin{displaymath}
+    \sum_{i=0}^{\infty}\vec{x}_{i}
+\end{displaymath}
+
 First we start of with the infinite series for cosine and sine. The series are alternating and change the sign from term to term.
-This is the cosine series:\\
+This is the cosine series as partial sum (finite summation) from zero to n:\\
 \begin{displaymath}
     \cos(x) = \sum_{i=0}^{n}\frac{(-1)^{n}}{(2n)!}x^{2n} = 1 - \frac{x^{2}}{2!} + \frac{x^{4}}{4!} - ... \pm\frac{x^{2n}}{(2n)!}
 \end{displaymath}
-You see, it is alternating and a sum of one over the faculties of the even numbers, times the angle to the power of 2n.
+You see, it is alternating and a sum of one over the faculties of the even numbers, times the angle x to the power of 2n.
 And the sin series:\\
 \begin{displaymath}
     \sin(x) = \sum_{i=0}^{n}\frac{(-1)^{n}}{(2n+1)!}x^{2n+1} = 1 - \frac{x^{3}}{3!} + \frac{x^{5}}{5!} - ... \pm\frac{x^{2n+1}}{(2n+1)!}
 \end{displaymath}\\
 
-Then what again is a infinite series? A infinite series is the sum of the infinite sequence. When the terms add up to a number, and the series converges, the result is a number. Which is the sum of all the terms summed.\\
- 
-When the sum gets infinitly large and does not stop, because the distance between the items does not go below $\epsilon$ for three-space and $\delta$ over the two-by-three in the two-space, the series diverges.\\
 
-Our matrix looks with series like this (hope you have a caching computer function to store the cos and sin series results)
-\begin{displaymath}
-\boldsymbol{A}_{\text{series}} = \begin{pmatrix}
-r_x\sum_{i=0}^{n}\frac{(-1)^{n}}{(2n)!}\varphi_{x}^{2n}&
-r_y\sum_{i=0}^{n}\frac{(-1)^{n}}{(2n)!}\varphi_{y}^{2n}&
-r_z\sum_{i=0}^{n}\frac{(-1)^{n}}{(2n)!}\varphi_{z}^{2n}\\
-r_x\sum_{i=0}^{n}\frac{(-1)^{n}}{(2n+1)!}\varphi_{x}^{2n+1}&
-r_y\sum_{i=0}^{n}\frac{(-1)^{n}}{(2n+1)!}\varphi_{y}^{2n+1}&
-r_z\sum_{i=0}^{n}\frac{(-1)^{n}}{(2n+1)!}\varphi_{z}^{2n+1}
-\end{pmatrix}
-\end{displaymath}
-
-Of course do all these series converge to the right coordinates. The convergence of sin and cos is known.
-Does not look very useful to me. (Yet.)
-If $r_x \neq r_y \neq r_z$, the r value can not be pulled out of the matrix and placed in front of.\\
-
-Remark. Development Version. Edward breaks here and leaves home again. Maybe he will have interesting ideas for the series later.\\
+Remark. To be continued.
 
 \section{Summary}
 
@@ -1836,7 +1878,9 @@ You should multiply the 2x2 matrix with some vector and you will get a perpendic
 $\vec{n} = \boldsymbol{N}\vec{w} = \begin{pmatrix}0 & -1 \\ 1 & 0\end{pmatrix} \cdot \begin{pmatrix}a\\b\end{pmatrix} = \begin{pmatrix}-b\\a\end{pmatrix}$
 \end{center}
 
-Proof. The resulting normal vector has to be perpendicular to the source vector, so their dot product must be zero.
+Proof. The resulting normal vector has to be perpendicular to the source vector, so their dot product must be zero.\\
+
+
 
 \begin{displaymath}
 \vec{n} \cdot \vec{w} = \sum_{i=1}^{2}\vec{n}_{i}\vec{w}_i = -ab + ab = 0
@@ -1998,6 +2042,50 @@ The 2x3 is combining 3 inputs into 2 outputs.\\
 The 2 outputs are then interpreted by the R2 standard basis.
 
 
+\subsubsection{Gram-Schmidt Orthogonalization}
+
+We have not tried to orthogonalize the three axis vectors yet. In \cite{Strang1} one can read, how to do it.\\
+
+From $\vec{e}_{n}$ we will calculate $\vec{q}_{n}$, the orthogonalized versions of the three axis vectors.\\
+
+Our first vector is easy and just normalized. Using no r-value gives us the e-vector already normalized, but let us get through the three vectors.\\
+
+\begin{displaymath}
+\vec{q}_1 = \vec{e}_{x}/\|\vec{e}_{x}\|
+\end{displaymath}
+
+Now for the second vector we remove the linear parts from the first. And normalize in the second step.
+
+\begin{displaymath}
+\begin{align}
+\vec{b} &= \vec{e}_y - (\vec{q}_{1}^{T}\vec{e}_{y})\vec{q}_{1}\\
+\vec{q}_{2} &= \frac{\vec{b}}{\|\vec{b}\|}
+\end{align}
+\end{displaymath}
+
+And for the third vector we remove the linear parts of the other two vectors and normalize in the second step.
+
+\begin{displaymath}
+\begin{align}
+\vec{c} &= \vec{e}_{z} - (\vec{q}_{1}^{T}\vec{e}_{z})\vec{q}_{1} - (\vec{q}_{2}^{T}\vec{e}_{z})\vec{q}_{2}\\
+\vec{q}_{3} &= \frac{\vec{c}}{\|\vec{c}\|}
+\end{align}
+\end{displaymath}
+
+Now we have three new vectors. In a $n\times n$ system, they will be linearly independent and form a orthogonal basis.\\
+
+Remark. I have not verified or examined or observed the outcome today. I want to look at the images from functions then next.\\
+
+Our new set is now
+
+\begin{displaymath}
+\vec{q}_{n} := \{\vec{q}_{1}, \vec{q}_{2}, \vec{q}_{3}\}
+\end{displaymath}
+
+And can be renamed to \vec{e}_{n}.\\
+
+Remark. I need images from the same functions before and after orthogonalization.\\
+
 
 \subsection{Intuitive standard basis for multiplying with 3x1}
 \label{intuitive_standard_basis}
@@ -2035,11 +2123,14 @@ Which is pointing towards us, left down. The y axis is pointing to the right and
 \textbf{With the dot product we test for linear independence}\\
 
 To test the linear independence of two vectors, their dot product must equal zero.\\
+That means, the two vectors are perpendicular $\perp$ to each other. They meet in a right angle. As you already know, 
+in our 2x3 system it is not possible to give three independent vectors. You can have one to three linear combinations.\\
+
 
 In our coordinate system, we have to test for $\vec{e}_{x}\cdot\vec{e}_{y}$, $\vec{e}_{x}\cdot\vec{e}_{z}$ and $\vec{e}_{y}\cdot\vec{e}_{z}$.
 
-We test the "embedded" coordinate system with the $\mathbb{R}^{2}$ standard basis and the one linear dependent vector. The one combines the z-coordinate for the x-part (horizontal, cosine) and the y-part (vertical, sine). Here we suspect one pair of vectors to be orthogonal, of course. It is just for completeness and overview for us, to show that. But by 
-showing that, we will get another stoking result of our
+We test the "embedded" coordinate system with the $\mathbb{R}^{2}$ standard basis and the one linear dependent vector. We 
+get another stoking result containing parts of our axis vectors, of course.\\
 
 For the righthand system:\\
 
@@ -2218,13 +2309,25 @@ A little bit refined the 3x3 matrix becomes this. Also, to forget about $r_n$ is
 
 The determinant of the
 A 2x2 determinant and inverse have the following formulas.
+
+\begin{displaymath}
+\begin{align}
+\boldsymbol{A} &= \begin{pmatrix}a&b\\c&d\end{pmatrix}\\
+|\boldsymbol{A}| &= \det(A) = \begin{vmatrix}a&b\\c&d\end{vmatrix} = ad-bc\\
+\boldsymbol{A}^{-1} &= \frac{1}{ad-bc}\begin{pmatrix}d&-b\\-c&a\end{pmatrix}\qquad{, ad-bc \neq 0}
+\end{align}
+\end{displaymath}
+
+
 A 3x3 determinant and inverse have the following formulas.
 
-TODO\\
+\begin{displaymath}
+\end{displaymath}
 
-Without checking the importance of the transposes in the first three weeks since i started this document, i kept this begun calculation. Meanwhile i figured out why:
 
-$((A^{T}A)-\lambda{I})x=0$ and $((AA^{T})-\lambda{I})x=0$ want to be solved, and then we want the SVD.
+
+
+
 
 \subsubsection{Singular Value Decomposition}
 
@@ -2239,7 +2342,7 @@ This a mxm orthogonal times nxm diagonal times nxn orthogonal. To get the orthog
 Remark. A rectangular matrix has no eigenvalue equation. But there is a singular value decomposition, which can tell some proper things about the matrix. For that, the eigenvalues are taken from the products with the transpose. And then the decomposition continues.\\
 
 The $A^{T}A$ and $AA^{T}$ are needed for the SVD. First we extract the eigenvalues and eigenvectors of the symmetric square matrices.
-Then we build So with the last two chapter we are fine.\\
+$((A^{T}A)-\lambda{I})x=0$ and $((AA^{T})-\lambda{I})x=0$ need to be solved.\\
 
 \subsection{Eigenvalues and -vectors of the 2x2 $AA^{T}$ to reach U}
 \label{eig_2x3}
@@ -2251,7 +2354,7 @@ Multiplying the intutitive standard basis from \ref{intuitive_standard_basis} gi
 \boldsymbol{A}\boldsymbol{A}^{T} = \begin{pmatrix}\frac32&\frac12\\\frac12&\frac32\end{pmatrix}
 \end{displaymath}
 
-Solving $det(A-\lambdaI)=0$ gives us the characteristic polynomial and after foiling and simplification
+Solving $det(A-\lambda I)=0$ gives us the characteristic polynomial and after foiling and simplification
 
 \begin{displaymath}
 \begin{align}
@@ -2317,7 +2420,7 @@ which was the result of the determinant minus lambda or the characteristic polyn
 
 Solving then for the eigenvector, i got this possible solution for $(\boldsymbol{A}^{T}\boldsymbol{A}-\lambda I)\vec{x}=0$. The first one is 0 because subtracting lamda from the diagonal gave me zero on the whole diagonal.
 
-\begin{displaymath}
+\begin{displaymath}bb
 \boldsymbol{A}^{T}\boldsymbol{A}-\lambda{I} = \begin{pmatrix}0&-2^{-\frac12}&-2^{-\frac12}\\-2^{-\frac12}&0&0\\-2^{-\frac12}&0&0\end{pmatrix}
 \end{displaymath}
 Solving for the non-zero vector, which results in the zero vector, gives me for $\lambda_{1}$
@@ -2359,6 +2462,14 @@ So we have all three roots (eigenvalues) together. I have to solve for the remai
 
 Remark. Nice to get some excercise for this topic.
 
+Remark II. The 3x3 can be mistaken. My last test for the determinant of AtA gave 0, i have to verify this again.
+
+If we have $\boldsymbol{U}$ and $\boldsymbol{V}^{T}$ we can get $\Sigma$ by using $\boldsymbol{A}$
+\begin{displaymath}
+ \boldsymbol{U}^{T}\boldsymbol{A}\boldsymbol{V} = \boldsymbol{\Sigma}
+\end{displaymath}
+
+
 \subsubsection{The pseudo-inverse $\boldsymbol{A}^{+}$ and least squares}
 
 For a m by n matrix with m < n it is $A^T(AA^{T})^{-1}$\\
@@ -2366,6 +2477,19 @@ For a m by n matrix with m > n it is $(A^{T}A)^{-1}A^T$\\
 TODO\\
 
 \section{Computer Error Estimation}
+
+The error $e$ is the absolute value of the exact result $x$ and the computed result $\hat{x}$.
+
+\begin{displaymath}
+e = |x - \hat{x}|
+\end{displaymath}
+
+In more than one dimension it is the same. The computed result is subtracted from the exact result.
+
+\begin{displaymath}
+\vec{e} = \|\vec{x} - \hat{\vec{x}}\|
+\end{displaymath}
+
 
 TODO
 
@@ -2852,10 +2976,11 @@ But it is not neccessary to do so. I can say it with a rhyme. I did it, too. And
 
 Remark. Formulation lacks. Obviously a standard public domain or creative commons license will work.\\
 
-\begin{thebibliography}\bibitem{Corral1}\textit{Michael Corral, Schoolcraft College},
+\begin{thebibliography}
+    \bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
         Vector Calculus, GNU Free Documentation License, http://mecmath.net
     \bibitem{Corral2} \textit{Michael Corral, Schoolcraft College},
-        Trigonometry, GNU Free Documentation License, http://mecmath.net
+        Trigonometry, GNU Free Documentation License, http://mecmath.net 
     \bibitem{Strang1} \textit{Gilbert Strang, MIT},
             Linear Algebra and it´s Applications. Fourth Edition.        
     \bibitem{Strang2} \textit{Gilbert Strang, MIT},
