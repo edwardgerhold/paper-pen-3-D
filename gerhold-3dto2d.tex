@@ -317,7 +317,7 @@ Every mathematics, physics or related course has a lesson, where the orthogonal 
 
 A orthogonal basis is a set of 2 or three or up to infinite orthogonal (perpendicular) vectors. They describe the coordinate system, the space, the dimensions, and one has to show for excercises, that the basis is linearly independent, that each basis vector points into it´s own dimension and not into the others. \\
 
-Another excercise is to orthogonalize the existing vectors with Gram-Schmidt. \\
+Another excercise is to orthogonalize the existing vectors with Gram-Schmidt. Interested readers will find it in \ref{gram_schmidt_excercise} \\
 
 We want to design a coordinate system with three coordinates and two dimensions. At least one vector has to be linearly dependent of both basis vectors. We want to design a basis, or better a linear mapping, or best a coordinate system, which is a mix of both dimensions. We will use cosine and sine. We combine the three coordinates for three proportional horizontal moves. We combine the three coordinates for three vertical moves. Proportional to the coordinates and possibly with positive or negative amounts (up or down with sine, right or left with cosine) depending on the direction of the coordinate axis.\\
 
@@ -683,37 +683,7 @@ f(t) = f_{1}(t)\begin{pmatrix}\cos\varphi_1\\\sin\varphi_1\end{pmatrix}
         +f_{3}(t)\begin{pmatrix}\cos\varphi_3\\\sin\varphi_3\end{pmatrix}
 \end{displaymath}
 
-Another philosophy to write $f_{n}(t)$ is to call the function after the variable like $x(t), y(t), z(t)$. I just want you to read this again.
-
-\begin{displaymath}
-f(t) = x(t)\vec{i}+y(t)\vec{j}+z(t)\vec{k}
-\end{displaymath}
-
-Which is simply the same as
-\begin{displaymath}
-f(t) = x(t)\begin{pmatrix}\cos\varphi_x\\\sin\varphi_x\end{pmatrix}
-        +y(t)\begin{pmatrix}\cos\varphi_y\\\sin\varphi_y\end{pmatrix}
-        +z(t)\begin{pmatrix}\cos\varphi_z\\\sin\varphi_z\end{pmatrix}
-\end{displaymath}
-
-Of course the number of arguments can vary.
-
-\begin{displaymath}
-f(\vec{x},t) = X(x,t)\begin{pmatrix}\cos\varphi_x\\\sin\varphi_x\end{pmatrix}
-        +Y(y,t)\begin{pmatrix}\cos\varphi_y\\\sin\varphi_y\end{pmatrix}
-        +Z(z,t)\begin{pmatrix}\cos\varphi_z\\\sin\varphi_z\end{pmatrix}
-\end{displaymath}
-
-Or 
-
-\begin{displaymath}
-f(x,y,z) = X(x)\begin{pmatrix}\cos\varphi_x\\\sin\varphi_x\end{pmatrix}
-        +Y(y)\begin{pmatrix}\cos\varphi_y\\\sin\varphi_y\end{pmatrix}
-        +Z(z)\begin{pmatrix}\cos\varphi_z\\\sin\varphi_z\end{pmatrix}
-\end{displaymath}
-
-They have all one thing in common. Instead of returning a 3-D vector, they return a 2-D vector, because we manipulated the basis.
-
+Remark. It is the same as the functional $\vec{f}(\vec{x})$ just written clearly. Will overwork.
 
 \subsection{Polar coordinate version}
 \label{polar_coord_func}
@@ -2043,7 +2013,7 @@ The 2 outputs are then interpreted by the R2 standard basis.
 
 
 \subsubsection{Gram-Schmidt Orthogonalization}
-
+\label{gram_schmidt_excercise}
 We have not tried to orthogonalize the three axis vectors yet. In \cite{Strang1} one can read, how to do it.\\
 
 From $\vec{e}_{n}$ we will calculate $\vec{q}_{n}$, the orthogonalized versions of the three axis vectors.\\
@@ -2076,15 +2046,71 @@ Now we have three new vectors. In a $n\times n$ system, they will be linearly in
 
 Remark. I have not verified or examined or observed the outcome today. I want to look at the images from functions then next.\\
 
-Our new set is now
+\textbf{Example. Righthand basis}\\
+
+Consider this matrix:
 
 \begin{displaymath}
-\vec{q}_{n} := \{\vec{q}_{1}, \vec{q}_{2}, \vec{q}_{3}\}
+    E^{\mathbb{R}^{2\times{3}}}_{yz} = \begin{pmatrix}-2^{-\frac12}&0&1\\-2^{-\frac12}&1&0\end{pmatrix}
 \end{displaymath}
 
-And can be renamed to \vec{e}_{n}.\\
+This is the coordinate system with z-axis up, x pointing 225 degrees down south west, and y to the right.
+On a piece of paper i applied Gram-Schmidt.
 
-Remark. I need images from the same functions before and after orthogonalization.\\
+\begin{displaymath}
+\begin{align}
+\vec{e}_{x} &= \begin{pmatrix}-\sqrt{\frac12}\\-\sqrt{\frac12}\end{pmatrix}\\
+\vec{e}_{y} &= \begin{pmatrix}1\\0\end{pmatrix}\\
+\vec{e}_{z} &= \begin{pmatrix}0\\1\end{pmatrix}
+\end{align}
+\end{displaymath}
+
+Remember. $-2^{-\frac12}$ is the same as $\cos 225$ and $\sin 225$. The length of this vector is already 1.
+
+\begin{displaymath}
+\begin{align}
+\vec{e}_{x} &= \begin{pmatrix}-\sqrt{\frac12}\\-\sqrt{\frac12}\end{pmatrix}\\
+\vec{q}_{1} &= \frac{\vec{e}_{x}}{\|\vec{e}_{x}} = \vec{e}_{x}
+\end{align}
+\end{displaymath}
+
+Now for the second vector\\
+
+\begin{displaymath}
+\begin{align}
+\vec{e}_{y} &= \begin{pmatrix}1\\0\end{pmatrix}
+\vec{b} = \begin{pmatrix}1\\0\end{pmatrix} - (-\sqrt{frac12} + 0)\begin{pmatrix}1\\0\end{pmatrix} \\
+    &= \begin{pmatrix}1-\sqrt{\frac12}\\0\end{pmatrix}\\
+\vec{q}_{2} &= \frac{\vec{b}}{\|\vec{b}\|} \\
+            &= \begin{pmatrix}\frac{1-\sqrt{\frac12}} { \sqrt{\frac32-\frac{2}{\sqrt{2}}} }\\0\end{pmatrix}\\
+\end{align}
+\end{displaymath}
+
+And for the third vector, the last term, the $q_2$ term, is getting zero. Simpler than it looked like \\
+
+\begin{displaymath}
+\begin{align}
+\vec{e}_{z} &= \begin{pmatrix}0\\1\end{pmatrix}\\
+\vec{c} &= \begin{pmatrix}0\\1\end{pmatrix} - (-\sqrt{\frac12})\begin{pmatrix}-\sqrt{\frac12}\\-\sqrt{\frac12}\end{pmatrix} - 0\\
+        &=  \begin{pmatrix}-\frac12\\\frac12\end{pmatrix}\\
+\vec{q}_{3} &= \frac{\vec{c}}{\|\vec{c}\|}
+            &= \begin{pmatrix}\frac{-\frac12}{\sqrt{\frac12}}\\\frac{\frac12}{\sqrt{\frac12}}\end{pmatrix}
+\end{align}
+\end{displaymath}
+
+
+
+Gram Schmidt gave us these vectors.
+\begin{displaymath}
+\begin{align}
+\vec{q}_{1} &=  \begin{pmatrix}-\sqrt{\frac12}\\-\sqrt{\frac12}\end{pmatrix}\\
+\vec{q}_{2} &= \begin{pmatrix}\frac{1-\sqrt{\frac12}} { \sqrt{\frac32-\frac{2}{\sqrt{2}}} }\\0\end{pmatrix}\\
+\vec{q}_{3} &= \begin{pmatrix}\frac{-\frac12}{\sqrt{\frac12}}\\\frac{\frac12}{\sqrt{\frac12}}\end{pmatrix}
+\end{align}
+\end{displaymath}
+
+
+Remark. I have not drawn with them yet.
 
 
 \subsection{Intuitive standard basis for multiplying with 3x1}
@@ -3004,7 +3030,7 @@ Remark. Formulation lacks. Obviously a standard public domain or creative common
 \end{thebibliography}
 
 
-
+\makeindex
 \printindex
 
 \end{document}
