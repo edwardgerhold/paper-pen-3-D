@@ -20,7 +20,7 @@ Three dimensional coordinates into two dimensional coordinates transformation.
 
 Version 0.3.3\\
 
-\textbf{Remark. This is a development version. It is almost everywhere now to be overworked again. The introduction and the first chapter, which keep the introduction to the main formula are totally from my first interpretation and the topics which i elaborated over the days need all a polish and a thread. The next hours i spend for the document i will spend for cleaning this up. I want to replace a lot of text with the results of reading the last four weeks about all the topics i started. There is much more to say and much more working together with all the beauties in this document, than this document states in its current chaotic four week a few minutes each day state while i spent hours each day for doing mathematics for and not for this topic. During updating the text, i will write down some more sophisticated information about the coordinate system. }
+\textbf{Remark. This is a development version.} It is almost everywhere now to be overworked again. The introduction and the first chapter, which keep the introduction to the main formula are totally from my first interpretation and the topics which i elaborated over the days need all a polish and a thread. The next hours i spend for the document i will spend for cleaning this up. I want to replace a lot of text with the results of reading the last four weeks about all the topics i started. There is much more to say and much more working together with all the beauties in this document, than this document states in its current chaotic four week a few minutes each day state while i spent hours each day for doing mathematics for and not for this topic. During updating the text, i will write down some more sophisticated information about the coordinate system.\\
 
 \end{center} 
 
@@ -2131,21 +2131,21 @@ Gram Schmidt gave us these vectors.
 
 \subsubsection{Screenshot of after Gram-Schmidt}
 
-I decided to take the 45 degree perspective projection of a cube. I patched the code and the implement.js
+I decided to take the 45 degree perspective projection of a cube. I patched the code and the implement.js\\
 
 \begin{figure}[ht]
 \includegraphics[scale=0.5]{b4ortho.png}
 \caption{Before Gram Schmidt. This is the 45 degree lefthand basis.}
 \end{figure}
 
-I do not know how big the error of the used source code is. My second screenshot, typing handwritten results in, is not there yet.
+I do not know how big the error of the used source code is. My second screenshot, typing handwritten results in, is not there yet.\\
 
 \begin{figure}[ht]
 \includegraphics[scale=0.5]{afterortho.png}
 \caption{After Gram Schmidt. It seems very fine for this experiment. The angles have changed. But it is very fine when rotated. }
 \end{figure}
 
-I do not clean up the code today. This is the little patch, with which i went over my axis vectors. The perspective changes a little, and it is still wonderful. 
+I do not clean up the code today. This is the little patch, with which i went over my axis vectors. The perspective changes a little, and it is still wonderful. \\
 
 
 \textbf{Example} JavaScript example code without any error correction. So this is NOT exact. But gives a wonderful insight.
@@ -2159,7 +2159,7 @@ function gs_ortho(ex,ey,ez) {
 	      ey[1] - (tmp*q1[1]) ];
     var norm_b = norm(b,2);
     var q2 = [b[0]/norm_b, b[1]/norm_b];
-    var tmp1 = (q1[0] * ey[0] + q1[1] * ey[1]);
+    var tmp1 = (q1[0] * ez[0] + q1[1] * ez[1]);
     var tmp2 = (q2[0] * ez[0] + q2[1] * ez[1]);
     var c = [
 	ez[0] - (tmp1*q1[0]) - (tmp2*q2[0]),
