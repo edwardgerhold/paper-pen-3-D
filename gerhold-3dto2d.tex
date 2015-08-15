@@ -20,11 +20,7 @@ Three dimensional coordinates into two dimensional coordinates transformation.
 
 Version 0.3.3\\
 
-\textbf{Remark. This is a development version. And has chaotic parts. And (only temporarily) some logical mathematical mistakes, which are of course going to be corrected.} This file contains typos, unwanted logical mistakes and miscounts, and a maybe accidental letters, which came from a suddenly appearing double cursor in the editor. This is my first \LaTeX but not my last. If you ever print this, print 4 on 1. This saves paper. This document is unfinished and not completly shaped.\\}
-
-\fbox{To get the formalities right, a german translation version is now being worked out by me.}\\
-
-In the next versions i will clean up and finish the existing before examining more rules.\\
+\textbf{Remark. This is a development version. It is almost everywhere now to be overworked again. The introduction and the first chapter, which keep the introduction to the main formula are totally from my first interpretation and the topics which i elaborated over the days need all a polish and a thread. The next hours i spend for the document i will spend for cleaning this up. I want to replace a lot of text with the results of reading the last four weeks about all the topics i started. There is much more to say and much more working together with all the beauties in this document, than this document states in its current chaotic four week a few minutes each day state while i spent hours each day for doing mathematics for and not for this topic. During updating the text, i will write down some more sophisticated information about the coordinate system. }
 
 \end{center} 
 
@@ -33,27 +29,29 @@ In the next versions i will clean up and finish the existing before examining mo
 \section{Introduction}
 
 On a piece of paper you see three coordinate axes pointing into three
-directions in space. In reality these vectors are two dimensional. Because
-they point into three directions on the paper, and not into the real space.\\
+dimensions in space. In reality these vectors are two dimensional. Because
+they point into \emph{three directions} on the 2-D paper,
+and not into the real 3-D space.\\
 
 \begin{figure}[ht]
 \label{ijksystem}
 \includegraphics[scale=2]{ijksystem.png}\\
-\caption{Picture of a right handed 3-D coordinate system with ijk-basis-vectors on the axes pointing
+\caption{Picture of a right handed 3-D coordinate system with ijk-basis-vectors on the axes pointing (imaginary)
 into three dimensions. See \cite{Corral1} for introduction.}
 \end{figure}
 
-In this document we will design a $\mathbb{R}^{2\times{3}}$ basis for the coordinate transformation. 
-A basis is multiplied with the values of the coordinates to move for each component 
-a piece, to end the move on the correct new point.
-In the case of cosines and sines, we move left and right and up and down, to 
-tell you directly, what happens, when we multiply the coordinates with the matrix.\\
+In this document we will design a ${2\times{3}}$ basis for the coordinate transformation. 
+A basis is multiplied with the values of the coordinates. That moves the point for each 
+component a piece. After the third move, we end up on the correct new point.
+In the case of using cosines and sines, we move with to the left and right and upwards and downwards. 
+To  tell you directly, what happens, when we multiply the coordinates with the matrix. \\
 
 \textbf{What we will do in the document}
 
 \begin{enumerate}
 \item We choose angles $\varphi$ for our coordinate axes. Around the unit circle we lay out three axes.
 \item We choose the unit length $r$ for one unit on the axis. For all axes or uniquely for each axis.
+\item We write down three vectors derived from the canonical basis vector $(cos \theta, sin \theta)^{T}$, applying our angles and unit lengths.
 \item We assemble a matrix $\boldsymbol{A}$ with the axis vectors. For a point by point transformation.
 \item We read the example source code for a computer function, which is exactly two lines long. One line is for the new $x$-coordinate and one line of code is for the new $y$-coordinate.
 \item We get the proofs for the linear behaviour of the transformation. That 0 stays in 0. And a point on the axis on the axis.
@@ -102,7 +100,7 @@ Mathematically speaking, it is quite dramatic to intermingle these, and during w
 
 During the document we will see and prove, that it is impossible, to reduce the 2x3 system to a 2-D basis, and that the linear combination of the third axis is required, to calculate the new position vector correctly. And that anyways, all that works perfectly fine and gives exact 2-D images of our 3-D model.\\
 
-Remark. Section of Aug. 9. 
+Remark. Temporary section of Aug. 9. 
 
 \subsection{The $_{n}$ index for $_x,_y,_z$ with $_x=1$, $_y=2$ and $_z=3$}
 \index{index}
@@ -678,12 +676,12 @@ f(t) = f_{1}(t)\vec{i}+f_{2}(t)\vec{j}+f_{3}(t)\vec{k}
 In our version this becomes a direct transformation onto the 2-D plane by using our 2x3 basis instead of a 3x3 basis.
 
 \begin{displaymath}
-f(t) = f_{1}(t)\begin{pmatrix}\cos\varphi_1\\\sin\varphi_1\end{pmatrix}
-        +f_{2}(t)\begin{pmatrix}\cos\varphi_2\\\sin\varphi_2\end{pmatrix}
-        +f_{3}(t)\begin{pmatrix}\cos\varphi_3\\\sin\varphi_3\end{pmatrix}
+f(t) = x(t)\begin{pmatrix}\cos\varphi_x\\\sin\varphi_x\end{pmatrix}
+        +y(t)\begin{pmatrix}\cos\varphi_y\\\sin\varphi_y\end{pmatrix}
+        +z(t)\begin{pmatrix}\cos\varphi_z\\\sin\varphi_z\end{pmatrix}
 \end{displaymath}
 
-Remark. It is the same as the functional $\vec{f}(\vec{x})$ just written clearly. Will overwork.
+Remark. It is the same as the functional $\vec{f}(\vec{x})$ just written clearly. Will overwork and analyse differentiation.
 
 \subsection{Polar coordinate version}
 \label{polar_coord_func}
@@ -712,7 +710,6 @@ One of the \emph{main goals of this document} is to show the simplicity of trans
 2-D Canvas and do not have the need for WebGL, or it is not available on your old target systems, which was the reason for me, to try it myself anyways.\\
 
 This should be in a border box.\\
-
 
 \begin{example}
 \fbox{
@@ -1117,8 +1114,29 @@ I_{n}(x) := \left\{\begin{array}{1}
 I(\vec{v}) := I_{x}(\vec{v}_{1}) + I_{y}(\vec{v}_{2}) + I_{z}(\vec{v}_{3})
 \end{displaymath}
 
+We can fix the integral another way. By using $\sign(x)$ in front of and $\abs(x)$ in the upper limit of the integral.\\
 
-We can fix the integral another way. By using sgn(x) in front of and abs(x) in the upper limit of the integral.\\
+The sign function $\sign(x) := \pm 1$ returns a factor of one with the positive or negative sign of the argument.\\
+
+\begin{displaymath}
+\sign(x) := \left\{\begin{array}{1}
+-1 (\forall x < 0) \\
+\\
+1 (\forall x \geq 0) 
+\end{array}\\
+\end{displaymath}
+
+The absolute value function $\abs(x) := |x|$ returns the positive value of the argument $|-x|=x$ and $|x|=x$.
+
+\begin{displaymath}
+\abs(x) := \left\{\begin{array}{1}
+-x (\forall x < 0) \\
+\\
+x (\forall x \geq 0) 
+\end{array}\\
+\end{displaymath}
+
+
 
 %\hline
 \begin{displaymath}
@@ -1216,7 +1234,6 @@ The theorem of uniformed boundedness is a part of functional analysis. I have no
 
 Remark. To be continued.\\
 
-
 \subsection{Bounds with $r_n$ values TODO)}
 
 Remark. This section has no consensus. TODO
@@ -1268,7 +1285,7 @@ In three dimensions, all vector components of the sequence have to converge to s
 
 For my 3-D to 2-D transformation, the following propositions are made by me.\\
 
-First. If the sequence $(v_{n})$ converges to $\vec{v}$. Then $(\boldsymbol{A}\vec{v})$ converges to $\boldsymbol{A}\v$.\\
+First. If the sequence $(v_{n})$ converges to $\vec{v}$. Then $(\boldsymbol{A}\vec{v})$ converges to $\boldsymbol{A}\vec{v}$.\\
 
 \begin{center}
 $(v_{n})_{n\in\mathbb{N}^{+}} \rightarrow \vec{v}$\\
@@ -1343,7 +1360,6 @@ About the word \emph{unit}. I am not really sure, if i have to use \emph{base ve
 \section{Glossary}
 
 I am nativly a german speaking man. To reduce the risk of misunderstanding me, i will write down the terms, which i use in this document. So you can read from my definition, what i mean with and decide by yourself, what´s the correct word, i wanted to use.\\
-
 
 
 \begin{tabular}{-l-l-l-}
@@ -1472,7 +1488,7 @@ Written as sum this is
 \sum_{i=1}^{n}\vec{v}_{i}^{2}+2\vec{v}_{i}\vec{w}_{i}+\vec{w}_{i}^{2} \leq \sum_{i=1}\vec{v}_{i}^{2}+2(\sum_{i=1}^{n}\vec{v}_{i}\vec{v}_{i})^{\frac{1}{2}}(\sum_{i=1}^{n}\vec{w}_{i}\vec{w}_{i})^{\frac{1}{2}}+\sum_{i=1}^{n}\vec{w}_{i}^{2}
 \end{displaymath}
 
-This can be simplified. Now assume i split the left side up into three sums. And for more simplification i leave the equal (v,v) and (w,w) on both sides away, since they are summed, not multiplied. We get
+This can be simplified. Now assume i split the left side up into three sums. And for more simplification i leave the equal (v,v) and (w,w) on both sides away, since they are summed, not multiplied (this is the same as subtracting it from both sides, just with one thought ahead, that it can be left away with the same meaning). We get
 
 \begin{displaymath}
 2(\vec{v},\vec{w}) \leq 2(\vec{v},\vec{v})^{\frac{1}{2}}(\vec{w},\vec{w})^{\frac{1}{2}}
@@ -1484,7 +1500,8 @@ Now i divide the two out.
 (\vec{v},\vec{w}) \leq (\vec{v},\vec{v})^{\frac{1}{2}}(\vec{w},\vec{w})^{\frac{1}{2}}
 \end{displaymath}
 
-Now get rid of the square root by squaring it again. This is the Cauchy Schwarz inequality.
+Now get rid of the square root by squaring it again. This is the Cauchy Schwarz inequality. (The abs bars are missing, but since the dot product on the left is squared, the result is identical, and we can continue with the CS inequality.)
+
 
 \begin{displaymath}
 (\vec{v},\vec{w})^{2} \leq (\vec{v},\vec{v})(\vec{w},\vec{w})
@@ -1521,8 +1538,6 @@ The product on the right side is larger. Or equal.
 |\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}|^{2} \leq \sum_{j=1}^{n}\sum_{i=1}^{n}(|\vec{v}_{i}||\vec{w}_{i}|)^{2}
 \end{align}
 \end{displaymath}
-
-Remark. Think i have corrected it.
 
 \subsection{Parallelogram equation}
 
@@ -2003,6 +2018,8 @@ Remark. (Lost the words i had in the bus)
 
 \subsection{Orthogonality in the 2x3 matrix}
 
+
+
 The 2x3 is mapping the 3-D input onto a 2-D plane. The 2-D plane itself follows the rules of orthogonal basis vectors. The standard basis for the R2 is $\begin{pmatrix}1&0\\0&1\end{pmatrix}$. Onto this basis the output of the 2x3 operators will be mapped.\\
 
 Each of the three input coordinates, which regularly come from an orthogonal 3-D system, contributes a piece of movement to the two dimensions of the target space.\\
@@ -2010,6 +2027,7 @@ Each of the three input coordinates, which regularly come from an orthogonal 3-D
 The 2x3 is combining 3 inputs into 2 outputs.\\
 
 The 2 outputs are then interpreted by the R2 standard basis.
+
 
 
 \subsubsection{Gram-Schmidt Orthogonalization}
@@ -2110,11 +2128,57 @@ Gram Schmidt gave us these vectors.
 \end{displaymath}
 
 
-Remark. I have not drawn with them yet.
+
+\subsubsection{Screenshot of after Gram-Schmidt}
+
+I decided to take the 45 degree perspective projection of a cube. I patched the code and the implement.js
+
+\begin{figure}[ht]
+\includegraphics[scale=0.5]{b4ortho.png}
+\caption{Before Gram Schmidt. This is the 45 degree lefthand basis.}
+\end{figure}
+
+I do not know how big the error of the used source code is. My second screenshot, typing handwritten results in, is not there yet.
+
+\begin{figure}[ht]
+\includegraphics[scale=0.5]{afterortho.png}
+\caption{After Gram Schmidt. It seems very fine for this experiment. The angles have changed. But it is very fine when rotated. }
+\end{figure}
+
+I do not clean up the code today. This is the little patch, with which i went over my axis vectors. The perspective changes a little, and it is still wonderful. 
+
+
+\textbf{Example} JavaScript example code without any error correction. So this is NOT exact. But gives a wonderful insight.
+
+\begin{lstlisting}
+function gs_ortho(ex,ey,ez) {
+    var norm_ex = norm(ex,2);
+    var q1 = [ ex[0]/norm_ex, ex[1]/norm_ex ];
+    var tmp = (q1[0] * ey[0] + q1[1] * ey[1]); // q1^t*ey
+    var b = [ ey[0] - (tmp*q1[0]),
+	      ey[1] - (tmp*q1[1]) ];
+    var norm_b = norm(b,2);
+    var q2 = [b[0]/norm_b, b[1]/norm_b];
+    var tmp1 = (q1[0] * ey[0] + q1[1] * ey[1]);
+    var tmp2 = (q2[0] * ez[0] + q2[1] * ez[1]);
+    var c = [
+	ez[0] - (tmp1*q1[0]) - (tmp2*q2[0]),
+	ez[1] - (tmp1*q1[1]) - (tmp2*q2[1])
+    ];
+    var norm_c = norm(c,2);
+    var q3 = [
+	c[0]/norm_c, c[1]/norm_b
+    ];
+    return [q1,q2,q3];
+}
+\end{lstlisting}
+
 
 
 \subsection{Intuitive standard basis for multiplying with 3x1}
 \label{intuitive_standard_basis}
+First off, the optimal non-standard basis is still arranged around the circle, like at the beginning explained.\\
+
 Remark. When talking of a basis here, we talk with a background of knowing that this is not a linear independent vector space basis, but the only right coordinate system, which is used like a basis, which induces a linear map or a linear combination of three vectors on two dimensions.\\
 
 When deducing from the format of the R2x3 basis, the first suggestions are to use zeros and ones for the basis. The very intuitive first guess using our already defined lefthanded and righthanded systems are these:\\
@@ -2417,6 +2481,8 @@ This brings me to U of our SVD
 
 \subsection{Eigenvalues and -vectors of the 3x3 $A^{T}A$}
 
+\textbf{Possibly wrong}. The determinant could be zero, the polynomial just $(1-\lambda)^{2}$ and the eigenvalues $0,1,1$. The following is from my first notes. The second determinant gave zero, and thinking about gave me the previous results. But now the notes, for the next few days, they are fun in this document.\\
+
 \textbf{Example}\\
 
 After solving for the 2x2 i started solving for the 3x3 with a pen.
@@ -2425,7 +2491,7 @@ After solving for the 2x2 i started solving for the 3x3 with a pen.
 \boldsymbol{A}^{T}\boldsymbol{A} = \begin{pmatrix}1&-2^{-\frac12}&-2^{-\frac12}\\-2^{-\frac12}&1&0\\-2^{-\frac12}&0&1\end{pmatrix}
 \end{displaymath}
 
-Underways i subtracted lamda and solved for the determinant using the crossproduct and determinat formula for handwritten determinants of 3x3 matrices.\\
+Underways i subtracted lambda and solved for the determinant using the crossproduct and determinat formula for handwritten determinants of 3x3 matrices.\\
 
 \begin{displaymath}
 \boldsymbol{A}^{T}\boldsymbol{A} = \begin{pmatrix}1-\lambda&-2^{-\frac12}&-2^{-\frac12}\\-2^{-\frac12}&1-\lambda&0\\-2^{-\frac12}&0&1-\lambda\end{pmatrix}
@@ -2998,7 +3064,9 @@ Remark. Got to fetch the formal version of this declaration.\\
 \section{License}
 
 This code is free of charge, free for anyone to use. You are welcome to accredit Edward Gerhold for his work.
-But it is not neccessary to do so. I can say it with a rhyme. I did it, too. And explained it to you. 
+But it is not neccessary to do so. I can say it with a rhyme. I did it, too. And explained it to you. However.
+You may use it. You may have it. But by the declaration of ownership, i have really developed this all myself.
+And i keep it for the people.
 
 Remark. Formulation lacks. Obviously a standard public domain or creative commons license will work.\\
 
