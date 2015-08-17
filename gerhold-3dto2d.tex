@@ -18,9 +18,10 @@ Three dimensional coordinates into two dimensional coordinates transformation.
 \maketitle
 
 
-Version 0.3.3\\
+Version 0.3.4\\
 
 \textbf{Remark. This is a development version.} It is almost everywhere now to be overworked again. The introduction and the first chapter, which keep the introduction to the main formula are totally from my first interpretation and the topics which i elaborated over the days need all a polish and a thread. The next hours i spend for the document i will spend for cleaning this up. I want to replace a lot of text with the results of reading the last four weeks about all the topics i started. There is much more to say and much more working together with all the beauties in this document, than this document states in its current chaotic four week a few minutes each day state while i spent hours each day for doing mathematics for and not for this topic. During updating the text, i will write down some more sophisticated information about the coordinate system.\\
+The next versions i will really clean up and remove some mistakes i have spotted.\\
 
 \end{center} 
 
@@ -438,7 +439,7 @@ Remark. The topology has still to be defined extensivly in this document.\\
 
 A $m\times n$ matrix is a rectangle or square of numbers.\\
 \begin{displaymath}
-    \boldsymbol{A} = (a_{ij})_{i,j \in \mathbb{N}^{+}} = \begin{pmatrix}a_{11} & ... & a_{mn}\\\vdots&\ddots&\vdots\\a_{m1} & ... & a_{mn}\end{pmatrix}
+    \boldsymbol{A} = (a_{ij})_{i,j \in \mathbb{N}^{+}} = \begin{pmatrix}a_{11} & ... & a_{1n}\\\vdots&\ddots&\vdots\\a_{m1} & ... & a_{mn}\end{pmatrix}
 \end{displaymath}\\
 
 Matrix with vector multiplication, from left to right in the matrix and from top to bottom in the vector, and that row by row, is achived by \\
@@ -536,7 +537,7 @@ A Hamelbasis requires a linearly independent set of basis vectors. Which we can 
 If you multiply the three linear dependent two dimensional vectors with the three dimensional coordinates, they are mapped correctly onto the two dimensional coordinate system.
 \end{VectorBasisVersion}
 
-The operation is equal, but instead of working with three components in the new vector, we work with two components in the new vector. For each component we build the sum of the basis component multiplied by the belonging to coordinate, like we would do in the original form. \\
+The operation is equal, but instead of working with three components in the new vector, we work with two components in the new vector. For each component, we build a sum of products. A sum of the productts of the basis components multiplied with the related coordinates ($x\vec{e}_x + y\vec{e}_y + z\vec{e}_z$), like we would do in the original form of this calculation with a $n\times n$ basis. \\
 
 \begin{displaymath}
 \vec{v} = \begin{pmatrix}x\\y\\z\end{pmatrix}
@@ -2042,7 +2043,7 @@ Our first vector is easy and just normalized. Using no r-value gives us the e-ve
 \vec{q}_1 = \vec{e}_{x}/\|\vec{e}_{x}\|
 \end{displaymath}
 
-Now for the second vector we remove the linear parts from the first. And normalize in the second step.
+Now for the second vector. We remove the linear parts of the first from the second vector with $(q_{1}^{t}\vec{e}_{y})q_{1}$. (Maybe you recognize ($\vec{q}_{1}|\vec{e}_{y})\vec{q}_{1}$) from the orthogonal projection in Hilbert spaces.) In the second step the new vector is normalized by division by its magnitude
 
 \begin{displaymath}
 \begin{align}
@@ -2069,7 +2070,7 @@ Remark. I have not verified or examined or observed the outcome today. I want to
 Consider this matrix:
 
 \begin{displaymath}
-    E^{\mathbb{R}^{2\times{3}}}_{yz} = \begin{pmatrix}-2^{-\frac12}&0&1\\-2^{-\frac12}&1&0\end{pmatrix}
+    E^{\mathbb{R}^{2\times{3}}}_{y\perp z} = \begin{pmatrix}-2^{-\frac12}&0&1\\-2^{-\frac12}&1&0\end{pmatrix}
 \end{displaymath}
 
 This is the coordinate system with z-axis up, x pointing 225 degrees down south west, and y to the right.
@@ -2094,15 +2095,20 @@ Remember. $-2^{-\frac12}$ is the same as $\cos 225$ and $\sin 225$. The length o
 
 Now for the second vector\\
 
+Remark. OH I HAVE A MISTAKE HERE. CAN DO IT AGAIN. There is a double minus: \\
+
 \begin{displaymath}
 \begin{align}
 \vec{e}_{y} &= \begin{pmatrix}1\\0\end{pmatrix}
-\vec{b} = \begin{pmatrix}1\\0\end{pmatrix} - (-\sqrt{frac12} + 0)\begin{pmatrix}1\\0\end{pmatrix} \\
+\vec{b} = \begin{pmatrix}1\\0\end{pmatrix} - (-\sqrt{\frac12} + 0)\begin{pmatrix}1\\0\end{pmatrix} \\
     &= \begin{pmatrix}1-\sqrt{\frac12}\\0\end{pmatrix}\\
 \vec{q}_{2} &= \frac{\vec{b}}{\|\vec{b}\|} \\
             &= \begin{pmatrix}\frac{1-\sqrt{\frac12}} { \sqrt{\frac32-\frac{2}{\sqrt{2}}} }\\0\end{pmatrix}\\
 \end{align}
 \end{displaymath}
+
+
+
 
 And for the third vector, the last term, the $q_2$ term, is getting zero. Simpler than it looked like \\
 
@@ -2193,18 +2199,18 @@ The thing is, the vectors are not normalized in that case. We have to do so. If 
 What else can you see? The standard basis of $\mathbb{R}^{2}$ embedded in the $\mathbb{R}^{2\times3}$ matrix.\\
 
 \begin{displaymath}
-    E^{\mathbb{R}^{2\times{3}}}_{xy} = \begin{pmatrix}1&0&2^{-\frac12}\\0&1&2^{-\frac12}\end{pmatrix} \mbox{ and }
-    E^{\mathbb{R}^{2\times{3}}}_{yz} = \begin{pmatrix}2^{-\frac12}&0&1\\2^{-\frac12}&1&0\end{pmatrix} \mbox{ and }
-    E^{\mathbb{R}^{2\times{3}}}_{xz} = \begin{pmatrix}1&2^{-\frac12}&0\\0&2^{-\frac12}&1\end{pmatrix} 
+    E^{\mathbb{R}^{2\times{3}}}_{x\perp y} = \begin{pmatrix}1&0&2^{-\frac12}\\0&1&2^{-\frac12}\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{y\perp z} = \begin{pmatrix}2^{-\frac12}&0&1\\2^{-\frac12}&1&0\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{x\perp z} = \begin{pmatrix}1&2^{-\frac12}&0\\0&2^{-\frac12}&1\end{pmatrix} 
 \end{displaymath}
 
 Can you spot, what i did? I embedded the third axis in some orthogonal 2-D system. Here the axes point into the same positive direction, this is a lefthand system. We look from the back into the z direction.
 
 
 \begin{displaymath}
-    E^{\mathbb{R}^{2\times{3}}}_{xy} = \begin{pmatrix}1&0&-2^{-\frac12}\\0&1&-2^{-\frac12}\end{pmatrix} \mbox{ and }
-    E^{\mathbb{R}^{2\times{3}}}_{yz} = \begin{pmatrix}-2^{-\frac12}&0&1\\-2^{-\frac12}&1&0\end{pmatrix} \mbox{ and }
-    E^{\mathbb{R}^{2\times{3}}}_{xz} = \begin{pmatrix}1&-2^{-\frac12}&0\\0&-2^{-\frac12}&1\end{pmatrix} 
+    E^{\mathbb{R}^{2\times{3}}}_{x\perp y} = \begin{pmatrix}1&0&-2^{-\frac12}\\0&1&-2^{-\frac12}\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{y\perp z} = \begin{pmatrix}-2^{-\frac12}&0&1\\-2^{-\frac12}&1&0\end{pmatrix} \mbox{ and }
+    E^{\mathbb{R}^{2\times{3}}}_{x\perp z} = \begin{pmatrix}1&-2^{-\frac12}&0\\0&-2^{-\frac12}&1\end{pmatrix} 
 \end{displaymath}
 
 Here the additional axis shows in the other direction. This is a righthand system. We look from the front against the x direction.
@@ -3103,3 +3109,4 @@ Remark. Formulation lacks. Obviously a standard public domain or creative common
 
 \end{document}
 
+                                                                                                                                                                                
