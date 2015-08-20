@@ -8,7 +8,9 @@
 \usepackage{amssymb}
 \usepackage{listings}
 \usepackage{natbib}
-%\makeindex
+%\usepackage{etex}
+%\usepackage{m-pictex}
+\makeindex
 \begin{document}
 \begin{center}
 \title{Three dimensional coordinates into two dimensional coordinates transformation}\\
@@ -17,8 +19,7 @@ Three dimensional coordinates into two dimensional coordinates transformation.
 \date{\today}
 \maketitle
 
-
-Version 0.3.4\\
+Version 0.4.0-alpha-1\\
 
 \textbf{Remark. This is a development version.} It is almost everywhere now to be overworked again. The introduction and the first chapter, which keep the introduction to the main formula are totally from my first interpretation and the topics which i elaborated over the days need all a polish and a thread. The next hours i spend for the document i will spend for cleaning this up. I want to replace a lot of text with the results of reading the last four weeks about all the topics i started. There is much more to say and much more working together with all the beauties in this document, than this document states in its current chaotic four week a few minutes each day state while i spent hours each day for doing mathematics for and not for this topic. During updating the text, i will write down some more sophisticated information about the coordinate system.\\
 The next versions i will really clean up and remove some mistakes i have spotted.\\
@@ -67,41 +68,6 @@ Edward Gerhold, who is writing this document, is nativly speaking german. He was
 
 \section{Designing a $\mathbb{R}^{2\times{3}}$ coordinate system for our transformation from $\mathbb{R}^{3}$ to $\mathbb{R}^{2}$}
 
-\subsection{Axis vector}
-
-Before we get started, i have to clear something up, which will happen throughout this text over the next few editions, until it is formulated better.\\
-
-The words basis, axis vectors, coordinate system are used interchangably. And from those choices we talk about a coordinate system.\\
-
-Once this document was started, i intermingled axis vectors and basis vectors.\\
-
-A basis for a vector space is the smallest set of linear independent vectors possible. They span up the vector space, and any other vector in the space is a linear combination of the basis vectors.\\
-
-\newtheorem{Vectorbasis}{Theorem. Hamel basis}
-\begin{Vectorbasis}
-A subset X of a linear vector space E is called a Hamel basis of E if every vector $x \in E$ can be uniquely expressed as a finite linear combination of some elements of X.
-\begin{displaymath}
-x=\sum_{k=1}^{n}a_{k}x_{k}
-\end{displaymath}
-for some nonzero scalar $a_{k}$ and vectors $x_{k} \in X$.
-\end{Vectorbasis}
-from \cite{Vershynin1}
-
-
-The axis vectors for our coordinate system are used like a basis. We multiply our coordinates with and add them up for a weighted sum. Once for each component. Means to sum up the products of the three coordinates with the three x-components of our three coordinate axes. And to sum up the products of the three coordinates with the three y-components of our three coordinate axis. The result is a 2-D vector, which is the new position vector on the plane, which is right.\\
-
-It is easy to intermingle this with the word basis and to multiply with a basis. The calculation is the same. Bu it is called differently. It is called a linear combination of our axis vectors with the coordinates. And the result is a linear map. And the matrix we use induces a linear map by its $m\times n$ dimension. More about (the full story) a little later.\\
-
-Remark [Import Definition Linear Combination here. It is not too much math for the beginning.]\\
-\begin{displaymath}
-\vec{x}=\sum_{i=1}^{n}\vec{u}_{i}\vec{v}_{i}
-\end{displaymath}
-
-Mathematically speaking, it is quite dramatic to intermingle these, and during writing the document, i had mostly the problem of intermingling "linear combination of coordinates and the axis vectors" with "multiplying coordinates with the basis". Or better than intermingling, misusing, because i knew little more about what i was doing, but find it today more dramatic than before.\\
-
-During the document we will see and prove, that it is impossible, to reduce the 2x3 system to a 2-D basis, and that the linear combination of the third axis is required, to calculate the new position vector correctly. And that anyways, all that works perfectly fine and gives exact 2-D images of our 3-D model.\\
-
-Remark. Temporary section of Aug. 9. 
 
 \subsection{The $_{n}$ index for $_x,_y,_z$ with $_x=1$, $_y=2$ and $_z=3$}
 \index{index}
@@ -127,7 +93,7 @@ First draw three axes of a 3-D coordinate system on a piece of paper. Draw the h
 Each of the three vectors has an angle, counted from the horizontal positive x-axis, going counterclockwise around the origin. The
 angle between the axes themselves isn´t what we want. We want the angle beginning on the real 2-D x-axis, to feed the cos and sin functions with, when calculating the real numbers of each basis vector.\\
 
-In this document, i will call the angles $\angle \varphi_{n}$ or just $\varphi_{n}$. If they are measured in degrees or radians depends on the cosine and sine functions you use. And on how you would like to read your own definition.\\
+In this document, i will call the angles $\angle(\vec{e}_{1}_{1},\vec{e}_{2}_{2})$ $\angle\varphi_{n}$ or just $\varphi_{n}$. If they are measured in degrees or radians depends on the cosine and sine functions you use. And on how you would like to read your own definition.\\
 
 \fbox{We will arrange the three axes for x, y and z around the circle by choosing angles.}\\
 
@@ -136,7 +102,10 @@ Let $\varphi_{n}$ be the set of axis angles, one for each axis. I put them into 
 using the index $_{n}$ together with $_x, _y, _z$ or $1,2,3$. $\varphi_x$ or $\varphi_1$ is the angle of the x-axis. $\varphi_y$ or $\varphi_2$ is the angle of the x-axis and $\varphi_z$ or $\varphi_3$ is the angle of the x-axis. \\
 
 \begin{displaymath}
-\varphi_{n} := \{\varphi_x, \varphi_y, \varphi_z\} = \{ \varphi_1, \varphi_2, \varphi_3 \}
+\begin{align}
+\varphi_{n} :=& \{\varphi_x, \varphi_y, \varphi_z\ | \varphi_n \mbox{are angles for the three 2-D axis vectors}\}\\
+ =& \{ \varphi_1, \varphi_2, \varphi_3 | \varphi_n \mbox{are angles for the three 2-D axis vectors} \}
+\end{align}
 \end{displaymath}
 
 The angles are going around a circle, so they are limited by a modulus operation internally.\\
@@ -151,7 +120,7 @@ Depending on the cosine and sine functions and the input value for the angles, y
 the other way round, the radians to degrees. For example, the JavaScript Math.cos and Math.sin functions take the values in radians.\\
 
 \begin{example}
-\textbf{Example 1}
+\textbf{Definition 1}
 The function rad converts degrees to radians, it´s useful for computer functions taking radians.
 \begin{displaymath}
 \text{rad}(\phi) := \frac{\pi}{180} \times \phi, \phi \in \mathbb{R}
@@ -173,7 +142,7 @@ because of the cosine and sine functions taking radians, we convert the values t
 \end{displaymath}
 \end{example}
 
-\textbf{Example 3}
+\textbf{Definition 3}
 The function deg converts the other way round and from radians to degrees. You multiply your value with the reciprocal of PI/180, namely 180/PI and get the other way round.
 \begin{displaymath}
 \text{deg}(\phi) := \frac{180}{\pi} \times \phi, \phi \in \mathbb{R}
@@ -219,7 +188,7 @@ Before i show you the three vectors, and how to use them, we have to clear anoth
 basis vector. In this document it is called $r_{n}$. The r is from radius. And it stands for the length of the basis vector.
 The length of the basis vector defines, how far a point in this direction will go by one unit.\\
 \begin{displaymath}
-r_{n} := \{ r_{x}, r_{y}, r_{z} \} = \{ r_{1}, r_{2}, r_{3} \}
+r_{n} := \{ r_{x}, r_{y}, r_{z} | r_n \mbox{ is the unit each axis }\} = \{ r_{1}, r_{2}, r_{3} | r_n \mbox { is the unit each axis } \}
 \end{displaymath}
 
 The $r$ originates from radius from the unit circle and from the parametrization of (x,y) via cosine and sine. 
@@ -338,11 +307,13 @@ The point is, the general formula holds with a 2x3 basis.\\
 
 \fbox{By taking 2-D vectors for three coordinates, we map directly onto the plane.}\\
 
+
 \begin{figure}
 \begin{displaymath}
     \boldsymbol{E}_{\mathbb{R}^2} = \begin{pmatrix}1 & 0 \\ 0 & 1\end{pmatrix}    \mbox{          }
     \boldsymbol{E}_{\mathbb{R}^3} = \begin{pmatrix}1 & 0 & 0\\ 0 & 1 & 0 \\ 0 & 0 & 1\end{pmatrix}    
-    \boldsymbol{E}_{\mathbb{R}^{2\times3}} = \begin{pmatrix}r_x\cos\varphi_x&r_y\cos\varphi_y&r_z\cos\varphi_z\\r_x\sin\varphi_x&r_y\sin\varphi_y&r_z\sin\varphi_z\end{pmatrix} 
+    \boldsymbol{E}_{\mathbb{R}^{2\times3}} &= \begin{pmatrix}r_x\cos\varphi_x&r_y\cos\varphi_y&r_z\cos\varphi_z\\r_x\sin\varphi_x&r_y\sin\varphi_y&r_z\sin\varphi_z\end{pmatrix} \\
+  \boldsymbol{E}_{\mathbb{R}^{2\times3}}_{225^{\circ}xrhs} = \begin{pmatrix}-\sqrt{\frac12}&1&0\\-\sqrt{\frac12}&0&1\end{pmatrix}     
 \end{displaymath}
 \caption{The standard basis for the $\mathbb{R}^{2}$ spans up the two dimensional space. When the three coordinates, which were a linear combination of $\lambda\begin{pmatrix}1\\0\\0\end{pmatrix} + \mu\begin{pmatrix}0\\1\\0\end{pmatrix} + \nu\begin{pmatrix}0\\0\\1\end{pmatrix}$ are combined into two coordinates, they become a linear combination of $\lambda\begin{pmatrix}1\\0\end{pmatrix}$ and $\mu\begin{pmatrix}0\\1\end{pmatrix}$. For sure, $\lambda$ is the sum of the cosine terms with the coordinates and $\mu$ is the sum of the sine terms with the coordinates in the two dimensions. }
 \end{figure}
@@ -352,6 +323,8 @@ The formula for multiplying a vector with a basis to get a new vector is this.\f
 \begin{displaymath}
 \vec{w} = \displaystyle\sum_{i=1}^{n} \vec{v}_{i}\vec{e}_{i}
 \end{displaymath}
+
+This is the same formula for the linear combination in general.\\
 
 It is done componentwise for each row of the vector. $n$ is the number of the source dimensions. In our case it is $n = 3$. 
 We are summing three products for each component of the new vector. Our old $\vec{v}$ is a $\vec{v} \in \mathbb{R}^3$.\\
@@ -411,11 +384,9 @@ mathematicians would start to smile. But i will do my best to correct any of my 
 
 \subsection{Defining the Topology on the }
 
-Remark. This subsection is started on July 31. 
+Remark. This subsection is started on July 31. And has still to be continued on Aug 20. Meanwhile i read a little of Munkres already and am fine, thanks.\\
 
 Let $V$ be an open set in $\mathbb{R}^{3}$.\\
-
-Remark. Aug 9. This has to be reordered. Any object i transform from the scene is an open or closed set within another set or the topology. I have to work out a two level deeper hierarchy over the weekend. 
 
 Let $B(\vec{v}, \epsilon)_{3}$ be a standard environment in the 3-space.\\
 
@@ -524,11 +495,15 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 
 The theorem from Hamel says, that every vector space has a basis. And he gives a formula for this. The new vector in the new coordinate system is the sum of the coordinates multiplied with the basis vectors. \\
 
+\newtheorem{Vectorbasis}{Theorem. Hamel basis}
+\begin{Vectorbasis}
+A subset X of a linear vector space E is called a Hamel basis of E if every vector $x \in E$ can be uniquely expressed as a finite linear combination of some elements of X.
 \begin{displaymath}
-\vec{w} = \sum_{i=1}^{n}\vec{v}_{i}\vec{e}_{i}
+x=\sum_{k=1}^{n}a_{k}x_{k}
 \end{displaymath}
-
-Remark. Have to fetch the Hamel-Theorem.\\
+for some nonzero scalar $a_{k}$ and vectors $x_{k} \in X$.
+\end{Vectorbasis}
+from \cite{Vershynin1}
 
 A Hamelbasis requires a linearly independent set of basis vectors. Which we can not provide. We change the dimension. The mapping yields the right image. So i will say, it is o.k. to break the rule of linear independence. This coordinate system is a special case.\\
 
@@ -596,8 +571,17 @@ $f(\vec{x})$ is mapping the three dimensional coordinates onto our designed coor
 
 \begin{displaymath}
 \label{f_function}
-f(\vec{x}) := \left(\begin{array}{1}\vec{x}_{1}r_x\cos\varphi_x + \vec{x}_{2}r_y\cos\varphi_y + \vec{x}_{3}r_z\cos\varphi_z\\
-\vec{x}_{1}r_x\sin\varphi_x + \vec{x}_{2}r_y\sin\varphi_y + \vec{x}_{3}r_z\sin\varphi_z\end{array}\right)
+\begin{align}
+\vec{f}(\vec{x}) :&= \left(\begin{array}{1}\vec{x}_{1}r_x\cos\varphi_x + \vec{x}_{2}r_y\cos\varphi_y + \vec{x}_{3}r_z\cos\varphi_z\\					\vec{x}_{1}r_x\sin\varphi_x + \vec{x}_{2}r_y\sin\varphi_y + \vec{x}_{3}r_z\sin\varphi_z\end{array}\right)\\			
+\end{align}
+\end{displaymath}
+
+This can even be written more convenient. The interested reader might find \cite{Corral1} and \cite{Strang2} useful. \\
+
+\begin{displaymath}
+\begin{align}
+			\vec{f}(\vec{x}) = \vec{x}_{1}\begin{pmatrix}r_x\cos\varphi_x\\r_x\sin\varphi_x\end{pmatrix} + \vec{x}_{2}\begin{pmatrix}r_y\cos\varphi_y\\r_y\sin\varphi_y\end{pmatrix} + \vec{x}_{3}\begin{pmatrix}r_z\cos\varphi_x\\r_z\sin\varphi_z\end{pmatrix}
+	\end{align}
 \end{displaymath}
 
 
@@ -614,13 +598,22 @@ The following functions are compositions of two functions and take some input an
 f is transformingthe vector returned by g. g is taking the input in all examples and f is reworking the coordinates.
 In other words, f is the same function as previously shown in \ref{f_function}.\\
 
-Example 1. A call to $g(t)$ is returning a vector $\vec{v}$ passed to $f(\vec{x})$ by using the composition $f \circ g$ :  $f(g(t)) = \vec{w}$\\
+\textbf{Example 1}\\
+
+A call to $g(t)$ is returning a vector $\vec{v}$ passed to $f(\vec{x})$ by using the composition $f \circ g$ :  $f(g(t)) = \vec{w}$\\
 
 \begin{displaymath}
 \label{g_of_t_code}
 g(t) := \left(\begin{array}{1}t\cos t\\t\sin t\\t\end{array}\right)
 \end{displaymath}
+Becomes the following
+\begin{displaymath}
+\begin{align}
+			(\vec{f}\circ g)(t) := \cos t\begin{pmatrix}r_x\cos\varphi_x\\r_x\sin\varphi_x\end{pmatrix} + t \sin t\begin{pmatrix}r_y\cos\varphi_y\\r_y\sin\varphi_y\end{pmatrix} + t\begin{pmatrix}r_z\cos\varphi_x\\r_z\sin\varphi_z\end{pmatrix}
+	\end{align}
+\end{displaymath}
 
+This is a 2-D image of a conical helix. You can look at Figure 14 how this looks like from $0$ to a few rounds of $2\pi$.\\
 
 \begin{figure}
 \label{g_of_t_figure}
@@ -628,12 +621,23 @@ g(t) := \left(\begin{array}{1}t\cos t\\t\sin t\\t\end{array}\right)
 \caption{This is $g(t)$ from \ref{g_of_t_code} in implement.html where implement.js from the repository is used once.}
 \end{figure}
 
-Example 2. $g(x,y)=(x,y,z)$ this function will give us a surface plot. See figure \ref{g_of_x_y_figure}.\\
+\textbf{Example 2}\\
+
+ $g(x,y)=(x,y,z)$ this function will give us a surface plot. See figure \ref{g_of_x_y_figure}.\\
 
 \begin{displaymath}
 \label{g_of_x_y_code}
 g(x,y) := \left(\begin{array}{1}x\\y\\e^{-x^{2} - y^{2}}\end{array}\right)
 \end{displaymath}
+
+That will be brought by $\vec{f}(\vec{x})$ into the following context. A function $(\vec{f}\circ g)(x,y) : E\times E \rightarrow W$.\\
+
+\begin{displaymath}
+\begin{align}
+			(\vec{f}\circ g)(x,y) := x\begin{pmatrix}r_x\cos\varphi_x\\r_x\sin\varphi_x\end{pmatrix} + y\begin{pmatrix}r_y\cos\varphi_y\\r_y\sin\varphi_y\end{pmatrix} + e^{-x^{2}-y^{2}}\begin{pmatrix}r_z\cos\varphi_x\\r_z\sin\varphi_z\end{pmatrix}
+	\end{align}
+\end{displaymath}
+
 
 \begin{figure}
 \label{g_of_x_y_figure}
@@ -641,12 +645,23 @@ g(x,y) := \left(\begin{array}{1}x\\y\\e^{-x^{2} - y^{2}}\end{array}\right)
 \caption{This is $\exp -x^{2}-y{2}$ from \ref{g_of_x_y_code} plotted with the cheap3danimate.html code within $[-2,2] \times [-2,2]$.}
 \end{figure}
 
-Example 3. A $g(x,y,z)$ or $g(\vec{x})$ a three-d or vector-valued function returning a three-d vector.
+\textbf{Example 3}\\
+
+A $g(x,y,z)$ or $g(\vec{x})$ a three-d or vector-valued function returning a three-d vector.\\
 
 \begin{displaymath}
 \label{g_of_x_y_z_code}
 g(x,y,z) := \left(\begin{array}{1}x+1\\y\\z-1\end{array}\right)
 \end{displaymath}
+
+Which will become this kind of function. $(\vec{f}\circ g)(x,y,z) : E\times E \times E \rightarrow W$.\\
+
+\begin{displaymath}
+\begin{align}
+			(\vec{f}\circ g)(x,y,z) := (x+1)\begin{pmatrix}r_x\cos\varphi_x\\r_x\sin\varphi_x\end{pmatrix} + (y)\begin{pmatrix}r_y\cos\varphi_y\\r_y\sin\varphi_y\end{pmatrix} + (z-1)\begin{pmatrix}r_z\cos\varphi_x\\r_z\sin\varphi_z\end{pmatrix}
+	\end{align}
+\end{displaymath}
+
 
 The vector field of this formula is shown in figure \ref{vector_field_image}.
 
@@ -666,7 +681,7 @@ $f(\vec{x}) : \mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$\\
 
 Remark. This section is not finished. Not only the plot for the vector field, some sophisticated demo with a physics formula, but the compositions are themselves not explained. Additionally in the section about differentiation, the compositions have to be veryfied.\\
 
-\subsection{Vector valued function}
+\subsubsection{Vector valued function}
 \label{vector_valued_func}
 
 The book \cite{Corral1} defines a vector valued function like this:
@@ -682,7 +697,7 @@ f(t) = x(t)\begin{pmatrix}\cos\varphi_x\\\sin\varphi_x\end{pmatrix}
         +z(t)\begin{pmatrix}\cos\varphi_z\\\sin\varphi_z\end{pmatrix}
 \end{displaymath}
 
-Remark. It is the same as the functional $\vec{f}(\vec{x})$ just written clearly. Will overwork and analyse differentiation.
+Remak The first chapter about differentiation, which follows later, deals with the constant form of $x(t), y(t), z(t)$. In a future version i will continue this topic with a few parametrized examples.\\
 
 \subsection{Polar coordinate version}
 \label{polar_coord_func}
@@ -693,15 +708,24 @@ The function can be written as a sum of three polar coordinate functions. The ge
 p(x, r, \theta) := xr\begin{pmatrix}\cos\theta\\\sin\theta\end{pmatrix}
 \end{displaymath}
 
-Remark. The author is unsure, if he would like to redefine the r-value again.
-
 The sum of the three vectors gives us our correct position vector again.
 
 \begin{displaymath}
 P(x,y,z,r_x,r_y,r_z,\theta_x,\theta_y,\theta_z) :=  P(\vec{x}, \vec{r}, \vec{\theta}) := p(x, r_x, \theta_x)+p(y, r_y, \theta_y)+p(z, r_z, \theta_z)\\
 \end{displaymath}
 
-Remark. TODO. This can be explained better, the function can be improved. An illustration is missing. The r-value is discussable again. \ref{polar_coord_func} added on August 8.
+Well, i think this is ugly. And i should reconsider the r-value. Assuming the r-value be the usual normal unit length of 1, the functions become the following:
+
+\begin{displaymath}
+p_{n}(r, \theta) := r\begin{pmatrix}\cos\theta\\\sin\theta\end{pmatrix}
+\end{displaymath}
+
+And the whole combined function is again a sum of the three resulting 2-D vectors of the polar coordinate function.
+
+\begin{displaymath}
+P(\vec{x}) := p_{x}(x_{1}, \theta_{x}) + p_{y}(\vec{x}_{2}, \theta_{y}) + p_{z}(\vec{x}_{3}, \theta_{z})
+\end{displaymath}
+
 
 
 \subsection{Computer implementations of the transformation}
@@ -892,10 +916,6 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)+ zr_t\sin(\varph
 The same method can be used, to convert points or vectors from any other number of dimensions, down to the $xy$-plane. 
 It can so be used in a general $m \times n$ case, where one goes from $n$ dimensions down to $m$ dimensions.\footnote{http://de.wikipedia.org/wiki/Abbildungsmatrix, shows the m by n case.} 
 
-Remark. The other directions to add a new dimension is more difficult, if
-you have to split the numbers up and have less equations than variables. For the best reconstruction of the three dimensions i am
-currently between guessing how, researching and preparing SVD, and will provide information, when they are ready.\\
-
 \subsection{Alternative definition of the transformation by using dot products}
 \label{alternative_def_using_dot}
 Underways, i came to another conclusion. If i pull the two row vectors out of the matrix and define them as two column vectors,
@@ -1001,7 +1021,7 @@ Which is equal to \ref{alternative_def_using_dot} and of course the formula $\ve
 
 \subsection{Integral}
 
-If i sum the three integrals $\vec{f}(\vec{x}) = \int\vec{e}_{x}\partial{x}$ + $\int\vec{e}_{y}\partial{y}$ + $\int\vec{e}_{z}\partial{z}$. I get the function back. But we will see after integration of positive and negative values, it has to be fixed once for those case. But we will do it below.\\
+If i sum the three integrals $\vec{f}(\vec{x}) = \int\vec{e}_{x}\partial{x}$ + $\int\vec{e}_{y}\partial{y}$ + $\int\vec{e}_{z}\partial{z}$. I get the function back. But we will see after integration of positive and negative values, it has to be fixed once for those cases. But we will do it below.\\
 
 \begin{displaymath}
 \begin{align}
@@ -1194,7 +1214,13 @@ function transform(points3) {
 \end{lstlisting}
 \end{example}
 
-\section{Estimation}
+\section{Unbounded linear operator}
+
+I believe, $\boldsymbol{A}$ or $\vec{f}(\vec{x})$ are an unbounded matrix and an unbounded function, since there is nothing limiting them, but the functions you compose them with. If the applying functions are bounded, the whole thing becomes bounded. But this operator i describe is in my opinion concerning all these mathematic texts an \emph{unbounded linear operator}.\\
+
+This operator converts any 3-point into the right 2-point. Until it gets composed with something bounded.\\
+
+\section{Estimations}
 
 \subsection{First guess}
 
@@ -1333,14 +1359,14 @@ Remark. This section is not finished, and at the change of dimensions or at the 
 \end{displaymath}
 
 First we start of with the infinite series for cosine and sine. The series are alternating and change the sign from term to term.
-This is the cosine series as partial sum (finite summation) from zero to n:\\
+
 \begin{displaymath}
-    \cos(x) = \sum_{i=0}^{n}\frac{(-1)^{n}}{(2n)!}x^{2n} = 1 - \frac{x^{2}}{2!} + \frac{x^{4}}{4!} - ... \pm\frac{x^{2n}}{(2n)!}
+    \cos(x) = \sum_{i=0}^{\infty}\frac{(-1)^{n}}{(2n)!}x^{2n} = 1 - \frac{x^{2}}{2!} + \frac{x^{4}}{4!} - ... \pm\frac{x^{2n}}{(2n)!}, n\rightarrow\infty
 \end{displaymath}
 You see, it is alternating and a sum of one over the faculties of the even numbers, times the angle x to the power of 2n.
 And the sin series:\\
 \begin{displaymath}
-    \sin(x) = \sum_{i=0}^{n}\frac{(-1)^{n}}{(2n+1)!}x^{2n+1} = 1 - \frac{x^{3}}{3!} + \frac{x^{5}}{5!} - ... \pm\frac{x^{2n+1}}{(2n+1)!}
+    \sin(x) = \sum_{i=0}^{\infty}\frac{(-1)^{n}}{(2n+1)!}x^{2n+1} = 1 - \frac{x^{3}}{3!} + \frac{x^{5}}{5!} - ... \pm\frac{x^{2n+1}}{(2n+1)!}, n\rightarrow\infty
 \end{displaymath}\\
 
 
@@ -1588,6 +1614,7 @@ Remark. The Parallelogram Equation and the Polarisationformula hold both for Hil
 
 \subsection{Normalizing a vector}
 \label{normalizing_a_vector}
+\subsubsection{The normalization formula}
 
 If you wish to take the length of the vector, you take the norm $\|\vec{v}\|_{V}$ in three dimensions. Or $\|\vec{w}\|_{W}$ in two dimensions. Whenever you wish or need to reduce or enlarge a vector to unit length, that $\|\vec{v}\|=1$ or $\|\vec{w}\|=1$.\\
 you can do this yourself,too.                     \\
@@ -1614,7 +1641,41 @@ Together with updating the vector or creating a new vector, you just have to div
 \end{displaymath}
 
 
+\subsubsection{An example where normalization is important}
+\label{why_normalization}
 
+Consider the Hilbert-Space $\mathbb{R}^{2}$ with the orthogonal projection formula $(\vec{x},\vec{e}_{i})\vec{e}_{i}$. It is first a scalar returned inside the parens. It is a dot product of our source vector and the basis vector. The scalar returned by the two is then multiplied again with the basis vector. This results in a new vector. But. This only works fine, if the basis vector is normalized.\\
+
+\textbf{Example}
+
+a) Unnormalized -wrong results-\\
+
+\begin{displaymath}
+\begin{align}
+\vec{e}_{1} &= \begin{pmatrix}2\\0\end{pmatrix}\\
+\vec{e}_{2} &= \begin{pmatrix}0\\2\end{pmatrix}\\
+\vec{x} &= \begin{pmatrix}3\\2\end{pmatrix}\\
+\sum_{i=1}^{2}(\vec{x},\vec{e}_i) = (3*2+2*0)*\vec{e}_{1} + (3*0+2*2)*\vec{e}_{2}\\ 
+&= 6*\vec{e}_{1} + 4*\vec{e}_{2} = \begin{pmatrix}18\\12\end{pmatrix}\\
+\end{align}
+\end{displaymath}
+
+You see, the vector gets twice enlarged by a factor of the basis vector. This is why the normalization is crucial for the formula  $(\vec{x},\vec{e}_{i})\vec{e}_{i}$.\\
+
+b) Normalized -right results-\\
+
+\begin{displaymath}
+\begin{align}
+\vec{e}_{1} &= \begin{pmatrix}1\\0\end{pmatrix}\\
+\vec{e}_{2} &= \begin{pmatrix}0\\1\end{pmatrix}\\
+\vec{x} &= \begin{pmatrix}3\\2\end{pmatrix}\\
+\sum_{i=1}^{2}(\vec{x},\vec{e}_i) = (3*1+2*0)*\vec{e}_{1} + (3*0+2*1)*\vec{e}_{2}\\ 
+&= 3*\vec{e}_{1} + 2*\vec{e}_{2} = \begin{pmatrix}3\\2\end{pmatrix}\\
+\end{align}
+\end{displaymath}
+
+
+The thing is similar in my understanding in having the r-value set to anything other then $1$ for all axes. The difference is, that our formula here is not multiplying twice with each r each component like this formula $\sum^{i=1}^{n}(\vec{x}|\vec{e}_{i})\vec{e}_{i})$
 
 
 
@@ -2020,16 +2081,17 @@ Remark. (Lost the words i had in the bus)
 \subsection{Orthogonality in the 2x3 matrix}
 
 
+The 2x3 is mapping the 3-D input from $\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}$ onto a 2-D plane. The 2-D plane itself follows the rules of orthogonal basis vectors. The standard basis for the R2 is $\begin{pmatrix}1&0\\0&1\end{pmatrix}$. Onto this basis the output of the 2x3 operators will be mapped.\\
 
-The 2x3 is mapping the 3-D input onto a 2-D plane. The 2-D plane itself follows the rules of orthogonal basis vectors. The standard basis for the R2 is $\begin{pmatrix}1&0\\0&1\end{pmatrix}$. Onto this basis the output of the 2x3 operators will be mapped.\\
+Each of the three input coordinates, which regularly come from an orthogonal 3-D system, contributes a piece of movement to the two dimensions of the target space. One move is left or right, by cosine, and one is up or down by sine. On the plane the move is in a right angle against the other.\\
 
-Each of the three input coordinates, which regularly come from an orthogonal 3-D system, contributes a piece of movement to the two dimensions of the target space.\\
+The 2x3 is combining 3 inputs into 2 outputs with $x\vec{e}_x + y\vec{e}_y + z\vec{e}_z$ by using the 2-D veectors as basis for the linear combinations.\\
 
-The 2x3 is combining 3 inputs into 2 outputs.\\
+The 2 outputs are then interpreted by the R2 standard basis as a linear combination of $\mu\begin{pmatrix}1\\0\end{pmatrix}+\nu\begin{pmatrix}0\\1\end{pmatrix}$.
 
-The 2 outputs are then interpreted by the R2 standard basis.
+\subsection{Orthogonal Projection from above}
 
-
+To keep the orthogonality and orthogonal projection be two different words for two different things i add the paragraph directly here. An orthogonal projection is the shortest path from the point in 3-space to the 2-space plane. This is always the right angle directly onto the plane. This is the orthogonal projection, not to be intermingled with the orthogonal basis vectors being right angled. 
 
 \subsubsection{Gram-Schmidt Orthogonalization}
 \label{gram_schmidt_excercise}
@@ -2061,9 +2123,8 @@ And for the third vector we remove the linear parts of the other two vectors and
 \end{align}
 \end{displaymath}
 
-Now we have three new vectors. In a $n\times n$ system, they will be linearly independent and form a orthogonal basis.\\
+Now we have three new vectors. In a $n\times n$ system, they will be linearly independent and form an orthogonal basis.\\
 
-Remark. I have not verified or examined or observed the outcome today. I want to look at the images from functions then next.\\
 
 \textbf{Example. Righthand basis}\\
 
@@ -2089,47 +2150,44 @@ Remember. $-2^{-\frac12}$ is the same as $\cos 225$ and $\sin 225$. The length o
 \begin{displaymath}
 \begin{align}
 \vec{e}_{x} &= \begin{pmatrix}-\sqrt{\frac12}\\-\sqrt{\frac12}\end{pmatrix}\\
-\vec{q}_{1} &= \frac{\vec{e}_{x}}{\|\vec{e}_{x}} = \vec{e}_{x}
+\vec{q}_{1} &= \frac{\vec{e}_{x}}{\|\vec{e}_{x}\|} = \vec{e}_{x}
 \end{align}
 \end{displaymath}
 
 Now for the second vector\\
 
-Remark. OH I HAVE A MISTAKE HERE. CAN DO IT AGAIN. There is a double minus: \\
-
 \begin{displaymath}
 \begin{align}
-\vec{e}_{y} &= \begin{pmatrix}1\\0\end{pmatrix}
-\vec{b} = \begin{pmatrix}1\\0\end{pmatrix} - (-\sqrt{\frac12} + 0)\begin{pmatrix}1\\0\end{pmatrix} \\
-    &= \begin{pmatrix}1-\sqrt{\frac12}\\0\end{pmatrix}\\
-\vec{q}_{2} &= \frac{\vec{b}}{\|\vec{b}\|} \\
-            &= \begin{pmatrix}\frac{1-\sqrt{\frac12}} { \sqrt{\frac32-\frac{2}{\sqrt{2}}} }\\0\end{pmatrix}\\
+\vec{e}_{y} &= \begin{pmatrix}1\\0\end{pmatrix}\\
+	\vec{b} &= \begin{pmatrix}1\\0\end{pmatrix} - 
+	(\begin{pmatrix}-\sqrt{\frac12}&-\sqrt{\frac12}\end{pmatrix}
+	\begin{pmatrix}1\\0\end{pmatrix})
+	\begin{pmatrix}-\sqrt{\frac12}\\-\sqrt{\frac12} \end{pmatrix}\\
+	&= \begin{pmatrix}\frac12\\-\sqrt{\frac12}\end{pmatrix}\\
+	\vec{q}_{2} &= \frac{\vec{b}}{\|\vec{b}\|}
+			= \begin{pmatrix}\frac{\frac12}{\frac14 + \frac12}\\\frac{-\sqrt{\frac12}}{\frac34}\end{pmatrix} 
+			= \begin{pmatrix}\frac23\\-\frac43 \sqrt{\frac12}\end{pmatrix}\\    
 \end{align}
 \end{displaymath}
 
-
-
-
-And for the third vector, the last term, the $q_2$ term, is getting zero. Simpler than it looked like \\
+And for the third vector.\\
 
 \begin{displaymath}
 \begin{align}
-\vec{e}_{z} &= \begin{pmatrix}0\\1\end{pmatrix}\\
-\vec{c} &= \begin{pmatrix}0\\1\end{pmatrix} - (-\sqrt{\frac12})\begin{pmatrix}-\sqrt{\frac12}\\-\sqrt{\frac12}\end{pmatrix} - 0\\
-        &=  \begin{pmatrix}-\frac12\\\frac12\end{pmatrix}\\
-\vec{q}_{3} &= \frac{\vec{c}}{\|\vec{c}\|}
-            &= \begin{pmatrix}\frac{-\frac12}{\sqrt{\frac12}}\\\frac{\frac12}{\sqrt{\frac12}}\end{pmatrix}
+\vec{e}_{y} &= \begin{pmatrix}0\\1\end{pmatrix}\\
+\vec{c} &= \vec{e}_{z} - (\vec{q}_{1}^{T}\vec{e}_{z})\vec{q}_{1} - (\vec{q}_{2}^{T}\vec{e}_{z})\vec{q}_{2}\\
+			&= \begin{pmatrix}0\\1\end{pmatrix} - \begin{pmatrix}\frac12\\\frac12\end{pmatrix}-(-\frac43\sqrt{\frac12})\begin{pmatrix}\frac46\\-\frac43\sqrt{\frac12}\end{pmatrix}\\
+\vec{q}_{3} = \frac{\vec{c}}{\|c\|}
+			&= \begin{pmatrix}-\frac{25}{18}\\-\frac{7}{18}\end{pmatrix}
 \end{align}
 \end{displaymath}
-
-
 
 Gram Schmidt gave us these vectors.
 \begin{displaymath}
 \begin{align}
 \vec{q}_{1} &=  \begin{pmatrix}-\sqrt{\frac12}\\-\sqrt{\frac12}\end{pmatrix}\\
-\vec{q}_{2} &= \begin{pmatrix}\frac{1-\sqrt{\frac12}} { \sqrt{\frac32-\frac{2}{\sqrt{2}}} }\\0\end{pmatrix}\\
-\vec{q}_{3} &= \begin{pmatrix}\frac{-\frac12}{\sqrt{\frac12}}\\\frac{\frac12}{\sqrt{\frac12}}\end{pmatrix}
+\vec{q}_{2} &= \begin{pmatrix}\frac46\\-\sqrt{\frac{8}{9}}\end{pmatrix}\\
+\vec{q}_{3} &= \begin{pmatrix}-\frac{25}{18}\\-\frac{7}{18}\end{pmatrix}
 \end{align}
 \end{displaymath}
 
@@ -2194,7 +2252,7 @@ When deducing from the format of the R2x3 basis, the first suggestions are to us
     E^{\mathbb{R}^{2\times{3}}}_{righthand} = \begin{pmatrix}-1&1&0\\-1&0&1\end{pmatrix}
 \end{displaymath}
 
-The thing is, the vectors are not normalized in that case. We have to do so. If we have two ones, the squared sum is two. The square root out of two is the square root of two. $2^{-\frac12}$ is the normalized length of a vector containing two ones.\\
+The thing is, the vectors are not normalized in that case (see \ref{why_normalize} for an example, why normalization is sometimes required). We have to do so. If we have two ones, the squared sum is two. The square root out of two is the square root of two. $2^{-\frac12}$ is the normalized length of a vector containing two ones.\\
 
 What else can you see? The standard basis of $\mathbb{R}^{2}$ embedded in the $\mathbb{R}^{2\times3}$ matrix.\\
 
@@ -3085,8 +3143,8 @@ Remark. Formulation lacks. Obviously a standard public domain or creative common
             Linear Algebra and it´s Applications. Fourth Edition.        
     \bibitem{Strang2} \textit{Gilbert Strang, MIT},
             Calculus. MIT OpenCourseWare Supplemental Resources. http://ocw.mit.edu    
-    \bibitem{Toplogy} \textit{John Rogues, Lecture Notes on Topology, following J.R.Munkers Textbook, for MAT3500/4500},
-            Lecture Script, Topology (english),
+    \bibitem{Toplogy} \textit{John Rogues, Lecture Notes on Topology, following J.R.Munkres Textbook, for MAT3500/4500},
+            Lecture Script, Topology (english), http://
     \bibitem{Vershynin1} \textit{Roman Vershynin. Lectures in Functional Analysis. Department of Mathematics, University of Michigan},
             Lecture Script, http://,        
     \bibitem{Ferus1} \textit{Dirk Ferus, TU-Berlin, em.},
