@@ -19,9 +19,11 @@ Three dimensional coordinates into two dimensional coordinates transformation.
 \date{\today}
 \maketitle
 
-Version 0.4.0-alpha-1\\
+Version 0.4.0-alpha-2\\
 
 \textbf{Remark. This is a development version.} It is almost everywhere now to be overworked again. The introduction and the first chapter, which keep the introduction to the main formula are totally from my first interpretation and the topics which i elaborated over the days need all a polish and a thread. The next hours i spend for the document i will spend for cleaning this up. I want to replace a lot of text with the results of reading the last four weeks about all the topics i started. There is much more to say and much more working together with all the beauties in this document, than this document states in its current chaotic four week a few minutes each day state while i spent hours each day for doing mathematics for and not for this topic. During updating the text, i will write down some more sophisticated information about the coordinate system.\\
+\\
+
 The next versions i will really clean up and remove some mistakes i have spotted.\\
 
 \end{center} 
@@ -230,7 +232,7 @@ to define with them the length of one unit of the corresponding axis together wi
 Multiplying the 2x3 basis with the 3x1 points later results in wonderful 2x1 points. \\
 
 \begin{displaymath}
-\vec{e}_{n} := \{\vec{e}_x, \vec{e}_y, \vec{e}_z\} = \{\vec{e}_1, \vec{e}_2, \vec{e}_3\}\\
+\vec{e}_{n} := \{\vec{e}_x, \vec{e}_y, \vec{e}_z | \vec{e}_{n} \mbox{are the coordinate axes} \} = \{\vec{e}_1, \vec{e}_2, \vec{e}_3  | \vec{e}_{n} \mbox{are the coordinate axes} \}\\
 \end{displaymath} 
 
 This is now a set of the three basis vectors. We give them the letter $e$ and a subscript for the coordinate component in the numeric order of $x=1, y=2, z=3$. To arrange these vectors we already got around the unit circle and layed them out there. To measure the angles, beginning on the horizontal coordinate axis or zero, until we reach the vector. The vectors point into the positive direction of the described axis.\\
@@ -1002,10 +1004,11 @@ $(\nabla\vec{f})^{T} := \begin{pmatrix}\vec{e}_{x} & \vec{e}_{y} &\vec{e}_{z}\\\
 \end{center}
 
 Now we could reuse the vector of vectors (the matrix) and multiply again with coordinates. But before, we come to another conclusion, which i had underways, after writing down the transposed gradient at the next morning, reading a lecture script about Analysis 2 (vector calculus).\\
-
-\begin{center}
-$(\nabla\vec{f})^{T} \Leftrightarrow  \boldsymbol{A}  \Leftrightarrow \boldsymbol{J}(\vec{f}(\vec{x})) := \begin{pmatrix}\partial_{1}f_{1} & \partial_{2}f_{1} & \partial_{3}f_{1}\\\partial_{1}f_{2} & \partial_{2}f_{2} & \partial_{3}f_{2}\end{pmatrix}$
-\end{center}
+\begin{displaymath}
+\begin{align}
+(\nabla\vec{f})^{T} \Leftrightarrow &\\ \boldsymbol{A} = (\vec{e}_{i})_{i=1..3} \Leftrightarrow& \\ \boldsymbol{J}(\vec{f}(\vec{x})) :=& \begin{pmatrix}\partial_{1}f_{1} & \partial_{2}f_{1} & \partial_{3}f_{1}\\\partial_{1}f_{2} & \partial_{2}f_{2} & \partial_{3}f_{2}\end{pmatrix}\\
+\end{align}
+\end{displaymath}
 
 The transposed gradient of the vector function $\vec{f}(\vec{x}) : V \rightarrow W$ is the Jacobi Matrix, which is equal to the matrix, i discussed already. This possibly makes another re-ordering neccessary. But first look yourself.\\
 
@@ -1013,7 +1016,9 @@ I have set up a corollary earlier (\ref{alternative_def_using_dot}), which uses 
 
 \begin{displaymath}
 \begin{align}
-\nabla\vec{f}(\vec{x}) \cdot \begin{pmatrix}x\\y\\z\end{pmatrix} &= \begin{pmatrix}\sum_{i=1}^{3}(\nabla\vec{f}_{1})_{i}\vec{v}_{i}\\\sum_{i=1}^{3}(\nabla\vec{f}_{2})_{i}\vec{v}_{i}\end{pmatrix}\\ &= \begin{pmatrix}x'\\y'\end{pmatrix}
+\nabla\vec{f}(\vec{x}) \cdot \begin{pmatrix}x\\y\\z\end{pmatrix} &= \begin{pmatrix}\sum_{i=1}^{3}(\nabla\vec{f}_{1})_{i}\vec{v}_{i}\\\sum_{i=1}^{3}(\nabla\vec{f}_{2})_{i}\vec{v}_{i}\end{pmatrix}\\ 
+&= \sum_{i=1}^{3}(\nabla\vec{f}_{i})\vec{v}_{i}\\
+&= \begin{pmatrix}x'\\y'\end{pmatrix}
 \end{align}
 \end{displaymath}
 
@@ -1021,13 +1026,13 @@ Which is equal to \ref{alternative_def_using_dot} and of course the formula $\ve
 
 \subsection{Integral}
 
-If i sum the three integrals $\vec{f}(\vec{x}) = \int\vec{e}_{x}\partial{x}$ + $\int\vec{e}_{y}\partial{y}$ + $\int\vec{e}_{z}\partial{z}$. I get the function back. But we will see after integration of positive and negative values, it has to be fixed once for those cases. But we will do it below.\\
+If i sum the three integrals $\vec{f}(\vec{x}) = \int\vec{e}_{x}dx$ + $\int\vec{e}_{y}dy$ + $\int\vec{e}_{z}dz$. I get the function back. But we will see after integration of positive and negative values, it has to be fixed once for those cases. But we will do it below.\\
 
 \begin{displaymath}
 \begin{align}
-\int\vec{e}_{x}\partial{x} &= x\begin{pmatrix}r_x\cos\varphi_x\\r_x\sin\varphi_x\end{pmatrix} + \vec{C}_{1} = x\vec{e}_{x} + \vec{C}_{1}\\
-\int\vec{e}_{y}\partial{y} &= y\begin{pmatrix}r_y\cos\varphi_y\\r_y\sin\varphi_y\end{pmatrix} + \vec{C}_{2} = y\vec{e}_{y} + \vec{C}_{2}\\
-\int\vec{e}_{z}\partial{z} &= z\begin{pmatrix}r_z\cos\varphi_z\\r_z\sin\varphi_z\end{pmatrix} + \vec{C}_{3} = z\vec{e}_{z} + \vec{C}_{3}\\
+\int\vec{e}_{x}dx &= x\begin{pmatrix}r_x\cos\varphi_x\\r_x\sin\varphi_x\end{pmatrix} + \vec{C}_{1} = x\vec{e}_{x} + \vec{C}_{1}\\
+\int\vec{e}_{y}dy &= y\begin{pmatrix}r_y\cos\varphi_y\\r_y\sin\varphi_y\end{pmatrix} + \vec{C}_{2} = y\vec{e}_{y} + \vec{C}_{2}\\
+\int\vec{e}_{z}dz &= z\begin{pmatrix}r_z\cos\varphi_z\\r_z\sin\varphi_z\end{pmatrix} + \vec{C}_{3} = z\vec{e}_{z} + \vec{C}_{3}\\
 \vec{C}_{1} + \vec{C}_{2} + \vec{C}_{3} &= \vec{C}\\
 \vec{f}(\vec{x}) &= x\vec{e}_{x} +y\vec{e}_{y} +z\vec{e}_{z} + \vec{C}\\
 \end{align}
@@ -1050,31 +1055,31 @@ What about the vector of the integration constants, $\vec{C}$? We can solve easi
 %Corollary. If the result of $\vec{f}({\vec{0}})=\vec{w}$ does not equal zero ($\vec{0}$), one can solve for the constant $\vec{C}$, which is the translation from the origin. If the normal result of $\vec{f}({\vec{0}})$ is $\vec{f}({\vec{0}})=\vec{0}$ then $\vec{f}({\vec{0}})=\vec{C}$.
 %\end{CorollaryConstant}
 
-The constant looks like a translation. In our functional the result should always be zero.\\
+The constant looks like a translation. In our functional the result is always zero. To add additional translation, you have to add the translation vector to the translation or the input. By the rule of linearity it is your choice, where to add the translation.\\
 
-But if some similar function got also this result when asking for the zero vector transformation, you get the translation vector back, which will be applied to each point.
+%But if some similar function got also this result when asking for the zero vector transformation, you get the translation vector %back, which will be applied to each point.
 
 
-\begin{displaymath}
-\begin{align}
-\vec{f}(\vec{x}) &= x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} + \vec{C}\\ &= \vec{w} = \begin{pmatrix}a\\b\end{pmatrix}\\
-\vec{f}(\vec{0}) &= 0\vec{e}_{x} + 0\vec{e}_{y} + 0\vec{e}_{z} + \vec{C} = \begin{pmatrix}12\\7\end{pmatrix}\\
-\vec{C} &= \begin{pmatrix}12\\7\end{pmatrix}\\
-\end{align}
-\end{displaymath}
+%\begin{displaymath}
+%\begin{align}
+%\vec{f}(\vec{x}) &= x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} + \vec{C}\\ &= \vec{w} = \begin{pmatrix}a\\b\end{pmatrix}\\
+%\vec{f}(\vec{0}) &= 0\vec{e}_{x} + 0\vec{e}_{y} + 0\vec{e}_{z} + \vec{C} = \begin{pmatrix}12\\7\end{pmatrix}\\
+%\vec{C} &= \begin{pmatrix}12\\7\end{pmatrix}\\
+%\end{align}
+%\end{displaymath}
 
-The vector $\begin{pmatrix}12\\7\end{pmatrix}$ is an example for an additional translation. By examining $\vec{f}(\vec{0})$, we can see, whether our image is shifted or not away from the origin. Because in a non-manipulated system, the origin maps to the origin. \\
+%The vector $\begin{pmatrix}12\\7\end{pmatrix}$ is an example for an additional translation. By examining $\vec{f}(\vec{0})$, we can %see, whether our image is shifted or not away from the origin. Because in a non-manipulated system, the origin maps to the origin. \\
 
-\emph{About the constant of integration}\\
+%\emph{About the constant of integration}\\
 
-The three integration constants can be different from zero and then add up to zero together. So there can a little more detail be hidden in $\vec{f}(\vec{0}_{\mathbb{R}^{3}}) = \vec{0}_{\mathbb{R}^{2}}$.\\
-\begin{displaymath}
-\begin{align}
-\vec{C} &= \vec{C}_{1} + \vec{C}_{2} + \vec{C}_{3} \\
-\vec{0} &= \begin{pmatrix}-1\\0\end{pmatrix}+\begin{pmatrix}1\\-1\end{pmatrix}+\begin{pmatrix}0\\1\end{pmatrix}
-\end{align}
-\end{displaymath}
-The good news. Currently i can not imagine a case, where we have this situation.\\
+%The three integration constants can be different from zero and then add up to zero together. So there can a little more detail be %hidden in $\vec{f}(\vec{0}_{\mathbb{R}^{3}}) = \vec{0}_{\mathbb{R}^{2}}$.\\
+%\begin{displaymath}
+%\begin{align}
+%\vec{C} &= \vec{C}_{1} + \vec{C}_{2} + \vec{C}_{3} \\
+%\vec{0} &= \begin{pmatrix}-1\\0\end{pmatrix}+\begin{pmatrix}1\\-1\end{pmatrix}+\begin{pmatrix}0\\1\end{pmatrix}
+%\end{align}
+%\end{displaymath}
+%The good news. Currently i can not imagine a case, where we have this situation.\\
 
 \emph{Integration with positive coordinates}\\
 
@@ -1083,9 +1088,9 @@ Let us try to integrate $\begin{pmatrix}3\\1\\7\end{pmatrix}$. I have had the id
 
 \begin{displaymath}
 \begin{align}
-\int_{0}^{3}\vec{e}_{x}\partial{x} &+
-\int_{0}^{1}\vec{e}_{y}\partial{y} +
-\int_{0}^{7}\vec{e}_{z}\partial{z} =\\
+\int_{0}^{3}\vec{e}_{x}dx &+
+\int_{0}^{1}\vec{e}_{y}dy +
+\int_{0}^{7}\vec{e}_{z}dz =\\
 &= (3\vec{e}_{x}+\vec{C}_{1}-0\vec{e}_{x}-\vec{C}_{1}) + (1\vec{e}_{y}+\vec{C}_{2}-0\vec{e}_{y}-\vec{C}_{2}) + (7\vec{e}_{z}+\vec{C}_{3}-0\vec{e}_{z}-\vec{C}_{3})\\
 &= 3\vec{e}_{x} + 1\vec{e}_{y} + 7\vec{e}_{z}\\
 \end{align}
@@ -1100,9 +1105,9 @@ wrong, hold on a moment.\\
 
 \begin{displaymath}
 \begin{align}
--\int_{0}^{3}\vec{e}_{x}\partial{x} &-
-\int_{0}^{1}\vec{e}_{y}\partial{y} -
-\int_{0}^{7}\vec{e}_{z}\partial{z} =\\
+-\int_{0}^{3}\vec{e}_{x}dx &-
+\int_{0}^{1}\vec{e}_{y}dy -
+\int_{0}^{7}\vec{e}_{z}dz =\\
 &= -(3\vec{e}_{x}+\vec{C}_{1}-0\vec{e}_{x}-\vec{C}_{1}) - (1\vec{e}_{y}+\vec{C}_{2}-0\vec{e}_{y}-\vec{C}_{2}) - (7\vec{e}_{z}+\vec{C}_{3}-0\vec{e}_{z}-\vec{C}_{3})\\
 &= -3\vec{e}_{x} - 1\vec{e}_{y} - 7\vec{e}_{z}\\
 \end{align}
@@ -1115,9 +1120,9 @@ Must i change the sign any time by myself. We can change the limits of integrati
 %\hline
 \begin{displaymath}
 \begin{align}
--\int_{x}^{0}\vec{e}_{x}\partial{x} &
--\int_{y}^{0}\vec{e}_{y}\partial{y} +
-\int_{0}^{z}\vec{e}_{z}\partial{z} \\
+-\int_{x}^{0}\vec{e}_{x}dx &
+-\int_{y}^{0}\vec{e}_{y}dy +
+\int_{0}^{z}\vec{e}_{z}dz \\
 &= -\vec{e}_{x} -\vec{e}_{y} +\vec{e}_{z}\\
 \end{align}
 \end{displaymath}
@@ -1126,21 +1131,21 @@ The operator for this would be defined for changing the limits on negative coord
 
 \begin{displaymath}
 I_{n}(x) := \left\{\begin{array}{1}
--\int_{x}^{0}\vec{e}_{n}\partial{x} (\forall x < 0) \\
+-\int_{x}^{0}\vec{e}_{n}dx (\forall x < 0) \\
 \\
-\int_{0}^{x}\vec{e}_{n}\partial{x} (\forall x \geq 0) 
+\int_{0}^{x}\vec{e}_{n}dx (\forall x \geq 0) 
 \end{array}\\
 \end{displaymath}
 \begin{displaymath}
 I(\vec{v}) := I_{x}(\vec{v}_{1}) + I_{y}(\vec{v}_{2}) + I_{z}(\vec{v}_{3})
 \end{displaymath}
 
-We can fix the integral another way. By using $\sign(x)$ in front of and $\abs(x)$ in the upper limit of the integral.\\
+We can fix the integral another way. By using $sign(x)$ in front of and $abs(x)$ in the upper limit of the integral.\\
 
-The sign function $\sign(x) := \pm 1$ returns a factor of one with the positive or negative sign of the argument.\\
+The sign function $sign(x) := \pm 1$ returns a factor of one with the positive or negative sign of the argument.\\
 
 \begin{displaymath}
-\sign(x) := \left\{\begin{array}{1}
+sign(x) := \left\{\begin{array}{1}
 -1 (\forall x < 0) \\
 \\
 1 (\forall x \geq 0) 
@@ -1150,7 +1155,7 @@ The sign function $\sign(x) := \pm 1$ returns a factor of one with the positive 
 The absolute value function $\abs(x) := |x|$ returns the positive value of the argument $|-x|=x$ and $|x|=x$.
 
 \begin{displaymath}
-\abs(x) := \left\{\begin{array}{1}
+abs(x) := \left\{\begin{array}{1}
 -x (\forall x < 0) \\
 \\
 x (\forall x \geq 0) 
