@@ -19,12 +19,13 @@ Three dimensional coordinates into two dimensional coordinates transformation.
 \date{\today}
 \maketitle
 
-Version 0.4.0-alpha-2\\
+Version 0.3.99-before-cleaning-everything-up\\
 
 \textbf{Remark. This is a development version.} It is almost everywhere now to be overworked again. The introduction and the first chapter, which keep the introduction to the main formula are totally from my first interpretation and the topics which i elaborated over the days need all a polish and a thread. The next hours i spend for the document i will spend for cleaning this up. I want to replace a lot of text with the results of reading the last four weeks about all the topics i started. There is much more to say and much more working together with all the beauties in this document, than this document states in its current chaotic four week a few minutes each day state while i spent hours each day for doing mathematics for and not for this topic. During updating the text, i will write down some more sophisticated information about the coordinate system.\\
 \\
-
 The next versions i will really clean up and remove some mistakes i have spotted.\\
+
+
 
 \end{center} 
 
@@ -567,7 +568,8 @@ to create surface plots and other functional graphs from three dimensional space
 
 \subsubsection{The linear functional $f(\vec{x})$}
 
-We begin with $f(\vec{x}) : V \subset \mathbb{R}^{3} \rightarrow \subset \mathbb{R}^{2}$.\\
+We begin with $\vec{f}(\vec{x}) : V \subset \mathbb{R}^{3} \rightarrow \subset \mathbb{R}^{2}$. $\vec{f} \in V^{*}\\
+
 
 $f(\vec{x})$ is mapping the three dimensional coordinates onto our designed coordinate system. The multiplication of the components with the horizontal and vertical displacements which are represented by the axes of our coordinate system is the fix content of our function. Assume we have the angles and units designed and the function is well defined for its purpose.\\
 
@@ -1219,13 +1221,9 @@ function transform(points3) {
 \end{lstlisting}
 \end{example}
 
-\section{Unbounded linear operator}
+\section{Estimation}
 
-I believe, $\boldsymbol{A}$ or $\vec{f}(\vec{x})$ are an unbounded matrix and an unbounded function, since there is nothing limiting them, but the functions you compose them with. If the applying functions are bounded, the whole thing becomes bounded. But this operator i describe is in my opinion concerning all these mathematic texts an \emph{unbounded linear operator}.\\
-
-This operator converts any 3-point into the right 2-point. Until it gets composed with something bounded.\\
-
-\section{Estimations}
+The operator is bounded by theorems. It is continous. It is so in 0. It is to be put under c times norm of v, and bounded.\\
 
 \subsection{First guess}
 
