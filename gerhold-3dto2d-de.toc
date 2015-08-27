@@ -1,0 +1,23 @@
+\contentsline {section}{\numberline {1}Einleitung}{2}
+\contentsline {section}{\numberline {2}Entwurf eines $\mathbb {R}^{2\times {3}}$ Koordinatensystems f\"ur unsere Koordinatentransformation vom $\mathbb {R}^{3}$ auf den $\mathbb {R}^{2}$}{3}
+\contentsline {section}{\numberline {3}Definitionen}{3}
+\contentsline {subsection}{\numberline {3.1}Koordinatensystem}{3}
+\contentsline {subsubsection}{\numberline {3.1.1}Links- und rechts}{3}
+\contentsline {subsubsection}{\numberline {3.1.2}Einheitskreis}{4}
+\contentsline {subsection}{\numberline {3.2}Winkel der Achsen}{4}
+\contentsline {subsection}{\numberline {3.3}Einheit der Achsen}{4}
+\contentsline {subsubsection}{\numberline {3.3.1}Der r-Wert der Achsen}{4}
+\contentsline {subsubsection}{\numberline {3.3.2}Mathematische Vorsicht mit dem r-Wert}{4}
+\contentsline {subsection}{\numberline {3.4}(Basis)vektoren der Linearkombination}{5}
+\contentsline {section}{\numberline {4}Transformationswerkzeuge}{5}
+\contentsline {subsection}{\numberline {4.1}Anstelle der Basis}{5}
+\contentsline {subsection}{\numberline {4.2}Funktional}{5}
+\contentsline {subsection}{\numberline {4.3}Matrix}{5}
+\contentsline {section}{\numberline {5}Transformationsverhalten}{5}
+\contentsline {subsection}{\numberline {5.1}Der Ursprung wird auf den Ursprung abgebildet}{5}
+\contentsline {subsection}{\numberline {5.2}Punkte auf einer Achsen}{6}
+\contentsline {subsection}{\numberline {5.3}Skalare Multiplikation}{6}
+\contentsline {subsection}{\numberline {5.4}Addition und Subtraktion}{6}
+\contentsline {subsection}{\numberline {5.5}Linearit\"at}{7}
+\contentsline {section}{\numberline {6}Selbst\"andigkeitserkl\"arung}{7}
+\contentsline {section}{\numberline {7}Lizenz}{7}

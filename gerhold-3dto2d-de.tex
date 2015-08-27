@@ -13,14 +13,12 @@
 \begin{center}
 \title{Transformation dreidimensionaler Koordinaten in zweidimensionale Koordinaten (German Version)}\\
 \author{Edward Gerhold}
-Transformation dreidimensionaler Koordinaten in zweidimensionale Koordinaten
+Transformation dreidimensionaler Koordinaten in zweidimensionale Koordinaten (German version)
 \date{\today}
 \maketitle
 
 
-German Version 0.0.1 of 0.3.24\\
-
-\textbf{Bemerkung. Das ist eine Entwicklungsversion. Und hat chaotische Stellen. Und (nur tempor\"ar einige logische mathematische Fehler, welche in jedem Fall von mir korrigiert werden.)} Diese Datei enth\"alt Typos, ungewollte logische Fehler und Verrechnungen, und vielleicht versehentliche Buchstaben, die von einem plötzlich erscheinenden Doppelcursor im Editor kommen. Das ist mein erstes \LaTeX, aber nicht mein letztes. Genaugenommen, ist es die deutsche \"Ubersetzung meines ersten. Falls sie das jemals drucken sollten, dann 4 auf 1. Das spart Papier. Das Dokument ist unfertig und nicht komplett geformt.
+Deutsche Version 0.0.98 von 0.1.0\\
 
 \end{center} 
 
@@ -38,21 +36,18 @@ dem Papier, und nicht in den reellen Raum.\\
 \caption{Bild eines rechtsh\"andigen Koordinatensystems mit ijk-Basisvektoren auf den Achsen, in drei dimensionen zeigend. Schauen sie in \cite{Corral1} f\"ur eine Einf\"uhrung.}
 \end{figure}
 
-In diesem Dokument entwerfen wir eine $\mathbb{R}^{2\times{3}}$ Basis f\"ur die Koordinatentransformation.
-Eine Basis multipliziert man mit den Werten der Koordinaten, um sich f\"ur jede Komponente ein St\"uck
-zu bewegen, um die Bewegung auf dem korrekten neuen Punkt zu beenden.
-Im Fall der Kosinus und Sinus Funktionen, bewegen wir uns nach links und rechts, und nach oben und
-unten, um ihnen direkt mitzuteilen, was passiert, wenn wir die Koordinaten mit der Matrix multiplizieren.
-
+In diesem Dokument entwerfen wir ein $\mathbb{R}^{2\times{3}}$ Koordinatensystem um 3-D Punkte in 2-D Punkte umzuwandeln.
+Mit den Kosinus- und Sinusfunktionen rechnen wir f\"ur die horizontale und die vertikale Verschiebung des Punktes je drei Terme
+der Achsvektoren mit den drei Koordinaten zusammen.\\
 
 \textbf{Was wir in diesem Dokument machen werden.}
 
 \begin{enumerate}
-\item Winkel ausw\"ahlen f\"ur unserer Koordinatenachsen rund um
-\item Choose angles for our coordinate axes around the unit circle to lay out three axes.
-\item Write down the basis vectors for each coordinate axis
-\item Assemble a matrix with the vector basis for a point by point transformation.
-\item Read the example source code for a computer function, which is exactly two lines long. One for the new $x$ and one for the new $y$.
+\item Winkel ausw\"ahlen f\"ur unserer Koordinatenachsen 
+\item Einheiten der Achsen ausw\"ahlen oder sich f\"ur $1$ entscheiden.
+\item Aufschreiben der drei zweidimensionalen Achsvektoren des Koordinatensystems.
+\item Zusammenbauen der Achsen zu einer Matrix, einer Funktion oder Einsetzen anstelle einer Basis.
+\item Lesen des JavaScript Codes der Transformation, der zwei Zeilen umfasst. Je eine f\"ur $x$
 \item Read other versions of the transformation, with functions, for example.
 \item Derive the generic case of transforming coordinate systems down to the plane.
 
@@ -123,7 +118,7 @@ Die Winkel kann man selbst in Grad oder Radians festlegen. Die Programmiersprach
 
 
 
-\subsubsection{Mathematische Vorsicht}
+\subsubsection{Mathematische Vorsicht mit dem r-Wert}
 
 Der r-Wert verkompliziert die Berechnungen und Absch\"atzungen nat\"urlich, weil die Koordinaten mit multipliziert werden. \\
 
@@ -147,10 +142,31 @@ Wenn der r-Wert gleich $1$ ist, haben diese Vektoren gleich normalisierte Einhei
 \section{Transformationswerkzeuge}
 
 In diesem Kapitel stelle ich dann vor, wie man die Transformation durchf\"uhrt.
-\subsection{Matrix}
+
+\subsection{Anstelle der Basis}
+
+Wir definieren mit $x\vec{i}+y\vec{j}+z\vec{k}$ in der Regel einen Vektor mit einer 3x3 Basis. Man kann die 2x3 Basis anstelle der 3x3 Basis einsetzen und erh\"alt eine saubere Orthogonalprojektion.
 
 \begin{displaymath}
+x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} = \vec{w} 
+\end{displaymath}
 
+
+
+\subsection{Funktional}
+
+Die Funktion nimmt einen Vektor mit drei Koordinaten an und gibt einen Vektor mit zwei Koordinaten zur\"uck. Den richtigen Punkt.
+
+\begin{displaymath}
+\vec{f}(\vec{x}) := x \begin{pmatrix}r_x \cos \varphi_x\\r_x \sin \varphi_x\end{pmatrix} +y  \begin{pmatrix}r_y \cos \varphi_y\\r_y \sin \varphi_y\end{pmatrix} +z  \begin{pmatrix}r_z \cos \varphi_z\\r_z \sin \varphi_z\end{pmatrix}
+\end{displaymath}
+
+
+\subsection{Matrix}
+
+Die Multiplikation der Matrix mit einem dreidimensionalen Vektor gibt einen zweidimensionalen Vektor zur\"uck. Den richtigen Punkt.
+
+\begin{displaymath}
 \boldsymbol{A} := 
 \begin{pmatrix}
 r_x \cos \varphi_x&
@@ -164,14 +180,98 @@ r_z \sin \varphi_z
 
 \end{displaymath}
 
+\section{Transformationsverhalten}
 
-\subsection{Funktional}
+Die Transformation ist eine lineare Transformation und erf\"ullt damit die grunds\"atzlichen Bedingungen der linearen Funktionen.
+
+\subsection{Der Ursprung wird auf den Ursprung abgebildet}
+
+Der Nullvektor aus dem dreidimensionalen Raum $\vec{0} \in \mathbb{R}^3$ wird auf den Nullvektor im zweidimensionalen Raum abgebildet $\vec{0} \in \mathbb{R}^2$.\\
+
+\textbf{Beweis}:
+\begin{displaymath}
+    \boldsymbol{A}\left(\begin{array}{1}0\\0\\0\end{array}\right)
+    = \left(\begin{array}{1}0 + 0 + 0\\0 + 0 + 0\end{array}\right) 
+    =\left(\begin{array}{1}0\\0\end{array}\right)
+\end{displaymath}\\
+
+\subsection{Punkte auf einer Achsen}
+
+Punkte, die nur auf einer Achse liegen sind ein vielfaches des jeweiligen Achsenvektors.\\
+
+\textbf{Beweis}:
+\begin{displaymath}
+    \boldsymbol{A}\left(\begin{array}{1}a\\0\\0\end{array}\right)
+    = \left(\begin{array}{1}ar_x\cos \varphi_x + 0 + 0\\ar_x\sin \varphi_x  + 0 + 0\end{array}\right) 
+    = a\vec{e}_x
+\end{displaymath}
 
 \begin{displaymath}
-
-\vec{f}(\vec{x}) := x\begin{}
-
+    \boldsymbol{A}\left(\begin{array}{1}0\\1\\0\end{array}\right)
+    = \left(\begin{array}{1}0 + r_y\cos \varphi_y + 0\\0 + r_y\sin \varphi_y + 0\end{array}\right) 
+    = \vec{e}_y
 \end{displaymath}
+
+\begin{displaymath}
+    \boldsymbol{A}\left(\begin{array}{1}0\\0\\-b\end{array}\right)
+    = \left(\begin{array}{1}0 + 0 - br_z\cos \varphi_z\\0 + 0 - br_z\sin \varphi_z\end{array}\right) 
+    = -b\vec{e}_z
+\end{displaymath}\\
+
+\subsection{Skalare Multiplikation}
+
+Es ist einfach zu zeigen, dass $\boldsymbol{A}(\lambda\vec{x}) = \lambda\boldsymbol{A}\vec{x}$. Man kann vor der Transformation oder nach der Transformation mit dem Skalar multiplizieren. Das Resultat ist identisch.\\
+
+\textbf{Beweis}:\\
+\begin{displaymath}
+\begin{equation*}
+\begin{align*}
+\boldsymbol{A}(\lambda\vec{x}) &= \boldsymbol{A}\left(\begin{array}{1}\lambda{x}\\\lambda{y}\\\lambda{z}\end{array}\right)\\ &= \left(\begin{array}{1}\lambda{x}r_x\cos(\varphi_x) + \lambda{y}r_y\cos(\varphi_y) + \lambda{z}r_z\cos(\varphi_z)\\
+\lambda{x}r_x\sin(\varphi_x) + \lambda{y}r_y\sin(\varphi_y) + \lambda{z}r_z\sin(\varphi_z)
+\end{array}\right)\\
+    &= \lambda\left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
+xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
+\end{array}\right)\\
+    &= \lambda\left(\begin{array}{1}x'\\y'\end{array}\right)\\
+    &= \lambda\boldsymbol{A}\vec{x}
+\end{align*}
+\end{equation*}
+\end{displaymath}\\
+
+
+\subsection{Addition und Subtraktion}
+
+Einfach zu zeigen ist auch, dass $\boldsymbol{A}(\vec{v} + \vec{w}) = \boldsymbol{A}\vec{v} + \boldsymbol{A}\vec{w}$. 
+Man kann auch hier die Eingabevektoren vor der Umwandlung addieren, oder die Ausgabevektoren nach der Umwandlung. Die resultierende Summe ist identisch.
+ 
+\textbf{Beweis}:\\
+
+\begin{displaymath}
+\begin{equation*}
+\begin{align*}
+\boldsymbol{A}\left(\begin{array}{1}x+u\\y+v\\z+w\end{array}\right) &= \left(\begin{array}{1}(x+u)r_x\cos(\varphi_x) + (y+v)r_y\cos(\varphi_y) + (z+w)r_z\cos(\varphi_z)\\
+(x+u)r_x\sin(\varphi_x) + (y+v)r_y\sin(\varphi_y) + (z+w)r_z\sin(\varphi_z)\\
+\end{array}\right)\\
+            &= \left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
+xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
+\end{array}\right) + \left(\begin{array}{1}ur_x\cos(\varphi_x) + vr_y\cos(\varphi_y) + wr_z\cos(\varphi_z)\\
+ur_x\sin(\varphi_x) + vr_y\sin(\varphi_y) + wr_z\sin(\varphi_z)\\
+\end{array}\right)\\    
+    &= \left(\begin{array}{1}x'\\y'\end{array}\right) + \left(\begin{array}{1}u'\\v'\end{array}\right)\\
+    &= \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) + \boldsymbol{A}\left(\begin{array}{1}u\\v\\w\end{array}\right)
+\end{align*}
+\end{equation*}
+\end{displaymath}
+
+\subsection{Linearit\"at}
+
+Durch die letzten zwei Beweise ist es offensichtlich, dass die Transformation die Regeln der Linearit\"at befolgt.
+
+\begin{displaymath}
+\boldsymbol{A}(\lambda\vec{v} + \kappa\vec{w}) = \lambda\boldsymbol{A}\vec{v} + \kappa\boldsymbol{A}\vec{w} = \lambda\left(\begin{array}{1}x'\\y'\end{array}\right) + \kappa\left(\begin{array}{1}u'\\v'\end{array}\right)\\
+\end{displaymath}
+
+Auf den Beweis der Kombination beider Abschnitte verzichte ich.\\
 
 
 \section{Selbst\"andigkeitserkl\"arung}
