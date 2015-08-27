@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+ \documentclass[a4paper]{article}
 \usepackage[hmargin=1in, vmargin=1in]{geometry}
 \usepackage{makeidx}
 \usepackage{fancyhdr}
@@ -19,12 +19,9 @@ Three dimensional coordinates into two dimensional coordinates transformation.
 \date{\today}
 \maketitle
 
-Version 0.3.99-before-cleaning-everything-up\\
+Version 0.3.99-before-cleaning-everything-up-and-ordering-the-chapters-and-writing-various-parts-again.\\
 
-\textbf{Remark. This is a development version.} It is almost everywhere now to be overworked again. The introduction and the first chapter, which keep the introduction to the main formula are totally from my first interpretation and the topics which i elaborated over the days need all a polish and a thread. The next hours i spend for the document i will spend for cleaning this up. I want to replace a lot of text with the results of reading the last four weeks about all the topics i started. There is much more to say and much more working together with all the beauties in this document, than this document states in its current chaotic four week a few minutes each day state while i spent hours each day for doing mathematics for and not for this topic. During updating the text, i will write down some more sophisticated information about the coordinate system.\\
-\\
-The next versions i will really clean up and remove some mistakes i have spotted.\\
-
+\textbf{Remark. This is a development version. With proper mistakes.} It is almost everywhere now to be overworked again. The introduction and the first chapter, which keep the introduction to the main formula are totally from my first interpretation and the topics which i elaborated over the days need all a polish and a thread. The next hours i spend for the document i will spend for cleaning this up. I want to replace a lot of text with the results of reading the last four weeks about all the topics i started. There is much more to say and much more working together with all the beauties in this document, than this document states in its current chaotic four week a few minutes each day state while i spent hours each day for doing mathematics for and not for this topic. During updating the text, i will write down some more sophisticated information about the coordinate system.\\
 
 
 \end{center} 
@@ -568,7 +565,7 @@ to create surface plots and other functional graphs from three dimensional space
 
 \subsubsection{The linear functional $f(\vec{x})$}
 
-We begin with $\vec{f}(\vec{x}) : V \subset \mathbb{R}^{3} \rightarrow \subset \mathbb{R}^{2}$. $\vec{f} \in V^{*}\\
+We begin with $\vec{f}(\vec{x}) : V \subset \mathbb{R}^{3} \rightarrow \subset \mathbb{R}^{2}$. $\vec{f} \in V^{*}$\\
 
 
 $f(\vec{x})$ is mapping the three dimensional coordinates onto our designed coordinate system. The multiplication of the components with the horizontal and vertical displacements which are represented by the axes of our coordinate system is the fix content of our function. Assume we have the angles and units designed and the function is well defined for its purpose.\\
@@ -701,7 +698,7 @@ f(t) = x(t)\begin{pmatrix}\cos\varphi_x\\\sin\varphi_x\end{pmatrix}
         +z(t)\begin{pmatrix}\cos\varphi_z\\\sin\varphi_z\end{pmatrix}
 \end{displaymath}
 
-Remak The first chapter about differentiation, which follows later, deals with the constant form of $x(t), y(t), z(t)$. In a future version i will continue this topic with a few parametrized examples.\\
+Remak. The first chapter about differentiation, which follows later, deals with the constant form of $x(t), y(t), z(t)$. In a future version i will continue this topic with a few parametrized examples.\\
 
 \subsection{Polar coordinate version}
 \label{polar_coord_func}
@@ -1019,7 +1016,7 @@ I have set up a corollary earlier (\ref{alternative_def_using_dot}), which uses 
 \begin{displaymath}
 \begin{align}
 \nabla\vec{f}(\vec{x}) \cdot \begin{pmatrix}x\\y\\z\end{pmatrix} &= \begin{pmatrix}\sum_{i=1}^{3}(\nabla\vec{f}_{1})_{i}\vec{v}_{i}\\\sum_{i=1}^{3}(\nabla\vec{f}_{2})_{i}\vec{v}_{i}\end{pmatrix}\\ 
-&= \sum_{i=1}^{3}(\nabla\vec{f}_{i})\vec{v}_{i}\\
+&= \sum_{i=1}^{3}(\nabla\vec{f})_{i}\vec{v}_{i}\\
 &= \begin{pmatrix}x'\\y'\end{pmatrix}
 \end{align}
 \end{displaymath}
@@ -1148,9 +1145,9 @@ The sign function $sign(x) := \pm 1$ returns a factor of one with the positive o
 
 \begin{displaymath}
 sign(x) := \left\{\begin{array}{1}
--1 (\forall x < 0) \\
-\\
-1 (\forall x \geq 0) 
+-1\qquad\forall x < 0 \\
+0\qquad x=0\\
+1\qquad\forall x \geq 0 
 \end{array}\\
 \end{displaymath}
 
@@ -1158,9 +1155,9 @@ The absolute value function $\abs(x) := |x|$ returns the positive value of the a
 
 \begin{displaymath}
 abs(x) := \left\{\begin{array}{1}
--x (\forall x < 0) \\
+-x\qquad\forall x < 0 \\
 \\
-x (\forall x \geq 0) 
+x\qquad\forall x \geq 0 
 \end{array}\\
 \end{displaymath}
 
@@ -1260,13 +1257,25 @@ If i use this c, i get that the norm of any Av is less than or equal to the maxi
 
 Looks a bit ridiculous, because the norm is after simplification bounded by its largest value, because the two norms of v cancel the fraction. But it isn´t really. I am sure, we are making progress here soon.\\
 
-The theorem of uniformed boundedness is a part of functional analysis. I have not proven it´s correctness in my case, or not read right, but i think, this works here.\\
+\subsection{Operatornorm}
 
-Remark. To be continued.\\
+The Operatornorm is the supremum of the norm of Ax over the norm of x.\\
+
+\begin{displaymath}
+\|A\| = \sup\{ \frac{\|\boldsymbol{A}\vec{x}\|}{\|\vec{x}\|} \}
+\end{displaymath}
+
+In our previous example we have chosen c to be the supremum or the maximum of the transformed elements.
+This leads to the following inequality.\\
+
+\begin{displaymath}
+\|\boldsymbol{A}\vec{x}\| \leq \|\boldsymbol{A}\|\|\vec{x}\|
+\end{displaymath}
+
 
 \subsection{Bounds with $r_n$ values TODO)}
 
-Remark. This section has no consensus. TODO
+TODO.
 
 \subsection{Equality of norms (TODO)}
 
@@ -1401,6 +1410,10 @@ TODO.
 \appendix
 
 \section{More vector mathematics to move into the right sections}
+
+\subsection{Manifolds}
+
+TODO.
 
 \subsection{Two words about Homogenuous coordinates}
 
@@ -1784,17 +1797,11 @@ Remark. Ongoing research.
 
 
 
-\subsection{Operator norms}
 
-TODO.
 
-The operatornorm is a dependent norm. It depends on the currently used norm. 
 
-\begin{displaymath}
-\|A\| = \|\phi\| := \sup\{ \phi(\vec{x}) : \|x\|=1 \}
-\end{displaymath}
 
-Remark. This is by heart. But i sure i am not through with using it correctly.
+
 
 \subsection{(moved b4 del) Taking the norm of $\vec{e}_n$ to obtain $r_n$ from some existing coordinate system}
 
@@ -3137,9 +3144,11 @@ And i keep it for the people.
 
 Remark. Formulation lacks. Obviously a standard public domain or creative commons license will work.\\
 
+
 \begin{thebibliography}
-    \bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
-        Vector Calculus, GNU Free Documentation License, http://mecmath.net
+
+\bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
+        Vector Calculus, GNU Free Documentation License, http://mecmath.net\\
     \bibitem{Corral2} \textit{Michael Corral, Schoolcraft College},
         Trigonometry, GNU Free Documentation License, http://mecmath.net 
     \bibitem{Strang1} \textit{Gilbert Strang, MIT},
