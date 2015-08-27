@@ -26,9 +26,9 @@ Deutsche Version 0.0.98 von 0.1.0\\
 
 \section{Einleitung}
 
-Auf einem Blatt Papier sehen sie drei Koordinatenachsen in drei Richtungen in den Raum zeigen.
-In der Realit\"at sind diese Vektoren zweidimensional. Denn sie zeigen in drei Richtungen auf
-dem Papier, und nicht in den reellen Raum.\\
+Auf einem Blatt Papier sehen wir ein dreidimensionales Koordinatensystem in den Raum zeigen.
+In der Realit\"at sind die drei Basisvektoren der Abbildung zweidimensional. Denn sie zeigen 
+in drei Richtungen, flach auf dem Papier, und gar nicht in den reellen Raum.\\
 
 \begin{figure}[ht]
 \label{ijksystem}
@@ -37,19 +37,17 @@ dem Papier, und nicht in den reellen Raum.\\
 \end{figure}
 
 In diesem Dokument entwerfen wir ein $\mathbb{R}^{2\times{3}}$ Koordinatensystem um 3-D Punkte in 2-D Punkte umzuwandeln.
-Mit den Kosinus- und Sinusfunktionen rechnen wir f\"ur die horizontale und die vertikale Verschiebung des Punktes je drei Terme
-der Achsvektoren mit den drei Koordinaten zusammen.\\
+Mit den Kosinus- und Sinusfunktionen errechnen wir die exakten Anteile der horizontalen und vertikalen Teilverschiebungen.
 
 \textbf{Was wir in diesem Dokument machen werden.}
 
 \begin{enumerate}
-\item Winkel ausw\"ahlen f\"ur unserer Koordinatenachsen 
-\item Einheiten der Achsen ausw\"ahlen oder sich f\"ur $1$ entscheiden.
-\item Aufschreiben der drei zweidimensionalen Achsvektoren des Koordinatensystems.
-\item Zusammenbauen der Achsen zu einer Matrix, einer Funktion oder Einsetzen anstelle einer Basis.
-\item Lesen des JavaScript Codes der Transformation, der zwei Zeilen umfasst. Je eine f\"ur $x$
-\item Read other versions of the transformation, with functions, for example.
-\item Derive the generic case of transforming coordinate systems down to the plane.
+\item Winkel ausw\"ahlen f\"ur unsere Koordinatenachsen 
+\item Einheiten der Achsen ausw\"ahlen oder sich f\"ur $1$ entscheiden
+\item Die drei zweidimensionalen Achsvektoren des Koordinatensystems aufschreiben
+\item Die Achsen zu einer Matrix, einer Funktion, oder anstelle der Basis zusammenbauen
+\item Den JavaScript Code der Transformation lesen
+\item In den Folgeversionen die noch nicht eingetragenen bereits bekannten Fakten kennenlernen
 
 \end{enumerate}
 
@@ -180,6 +178,8 @@ r_z \sin \varphi_z
 
 \end{displaymath}
 
+Bemerkung. \"Uber die drei Werkzeuge sind mir bereits mehr Fakten bekannt und ich werde sie in der kommenden Version ber\"ucksichtigen und freilassen.
+
 \section{Transformationsverhalten}
 
 Die Transformation ist eine lineare Transformation und erf\"ullt damit die grunds\"atzlichen Bedingungen der linearen Funktionen.
@@ -273,6 +273,47 @@ Durch die letzten zwei Beweise ist es offensichtlich, dass die Transformation di
 
 Auf den Beweis der Kombination beider Abschnitte verzichte ich.\\
 
+\section{Computer Implementierung}
+
+\subsection{Generischer Code}
+
+\begin{example}
+\fbox{
+Das folgende Beispiel ist der Pseudocode f\"ur alle Computersysteme.
+}
+\begin{lstlisting}
+x_ = x*r*cos(alpha) + y*r*cos(beta) + z*r*cos(gamma)
+y_ = x*r*sin(alpha) + y*r*sin(beta) + z*r*sin(gamma)
+\end{lstlisting}\\
+\fbox{ Das sind die einzigen beiden Zeilen Code die man braucht.\\}
+
+\end{example}\\
+
+\subsection{JavaScript Implementierung}
+
+
+\begin{example}
+Das ist ein komplettes EcmaScript 6 snippet mit allen notwendigen Informationen.\\
+\begin{lstlisting}
+let rad = (deg) => Math.PI/180*deg;
+let r_x = 1, r_y = 1, r_z = 1; 
+let phi_x = rad(220), phi_y = rad(330), phi_z = rad(90); 
+let xAxisCos = r_x*Math.cos(phi_x), 
+    yAxisCos = r_y*Math.cos(phi_y),
+    zAxisCos = r_z*Math.cos(phi_z),
+    xAxisSin = r_x*Math.sin(phi_x), 
+    yAxisSin = r_y*Math.sin(phi_y),
+    zAxisSin = r_z*Math.sin(phi_z);
+let transform2d = ([x,y,z]) => [
+    x*xAxisCos+ y*yAxisCos+ z*zAxisCos,
+    x*xAxisSin+ y*yAxisSin+ z*zAxisSin];
+let transform2dAll = (P) => P.map(transform2d);
+
+let beispielPunkte = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
+\end{lstlisting}
+\end{example}\\
+\fbox{ Das ist die realistische Menge an Code f\"ur die komplette Transformation von 3-D nach 2-D.\\}
+
 
 \section{Selbst\"andigkeitserkl\"arung}
 
@@ -293,40 +334,32 @@ eigenen Projekt zu nennen. Allerdings mag auch ich keine Menschen, die diese Arb
 
 
 \begin{thebibliography}
-% books
-
-    \bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
-            Vector Calculus, GNU Free Documentation License, http://mecmath.net 
+   \bibitem{Corral1} \textit{Michael Corral, Schoolcraft College},
+        Vector Calculus, GNU Free Documentation License, http://mecmath.net
     \bibitem{Corral2} \textit{Michael Corral, Schoolcraft College},
-            Trigonometry, GNU Free Documentation License, http://mecmath.net
+        Trigonometry, GNU Free Documentation License, http://mecmath.net 
     \bibitem{Strang1} \textit{Gilbert Strang, MIT},
             Linear Algebra and it´s Applications. Fourth Edition.        
     \bibitem{Strang2} \textit{Gilbert Strang, MIT},
             Calculus. MIT OpenCourseWare Supplemental Resources. http://ocw.mit.edu    
-% lecture scripts english
-    \bibitem{Toplogy} \textit{ ,  },
-            Lecture Script, Topology (english),
-    \bibitem{Functional1} \textit{},
-            Lecture Script, Functional Analysis (english),    
-    \bibitem{Functional2} \textit{TODO},
-            Lecture Script, 
-    \bibitem{Functional3} \textit{TODO},
-            Lecture Script,
-% lecture scripts in german
+    \bibitem{Toplogy} \textit{John Rogues, Lecture Notes on Topology, following J.R.Munkres Textbook, for MAT3500/4500},
+            Lecture Script, Topology (english), http://
+    \bibitem{Vershynin1} \textit{Roman Vershynin. Lectures in Functional Analysis. Department of Mathematics, University of Michigan},
+            Lecture Script, http://,        
     \bibitem{Ferus1} \textit{Dirk Ferus, TU-Berlin, em.},
             Lecture Script, Lineare Algebra 1+2, 2000, http://page.math.tu-berlin/~ferus/skripten.html
     \bibitem{Kuehn1} \textit{Franziska K\"uhn, Technische Universit\"at Dresden},
             Lecture Script, Lineare Algebra und analytische Geometrie I+II, http://fkuehn.de/download/LAAG.pdf
     \bibitem{Wittbold} \textit{Petra Wittbold, TU-berlin},  
-            Lecture Script, Funktionalanalysis I,  http://www3.math.tu-berlin.de/Vorlesungen/SS09/FA1/Doc/Funkana1-SS06-08.06.09.pdf
-% latex tutorials 
+            Lecture Script, Funktionalanalysis I,  http://www3.math.tu-berlin.de/Vorlesungen/SS09/FA1/Doc/Funkana1-SS06-08.06.09.pd
     \bibitem{Corral3} \textit{Michael Corral, Schoolcraft College},
             Latex Mini Tutorial, http://mecmath.net                    
     \bibitem{Jürgens,Feuerstack} \textit{Manuela J\"urgens, Thomas Feuerstack, Fernuniversit\"at Hagen},
             LaTeX, eine Einf\"uhrung und ein bisschen mehr..., a026\_latex\_einf.pdf            
     \bibitem{Rudl} \textit{Dr.Jan Rudl, Technische Universit\"at Dresden, Fachbereich Mathematik},
-            Einf\"uhrung in LaTeX, LaTeX-Kurs.pdf            
-\end{thebibliography}
+            Einf\"uhrung in LaTeX, LaTeX-Kurs.pdf
+
+            \end{thebibliography}
 
 
 
