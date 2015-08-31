@@ -19,10 +19,31 @@ Three dimensional coordinates into two dimensional coordinates transformation.
 \date{\today}
 \maketitle
 
-Version 0.3.99-before-cleaning-everything-up-and-ordering-the-chapters-and-writing-various-parts-again.\\
+Version 0.3.991-before-cleaning-everything-up-and-ordering-the-chapters-and-writing-various-parts-again.\\
 
-\textbf{Remark. This is a development version. With proper mistakes.} It is almost everywhere now to be overworked again. The introduction and the first chapter, which keep the introduction to the main formula are totally from my first interpretation and the topics which i elaborated over the days need all a polish and a thread. The next hours i spend for the document i will spend for cleaning this up. I want to replace a lot of text with the results of reading the last four weeks about all the topics i started. There is much more to say and much more working together with all the beauties in this document, than this document states in its current chaotic four week a few minutes each day state while i spent hours each day for doing mathematics for and not for this topic. During updating the text, i will write down some more sophisticated information about the coordinate system.\\
+\textbf{Remark. This is a development version. With proper mistakes.} It is almost everywhere now to be overworked again. 
 
+\\
+Comment.\\
+\\
+This document is kind of deprecated.\\
+\\
+ It is almost full. Not really complete. I have already advanced a couple of times in various
+related formulas and properties. For example, i have learned, that i can write $\left<f,x\right>$ for f(x) if f is from the dual and x is from the set to the dual. If you follow the text and examine the functional i call functional, you will feel some naturally appearing scalar product of scalars and vectors, being a property of the linear map, i should underline \emph{the} linear map. This is enough for my hello to you.\\
+\\
+This document will change in some days. My opinion is to write all again and remove all remarks. Of course i complete the begun calculations. I will add while writing the relevant new informations. I start a new paragraph above or below the old, finish it, and replace the old. There is still much more to advance in closely related to what i do here. The coordinate system sits on each of the planes of the cube around the three open intervals beetween zero and one, each origin is in the center. Each side of the cube brings a different view onto the inner coordinate system. A sphere with a tangent plane makes it possible to view the coordinate system inside from any angle. This is like arranging it on a circle on the plane, like we can look onto it, straight from any angle.\\
+\\
+The ker is not empty. It is a straight line through to the origin. All these points inside map onto $vec{0}$.\\
+\\
+I habe made a drawing with all these planes. You see, there is still more to advance. All covered points lie on a line normal to the plane we are looking from onto our box.\\
+\\
+We are not just taking the sines onto the surfaces to measure the distance and the height from above. We will not do it in this document anyways now. But you see, there is useful application for manifolds, too.\\
+\\
+This document is now deprecated.
+It will change in a few days.\\
+A short refresh of the core of the coordinate system is found in gerhold3dto2d-de.pdf meanwhile.
+\\
+This versions change: I translated the german declaration of authorship and the german license for serious reasons.
 
 \end{center} 
 
@@ -293,6 +314,17 @@ Remark. My article broke in when first time touching the linear dependence after
 
 The one lemma we need is this general theorem for multiplying a vector with the a basis of a target coordinate system.\\
 
+
+\newtheorem{Vectorbasis}{Theorem. Hamel basis}
+\begin{Vectorbasis}
+A subset X of a linear vector space E is called a Hamel basis of E if every vector $x \in E$ can be uniquely expressed as a finite linear combination of some elements of X.
+\begin{displaymath}
+x=\sum_{k=1}^{n}a_{k}x_{k}
+\end{displaymath}
+for some nonzero scalar $a_{k}$ and vectors $x_{k} \in X$.
+\end{Vectorbasis}
+from \cite{Vershynin1}
+
 The first time i had the idea, it was, "now try multiplying the coordinates with a basis." "But hey, they must be 2-D."\\
 
 The plane gives us two possible directions, to go horizontal or vertical. And in a cartesian coordinate system with infinite points, we can choose any direction around a center point (x,y). Which is in the case of our coordinate system the origin at (0,0,0) or (0,0). We will see later, that the zero vector stays in the origin fo both systems.
@@ -306,7 +338,6 @@ Any not straight move will go horizontally or vertically by componentwise amount
 The point is, the general formula holds with a 2x3 basis.\\
 
 \fbox{By taking 2-D vectors for three coordinates, we map directly onto the plane.}\\
-
 
 \begin{figure}
 \begin{displaymath}
@@ -494,16 +525,6 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \subsubsection{Hamelbasis with broken law of linear independence (or just a linear mapping)}
 
 The theorem from Hamel says, that every vector space has a basis. And he gives a formula for this. The new vector in the new coordinate system is the sum of the coordinates multiplied with the basis vectors. \\
-
-\newtheorem{Vectorbasis}{Theorem. Hamel basis}
-\begin{Vectorbasis}
-A subset X of a linear vector space E is called a Hamel basis of E if every vector $x \in E$ can be uniquely expressed as a finite linear combination of some elements of X.
-\begin{displaymath}
-x=\sum_{k=1}^{n}a_{k}x_{k}
-\end{displaymath}
-for some nonzero scalar $a_{k}$ and vectors $x_{k} \in X$.
-\end{Vectorbasis}
-from \cite{Vershynin1}
 
 A Hamelbasis requires a linearly independent set of basis vectors. Which we can not provide. We change the dimension. The mapping yields the right image. So i will say, it is o.k. to break the rule of linear independence. This coordinate system is a special case.\\
 
@@ -1147,7 +1168,7 @@ The sign function $sign(x) := \pm 1$ returns a factor of one with the positive o
 sign(x) := \left\{\begin{array}{1}
 -1\qquad\forall x < 0 \\
 0\qquad x=0\\
-1\qquad\forall x \geq 0 
+1\qquad\forall x > 0 
 \end{array}\\
 \end{displaymath}
 
@@ -1415,11 +1436,22 @@ TODO.
 
 TODO.
 
+This is on top of the doc. I copied here, just for people who can imagine differential geometry.\\
+
+This document will change in some days. My opinion is to write all again and remove all remarks. Of course i complete the begun calculations. I will add while writing the relevant new informations. I start a new paragraph above or below the old, finish it, and replace the old. There is still much more to advance in closely related to what i do here. The coordinate system sits on each of the planes of the cube around the three open intervals beetween zero and one, each origin is in the center. Each side of the cube brings a different view onto the inner coordinate system. A sphere with a tangent plane makes it possible to view the coordinate system inside from any angle. This is like arranging it on a circle on the plane, like we can look onto it, straight from any angle.\\
+\\
+My Proposition: The ker is not empty. It is a straight line through to the origin. All these points inside map onto $vec{0}$.\\
+\\
+I habe made a drawing with all these planes. You see, there is still more to advance.\\
+\\
+My Proposition: All covered points lie on a line normal to the plane we are looking from onto our box.\\
+\\
+We are not just taking the sines onto the surfaces to measure the distance and the height from above. We will not do it in this document anyways now. But you see, there is useful application for manifolds, too.\\
+\\
+Remark for advanced readers. With this coordinate systems derivatives giving just the same point for any x,y,z a lesson in differential geometry, vector fields, manifolds, differential equations can be solved, like why div u = f must have a non-linear f to obtain a solution u. I show the linear case. You can conclude, why a curve is needed to have a tangent and a continous derivative and not a constant like from a linear function, like we obtain here. There will be examples for this property in literature, for solving div f = u for example. I can not remember completly to explain quickly here.
+
+
 \subsection{Two words about Homogenuous coordinates}
-
-A quick rush over homogenuous coordinates, which are used for computer graphics.\\
-
-The reason is to be able to multiply the transformation matrices together to one matrix.\\
 
 With a 4x4 system it is possible to move rotation AND translation into one matrix. To reach four coordinates,
 a fourth coordinate, the homogenuous coordinate is introduced. Most of the time it has nothing to say, but it
@@ -3128,22 +3160,51 @@ function transform(points3) {
 
 \section{Declaration of authorship}
 
-Remark. Have to fetch the english version of the Selbst\"andigkeitserklaerung over the internet.\\
+German.
+
+Ich habe dieses Koordinatensystem selbst entwickelt. Es ist keine Formel aus einem Buch oder einer Lehrveranstaltung.
+Ob es irgendwo eine identische Formel oder eine vergleichbare Definition gibt, ist mir nicht bekannt.
+Ich habe den Inhalt des Dokuments aus eigenem Ermessen zusammengestellt. Ich habe mir Gedanken zum Thema gemacht und
+ausserdem Rechnungen mit Stift und Papier angefertigt. Ausserdem habe ich in Lehrb\"uchern und Veranstaltungen gebl\"attert,
+um das Koordinatensystem und die definierten Variabeln und Operationen m\"oglichst gut in die reelle Mathematik einzuordnen.
+Mir m\"ogen Fehler unterlaufen sein, und auch Details entgangen sein. F\"ur beides m\"ochte ich mich entschuldigen.\\
+
+English.
+
+I habe developed this coordinate system by myself. It is no formula from a book or a class lecture. 
+Wether a identical formula or a comparable Definition exists, is not known to me.
+Ich have agglomerated the Content of this Document on my own Behave. I have made up my mind to the topic
+and also created Calculations with Pen and Paper. Also i browsed Literature and Lectures to insert the
+coordinate system and the defined variables and operations likely good into the real mathematics.
+Mistakes may have been made by me, and Details may be not been recognized. For both i might excuse myself.
+
+First version.
 
 With this here i promise, i invented the thing alone, and did copy no proof nowhere and used only
 the books and the lecture scripts for reference i acknowledge in the bibliography.\\
 
-Remark. Got to fetch the formal version of this declaration.\\
-
 \section{License}
+
+First.
 
 This code is free of charge, free for anyone to use. You are welcome to accredit Edward Gerhold for his work.
 But it is not neccessary to do so. I can say it with a rhyme. I did it, too. And explained it to you. However.
 You may use it. You may have it. But by the declaration of ownership, i have really developed this all myself.
 And i keep it for the people.
 
-Remark. Formulation lacks. Obviously a standard public domain or creative commons license will work.\\
+German. 
 
+Der produzierte Source Code, um das Koordinatensystem und einige Abbildungen zu zeigen, ist frei f\"ur alle,
+wie auch das Koordinatensystem selbst und die dazugeh\"origen Definitionen, die ich selbst angefertigt habe.
+Es ist erlaubt, mir daf\"ur Anerkennung zu gew\"ahren, es ist aber nicht zwingend n\"otig, mich daf\"ur im
+eigenen Projekt zu nennen. Allerdings mag auch ich keine Menschen, die diese Arbeit f\"ur ihre eigene ausgeben.\\
+
+English.
+
+The produced source code, to show the coordinate system and a few maps, is free for all, like the coordinate
+sytem itself and the related definitions, i created myself. It is allowed to give me respect for, but it is 
+not absolutly neccessary, to put my name into your own projects. Of course i don´t like people, who pretend 
+this is already their work.
 
 \begin{thebibliography}
 
