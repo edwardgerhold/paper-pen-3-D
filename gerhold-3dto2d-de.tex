@@ -18,7 +18,7 @@ Transformation dreidimensionaler Koordinaten in zweidimensionale Koordinaten (Ge
 \maketitle
 
 
-Deutsche Version 0.0.98 von 0.1.0\\
+Deutsche Version 0.0.98-3 von 0.1.0\\
 
 \end{center} 
 
@@ -60,16 +60,16 @@ Ziel, mich auch etwas k\"urzer zu fassen. Mathematik, die ich in der deutschen F
 englischen Version zu verfolgen. Wer das rechnen kann, kann bestimmt auch ein wenig Englisch und versteht auch deutsches Englisch.\\
 
 \subsection{Koordinatensystem}
-\subsubsection{Links- und rechts}
+\subsubsection{Links- und rechtsh\"andige Koordinatensystem}
 
-Ein linksh\"andiges Koordinatensystem auf der Ebene hat die dritte Achse zwischen den beiden normalen Achsen in die gleiche Richtung zeigend.\\
+Ein linksh\"andiges Koordinatensystem auf der Ebene, das hat die dritte Achse, zwischen den beiden normalen Achsen, in die gleiche Richtung zeigend.\\
 
 \begin{figure}
 \caption{Ein linksh\"andiges Koordinatensystem}
 \includegraphics[scale=0.5]{lefthand45.png}
 \end{figure}
 
-Bei einem rechtsh\"andigen Koordinatensystem auf der Ebene zeigt die dritte Achse in die entgegengesetzte Richtung.\\
+Bei einem rechtsh\"andigen Koordinatensystem auf der Ebene, da zeigt die dritte Achse in die entgegengesetzte Richtung.\\
 
 \begin{figure}
 \caption{Ein rechtsh\"andiges Koordinatensystem}
@@ -128,7 +128,7 @@ Von der Norm der Achsvektoren handelt der Abschnitt \ref{Norm_Achsvektoren}
 \item Der r-Wert verkompliziert die Berechnungen und Absch\"atzungen nat\"urlich, weil die Koordinaten mit multipliziert werden. \\
 
 \item Wenn man bewegte Bilder produzieren will, sollte der r-Wert grundsaetzlich gleich auf allen Achsen sein, weil Rotationen und Translationen sonst daneben gehen, da die Punkte dann pl\"otzlich ihre Einheiten wechseln. Das sieht bewegt unrealistisch aus, ist aber
-bei Standbildern kein Problem. Es ist m\"oglich selbige Ver\"anderung lokal an den Objekten vorzunehmen, damit bleibt die Vergr\"osserung transformationsinvariant bez\"uglich den Drehungen.\\
+bei Standbildern kein Problem. Es ist m\"oglich selbige Ver\"anderung lokal an den Objekten vorzunehmen, damit bleibt die Vergr\"osserung transformationsinvariant bez\"uglich den Drehungen und den anderen Transformationen.\\
 
 \item Die Formel verkompliziert sich bei drei verschiedenen r-Werten nat\"urlich und zum Rechnen sollte zuerst das vereinfachte Modell
 herangezogen werden, wo der r-Wert auf allen drei Achsen gleich ist, oder gleich $1$ ist und komplett entf\"allt.\\
@@ -177,13 +177,33 @@ Um mathematisch mit vielen S\"atzen zu harmonieren, ist die normalisierte L\"ang
 Bemerkung. M\"ochte man mit dem Computer einfach Graphen plotten, und mal eine Achse vergr\"ossern, ist der r-Wert optimal.\\
 
 
+\subsection{Zeit die Operation zu zeigen}
+
+
+Um die Transformation von 3-D auf 2-D durchzuf\"uhren muss man nicht viel machen. Man multipliziert die x-Koordinate mit der x-Achse,
+die y-Koordinate mit der y-Achse, die z-Koordinate mit der z-Achse und summiert die drei 2-D Vektoren zu einem neuen 2-D Vektor.\\
+
+\begin{displaymath}
+\begin{align}
+    T(\vec{x}) := x_1 \vec{e}_x + x_2 \vec{e}_y + x_3 \vec{e}_z
+\end{align}
+\end{displaymath}
+
+Das ist alles. Da wir die trigonometrischen Funktionen gew\"ahlt haben, wird in der oberen Komponente des Ergebnisses die Summe aus drei Kosinustermen f\"ur die horizontale Verschiebung berechnet und in der unteren Komponente des Ergebnisses die Summe der drei Sinusterme f\"ur die vertikale Verschiebung des Punktes. 
+
+
+\begin{figure}[ht]
+\includegraphics[scale=0.5]{pathhacked.png}
+\caption{Der Pfad, den unsere Punkte nehmen, entlang den Vektoren, parallel zu den Achsen. Der Pfad jedes Punktes wird in horizontale und vertikale Anteile zerlegt und diese werden jeweils summiert.}
+\end{figure}\\
+
 \section{Transformationswerkzeuge}
 
 In diesem Kapitel stelle ich dann vor, wie man die Transformation durchf\"uhrt. Im Prinzip bleibt eins \"uberall gleich. Wir geben den 3-D Punkt ein, und erhalten einen 2-D Punkt.\\
 
 \subsection{Anstelle der Basis}
 
-Wir definieren mit $x\vec{i}+y\vec{j}+z\vec{k}$ in der Regel einen Vektor mit einer 3x3 Basis. Man kann die 2x3 Basis anstelle der 3x3 Basis einsetzen und erh\"alt eine saubere Orthogonalprojektion. Wir geben drei Koordinaten an und erhalten zwei Koordinaten. Den richtigen Punkt.\\
+Wir definieren mit $x\vec{i}+y\vec{j}+z\vec{k}$ in der Regel einen Vektor mit einer 3x3 Basis. Man kann die 2x3 "Basis" anstelle der 3x3 Basis einsetzen und erh\"alt eine saubere Orthogonalprojektion. Wir geben drei Koordinaten an und erhalten zwei Koordinaten. Den richtigen Punkt.\\
 
 \begin{displaymath}
 x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} = \vec{w} 
@@ -197,7 +217,7 @@ x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} = \sum_{i=1}^{3}\vec{v}_{i}\vec{e}_{i
 
 Bemerkung. Hierbei ist zu verstehen, das $\vec{e}_{i}$ ein ganzer Vektor ist, und keine Komponente.
 
-Bemerkung. Im englischen Original stelle ich bereits sehr deutlich fest, dass die 2x3 Basis der Fl\"ache mit drei Koordinaten im $\mathbb{R}^{2}$ nicht linear unabh\"angig ist. Allerdings dr\"angt sich mir eine 2x3 Theorie auf, die ich in den kommenden Fassungen vorstellen werde. Die Basis, die eine oder mehrere linear kombinierte Achsen im $\mathbb{R}^{2}$ besitzt, wird f\"ur die $\mathbb{R}^{2\times3}$ Projektion, im Einheitskreis arrangiert. Im $\mathbb{R}^{2}$ nutzt man zwei statt drei der Einheitsvektoren, die man ebenso im Kreis dreht, allerdings stehen sie sicher im neunzig Grad Winkel zueinander, was mit drei Achsen nicht mehr einwandfrei m\"oglich ist, hier aber \emph{richtig}.
+Bemerkung. Im englischen Original stelle ich bereits sehr deutlich fest, dass die 2x3 Basis der Fl\"ache mit drei Koordinaten im $\mathbb{R}^{2}$ nicht linear unabh\"angig ist. Allerdings dr\"angt sich mir eine 2x3 Theorie auf, die ich in den kommenden Fassungen vorstellen werde. Die Basis, die eine oder mehrere linear kombinierte Achsen im $\mathbb{R}^{2}$ besitzt, wird f\"ur die $\mathbb{R}^{2\times3}$ Projektion, im Einheitskreis arrangiert. Im $\mathbb{R}^{2}$ nutzt man zwei statt drei der Einheitsvektoren, die man ebenso im Kreis dreht, allerdings stehen sie sicher im neunzig Grad Winkel zueinander. Was mit drei Achsen nicht mehr einwandfrei m\"oglich ist. Allerdings ist die Linearkombination und die Abh\"angigkeit mindestens einer Achse, meiner Meinung nach, hier \emph{richtig}.
 
 
 \subsection{Funktional}
@@ -235,7 +255,7 @@ Diese Ableitungen sind nicht stetig. Alle Koordinaten ausser dem Nullvektor ende
 
 \begin{displaymath}
 \begin{align}
-f'(\vec{x}) = \sum_{i=1}^{3}\frac{\partial f}{\partial x}(\vec{x}_i) = \sum_{i=1}^{3}\vec{e}_{n}
+f'(\vec{x}) = \sum_{i=1}^{3}\frac{\partial f}{\partial x_i}(\vec{x}_i) = \sum_{i=1}^{3}\vec{e}_{n}
 \end{align}
 \end{displaymath}
 
@@ -313,7 +333,8 @@ sign(z)\int_{0}^{|z|}\vec{e}_{z}dz \\
 \end{align}
 \end{displaymath}\\
 
-Bemerkung. Ich nenne $\vec{f}(\vec{x})$ es (vektorwertiges) Funktional, da es mit der Theorie linearer Operatoren ebenso harmoniert, wie in der Form des Skalarprodukts (mehrzeilig) geschrieben zu sein. Die eindeutige Integraldarstellung $\int_{a}^{b} f(x)g(x)dx$ mit $f \in \mathbb{L}^{p}$ und $g \in \mathbb{L}^{q}$ mit $\frac1p + \frac1q = 1$ habe ich allerdings noch nicht untersucht.\\
+
+Bemerkung. Ich nenne $\vec{f}(\vec{x})$ es (vektorwertiges) Funktional, da es mit der Theorie linearer Operatoren ebenso harmoniert, wie in der Form des Skalarprodukts (mehrzeilig) geschrieben zu sein.
 
 \subsection{Matrix}
 \label{Matrix}
@@ -456,7 +477,13 @@ Durch die letzten zwei Beweise ist es offensichtlich, dass die Transformation di
 \boldsymbol{A}(\lambda\vec{v} + \kappa\vec{w}) = \lambda\boldsymbol{A}\vec{v} + \kappa\boldsymbol{A}\vec{w} = \lambda\left(\begin{array}{1}x'\\y'\end{array}\right) + \kappa\left(\begin{array}{1}u'\\v'\end{array}\right)\\
 \end{displaymath}
 
-Auf den Beweis der Kombination beider Abschnitte verzichte ich.\\
+Auf den Beweis der Kombination beider Abschnitte verzichte ich, der l\"asst sich problemlos durch die vorangegangenen Beweise im Kopf durchgehen, was ich jedem zum besseren Verst\"andnis empfehle.\\
+
+\section{Topologische Eigenschaften}
+
+\subsection{Kompaktheit}
+
+F\"ur jeden Punkt auf der Ebene existieren mehrere Punkte aus dem Raum, die auf ein- und denselben Punkt abgebildet werden k\"onnen. Das ist eine sogenannte \"Uberdeckung. Das Vorhandensein von endlichen Teil\"uberdeckungen einer Menge ist das Kriterium f\"ur Kompaktheit.
 
 \section{Computer Implementierung}
 
