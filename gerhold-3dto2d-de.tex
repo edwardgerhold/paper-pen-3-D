@@ -148,24 +148,24 @@ Wenn der r-Wert gleich $1$ ist, haben diese Vektoren gleich normalisierte Einhei
 \subsubsection{Norm der Achsvektoren}
 \label{Norm_Achsvektoren}
 
-Wenn man den r-Wert, die Einheit der Achse nicht einsetzt, ergibt $\|\vec{e}_n\| = 1$
+Wenn man den r-Wert, die Einheit der Achse nicht einsetzt, ergibt $\|\vec{e}_n\|_2 = 1$
 
 Beweis:\\
 \begin{displaymath}
 \begin{align}
-    \|\vec{e}_n\| =& (\sum_{i=1}^{2}|\vec{e}_{ni}|^2)^{\frac12} \\
+    \|\vec{e}_n\|_2 =& (\sum_{i=1}^{2}|\vec{e}_{ni}|^2)^{\frac12} \\
     =&  (\cos^{2}\varphi_n + \sin^{2}\varphi_n)^{\frac12}\\
     =& \sqrt{1}\\
     =& 1
 \end{align}
 \end{displaymath}
 
-Wenn man den r-Wert setzt, ist die Norm des Vektors $\|\vec{e}_n\| = r_n$.\\
+Wenn man den r-Wert setzt, ist die Norm des Vektors $\|\vec{e}_n\|_2 = r_n$.\\
 
 Beweis:\\
 \begin{displaymath}
 \begin{align}
-    \|\vec{e}_n\| =& (\sum_{i=1}^{2}|\vec{e}_{ni}|^2)^{\frac12} \\
+    \|\vec{e}_n\|_2 =& (\sum_{i=1}^{2}|\vec{e}_{ni}|^2)^{\frac12} \\
     =& (r_{n}^{2}\cos^{2}\varphi_n + r_{n}^{2}\sin^{2}\varphi_n)^{\frac12} = (r_{n}^2(\cos^{2}\varphi_n + \sin^{2}\varphi_n))^{\frac12}\\
     =& (r_{n}^2(1))^{\frac12} \\
     =& r_n
@@ -220,9 +220,14 @@ Bemerkung. Hierbei ist zu verstehen, das $\vec{e}_{i}$ ein ganzer Vektor ist, un
 Bemerkung. Im englischen Original stelle ich bereits sehr deutlich fest, dass die 2x3 Basis der Fl\"ache mit drei Koordinaten im $\mathbb{R}^{2}$ nicht linear unabh\"angig ist. Allerdings dr\"angt sich mir eine 2x3 Theorie auf, die ich in den kommenden Fassungen vorstellen werde. Die Basis, die eine oder mehrere linear kombinierte Achsen im $\mathbb{R}^{2}$ besitzt, wird f\"ur die $\mathbb{R}^{2\times3}$ Projektion, im Einheitskreis arrangiert. Im $\mathbb{R}^{2}$ nutzt man zwei statt drei der Einheitsvektoren, die man ebenso im Kreis dreht, allerdings stehen sie sicher im neunzig Grad Winkel zueinander. Was mit drei Achsen nicht mehr einwandfrei m\"oglich ist. Allerdings ist die Linearkombination und die Abh\"angigkeit mindestens einer Achse, meiner Meinung nach, hier \emph{richtig}.
 
 
-\subsection{Funktional}
+\subsection{Funktional, Funktion, Lineare Abbildung}
 
 %Bemerkung. Ich nenne die Funktion Funktional, da es als Matrix ein linearer Operator von E auf F ist, wie ihn die Funktionalanalysis unterst\"utzt. Und da die Funktion den Test, seinen Graphen nicht zu kreuzen nicht besteht. Sie ist eine lineare Abbildung. Der 2-D Vektor wird aus zwei Skalarprodukten zusammengesetzt. Die Koordinaten werden mit dem Kosinusvektor f\"ur x und dem Sinusvektor f\"ur y multipliziert und summiert, um die horizontale und vertikale Abbildung der drei Koordinaten zu berechnen. Es entspricht wesentlichen Inhalten der Funktionalanalysis. Die Definition, wie sie zum Beispiel in der Variationsrechnung zusammen mit der Physik eingef\"uhrt wird, handelt von einem anderen Funktional, einem Energiefunktional zum Beispiel. Besonders in meinem Fall ist, dass es vektorwertig im Ergebnis ist. Ob ich damit richtig oder falsch bezeichne, was ich Funktional nenne, kann ich nicht wirklich sagen, da ich niemanden fragen kann.\\
+
+%Ich bezeichne die Funktion, welche die funktionale Form des linearen Matrixoperators ist, welche eine lineare Abbildung ist, als
+%Funktional, da sie in der Regel mit Funktionen kombiniert wird, und auf und mit Funktionen arbeitet. Der Unterschied zum herk\"ommlichen
+%Funktional, aus einem Vektorraum auf den reelle Zahlenstrahl, ist die Vektorwertigkeit des Ergebnisses. Andere Bezeichnungen sind
+%vektorwertige Funktion, oder vielleicht gar (Orts-)Vektorfeld. Am Besten ist bestimmt die Bezeichnung lineare Abbildung.\\
 
 Das Funktional nimmt einen Vektor mit drei Koordinaten an und gibt einen Vektor mit zwei Koordinaten zur\"uck. 
 Den richtigen Punkt auf der Ebene entsprechend den Achsen, wie wir sie konfiguriert haben.\\
@@ -234,12 +239,13 @@ Den richtigen Punkt auf der Ebene entsprechend den Achsen, wie wir sie konfiguri
 Die folgenden Bedingungen linearer Funktionale werden erf\"ullt
 
 \begin{displaymath}
-    f(x + y) = f(x) + f(y)\qquad\lambda f(x) = f(\lambda x)
+    f(x + y) \leq f(x) + f(y)\qquad\lambda f(x) = f(\lambda x)
 \end{displaymath}
 
 Das Funktional ist partiell differenzierbar. Die ersten partiellen Ableitungen ergeben abgeleitet nach x die x-Komponente  des Achsvektors und abgeleitet nach y die y-Komponente des Achsvektors.\\
 
-Die zweiten partiellen Ableitungen existieren nicht mehr, da das Funktional linear ist, und keine Kr\"ummung enth\"aelt. Die partiellen Ableitungen sind nicht stetig im herkoemmlichen Sinne, da eine gerade Linie nur eine Steigung und keine Tangente zur Kurve hat. Dennoch ist das Ergebnis zuverl\"assig und n\"utzlich.
+Die zweiten partiellen Ableitungen existieren nicht mehr, da das Funktional linear ist, und keine Kr\"ummung enth\"aelt. Die partiellen Ableitungen sind nicht stetig im herkoemmlichen Sinne, da eine gerade Linie nur eine Steigung und keine Tangente zur Kurve hat. Dennoch ist das Ergebnis, was ein konstanter Wert ist, zuverl\"assig und n\"utzlich. 
+
 
 \begin{displaymath}
 \begin{align}
@@ -251,7 +257,25 @@ Die zweiten partiellen Ableitungen existieren nicht mehr, da das Funktional line
 \end{align}
 \end{displaymath}
 
-Diese Ableitungen sind nicht stetig. Alle Koordinaten ausser dem Nullvektor enden bei Anwendung der Ableitungen auf der Summe der Vektoren.
+Beweis:
+
+\begin{displaymath}
+\begin{align}
+    \frac{\partial f}{\partial x} =& \lim_{h\rightarrow 0}\frac{f(x+h,y,z)-f(x,y,z)}{h}\\
+    =& \frac{1}{h}((x+h)\vec{e}_x + y\vec{e}_y + z\vec{e}_z) - (x\vec{e}_x + y\vec{e}_y + z\vec{e}_z)\\
+    =& \frac{1}{h}((x+h)\vec{e}_x) - x\vec{e}_x \\
+    =& \frac{1}{h}h\vec{e}_x\\
+    =& \vec{e}_x
+\end{align}
+\end{displaymath}
+
+Die Grenzwerte der anderen Komponenten y und z ermittelt man auf die selbe Art und Weise. Darum verzichte ich in dieser Ausgabe auf sie.\\
+
+Bemerkung. Diese Ableitungen sind (meiner Meinung nach) nicht stetig. Alle Koordinaten ausser dem Nullvektor enden bei Anwendung der Ableitungen auf der Summe der Vektoren. Es wird für alle Koordinaten ein und derselbe Konstante Wert $\sum_{i=1}^{3}\vec{e}_{n}$ zurückgeliefert.\\
+Wenn das Ergebnis dennoch als stetige Ableitung gilt, m\"ochte ich mich f\"ur den verbalen und f\"ormlichen Fehler entschuldigen. Es \"andert allerdings nichts an der Handhabe des Koordinatensystems.\\
+
+
+Beweis, daß die Ableitung bei allen Koordinaten einen Konstanten Vektor zurückliefert:
 
 \begin{displaymath}
 \begin{align}
@@ -273,7 +297,7 @@ Jetzt folgt noch ein Beispiel. Eine Schreibweise, die von Mannigfaltigkeiten und
 
 \begin{displaymath}
 \begin{align}
-     \sum_{i=0}^{3}x^{i}\frac{\partial f}{\partial x^{i}} = \begin{pmatrix}x\\y\end{pmatrix}
+     \sum_{i=1}^{3}x^{i}\frac{\partial f}{\partial x^{i}} = \begin{pmatrix}x\\y\end{pmatrix}
 \end{align}
 \end{displaymath}
 
@@ -332,9 +356,6 @@ sign(z)\int_{0}^{|z|}\vec{e}_{z}dz \\
 &= \pm{x}\vec{e}_{x} \pm{y}\vec{e}_{y} \pm{z}\vec{e}_{z}\\
 \end{align}
 \end{displaymath}\\
-
-
-Bemerkung. Ich nenne $\vec{f}(\vec{x})$ es (vektorwertiges) Funktional, da es mit der Theorie linearer Operatoren ebenso harmoniert, wie in der Form des Skalarprodukts (mehrzeilig) geschrieben zu sein.
 
 \subsection{Matrix}
 \label{Matrix}
@@ -484,6 +505,53 @@ Auf den Beweis der Kombination beider Abschnitte verzichte ich, der l\"asst sich
 \subsection{Kompaktheit}
 
 F\"ur jeden Punkt auf der Ebene existieren mehrere Punkte aus dem Raum, die auf ein- und denselben Punkt abgebildet werden k\"onnen. Das ist eine sogenannte \"Uberdeckung. Das Vorhandensein von endlichen Teil\"uberdeckungen einer Menge ist das Kriterium f\"ur Kompaktheit.
+
+\subsection{Vollständigkeit}
+
+Vollst\"andigkeit bedeutet, dass es f\"ur jede Folge $(x_{n})_{n\in\mathbb{N}}$ eine partielle Teilfolge $(x_{nk})$ gibt, die konvergiert. Meine Behauptung lautet, daß alle Folgen $(x_n)$, die in $\mathbb{R}^{3}$ gegen $x$ konvergieren, auch mit dem Operator $\boldsymbol{A}$ transformiert, im $\mathbb{R}^{2}$ gegen $\boldsymbol{A}x$ konvergieren.
+
+Beweis:\\
+
+Im Abschnitt \ref{Cauchy_Folgen}.
+
+\section{Cauchyfolgen}
+\label{Cauchy_Folgen}
+
+Eine Folge $(x_n)$ konvergiert gegen eine Zahl x.
+
+\begin{displaymath}
+\begin{align}
+    (x_n) \rightarrow x\\
+\end{align}
+\end{displaymath}
+    
+
+Eine Cauchy Folge in der reellen Analysis einer Variable ist so definiert, dass es ab einem bestimmten Index so ist, dass der Abstand zwischen den Folgegliedern immer weiter schrumpft. F\"ur alle Epsilon gr\"osser $0$ existiert dann ein $n_0$, dass f\"ur alle $n > n_0$ gilt, dass $\|x_n - x_m\| < \epsilon$ sei.\\
+
+
+\begin{displaymath}
+\begin{align}
+\forall \epsilon > 0 : \exists n_{0} \in \mathbb{N} : \forall n \geq n_{0} : \|x_{m}-x_{n}\| < \epsilon
+\end{align}
+\end{displaymath}
+
+
+In unserem Fall speziell, gilt es zu zeigen, dass die Folge, auch bei Transformation, gegen einen bestimmten Wert konvergiert.\\
+
+\begin{displaymath}
+\begin{align}
+    A(x_n) \rightarrow Ax\\
+\end{align}
+\end{displaymath}
+
+
+Der Beweis ist nicht schwer. Wir zeigen jetzt einfach, dass der Abstand $\|x_m - x_n\| \rightarrow 0$ gegen $0$ geht, wenn $n\rightarrow \infty$ geht.\\
+
+Da wir eine andere Dimension betreten, wenn wir von $\mathbb{R}^{3}$ auf $\mathbb{R}^{2}$ abbilden, sollten wir eine zweite Zahl 
+hinzunehmen.\\
+
+$\forall \epsilon > 0 : \exists \delta > 0 \exists n_{0} \in \mathbb{N} : \forall n \geq n_{0} : \|x_{m}-x_{n}\| < \epsilon, \|Ax_m - Ax_n\| < \delta$
+
 
 \section{Computer Implementierung}
 
