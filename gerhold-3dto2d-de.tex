@@ -244,20 +244,17 @@ Die folgenden Bedingungen linearer Funktionale werden erf\"ullt
 
 Das Funktional ist partiell differenzierbar. Die ersten partiellen Ableitungen ergeben abgeleitet nach x die x-Komponente  des Achsvektors und abgeleitet nach y die y-Komponente des Achsvektors.\\
 
-Die zweiten partiellen Ableitungen existieren nicht mehr, da das Funktional linear ist, und keine Kr\"ummung enth\"aelt. Die partiellen Ableitungen sind nicht stetig im herkoemmlichen Sinne, da eine gerade Linie nur eine Steigung und keine Tangente zur Kurve hat. Dennoch ist das Ergebnis, was ein konstanter Wert ist, zuverl\"assig und n\"utzlich. 
 
 
 \begin{displaymath}
 \begin{align}
-\partial_{x}\vec{f} =& \vec{e}_{x}\qquad
-\partial_{y}\vec{f} = \vec{e}_{y}\qquad
-\partial_{z}\vec{f} = \vec{e}_{z}\qquad\\
-\nabla\vec{f} =& \begin{pmatrix}\vec{e}_{x}\\\vec{e}_{y}\\\vec{e}_{z}\end{pmatrix}
-\nabla\vec{f}\cdot\vec{v} =& \begin{pmatrix}x'\\y'\end{pmatrix}
+\partial_{x}\vec{f} =& \vec{e}_{x}\qquad\\
+\partial_{y}\vec{f} =& \vec{e}_{y}\qquad\\
+\partial_{z}\vec{f} =& \vec{e}_{z}\qquad\\
 \end{align}
 \end{displaymath}
 
-Beweis:
+Beweis:\\
 
 \begin{displaymath}
 \begin{align}
@@ -271,11 +268,23 @@ Beweis:
 
 Die Grenzwerte der anderen Komponenten y und z ermittelt man auf die selbe Art und Weise. Darum verzichte ich in dieser Ausgabe auf sie.\\
 
-Bemerkung. Diese Ableitungen sind (meiner Meinung nach) nicht stetig. Alle Koordinaten ausser dem Nullvektor enden bei Anwendung der Ableitungen auf der Summe der Vektoren. Es wird für alle Koordinaten ein und derselbe Konstante Wert $\sum_{i=1}^{3}\vec{e}_{n}$ zurückgeliefert.\\
+Die zweiten partiellen Ableitungen existieren nicht mehr, da das Funktional linear ist, und keine Kr\"ummung enth\"aelt. Die partiellen Ableitungen sind nicht stetig im herkoemmlichen Sinne, da eine gerade Linie nur eine Steigung und keine Tangente zur Kurve hat.\\
+
+Dennoch ist das Ergebnis, was ein konstanter Wert ist, zuverl\"assig und n\"utzlich. Wenn man den Vektor aus den Ableitungen, entsprechend dem Aufbau des Gradientvektors, aus Analysis 2 bekannt, mit einem $\mathbb{R}^{3}$-Vektor multipliziert, erh\"alt
+man wieder die Transformationssumme.\\
+
+\begin{displaymath}
+\begin{align}
+\nabla\vec{f} =& \begin{pmatrix}\vec{e}_{x}\\\vec{e}_{y}\\\vec{e}_{z}\end{pmatrix}\\
+\nabla\vec{f}\cdot\vec{v} =& \begin{pmatrix}x'\\y'\end{pmatrix}
+\end{align}
+\end{displaymath}
+
+
+Bemerkung. Diese Ableitungen sind (meiner Meinung nach) nicht stetig. Alle Koordinaten ausser dem Nullvektor enden bei Anwendung der Ableitungen auf der Summe der Vektoren. Es wird für alle Koordinaten ein und derselbe Konstante Wert $\sum_{i=1}^{3}\vec{e}_{n}$ zurückgeliefert.
 Wenn das Ergebnis dennoch als stetige Ableitung gilt, m\"ochte ich mich f\"ur den verbalen und f\"ormlichen Fehler entschuldigen. Es \"andert allerdings nichts an der Handhabe des Koordinatensystems.\\
 
-
-Beweis, daß die Ableitung bei allen Koordinaten einen Konstanten Vektor zurückliefert:
+Beweis der Bemerkung, dass die Ableitung bei allen Koordinaten einen Konstanten Vektor zurückliefert:
 
 \begin{displaymath}
 \begin{align}
