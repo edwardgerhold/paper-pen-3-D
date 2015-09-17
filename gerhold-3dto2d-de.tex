@@ -259,8 +259,8 @@ Beweis:\\
 \begin{displaymath}
 \begin{align}
     \frac{\partial f}{\partial x} =& \lim_{h\rightarrow 0}\frac{f(x+h,y,z)-f(x,y,z)}{h}\\
-    =& \frac{1}{h}((x+h)\vec{e}_x + y\vec{e}_y + z\vec{e}_z) - (x\vec{e}_x + y\vec{e}_y + z\vec{e}_z)\\
-    =& \frac{1}{h}((x+h)\vec{e}_x) - x\vec{e}_x \\
+    =& \frac{1}{h}(((x+h)\vec{e}_x + y\vec{e}_y + z\vec{e}_z) - (x\vec{e}_x + y\vec{e}_y + z\vec{e}_z))\\
+    =& \frac{1}{h}((x+h)\vec{e}_x - x\vec{e}_x) \\
     =& \frac{1}{h}h\vec{e}_x\\
     =& \vec{e}_x
 \end{align}
@@ -268,9 +268,9 @@ Beweis:\\
 
 Die Grenzwerte der anderen Komponenten y und z ermittelt man auf die selbe Art und Weise. Darum verzichte ich in dieser Ausgabe auf sie.\\
 
-Die zweiten partiellen Ableitungen existieren nicht mehr, da das Funktional linear ist, und keine Kr\"ummung enth\"aelt. Die partiellen Ableitungen sind nicht stetig im herkoemmlichen Sinne, da eine gerade Linie nur eine Steigung und keine Tangente zur Kurve hat.\\
+Die zweiten partiellen Ableitungen existieren nicht mehr, da das Funktional linear ist, und keine Kr\"ummung enth\"aelt. Die partiellen Ableitungen sind konstant, da eine gerade Linie nur eine Steigung und keine Tangente zur Kurve hat.\\
 
-Dennoch ist das Ergebnis, was ein konstanter Wert ist, zuverl\"assig und n\"utzlich. Wenn man den Vektor aus den Ableitungen, entsprechend dem Aufbau des Gradientvektors, aus Analysis 2 bekannt, mit einem $\mathbb{R}^{3}$-Vektor multipliziert, erh\"alt
+Dennoch ist das Ergebnis, zuverl\"assig und n\"utzlich. Wenn man den Vektor aus den Ableitungen, entsprechend dem Aufbau des Gradientvektors, aus Analysis 2 bekannt, mit einem $\mathbb{R}^{3}$-Vektor multipliziert, erh\"alt
 man wieder die Transformationssumme.\\
 
 \begin{displaymath}
@@ -280,11 +280,7 @@ man wieder die Transformationssumme.\\
 \end{align}
 \end{displaymath}
 
-
-Bemerkung. Diese Ableitungen sind (meiner Meinung nach) nicht stetig. Alle Koordinaten ausser dem Nullvektor enden bei Anwendung der Ableitungen auf der Summe der Vektoren. Es wird für alle Koordinaten ein und derselbe Konstante Wert $\sum_{i=1}^{3}\vec{e}_{n}$ zurückgeliefert.
-Wenn das Ergebnis dennoch als stetige Ableitung gilt, m\"ochte ich mich f\"ur den verbalen und f\"ormlichen Fehler entschuldigen. Es \"andert allerdings nichts an der Handhabe des Koordinatensystems.\\
-
-Beweis der Bemerkung, dass die Ableitung bei allen Koordinaten einen Konstanten Vektor zurückliefert:
+Beweis, dass die Ableitung bei allen Koordinaten einen konstanten Vektor zurückliefert:
 
 \begin{displaymath}
 \begin{align}
