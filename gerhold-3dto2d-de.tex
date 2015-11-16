@@ -18,7 +18,7 @@ Transformation dreidimensionaler Koordinaten in zweidimensionale Koordinaten (Ge
 \maketitle
 
 
-Deutsche Version 0.0.98-3 von 0.1.0\\
+Deutsche Version 0.0.98-4 von 0.1.0\\
 
 \end{center} 
 
@@ -32,7 +32,7 @@ in drei Richtungen, flach auf dem Papier, und gar nicht in den reellen Raum.\\
 
 \begin{figure}[ht]
 \label{ijksystem}
-\includegraphics[scale=2]{ijksystem.png}\\
+\includegraphics[scale=2]{figures/ijksystem.png}\\
 \caption{Bild eines rechtsh\"andigen Koordinatensystems mit ijk-Basisvektoren auf den Achsen, in drei dimensionen zeigend. Schauen sie in \cite{Corral1} f\"ur eine Einf\"uhrung.}
 \end{figure}
 
@@ -59,6 +59,21 @@ In der englischen Version schreibe ich alles etwas anders. Diese deutsche Fassun
 Ziel, mich auch etwas k\"urzer zu fassen. Mathematik, die ich in der deutschen Fassung auslassen werde, ist aber problemlos in der
 englischen Version zu verfolgen. Wer das rechnen kann, kann bestimmt auch ein wenig Englisch und versteht auch deutsches Englisch.\\
 
+\subsection{Notation}
+
+Ein Hinweis auf die Indizes ist n\"utzlich, um die Formeln schnell zu \"uberblicken.\\
+
+\begin{enumerate}
+
+\item Die Koordinaten (x,y,z) und (x,y) bzw. $\begin{pmatrix}x\\y\\z\end{pmatrix}$ und $\begin{pmatrix}x\\y\end{pmatrix}$ bezeichnen einen Punkt, beziehungsweise einen Ortsvektor im $\mathbb{R}^{3}$ bzw. $\mathbb{R}^{2}$ und sind identisch. Es kann vorkommen, dass sowohl (x,y,z) und (x,y) in Ein- und Ausgabe stehen. $x,y,z$ und $x,y$ sind abgesehen vom Nullvektor dann aber nicht mehr identisch.
+
+\item Die Subskriptindizes $_x,_y,_z$ und $_1,_2,_3$ bezeichnen das selbe Element, $\vec{e}_x$ und $\vec{e}_1$ bezeichnen beide den Achsvektor der x-Achse des $2x3$ Koordinatensystems.
+
+\item Die Multiplikation $\sum_{i=1}^{3}\vec{x}_{i}\vec{e}_{i}$ multipliziert eine Koordinate mit einem Achsvektor und summiert alle drei Produkte. Es ist keine Multiplikation von einer Koordinate und einer Achsvektorkomponente, sondern eine skalare Multiplikation von der Koordinate und dem Achsvektor. Ergebnis ist ein skalierter Achsvektor, der der Verschiebung der jeweiligen Koordinate entspricht.
+
+\end{enumerate}
+
+
 \subsection{Koordinatensystem}
 \subsubsection{Links- und rechtsh\"andige Koordinatensystem}
 
@@ -66,14 +81,14 @@ Ein linksh\"andiges Koordinatensystem auf der Ebene, das hat die dritte Achse, z
 
 \begin{figure}
 \caption{Ein linksh\"andiges Koordinatensystem}
-\includegraphics[scale=0.5]{lefthand45.png}
+\includegraphics[scale=0.5]{figures/lefthand45.png}
 \end{figure}
 
 Bei einem rechtsh\"andigen Koordinatensystem auf der Ebene, da zeigt die dritte Achse in die entgegengesetzte Richtung.\\
 
 \begin{figure}
 \caption{Ein rechtsh\"andiges Koordinatensystem}
-\includegraphics[scale=0.5]{righthand45.png}
+\includegraphics[scale=0.5]{figures/righthand45.png}
 \end{figure}
 
 \subsubsection{Einheitskreis}
@@ -125,13 +140,11 @@ Von der Norm der Achsvektoren handelt der Abschnitt \ref{Norm_Achsvektoren}
 
 \begin{enumerate}
 
-\item Der r-Wert verkompliziert die Berechnungen und Absch\"atzungen nat\"urlich, weil die Koordinaten mit multipliziert werden. \\
+\item Der r-Wert verkompliziert die Berechnungen und Absch\"atzungen nat\"urlich, weil die Koordinaten mit multipliziert werden. Zum Rechnen sollte zuerst das vereinfachte Modell herangezogen werden, wo der r-Wert auf allen drei Achsen gleich $1$ ist und komplett 
+entf\"allt.\\
 
 \item Wenn man bewegte Bilder produzieren will, sollte der r-Wert grundsaetzlich gleich auf allen Achsen sein, weil Rotationen und Translationen sonst daneben gehen, da die Punkte dann pl\"otzlich ihre Einheiten wechseln. Das sieht bewegt unrealistisch aus, ist aber
 bei Standbildern kein Problem. Es ist m\"oglich selbige Ver\"anderung lokal an den Objekten vorzunehmen, damit bleibt die Vergr\"osserung transformationsinvariant bez\"uglich den Drehungen und den anderen Transformationen.\\
-
-\item Die Formel verkompliziert sich bei drei verschiedenen r-Werten nat\"urlich und zum Rechnen sollte zuerst das vereinfachte Modell
-herangezogen werden, wo der r-Wert auf allen drei Achsen gleich ist, oder gleich $1$ ist und komplett entf\"allt.\\
 
 \end{enumerate}
 
@@ -193,7 +206,7 @@ Das ist alles. Da wir die trigonometrischen Funktionen gew\"ahlt haben, wird in 
 
 
 \begin{figure}[ht]
-\includegraphics[scale=0.5]{pathhacked.png}
+\includegraphics[scale=0.5]{figures/pathhacked.png}
 \caption{Der Pfad, den unsere Punkte nehmen, entlang den Vektoren, parallel zu den Achsen. Der Pfad jedes Punktes wird in horizontale und vertikale Anteile zerlegt und diese werden jeweils summiert.}
 \end{figure}\\
 
@@ -206,13 +219,13 @@ In diesem Kapitel stelle ich dann vor, wie man die Transformation durchf\"uhrt. 
 Wir definieren mit $x\vec{i}+y\vec{j}+z\vec{k}$ in der Regel einen Vektor mit einer 3x3 Basis. Man kann die 2x3 "Basis" anstelle der 3x3 Basis einsetzen und erh\"alt eine saubere Orthogonalprojektion. Wir geben drei Koordinaten an und erhalten zwei Koordinaten. Den richtigen Punkt.\\
 
 \begin{displaymath}
-x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} = \vec{w} 
+x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} = \vec{y} 
 \end{displaymath}
 
 Beweis:\\
 
 \begin{displaymath}
-x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} = \sum_{i=1}^{3}\vec{v}_{i}\vec{e}_{i} = \vec{w} 
+x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} = \sum_{i=1}^{3}\vec{x}_{i}\vec{e}_{i} = \vec{y} 
 \end{displaymath}
 
 Bemerkung. Hierbei ist zu verstehen, das $\vec{e}_{i}$ ein ganzer Vektor ist, und keine Komponente.
@@ -220,16 +233,9 @@ Bemerkung. Hierbei ist zu verstehen, das $\vec{e}_{i}$ ein ganzer Vektor ist, un
 Bemerkung. Im englischen Original stelle ich bereits sehr deutlich fest, dass die 2x3 Basis der Fl\"ache mit drei Koordinaten im $\mathbb{R}^{2}$ nicht linear unabh\"angig ist. Allerdings dr\"angt sich mir eine 2x3 Theorie auf, die ich in den kommenden Fassungen vorstellen werde. Die Basis, die eine oder mehrere linear kombinierte Achsen im $\mathbb{R}^{2}$ besitzt, wird f\"ur die $\mathbb{R}^{2\times3}$ Projektion, im Einheitskreis arrangiert. Im $\mathbb{R}^{2}$ nutzt man zwei statt drei der Einheitsvektoren, die man ebenso im Kreis dreht, allerdings stehen sie sicher im neunzig Grad Winkel zueinander. Was mit drei Achsen nicht mehr einwandfrei m\"oglich ist. Allerdings ist die Linearkombination und die Abh\"angigkeit mindestens einer Achse, meiner Meinung nach, hier \emph{richtig}.
 
 
-\subsection{Funktional, Funktion, Lineare Abbildung}
+\subsection{Lineare Abbildung}
 
-%Bemerkung. Ich nenne die Funktion Funktional, da es als Matrix ein linearer Operator von E auf F ist, wie ihn die Funktionalanalysis unterst\"utzt. Und da die Funktion den Test, seinen Graphen nicht zu kreuzen nicht besteht. Sie ist eine lineare Abbildung. Der 2-D Vektor wird aus zwei Skalarprodukten zusammengesetzt. Die Koordinaten werden mit dem Kosinusvektor f\"ur x und dem Sinusvektor f\"ur y multipliziert und summiert, um die horizontale und vertikale Abbildung der drei Koordinaten zu berechnen. Es entspricht wesentlichen Inhalten der Funktionalanalysis. Die Definition, wie sie zum Beispiel in der Variationsrechnung zusammen mit der Physik eingef\"uhrt wird, handelt von einem anderen Funktional, einem Energiefunktional zum Beispiel. Besonders in meinem Fall ist, dass es vektorwertig im Ergebnis ist. Ob ich damit richtig oder falsch bezeichne, was ich Funktional nenne, kann ich nicht wirklich sagen, da ich niemanden fragen kann.\\
-
-%Ich bezeichne die Funktion, welche die funktionale Form des linearen Matrixoperators ist, welche eine lineare Abbildung ist, als
-%Funktional, da sie in der Regel mit Funktionen kombiniert wird, und auf und mit Funktionen arbeitet. Der Unterschied zum herk\"ommlichen
-%Funktional, aus einem Vektorraum auf den reelle Zahlenstrahl, ist die Vektorwertigkeit des Ergebnisses. Andere Bezeichnungen sind
-%vektorwertige Funktion, oder vielleicht gar (Orts-)Vektorfeld. Am Besten ist bestimmt die Bezeichnung lineare Abbildung.\\
-
-Das Funktional nimmt einen Vektor mit drei Koordinaten an und gibt einen Vektor mit zwei Koordinaten zur\"uck. 
+Die Abbildung nimmt einen Vektor mit drei Koordinaten an und gibt einen Vektor mit zwei Koordinaten zur\"uck. 
 Den richtigen Punkt auf der Ebene entsprechend den Achsen, wie wir sie konfiguriert haben.\\
 
 \begin{displaymath}
@@ -242,8 +248,7 @@ Die folgenden Bedingungen linearer Funktionale werden erf\"ullt
     f(x + y) \leq f(x) + f(y)\qquad\lambda f(x) = f(\lambda x)
 \end{displaymath}
 
-Das Funktional ist partiell differenzierbar. Die ersten partiellen Ableitungen ergeben abgeleitet nach x die x-Komponente  des Achsvektors und abgeleitet nach y die y-Komponente des Achsvektors.\\
-
+Die Abbildung ist partiell differenzierbar. Die ersten partiellen Ableitungen ergeben abgeleitet nach x die x-Achse, nach y die y-Achse und nach z die z-Achse. Wendet man die Ableitungen als Summe an, fehlt leider die Variable. Die Summe ist konstant die Summe der drei Achsen. Aber die Ableitungen kann man sich leicht zu nutzen machen, wie wir sehen werden.
 
 
 \begin{displaymath}
@@ -259,16 +264,17 @@ Beweis:\\
 \begin{displaymath}
 \begin{align}
     \frac{\partial f}{\partial x} =& \lim_{h\rightarrow 0}\frac{f(x+h,y,z)-f(x,y,z)}{h}\\
-    =& \frac{1}{h}(((x+h)\vec{e}_x + y\vec{e}_y + z\vec{e}_z) - (x\vec{e}_x + y\vec{e}_y + z\vec{e}_z))\\
-    =& \frac{1}{h}((x+h)\vec{e}_x - x\vec{e}_x) \\
-    =& \frac{1}{h}h\vec{e}_x\\
+    =& \lim_{h\rightarrow 0}\frac{1}{h}(((x+h)\vec{e}_x + y\vec{e}_y + z\vec{e}_z) - (x\vec{e}_x + y\vec{e}_y + z\vec{e}_z))\\
+    =& \lim_{h\rightarrow 0}\frac{1}{h}((x+h)\vec{e}_x - x\vec{e}_x) \\
+    =& \lim_{h\rightarrow 0}\frac{1}{h}h\vec{e}_x\\
+    =& \lim_{h\rightarrow 0}\vec{e}_x\\
     =& \vec{e}_x
 \end{align}
 \end{displaymath}
 
-Die Grenzwerte der anderen Komponenten y und z ermittelt man auf die selbe Art und Weise. Darum verzichte ich in dieser Ausgabe auf sie.\\
+Die Differentialquotienten der anderen Komponenten y und z rechnet man auf die selbe Art und Weise aus. Darum verzichte ich in dieser Ausgabe auf sie.\\
 
-Die zweiten partiellen Ableitungen existieren nicht mehr, da das Funktional linear ist, und keine Kr\"ummung enth\"aelt. Die partiellen Ableitungen sind konstant, da eine gerade Linie nur eine Steigung und keine Tangente zur Kurve hat.\\
+Die zweiten partiellen Ableitungen existieren nicht mehr, da die Abbildung linear ist, und keine Kr\"ummung enth\"aelt. Die partiellen Ableitungen sind konstant, da eine gerade Linie nur eine Steigung und keine Tangente zur Kurve hat. Das funktioniert erst ab Polynomen mit mindestens einer quadratischen Potenz, dass wir eine Kurve mit einer Tangente und auch einer Kr\"ummung haben.\\
 
 Dennoch ist das Ergebnis, zuverl\"assig und n\"utzlich. Wenn man den Vektor aus den Ableitungen, entsprechend dem Aufbau des Gradientvektors, aus Analysis 2 bekannt, mit einem $\mathbb{R}^{3}$-Vektor multipliziert, erh\"alt
 man wieder die Transformationssumme.\\
@@ -276,15 +282,16 @@ man wieder die Transformationssumme.\\
 \begin{displaymath}
 \begin{align}
 \nabla\vec{f} =& \begin{pmatrix}\vec{e}_{x}\\\vec{e}_{y}\\\vec{e}_{z}\end{pmatrix}\\
-\nabla\vec{f}\cdot\vec{v} =& \begin{pmatrix}x'\\y'\end{pmatrix}
+\nabla\vec{f}\cdot\vec{x} =& \begin{pmatrix}x\\y\end{pmatrix}
 \end{align}
 \end{displaymath}
 
-Beweis, dass die Ableitung bei allen Koordinaten einen konstanten Vektor zurückliefert:
+Wenn man die Ableitung mit Werten benutzt, indem man die aktuellen Koordinaten einsetzt, erh\"alt man bei allen Eingaben ausser 0, die auf 0 abgebildet wird, die Summe der Achsvektoren und keine weiteren Informationen. Das liegt daran, dass die lineare Funktion keine Kurve besitzt. 
+Beweis (dass die Ableitung, mit Koordinaten in $f'(\vec{x})$ eingesetzt, einen konstanten Vektor zur\"uckliefert):
 
 \begin{displaymath}
 \begin{align}
-f'(\vec{x}) = \sum_{i=1}^{3}\frac{\partial f}{\partial x_i}(\vec{x}_i) = \sum_{i=1}^{3}\vec{e}_{n}
+f'(\vec{x}) = \sum_{i=1}^{3}\frac{\partial f}{\partial x_i}(\vec{x}_i) = \sum_{i=1}^{3}\vec{e}_{i}
 \end{align}
 \end{displaymath}
 
@@ -326,7 +333,7 @@ I_{n}(x) := \left\{\begin{array}{1}
 Die Integrale der partiellen Ableitungen setzen wir zu einer Integralfunktion zusammen.\\
 
 \begin{displaymath}
-I(\vec{v}) := I_{x}(\vec{v}_{1}) + I_{y}(\vec{v}_{2}) + I_{z}(\vec{v}_{3})
+I(\vec{x}) := I_{x}(\vec{x}_{1}) + I_{y}(\vec{x}_{2}) + I_{z}(\vec{x}_{3})
 \end{displaymath}
 
 Version 2:\\
@@ -362,8 +369,54 @@ sign(z)\int_{0}^{|z|}\vec{e}_{z}dz \\
 \end{align}
 \end{displaymath}\\
 
+
+\subsubsection{Translation vom Ursprung weg hinzuf\"ugen}
+
+Man kann die Formel auch um einen neuen Ursprung hin erweitern.\\
+
+Einfach ist es, einen neuen 2-D Ursprung anzugeben. Man addiert einfach den 2-D Ursprung zur Summe, womit die Translation des Ursprungs funktioniert.
+
+
+\begin{displaymath}
+\begin{align}
+\vec{f}(\vec{x}) = (\vec{x}_{1}\vec{e}_{x}+\vec{x}_{2}\vec{e}_{y}+\vec{x}_{3}\vec{e}_{z}) + \begin{pmatrix}\vec{o}_1\\\vec{o}_2\end{pmatrix}
+\end{align}
+\end{displaymath}
+
+Beweis:
+
+\begin{displaymath}
+\begin{align}
+\vec{f}(\vec{0}) = \begin{pmatrix}0 + \vec{o}_1\\0 + \vec{o}_2\end{pmatrix}
+\end{align}
+\end{displaymath}
+
+Man kann allerdings auch einen 3-D Ursprung verwenden, um das Ding imagin\"ar im Raum zu positionieren. Den transformiert man einfach
+mit der selben Formel. $\vec{o}$ bezeichnet die Koordinaten des neuen Ursprungs.
+
+\begin{displaymath}
+\begin{align}
+\vec{f}(\vec{x}) = (\vec{x}_{1}\vec{e}_{x}+\vec{x}_{2}\vec{e}_{y}+\vec{x}_{3}\vec{e}_{z}) + (\vec{o}_{1}\vec{e}_{x}+\vec{o}_{2}\vec{e}_{y}+\vec{o}_{3}\vec{e}_{z})
+\end{align}
+\end{displaymath}
+
+Beweis:
+
+\begin{displaymath}
+\begin{align}  
+\vec{f}(\vec{0}) = \begin{pmatrix}0\\0\end{pmatrix} + (\vec{o}_{1}\vec{e}_{x}+\vec{o}_{2}\vec{e}_{y}+\vec{o}_{3}\vec{e}_{z}) = \begin{pmatrix}0 + \vec{o}_1\\0 + \vec{o}_2\end{pmatrix}
+\end{align}
+\end{displaymath}
+
+
+
 \subsection{Matrix}
-\label{Matrix}
+
+\begin{displaymath}
+\begin{align}
+\vec{f}(\vec{x}) = \vec{x}_{1}\vec{e}_{x}+\vec{x}_{2}\vec{e}_{y}+\vec{x}_{3}\vec{e}_{z} dxdydz
+\end{align}
+\end{displaymath}\label{Matrix}
 
 Eine $m\times n$ matrix ist ein Rechteck oder ein Quadrat aus Zahlen.\\
 \begin{displaymath}
@@ -373,7 +426,7 @@ Eine $m\times n$ matrix ist ein Rechteck oder ein Quadrat aus Zahlen.\\
 Eine Matrix mit einem Vektor multipliziert man so
 
 \begin{displaymath}
-    \boldsymbol{A}\vec{v} = (\sum_{j=1}^{n}a_{ij}\vec{v}_{j})_{i = 1..m} = \begin{pmatrix}a_{11}v_{1} + a_{12}v_{2} + ... + a_{1n}v_n\\\vdots \\a_{m1}v_{1} + a_{m2}v_{2} + ... + a_{mn}v_n\end{pmatrix} = \left(\begin{array}{1}w_{1}\\\vdots\\w_{m}\end{array}\right) = \vec{w}
+    \boldsymbol{A}\vec{x} = (\sum_{j=1}^{n}a_{ij}\vec{x}_{j})_{i = 1..m} = \begin{pmatrix}a_{11}v_{1} + a_{12}v_{2} + ... + a_{1n}v_n\\\vdots \\a_{m1}v_{1} + a_{m2}v_{2} + ... + a_{mn}v_n\end{pmatrix} = \left(\begin{array}{1}w_{1}\\\vdots\\w_{m}\end{array}\right) = \vec{y}
 
 \end{displaymath}\\
 
@@ -404,7 +457,83 @@ r_x\sin(\varphi_x)x + r_y\sin(\varphi_y)y + r_z\sin(\varphi_z)z\end{array}\right
 \end{displaymath}\\
 
 
-Bemerkung. \"Uber die drei Werkzeuge sind mir bereits mehr Fakten bekannt und ich werde sie in der kommenden Version ber\"ucksichtigen und freilassen.\\
+Multiplikation mit der Identitaet von Rechts und von Links.
+
+\begin{displaymath}
+\begin{align}
+\begin{pmatrix}1&0\\0&1\end{pmatrix}\begin{pmatrix}
+r_x \cos \varphi_x&
+r_y \cos \varphi_y&
+r_z \cos \varphi_z\\
+r_x \sin \varphi_x&
+r_y \sin \varphi_y&
+r_z \sin \varphi_z
+\end{pmatrix}=\begin{pmatrix}
+r_x \cos \varphi_x&
+r_y \cos \varphi_y&
+r_z \cos \varphi_z\\
+r_x \sin \varphi_x&
+r_y \sin \varphi_y&
+r_z \sin \varphi_z
+\end{pmatrix}
+\end{align}
+\end{displaymath}
+
+\begin{displaymath}
+\begin{align}
+\begin{pmatrix}
+r_x \cos \varphi_x&
+r_y \cos \varphi_y&
+r_z \cos \varphi_z\\
+r_x \sin \varphi_x&
+r_y \sin \varphi_y&
+r_z \sin \varphi_z
+\end{pmatrix}\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}=\begin{pmatrix}
+r_x \cos \varphi_x&
+r_y \cos \varphi_y&
+r_z \cos \varphi_z\\
+r_x \sin \varphi_x&
+r_y \sin \varphi_y&
+r_z \sin \varphi_z
+\end{pmatrix}
+\end{align}
+\end{displaymath}
+
+
+\subsection{z-Achse zum $\mathbb{R}^{2}$ hinzuf\"ugen}
+ 
+Eine kurze Schreibweise ist, einfach die z-Achse hinzuzunehmen, und die $\mathbb{R}^{2}$ Achsen so zu belassen, wie sie sind.
+
+\begin{displaymath}
+\begin{align}
+\begin{pmatrix}x\\y\end{pmatrix} + z\begin{pmatrix}r_z\cos\varphi_z\\r_z\sin\varphi_z\end{pmatrix} &= \begin{pmatrix}x+zr_{z}\cos\varphi_z\\y+zr_{z}\sin\varphi_z\end{pmatrix}\\ &= \begin{pmatrix}x\\y\end{pmatrix}\\ &= \vec{y}
+\end{align}
+\end{displaymath}
+
+Wir addieren einfach $z\vec{e}_z$ zu $\begin{pmatrix}x\\y\end{pmatrix}$ und das Bild wird entsprechend dem z-Wert entlang der z-Achse verschoben. 
+
+\begin{example}
+Beispiel in JavaScript
+\begin{lstlisting}
+var zAngle = rad(45);
+var zAxisCos = Math.cos(zAngle);
+var zAxisSin = Math.sin(zAngle);
+function transform(points3) {
+    var points2 = [];
+    var p,x,y,z;
+    for (var i = 0, j = points3.length; i < j; i++) {
+        p = points3[i];
+        x = p[0], y = p[1], z = p[2];
+        points2.push([
+            x+z*zAxisCos,
+            y+z*zAxisSin
+        ]);
+    }
+    return points2;
+}
+\end{lstlisting}
+
+\"Ubrigens sind das Faktorr\"aume, die jeden verschobenen Schritt eine neue $\mathbb{R}^{2}$ Ebene ergeben.
 
 \section{Transformationsverhalten}
 
@@ -464,7 +593,7 @@ Es ist einfach zu zeigen, dass $\boldsymbol{A}(\lambda\vec{x}) = \lambda\boldsym
     &= \lambda\left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \end{array}\right)\\
-    &= \lambda\left(\begin{array}{1}x'\\y'\end{array}\right)\\
+    &= \lambda\left(\begin{array}{1}x\\y\end{array}\right)\\
     &= \lambda\boldsymbol{A}\vec{x}
 \end{align*}
 \end{equation*}
@@ -473,7 +602,7 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 
 \subsection{Addition und Subtraktion}
 
-Einfach zu zeigen ist auch, dass $\boldsymbol{A}(\vec{v} + \vec{w}) = \boldsymbol{A}\vec{v} + \boldsymbol{A}\vec{w}$. 
+Einfach zu zeigen ist auch, dass $\boldsymbol{A}(\vec{x} + \vec{y}) = \boldsymbol{A}\vec{x} + \boldsymbol{A}\vec{y}$. 
 Man kann auch hier die Eingabevektoren vor der Umwandlung addieren, oder die Ausgabevektoren nach der Umwandlung. Die resultierende Summe ist identisch.\\
  
 \textbf{Beweis}:\\
@@ -489,7 +618,7 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \end{array}\right) + \left(\begin{array}{1}ur_x\cos(\varphi_x) + vr_y\cos(\varphi_y) + wr_z\cos(\varphi_z)\\
 ur_x\sin(\varphi_x) + vr_y\sin(\varphi_y) + wr_z\sin(\varphi_z)\\
 \end{array}\right)\\    
-    &= \left(\begin{array}{1}x'\\y'\end{array}\right) + \left(\begin{array}{1}u'\\v'\end{array}\right)\\
+    &= \left(\begin{array}{1}x\\y\end{array}\right) + \left(\begin{array}{1}u\\v\end{array}\right)\\
     &= \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) + \boldsymbol{A}\left(\begin{array}{1}u\\v\\w\end{array}\right)
 \end{align*}
 \end{equation*}
@@ -500,7 +629,7 @@ ur_x\sin(\varphi_x) + vr_y\sin(\varphi_y) + wr_z\sin(\varphi_z)\\
 Durch die letzten zwei Beweise ist es offensichtlich, dass die Transformation die Regeln der Linearit\"at befolgt.\\
 
 \begin{displaymath}
-\boldsymbol{A}(\lambda\vec{v} + \kappa\vec{w}) = \lambda\boldsymbol{A}\vec{v} + \kappa\boldsymbol{A}\vec{w} = \lambda\left(\begin{array}{1}x'\\y'\end{array}\right) + \kappa\left(\begin{array}{1}u'\\v'\end{array}\right)\\
+\boldsymbol{A}(\lambda\vec{x} + \kappa\vec{y}) = \lambda\boldsymbol{A}\vec{x} + \kappa\boldsymbol{A}\vec{y} = \lambda\left(\begin{array}{1}x\\y\end{array}\right) + \kappa\left(\begin{array}{1}u\\v\end{array}\right)\\
 \end{displaymath}
 
 Auf den Beweis der Kombination beider Abschnitte verzichte ich, der l\"asst sich problemlos durch die vorangegangenen Beweise im Kopf durchgehen, was ich jedem zum besseren Verst\"andnis empfehle.\\
@@ -511,9 +640,9 @@ Auf den Beweis der Kombination beider Abschnitte verzichte ich, der l\"asst sich
 
 F\"ur jeden Punkt auf der Ebene existieren mehrere Punkte aus dem Raum, die auf ein- und denselben Punkt abgebildet werden k\"onnen. Das ist eine sogenannte \"Uberdeckung. Das Vorhandensein von endlichen Teil\"uberdeckungen einer Menge ist das Kriterium f\"ur Kompaktheit.
 
-\subsection{Vollständigkeit}
+\subsection{Vollst\"andigkeit}
 
-Vollst\"andigkeit bedeutet, dass es f\"ur jede Folge $(x_{n})_{n\in\mathbb{N}}$ eine partielle Teilfolge $(x_{nk})$ gibt, die konvergiert. Meine Behauptung lautet, daß alle Folgen $(x_n)$, die in $\mathbb{R}^{3}$ gegen $x$ konvergieren, auch mit dem Operator $\boldsymbol{A}$ transformiert, im $\mathbb{R}^{2}$ gegen $\boldsymbol{A}x$ konvergieren.
+Vollst\"andigkeit bedeutet, dass es f\"ur jede Folge $(x_{n})_{n\in\mathbb{N}}$ eine partielle Teilfolge $(x_{nk})$ gibt, die konvergiert. Meine Behauptung lautet, dass alle Folgen $(x_n)$, die in $\mathbb{R}^{3}$ gegen $x$ konvergieren, auch mit dem Operator $\boldsymbol{A}$ transformiert, im $\mathbb{R}^{2}$ gegen $\boldsymbol{A}x$ konvergieren.
 
 Beweis:\\
 
@@ -522,7 +651,7 @@ Im Abschnitt \ref{Cauchy_Folgen}.
 \section{Cauchyfolgen}
 \label{Cauchy_Folgen}
 
-Eine Folge $(x_n)$ konvergiert gegen eine Zahl x.
+Eine Folge $(x_n)n\in\mathbb{N}$ konvergiert gegen eine Zahl x. Man schreibt das so.
 
 \begin{displaymath}
 \begin{align}
@@ -531,31 +660,39 @@ Eine Folge $(x_n)$ konvergiert gegen eine Zahl x.
 \end{displaymath}
     
 
-Eine Cauchy Folge in der reellen Analysis einer Variable ist so definiert, dass es ab einem bestimmten Index so ist, dass der Abstand zwischen den Folgegliedern immer weiter schrumpft. F\"ur alle Epsilon gr\"osser $0$ existiert dann ein $n_0$, dass f\"ur alle $n > n_0$ gilt, dass $\|x_n - x_m\| < \epsilon$ sei.\\
-
+Eine Cauchy Folge, ist eine konvergente Folge. In der reellen Analysis einer Variable, ist sie so definiert, dass es ab einem bestimmten Index $n \in \mathbb{N}$ so ist, dass der Abstand $\|\vec{x}_m - \vec{x}_n\|$ zwischen den Folgegliedern der Folge $(\vec{x}_n)$ immer weiter schrumpft. Irgendwann sammeln sich die folgenden Folgeglieder alle kurz vor einem Punkt. Das ist der Punkt gegen den die Folge konvergiert. F\"ur alle Epsilon gr\"osser $0$ e\vec{x}istiert also f\"ur uns ein $n_0$, dass f\"ur alle $n > n_0 , m > n_0$, also alle folgenden Indizes, gilt, dass der Abstand $\|\vec{x}_n - \vec{x}_m\| < \epsilon$ sei.\\
 
 \begin{displaymath}
 \begin{align}
-\forall \epsilon > 0 : \exists n_{0} \in \mathbb{N} : \forall n \geq n_{0} : \|x_{m}-x_{n}\| < \epsilon
+\forall \epsilon > 0 : \exists n_{0} \in \mathbb{N} : \forall n,m \geq n_{0} : \|\vec{x}_{m}-\vec{x}_{n}\| < \epsilon
+\end{align}
+\end{displaymath}
+
+Bemerkung. Bei einer divergenten Folge schrumpft der Abstand irgendwann nicht mehr weiter, oder geht ganz auseinander und wird immer gr\"osser.\\
+
+In unserem Fall speziell, gilt es zu zeigen, dass die Folge, auch bei Transformation, gegen einen bestimmten Wert konvergiert.
+Hier nat\"urlich gegen die Transformationssumme $\sum_{i=0}^{n}\vec{x}_i\vec{e}_i$ oder kurz $\boldsymbol{A}\vec{x}$\\
+
+\begin{displaymath}
+\begin{align}
+    \boldsymbol{A}(\vec{x}_n) \rightarrow \boldsymbol{A}\vec{x}\\
 \end{align}
 \end{displaymath}
 
 
-In unserem Fall speziell, gilt es zu zeigen, dass die Folge, auch bei Transformation, gegen einen bestimmten Wert konvergiert.\\
+Der Beweis ist nicht schwer. Wir zeigen jetzt einfach, dass der Abstand $\|\vec{x}_m - \vec{x}_n\|$ gegen $0$ geht, wenn $n\rightarrow \infty$ geht.\\
 
-\begin{displaymath}
-\begin{align}
-    A(x_n) \rightarrow Ax\\
-\end{align}
-\end{displaymath}
+Da wir eine andere Dimension betreten, wenn wir von $\mathbb{R}^{3}$ auf $\mathbb{R}^{2}$ abbilden, sollten wir zu $\epsilon > 0$ eine zweite Zahl $\delta > 0$ hinzunehmen, die den erforderten Abstand in der anderen Dimension vorgibt.\\
+
+$\forall \epsilon > 0 : \exists \delta > 0 \exists n_{0} \in \mathbb{N} : \forall n,m \geq n_{0} : \|\vec{x}_{m}-\vec{x}_{n}\| < \epsilon \implies \|\boldsymbol{A}\vec{x}_m - \boldsymbol{A}\vec{x}_n\| < \delta$
+
+\section{Normen}
+
+\subsection{Euklidische Norm}
+
+Die euklidische Norm, auch p-Norm mit p=2, ist die Wurzel aus der Summe der Komponentenquadrate eines Vektors.
 
 
-Der Beweis ist nicht schwer. Wir zeigen jetzt einfach, dass der Abstand $\|x_m - x_n\| \rightarrow 0$ gegen $0$ geht, wenn $n\rightarrow \infty$ geht.\\
-
-Da wir eine andere Dimension betreten, wenn wir von $\mathbb{R}^{3}$ auf $\mathbb{R}^{2}$ abbilden, sollten wir eine zweite Zahl 
-hinzunehmen.\\
-
-$\forall \epsilon > 0 : \exists \delta > 0 \exists n_{0} \in \mathbb{N} : \forall n \geq n_{0} : \|x_{m}-x_{n}\| < \epsilon, \|Ax_m - Ax_n\| < \delta$
 
 
 \section{Computer Implementierung}
@@ -652,13 +789,7 @@ eigenen Projekt zu nennen. Allerdings mag auch ich keine Menschen, die diese Arb
             LaTeX, eine Einf\"uhrung und ein bisschen mehr..., a026\_latex\_einf.pdf            
     \bibitem{Rudl} \textit{Dr.Jan Rudl, Technische Universit\"at Dresden, Fachbereich Mathematik},
             Einf\"uhrung in LaTeX, LaTeX-Kurs.pdf
-
             \end{thebibliography}
-
-
-
-
 \printindex
-
 \end{document}
 
