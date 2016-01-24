@@ -19,31 +19,10 @@ Three dimensional coordinates into two dimensional coordinates transformation.
 \date{\today}
 \maketitle
 
-Version 0.3.991-before-cleaning-everything-up-and-ordering-the-chapters-and-writing-various-parts-again.\\
+Version 0.3.99 (From 2015, just removed the term functional, which was used in a wrong manner for a vector valued function)
 
-\textbf{Remark. This is a development version. With proper mistakes.} It is almost everywhere now to be overworked again. 
 
-\\
-Comment.\\
-\\
-This document is kind of deprecated.\\
-\\
- It is almost full. Not really complete. I have already advanced a couple of times in various
-related formulas and properties. For example, i have learned, that i can write $\left<f,x\right>$ for f(x) if f is from the dual and x is from the set to the dual. If you follow the text and examine the functional i call functional, you will feel some naturally appearing scalar product of scalars and vectors, being a property of the linear map, i should underline \emph{the} linear map. This is enough for my hello to you.\\
-\\
-This document will change in some days. My opinion is to write all again and remove all remarks. Of course i complete the begun calculations. I will add while writing the relevant new informations. I start a new paragraph above or below the old, finish it, and replace the old. There is still much more to advance in closely related to what i do here. The coordinate system sits on each of the planes of the cube around the three open intervals beetween zero and one, each origin is in the center. Each side of the cube brings a different view onto the inner coordinate system. A sphere with a tangent plane makes it possible to view the coordinate system inside from any angle. This is like arranging it on a circle on the plane, like we can look onto it, straight from any angle.\\
-\\
-The ker is not empty. It is a straight line through to the origin. All these points inside map onto $vec{0}$.\\
-\\
-I habe made a drawing with all these planes. You see, there is still more to advance. All covered points lie on a line normal to the plane we are looking from onto our box.\\
-\\
-We are not just taking the sines onto the surfaces to measure the distance and the height from above. We will not do it in this document anyways now. But you see, there is useful application for manifolds, too.\\
-\\
-This document is now deprecated.
-It will change in a few days.\\
-A short refresh of the core of the coordinate system is found in gerhold3dto2d-de.pdf meanwhile.
-\\
-This versions change: I translated the german declaration of authorship and the german license for serious reasons.
+\textbf{Remark. This is a development version. With proper mistakes.}
 
 \end{center} 
 
@@ -54,74 +33,76 @@ This versions change: I translated the german declaration of authorship and the 
 On a piece of paper you see three coordinate axes pointing into three
 dimensions in space. In reality these vectors are two dimensional. Because
 they point into \emph{three directions} on the 2-D paper,
-and not into the real 3-D space.\\
+and not into the real 3-D space. We take the sum of these three vectors 
+times the coordinates as one new point.\\
 
 \begin{figure}[ht]
 \label{ijksystem}
-\includegraphics[scale=2]{ijksystem.png}\\
+\includegraphics[scale=2]{figures/ijksystem.png}\\
 \caption{Picture of a right handed 3-D coordinate system with ijk-basis-vectors on the axes pointing (imaginary)
 into three dimensions. See \cite{Corral1} for introduction.}
 \end{figure}
 
-In this document we will design a ${2\times{3}}$ basis for the coordinate transformation. 
-A basis is multiplied with the values of the coordinates. That moves the point for each 
-component a piece. After the third move, we end up on the correct new point.
-In the case of using cosines and sines, we move with to the left and right and upwards and downwards. 
-To  tell you directly, what happens, when we multiply the coordinates with the matrix. \\
+In this document we will design a ${2\times{3}}$ operator for linear map from the 3-D world onto a 2-D plane.
+This linear map is designed after the pen-and-paper method to draw a 3-D coordinate system. I had the idea
+to try out a 3-D coordinate system with three 2-D axes, because the axes on the paper are 2-D lines. And 
+because the unit circle is available on the plane and because i have had learned some trigonometry recently, i 
+had been able to arrange the axes around the origin onto a circle line.
+
+It is assumed, that the input is from some set in $\mathbb{R}^{3}$. Say, some vertices of a 3-D object, or a set of points of a multivariate function plotting a 3-D surface. The result can be interpreted by the $\mathbb{R}^{2}$ standard basis. For example you can connect the 2-D points on the 2-D canvas with lineTo and fill the spaces beetween. 
 
 \textbf{What we will do in the document}
 
 \begin{enumerate}
-\item We choose angles $\varphi$ for our coordinate axes. Around the unit circle we lay out three axes.
-\item We choose the unit length $r$ for one unit on the axis. For all axes or uniquely for each axis.
-\item We write down three vectors derived from the canonical basis vector $(cos \theta, sin \theta)^{T}$, applying our angles and unit lengths.
+\item We choose angles $\varphi$ for our coordinate axes. We can rotate our three axes freely around the unit circle.
+\item We choose the unit length $r$ for the range unit on the axis. For all, two or each. This is like leaving normalized range.
+\item We write down three vectors derived from the canonical basis vector $r(cos \theta, sin \theta)^{T}$, applying our angles and unit lengths.
 \item We assemble a matrix $\boldsymbol{A}$ with the axis vectors. For a point by point transformation.
 \item We read the example source code for a computer function, which is exactly two lines long. One line is for the new $x$-coordinate and one line of code is for the new $y$-coordinate.
-\item We get the proofs for the linear behaviour of the transformation. That 0 stays in 0. And a point on the axis on the axis.
-\item We read other mathematical versions of the transformation. As a function, for example.
+\item We get the proofs for the linear behaviour of the transformation. And that 0 stays in 0. And a point on the axis on the axis.
+\item We read other mathematical versions of the transformation. As a function, for example. And we will find connections between.
 \item We derive the generic case of transforming coordinate systems down to the plane.
 \item We will get some info about the background and environment of the transformation, which is explored by the author
 \end{enumerate}\\
 
-\textbf{Warning! Foreign author.}\\
-Edward Gerhold, who is writing this document, is nativly speaking german. He was good in english at school, and will be again.
-This version will have certain mistakes, where he would understand himself. But is sure to correct it carefully during overwork||x||_.\\
+\textbf{Warning! Still foreign author.}\\
+Edward Gerhold, who is writing this document, is nativly speaking german. His english, formerly very good, is not up to date yet.
+And maybe this text contains phrases, he understands, at which no one in England, America or Australia, would be sure to understand.
 %\chapter{1}
 
 \section{Designing a $\mathbb{R}^{2\times{3}}$ coordinate system for our transformation from $\mathbb{R}^{3}$ to $\mathbb{R}^{2}$}
 
+What can i say, what is $\mathbb{R}^{2\times 3}$? Is it the 2x3 matrix, or also a vector with three two dimensional vectors inside?
+Can an element of $\mathbb{R}^{2\times 3}$ also be vector of vectors? Is 2x3 also a two dimensional plane with three coordinates? Yes, i think, it is so. 
 
-\subsection{The $_{n}$ index for $_x,_y,_z$ with $_x=1$, $_y=2$ and $_z=3$}
+The 2x3 matrix looks like the big body  around the three vectors had been transposed and they keep vertical orientation. Or is it the same, because it is the matrix itself, which is written like this. When i dot two vectors, they are both vertical. The same operation with a matrix is perpendicular, but absolutly equal in the writing and the result. Is $\mathbb{R}^{2\times 3}$ maybe the same in both cases? 
+
+\subsection{The $_{n}$ indices $_x,_y,_z$ with $_x=1$, $_y=2$ and $_z=3$ for the components equal as for the vectors $\vec{e}_n$}
 \index{index}
 
-The index $_{n}$ in $r_{n}$, $\varphi_{n}$, $\vec{e}_{n}$ is the index for $_x$,$_y$,$_z$. For example $\varphi_{n}$  stands $\varphi_x, \varphi_y, \varphi_z$. $r_{n}$ stands for $r_x$, $r_y$ and $r_z$. $\vec{e}_{n}$ is for $\vec{e}_x$, $\vec{e}_y$, $\vec{e}_z$ It is possible, that in the formulas $x,y,z$ and $1,2,3$ may be used interchangeably. For example, when summing up the products of the coordinate components with the basis components, this happens. The formula is $\sum_{i=1}^{3}\vec{x}_{i}\vec{e}_{i}$, which is a sum of $x,y,z$ and the $\cos \varphi_{n}$ terms in the first components of $\vec{e}_{n}$ for $x'$ and a sum of $x,y,z$ and the $\sin \varphi_{n}$ terms in the seconds components of $\vec{e}_{n}$ for $y'$.\\
+The index $_{n}$ in $r_{n}$, $\varphi_{n}$, $\vec{e}_{n}$ is the index for $_x$,$_y$,$_z$. For example $\varphi_{n}$  stands $\varphi_x, \varphi_y, \varphi_z$. $r_{n}$ stands for $r_x$, $r_y$ and $r_z$. $\vec{e}_{n}$ is for $\vec{e}_x$, $\vec{e}_y$, $\vec{e}_z$ It is possible, that in the formulas $x,y,z$ and $1,2,3$ may be used interchangeably. For example, when summing up the products of the coordinate components with the basis components, this happens. The formula is $\sum_{i=1}^{3}\vec{x}_{i}\vec{e}_{i}$, which is a sum of $x,y,z$ and the $\cos \varphi_{n}$ terms in the first components of $\vec{e}_{n}$ for $x$ and a sum of $x,y,z$ and the $\sin \varphi_{n}$ terms in the seconds components of $\vec{e}_{n}$ for $y$.\\
 
-Being on point explaining indices, i should also explain this. The coordinates $x,y,z$ in the vector $\vec{v}$ are the same as the components $\vec{v}_{1},\vec{v}_{2},\vec{v}_{3}$. And the components $x', y'$ in $\vec{w}$ are equal to $\vec{w}_{1}, \vec{w}_{2}$.\\
+Being on point explaining indices, i should also explain this. The coordinates $x,y,z$ in the vector $\vec{x}$ are the same as the components $\vec{x}_{1},\vec{x}_{2},\vec{x}_{3}$. And the components $x, y$ in $\vec{y}$ are equal to $\vec{y}_{1}, \vec{y}_{2}$.\\
+
+Throughout the text vector x is the input vector, vector y is the output vector. x,y,z and x,y use the same letters for points in space and in the plane.
 
 \subsection{$\varphi_{n}$ the angles for the coordinate axes}
 
-Why do we need angles? May be the first question. My answer is, we will arrange the basis vectors,
-easily around a circle, by their angle. Since they are two dimensionsal. The circle is available in two dimensions.
-With the arrangement around a circle, we get the right numbers, same lengths, instead of guessing wild numbers.\\
-
-First draw three axes of a 3-D coordinate system on a piece of paper. Draw the horizontal x-Axis through the origin of the drawn coordinate system. You could directly add the y-axis, to see a 2-D coordinate system carrying your two dimensional 3-D system. A system with three vectors pointing into three directions, originating in the origin of the real R^2 space.\\
+"Why do we need angles?" may be the first question. By rotating a vector around the origin, with the tip of the arrow on the circle line, and the tail in the origin, we can let the vector point into any chosen direction. Three of these vectors form the 3-D coordinate system. Each of the three vectors is an axis. The length of one unit on the axis is as long as the vector is, namely the
+radius of the circle is the unit of the coordinate system axes.
 
 \begin{figure}[ht]
 \label{handsystems}
-\includegraphics{handsystems.png}
+\includegraphics{figures/handsystems.png}
 \caption{A right handed (z-up) and a left handed coordinate system. They just have different angles in our 2-D projection.}
 \end{figure}
 
-Each of the three vectors has an angle, counted from the horizontal positive x-axis, going counterclockwise around the origin. The
-angle between the axes themselves isn´t what we want. We want the angle beginning on the real 2-D x-axis, to feed the cos and sin functions with, when calculating the real numbers of each basis vector.\\
+Whether the angles have to be measured in degrees or in radians, that depends on the cosine and sine functions you use.
+And on how you would like to read your own definitions.\\
 
-In this document, i will call the angles $\angle(\vec{e}_{1}_{1},\vec{e}_{2}_{2})$ $\angle\varphi_{n}$ or just $\varphi_{n}$. If they are measured in degrees or radians depends on the cosine and sine functions you use. And on how you would like to read your own definition.\\
+\fbox{We will arrange the three axes for x, y and z around the circle. By choosing an angle for each axis.}\\
 
-\fbox{We will arrange the three axes for x, y and z around the circle by choosing angles.}\\
-
-
-Let $\varphi_{n}$ be the set of axis angles, one for each axis. I put them into a set in this document to simplify the access by
-using the index $_{n}$ together with $_x, _y, _z$ or $1,2,3$. $\varphi_x$ or $\varphi_1$ is the angle of the x-axis. $\varphi_y$ or $\varphi_2$ is the angle of the x-axis and $\varphi_z$ or $\varphi_3$ is the angle of the x-axis. \\
+Let $\varphi_{n}$ be the set of axis angles. There exists one angle for each axis. I put them into a set in this document to simplify the access. By using the subscript index $_{n}$ in numbers or letters, as $_x, _y, _z$ or $1,2,3$. $\varphi_x$ or $\varphi_1$ is the angle of the x-axis. $\varphi_y$ or $\varphi_2$ is the angle of the x-axis and $\varphi_z$ or $\varphi_3$ is the angle of the x-axis. \\
 
 \begin{displaymath}
 \begin{align}
@@ -130,16 +111,11 @@ using the index $_{n}$ together with $_x, _y, _z$ or $1,2,3$. $\varphi_x$ or $\v
 \end{align}
 \end{displaymath}
 
-The angles are going around a circle, so they are limited by a modulus operation internally.\\
-
-We can say, that $\varphi_n \in [0,2\pi)$ in radians. Or that $\varphi_n \in [0,360)$ in degrees. And that $\varphi_n \in \mathbb{R}$.
-
-We will need the three angles for the axes in short time. So don´t forget over the next lines.\\
+The angles are going around a circle. We can give any real number. The intervals are limited to a modulus operation internally. We can say, that $\varphi_n \in [0,2\pi)$ in radians. Or that $\varphi_n \in [0,360)$ in degrees. And that $\varphi_n \in \mathbb{R}$. We will need the three angles for the axes in short time. So don´t forget over the next lines.\\
 
 \subsubsection{Degrees or radians?}
 
-Depending on the cosine and sine functions and the input value for the angles, you may have to convert the degrees to radians, or
-the other way round, the radians to degrees. For example, the JavaScript Math.cos and Math.sin functions take the values in radians.\\
+Maybe you have to convert the angles beetween degrees and radians. It depends on the cosine and sine functions, you use. For example, the JavaScript \emph{Math.cos($\varphi$)} and \emph{Math.sin($\varphi$)} functions take radians. Most other programming languages, too. For this reason i have written some examples.\\
 
 \begin{example}
 \textbf{Definition 1}
@@ -150,8 +126,8 @@ The function rad converts degrees to radians, it´s useful for computer function
 
 \textbf{Example 2}
 \label{120_degrees}
-Here is an example of three angles. The three axes have an angle of 120 degrees between each. But since we start counting counterclockwise and from the real horizontal axis of the plane, the angles are 210, 330, 90 in degrees, respectivly. And
-because of the cosine and sine functions taking radians, we convert the values to radians.\\
+
+Here is an example of three angles. The three axes have an angle of 120 degrees between each neighbour axis. We start counting from the horizontal x-axis counterclockwise with positive numbers in radians, or negative numbers, if we go clockwise. We have to add each angle 120 degrees, after choosing our first angle.\\
  
 \begin{displaymath}
 \varphi_x = \text{rad(210)}, \varphi_y = \text{rad(330)}, \varphi_z = \text{rad(90)}
@@ -165,13 +141,15 @@ because of the cosine and sine functions taking radians, we convert the values t
 \end{example}
 
 \textbf{Definition 3}
-The function deg converts the other way round and from radians to degrees. You multiply your value with the reciprocal of PI/180, namely 180/PI and get the other way round.
+The function deg converts conversely from radians to degrees. You multiply your value with the reciprocal of PI/180, namely 180/PI and get the opposite result of the rad function. This proves, that $deg(rad(x))=x$ and $rad(deg(x))=x$.\\
+
 \begin{displaymath}
 \text{deg}(\phi) := \frac{180}{\pi} \times \phi, \phi \in \mathbb{R}
 \end{displaymath}
 
 \textbf{Example 4}
-The first example was for the righthand coordinate system. Here are some angles for a lefthand system.
+The first example, Example 1, was about an a little bit rotated righthand coordinate system. Here are some angles for a lefthand system, which includes the third axis with exactly 45 degrees beetween the perpendicular x and y axis.\\
+
 \begin{displaymath}
 \varphi_x &= \frac{\pi}{180} \times 0 &= 0,  
 \varphi_y &= \frac{\pi}{180} \times 90 &= \frac{\pi}{2}, 
@@ -206,63 +184,61 @@ $330^{\circ}$ & $$& $$& $$& $$& $$& $$\\
 
 \subsection{$r_{n}$ is the length of the unit on each axis}
 
-Before i show you the three vectors, and how to use them, we have to clear another piece of information belonging to each
-basis vector. In this document it is called $r_{n}$. The r is from radius. And it stands for the length of the basis vector.
-The length of the basis vector defines, how far a point in this direction will go by one unit.\\
+It was possible to choose another name for the unit length on the axis. But to stay closely related to the basic operations, 
+which are used for creating and applying the coordinate system, namely the formulas for the $(x,y)$ coordinates in polar coordinates,
+i stick with the variable name $r_{n}$.\\
+
+$r_{n}$ describes the length of the unit of one axis. Like with polar coordinates, the length of the vector from the origin to the $(x,y)$ pair on the unit circle, gets increased to the length of $r_{n}$.
+
 \begin{displaymath}
-r_{n} := \{ r_{x}, r_{y}, r_{z} | r_n \mbox{ is the unit each axis }\} = \{ r_{1}, r_{2}, r_{3} | r_n \mbox { is the unit each axis } \}
+r_{n} := \{ r_{x}, r_{y}, r_{z} | r_n \mbox{ is the unit for $1$ on each axis }\} = \{ r_{1}, r_{2}, r_{3} | r_n \mbox { is the unit each axis } \}
 \end{displaymath}
 
-The $r$ originates from radius from the unit circle and from the parametrization of (x,y) via cosine and sine. 
-In polar coordinates the cosine and sine are multiplied with r. Also to change the length of the hypotenuse, 
-the vector $\vec{r}$, which is the third side to a triangle by cosine, sine and r. 
-If r is left away, the length of the basis vector is 1. Or in other words, the distance $d((0,0),(x,y))$ from the origin to $(x,y)=($$r \cos \varphi$$, $$r \sin \varphi$$)$ is $1$, if $r=1$ or if r is left away completely.\\
+There is a bit to mention about the r-value:\\
 
-\fbox{The number $r$ is for the length of one unit on each axis.}\\
+\begin{enumerate}
+\item The axes have $\|\vec{e}_{n}\|_{2}=1$ if you set $r_x = r_y = r_z = 1$. This gives mathematical unchanged results.
+\item If you set $(r_x = r_y = r_z) > 1$ you scale the image by that factor, if it is $(r_x = r_y = r_z) < 1$ you shrink the graph.
+	The mathematical results get changed.
+\item If you set all r-values to different lengths, rotation of objects inside the coordinate system look unrealistic. For that use a 		local basis for each object and set the coordinate system itself again to r-values equal on all axes.
+\item If you the the r-values to different lengths than $1$, all mathematical results get changed and the whole examination is more 	  complicated, and maybe not solvable, since we got it to do with an non-invertible operator.
+\end{enumerate}
 
-\textbf{Example}
-\begin{Example}
-\begin{displaymath}
-TODO
-\end{displaymath}
+In short $\|\vec{e}_{n}\| = r_n$, and the best option is, to set all three axes to normalized length of $1$.\\
 
-Pay attention to this. To keep the affine transformation under rotation correct. You should give all three
-axes the same r-value. I will define them in this document as $r_{n}$ with one $r_x, r_y$ and $r_z$ for each coordinate axis,
-to keep it complete. But if you would like to change the units on your objects, i have to recommend, that you apply a local
-3x3 basis containing the disjoint unit lengths. This will keep the scaling locally and under rotation correct.
-In the other case, the object would suddenly stretch the head, if you rotate it to the scaled side, and shrink the side, 
-which was scaled before.\\
+ The coordinates can be scaled independently from the transformation by multiplying the 2-D points with a zoom factor, which can be $z > 1$ to enlarge, or $\frac{1}{z}$ to scale down. This factor can be applied by the drawing function instead of by us.\\
 
-So for the coordinate system, the best setting is $r_x = r_y = r_z$. Keeping them equal, you can rotate it realistic. But you
-don´t need to keep the unit length of 1 for the vector. Elonginating the units on the axes make zooming transformations very
-easy.\\
+\fbox{The number $r$ is for the length of one unit on each axis. $r_x=r_y=r_z=1$ is optimal.}\\
 
-\subsection{$\vec{e}_{n}$ are the three 2-D basis vectors}
+\fbox{If you want to measure data you should stick with unit length of 1.}
 
-We have drawn some axes on a piece of paper and taken the angles starting from zero counterclockwise on the x-axis.\\
+\subsection{$\vec{e}_{n}$ are the three 2-D axis vectors which are like basis vector}
 
-Now we will write down the three basis vectors. Each vector points from the origin exactly along the first unit of the together belonging axis.\\
+We have drawn some axes on a piece of paper and taken the angles starting from zero counterclockwise on the x-axis.
+We know now, that elonginating an axis vector by changing the radius forces us to draw one circle for each axis. You see the
+unit ball with the diameter of $2$ and a radius of $1$ which is $r$. But visually it is not there, if you use the coordinate system.\\
+
+Now we will write down the three basis vectors. Each vector points from the origin onto the circle line of its axis. With the same
+values on alle axes, in the document we will use the unit length of $1$, they share the same circle on the first unit. And no matter how you rotate them, on all units. We will still map 3-D coordinates with three 2-D axes onto the 2-D screen.
 
 Let $\vec{e}_{n}$ be the set of three two dimensional basis vectors. In this document and some literature and scripts,
 we call them $\vec{e}_x$, $\vec{e}_y$ and $\vec{e}_z$. Another well known names for the basis vectors are $\vec{i}$, 
 $\vec{j}$ or $\vec{k}$ for example. That is equal to the picture of the coordinate axes at \ref{ijksxstem} in this document.\\
 
-The three vectors point into the three directions of the three coordinate axes. Exactly along one unit, since we are going
-to define with them the length of one unit of the corresponding axis together with the positive direction of the coordinate axis.
-Multiplying the 2x3 basis with the 3x1 points later results in wonderful 2x1 points. \\
+Multiplying the 2x3 basis with the 3x1 points later results in wonderful 2x1 points. We will see it as a function, some flipping of the derivatives and the integral over the e-vector function doing the coordinate transformation after upgrading by adding the coordinate by the rules of integration.\\
 
 \begin{displaymath}
 \vec{e}_{n} := \{\vec{e}_x, \vec{e}_y, \vec{e}_z | \vec{e}_{n} \mbox{are the coordinate axes} \} = \{\vec{e}_1, \vec{e}_2, \vec{e}_3  | \vec{e}_{n} \mbox{are the coordinate axes} \}\\
 \end{displaymath} 
 
-This is now a set of the three basis vectors. We give them the letter $e$ and a subscript for the coordinate component in the numeric order of $x=1, y=2, z=3$. To arrange these vectors we already got around the unit circle and layed them out there. To measure the angles, beginning on the horizontal coordinate axis or zero, until we reach the vector. The vectors point into the positive direction of the described axis.\\
+This is now a set of the three axis vectors. We give them the letter $e$ and a subscript for the coordinate component in the numeric order of $x=1, y=2, z=3$. To arrange these vectors we already got around the unit circle and layed them out there. To measure the angles, beginning on the horizontal coordinate axis or zero, until we reach the vector. The vectors point into the positive direction of the described axis.\\
 
 \begin{figure}[ht]
-\includegraphics[scale=0.8]{righthand45.png}
+\includegraphics[scale=0.8]{figures/righthand45.png}
 \caption{The three basis vectors point into the positive directions of the desired coordinate axes each. They are arranged around a circle with the trigonometric functions of cosine and sine. The coordinate system shown is a righthanded coordinate system.}
 \end{figure}
 
-\begin{figure}[ht]\includegraphics[scale=0.8]{lefthand45.png}
+\begin{figure}[ht]\includegraphics[scale=0.8]{figures/lefthand45.png}
 \caption{The three two dimensional basis vectors as a lefthanded coordinate system.}
 \end{figure}
 
@@ -288,10 +264,10 @@ we get the following three two dimensional basis vectors. They point along the c
 \vec{e}_z := (r_z\cos(\varphi_z), r_z\sin(\varphi_z) )^T = \left(\begin{array}{1}r_z\cos(\varphi_z)\\r_z\sin(\varphi_z) \end{array}\right)\\
 \end{displaymath}\\
 
-Each component of (x,y,z) has now it`s own basis vector. By multiplying the cos terms for the x' and the sin terms for y' with the corresponding component of (x,y,z) and summing the three products up for each of x' and y', we directly obtain the right coordinate on the plane. All we would have to do is to connect the points again, or to fill the space between. \\
+Each component of (x,y,z) has now it`s own basis vector. By multiplying the cos terms for the x and the sin terms for y with the corresponding component of (x,y,z) and summing the three products up for each of x and y, we directly obtain the right coordinate on the plane. All we would have to do is to connect the points again, or to fill the space between. \\
 
 \begin{figure}[ht]
-\includegraphics[scale=2]{unitcircle.png}
+\includegraphics[scale=2]{figures/unitcircle.png}
 \caption{A picture of the unit circle, the hypotenuse r, the adjacent cosine, the opposite sine and the angle $\varphi$. It is a circle of radius r, and no longer the unit circle, if $r \neq 1$.}
 \end{figure}
 
@@ -332,7 +308,7 @@ The plane gives us two possible directions, to go horizontal or vertical. And in
 Any not straight move will go horizontally or vertically by componentwise amounts. Any straight move horizontally or vertically will go by one of the components only.\\
 
 \begin{figure}
-\includegraphics{mediator.png}
+\includegraphics{figures/mediator.png}
 \caption{A temporary picture of the process. We multiply the 3-D points with the 2x3 matrix and get the 2-D points back.}
 \end{figure}
 
@@ -353,31 +329,31 @@ The point is, the general formula holds with a 2x3 basis.\\
 The formula for multiplying a vector with a basis to get a new vector is this.\footnote{The formula can be found in many mathematics, chemistry and physics lecture scripts, and a good introduction is \cite{Strang1}.}\\
 
 \begin{displaymath}
-\vec{w} = \displaystyle\sum_{i=1}^{n} \vec{v}_{i}\vec{e}_{i}
+\vec{y} = \displaystyle\sum_{i=1}^{n} \vec{x}_{i}\vec{e}_{i}
 \end{displaymath}
 
 This is the same formula for the linear combination in general.\\
 
 It is done componentwise for each row of the vector. $n$ is the number of the source dimensions. In our case it is $n = 3$. 
-We are summing three products for each component of the new vector. Our old $\vec{v}$ is a $\vec{v} \in \mathbb{R}^3$.\\
-With $\vec{v}_{i}$ as the coordinate component and $\vec{e}_{i}$ as the corresponding basis vector in the right component. 
-$\vec{w}$ is the resulting new vector.  The new vector $\vec{w}$ is a $\vec{w} \in \mathbb{R}^2$.\\
+We are summing three products for each component of the new vector. Our old $\vec{x}$ is a $\vec{x} \in \mathbb{R}^3$.\\
+With $\vec{x}_{i}$ as the coordinate component and $\vec{e}_{i}$ as the corresponding basis vector in the right component. 
+$\vec{y}$ is the resulting new vector.  The new vector $\vec{y}$ is a $\vec{y} \in \mathbb{R}^2$.\\
 
-In our scenario is $V \subset \mathbb{R}^{3}, \vec{v} \in V$ and $W \subset \mathbb{R}^{2}, \vec{w} \in W$.\\
+In our scenario is $V \subset \mathbb{R}^{3}, \vec{x} \in V$ and $W \subset \mathbb{R}^{2}, \vec{y} \in W$.\\
 
 \subsubsection{Connection to ijk-Notation}
 
 This is also equal to\\
 
 \begin{displaymath}
-\vec{v} = x\vec{i} + y\vec{j} + z\vec{k}
+\vec{x} = x\vec{i} + y\vec{j} + z\vec{k}
 \end{displaymath}
 
 what also explains, what the ijk-Notation means. If you don´t use it already for determining determinants for
 calculating cross products (\ref{crossproducts}). It is for describing a vector. Don´t forget, our $i, j, k$ basis is two dimensional, 
 because we draw on a 2-D plane like the computer screen or a piece of paper. \\
 
-With a 3x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is equal to \left(\begin{array}{1}x'\\y'\\z'\end{array}\right)$. But with a 2x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is becoming  \left(\begin{array}{1}x'\\y'\end{array}\right)$\\
+With a 3x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is equal to \left(\begin{array}{1}x\\y\\z'\end{array}\right)$. But with a 2x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is becoming  \left(\begin{array}{1}x\\y\end{array}\right)$\\
 
 \subsubsection{Coordinate system}
 
@@ -386,7 +362,7 @@ With a 3x3 basis the vector $x\vec{i} + y\vec{j} + z\vec{k}$ is equal to \left(\
 The operation of multiplying the (x,y,z) coordinate with our $\mathbb{R}^{2\times{3}}$ coordinate axis vectors in order is the following:\\
 
 \begin{displaymath}
-\left(\begin{array}{1}x'\\y'\end{array}\right) = \left(\begin{array}{1}
+\left(\begin{array}{1}x\\y\end{array}\right) = \left(\begin{array}{1}
 xr_x\cos\varphi_x + yr_y\cos\varphi_y + zr_z\cos\varphi_z\\
 xr_x\sin\varphi_x + yr_y\sin\varphi_y + zr_z\sin\varphi_z\end{array}\right)\\
 \end{displaymath}\\
@@ -396,7 +372,7 @@ Right, this small formula brings over the $\mathbb{R}^{2\times{3}}$ the unexpect
 Remark. Meanwhile i am ready to say $\mathbb{R}^{2\times{3}}$ image, and to believe, that this coordinate system is spanning the $\mathbb{R}^{2\times{3}}$ up (spread into the three dimensions) on the plane.\\
 
 \begin{figure}[ht]
-\includegraphics{pathcoords.png}
+\includegraphics{figures/pathcoords.png}
 \caption{The path a point goes from the origin. Along the first axis, then from that parallel to the second along that axis, and last parallel to the third axis as many units as the coordinate says. You can not see on this picture, how it is deconstructed by cosine and sine into left and right moves. To see, just draw the two missing sides of the triangles under each move. The z axis has a cosine of 0. I will paint a new picture for.}
 \end{figure}\\
 
@@ -410,7 +386,7 @@ mathematicians would start to smile. But i will do my best to correct any of my 
 \section{The transformation $\mathbb{R}^{3} \rightarrow \mathbb{R}^{2}$ yields a perfect image}
 
 \begin{figure}[ht]
-\includegraphics{pathhacked.png}
+\includegraphics{figures/pathhacked.png}
 \caption{The path a point goes from the origin. It is three moves horizontally and three vertically. One for each coordinate. Doing by scalar multiplication with the 2-D basis vector, all six proportional moves will be calculated, three of them build a weighted sum of a linear combination for interpretation of the $\mathbb{R}^{2}$ basis.}
 \end{figure}\\
 
@@ -420,21 +396,21 @@ Remark. This subsection is started on July 31. And has still to be continued on 
 
 Let $V$ be an open set in $\mathbb{R}^{3}$.\\
 
-Let $B(\vec{v}, \epsilon)_{3}$ be a standard environment in the 3-space.\\
+Let $B(\vec{x}, \epsilon)_{3}$ be a standard environment in the 3-space.\\
 
 Let $W$ be an open set in $\mathbb{R}^{2}$.\\
 
-Let $B(\vec{v}, \epsilon)_{2}$ be a standard environment in the 2-space.\\
+Let $B(\vec{x}, \epsilon)_{2}$ be a standard environment in the 2-space.\\
 
 Let the euclidean norm $\|\cdot\|_{2}$ be the default norm for three and two dimensions.\\
 
 Let the $d(x,y)_{2} = \|x-y\|$ be the according metric.\\
 
-Let $f:V\rightarrow W$ be a continuous functional, and $A:V\rightarrow W$, $A \in L(V,W), Hom(V,W)$ be a rectangular matrix. Both map with equal operations V to W.\\
+Let $f:V\rightarrow W$ be a continuous function, and $A:V\rightarrow W$, $A \in L(V,W), Hom(V,W)$ be a rectangular matrix. Both map with equal operations V to W.\\
 
-Let $V$ be the set of all points $(x,y,z) \in V \subset R^3$ which are about to become transformed. $V := \{ \vec{v}=(x,y,z)^T | x,y,z \in \mathbb{R}, \vec{v} \in V \subset \mathbb{R}^{3} \}$.\\
+Let $V$ be the set of all points $(x,y,z) \in V \subset R^3$ which are about to become transformed. $V := \{ \vec{x}=(x,y,z)^T | x,y,z \in \mathbb{R}, \vec{x} \in V \subset \mathbb{R}^{3} \}$.\\
 
-Let $W$ be the set of all points $(x',y') \in W \subset R^2$ which are the result of the transformation $W ;= \{ \vec{w}=(x',y')^T | \vec{w} \in W \subset \mathbb{R}^{2} x',y' \in \mathbb{R}, \boldsymbol{A}\vec{v}=(x',y')^{T}\}$.\\
+Let $W$ be the set of all points $(x,y) \in W \subset R^2$ which are the result of the transformation $W ;= \{ \vec{y}=(x,y)^T | \vec{y} \in W \subset \mathbb{R}^{2} x,y \in \mathbb{R}, \boldsymbol{A}\vec{x}=(x,y)^{T}\}$.\\
 
 Remark. The topology has still to be defined extensivly in this document.\\
 
@@ -448,7 +424,7 @@ A $m\times n$ matrix is a rectangle or square of numbers.\\
 Matrix with vector multiplication, from left to right in the matrix and from top to bottom in the vector, and that row by row, is achived by \\
 
 \begin{displaymath}
-    \boldsymbol{A}\vec{v} = (\sum_{j=1}^{n}a_{ij}\vec{v}_{j})_{i = 1..m} = \begin{pmatrix}a_{11}v_{1} + a_{12}v_{2} + ... + a_{1n}v_n\\\vdots \\a_{m1}v_{1} + a_{m2}v_{2} + ... + a_{mn}v_n\end{pmatrix} = \left(\begin{array}{1}w_{1}\\\vdots\\w_{m}\end{array}\right) = \vec{w}
+    \boldsymbol{A}\vec{x} = (\sum_{j=1}^{n}a_{ij}\vec{x}_{j})_{i = 1..m} = \begin{pmatrix}a_{11}v_{1} + a_{12}v_{2} + ... + a_{1n}v_n\\\vdots \\a_{m1}v_{1} + a_{m2}v_{2} + ... + a_{mn}v_n\end{pmatrix} = \left(\begin{array}{1}w_{1}\\\vdots\\w_{m}\end{array}\right) = \vec{y}
 
 \end{displaymath}\\
 
@@ -496,27 +472,27 @@ Remark. I commented the "linear map operator" definition out (linear map and ope
 \label{Theorem}
 If you multiply \boldsymbol{A}, the 2x3 matrix of the three two-dimensional basis vectors,
 with the three-coordinate point $(x,y,z)$, the result is a two coordinate point, 
-$(x',y')$. This point $(x',y')$ is the correct point on the two dimensional plane,
+$(x,y)$. This point $(x,y)$ is the correct point on the two dimensional plane,
 representing the point $(x,y,z)$ from the three dimensional coordinate system, you are transforming.\\
 \begin{displaymath}
-\boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
+\boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = \left(\begin{array}{1}x\\y\end{array}\right)
 \end{displaymath}
 
-Applying the operator \boldsymbol{A} transforms the point $(x,y,z) \in V \subset \mathbb{R}^3$ into a new point $(x',y') \in W \subset \mathbb{R}^2$. 
+Applying the operator \boldsymbol{A} transforms the point $(x,y,z) \in V \subset \mathbb{R}^3$ into a new point $(x,y) \in W \subset \mathbb{R}^2$. 
 
 \textbf{Proof}:\\
 
 \begin{displaymath}
-\boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = (\sum_{j=1}^{3}a_{ij}\vec{v}_{j})_{i=1,2}
+\boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) = (\sum_{j=1}^{3}a_{ij}\vec{x}_{j})_{i=1,2}
 %\end{displaymath}
 %\beg{in{displaymath}
 &= \left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
-\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
+\end{array}\right) = \left(\begin{array}{1}x\\y\end{array}\right)
 \end{displaymath}
 
 \begin{figure}[ht]
-\includegraphics[scale=0.5]{fxyplot.png}
+\includegraphics[scale=0.5]{figures/fxyplot.png}
 \caption{$f(x,y) = x^2 + y^2 + 3y \sin y$ from [-5,5] and [-3,3] on a Canvas2DRenderingContext}
 \end{figure}
 \end{Theorem}
@@ -537,15 +513,15 @@ If you multiply the three linear dependent two dimensional vectors with the thre
 The operation is equal, but instead of working with three components in the new vector, we work with two components in the new vector. For each component, we build a sum of products. A sum of the productts of the basis components multiplied with the related coordinates ($x\vec{e}_x + y\vec{e}_y + z\vec{e}_z$), like we would do in the original form of this calculation with a $n\times n$ basis. \\
 
 \begin{displaymath}
-\vec{v} = \begin{pmatrix}x\\y\\z\end{pmatrix}
+\vec{x} = \begin{pmatrix}x\\y\\z\end{pmatrix}
 \end{displaymath}
 \begin{displaymath}    
-\vec{w} = x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z}
+\vec{y} = x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z}
 \end{displaymath}    
 \begin{displaymath}
-    \sum_{i=1}^{n}\vec{v}_{i}\vec{e}_{i} = \left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
+    \sum_{i=1}^{n}\vec{x}_{i}\vec{e}_{i} = \left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
-\end{array}\right) = \begin{pmatrix}x'\\y'\end{pmatrix} = \vec{w}
+\end{array}\right) = \begin{pmatrix}x\\y\end{pmatrix} = \vec{y}
 \end{displaymath}
 
 The difference is that we have a dimension less than coordinates, and with that at least one axis, that must be a mix of the other two. By default our image in our coordinate system is a linear combination of $\lambda\begin{pmatrix}1\\0\end{pmatrix} + \mu\begin{pmatrix}0\\1\end{pmatrix}$, but before that, we map with a linear function from three dimensions to two dimensions, by using our coordinate system as or like a basis. \\
@@ -563,7 +539,7 @@ the corresponding coordinate system, it is o.k., to remove the third dimension f
 The ijk-Notation is well known from describing vectors, from calculating cross products over determinants, from coordinate systems showing the normalized ijk vectors along the axes. The formula is this\\
 
 \begin{center}
- $\vec{w} = x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}$
+ $\vec{y} = x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}$
 \end{center}
 
 This is a very natural way. This is a real sum. The coordinates x,y,z multiply each a basis vector. This is the ordinary constant or scalar multiplication. Then the three scaled vectors are summed up together. This gives us a new vector, the sum of the three vectors. I have explained this already earlier, you can use this notation for this purpose, now it is time to repeat it. For a picture, look at figures \ref{ijksystem} and \ref{handsystems}.\\
@@ -575,7 +551,7 @@ If you write the vector down in ijk-Notation using the three two dimensional axi
 
 \textbf{Proof:}\\
 \begin{displaymath}
- x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z} = x\begin{pmatrix}r_x\cos\varphi_x\\r_x\sin\varphi_x\end{pmatrix} + y\begin{pmatrix}r_y\cos\varphi_y\\r_y\sin\varphi_y\end{pmatrix} + z\begin{pmatrix}r_z\cos\varphi_z\\r_z\sin\varphi_z\end{pmatrix} = \sum_{i=1}^{3}\vec{e}_{i}\vec{v}_{i} = \vec{w} = \begin{pmatrix}x'\\y'\end{pmatrix}
+ x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z} = x\begin{pmatrix}r_x\cos\varphi_x\\r_x\sin\varphi_x\end{pmatrix} + y\begin{pmatrix}r_y\cos\varphi_y\\r_y\sin\varphi_y\end{pmatrix} + z\begin{pmatrix}r_z\cos\varphi_z\\r_z\sin\varphi_z\end{pmatrix} = \sum_{i=1}^{3}\vec{e}_{i}\vec{x}_{i} = \vec{y} = \begin{pmatrix}x\\y\end{pmatrix}
 \end{displaymath}
 
 \subsection{Function version}
@@ -583,9 +559,9 @@ If you write the vector down in ijk-Notation using the three two dimensional axi
 The first days, i could not see the forest, because of all these trees. 
 The operation can be written as function, or as part of a composition of functions.
 The big thing for this point by point transformation is the easy usability. For example, 
-to create surface plots and other functional graphs from three dimensional space on a flat screen or printed paper.\\
+to create surface plots and other function graphs from three dimensional space on a flat screen or printed paper.\\
 
-\subsubsection{The linear functional $f(\vec{x})$}
+\subsubsection{The linear vector valued $f(\vec{x})$}
 
 We begin with $\vec{f}(\vec{x}) : V \subset \mathbb{R}^{3} \rightarrow \subset \mathbb{R}^{2}$. $\vec{f} \in V^{*}$\\
 
@@ -608,10 +584,10 @@ This can even be written more convenient. The interested reader might find \cite
 \end{displaymath}
 
 
-\newtheorem{FunctionalVersion}{Proposition. My fundamental theorem of transforming 3-D points into 2-D points (Functional))}
-\begin{FunctionalVersion}
-The linear functional $\vec{f}(\vec{x})$ maps the points correctly from 3-D to 2-D. It is continuous in every point, the zero vector maps onto the zero vector. Passing a vector with three coordinates to the function results in a vector with two coordinates, which are the right coordinates on the 2-D screen.
-\end{FunctionalVersion}
+\newtheorem{FunctionVersion}{Proposition. My fundamental theorem of transforming 3-D points into 2-D points (Function))}
+\begin{FunctionVersion}
+The linear function (map) $\vec{f}(\vec{x})$ maps the points correctly from 3-D to 2-D. It is continuous in every point, the zero vector maps onto the zero vector. Passing a vector with three coordinates to the function results in a vector with two coordinates, which are the right coordinates on the 2-D screen.
+\end{FunctionVersion}
 
 
 \subsubsection{Composition of the functions $f \circ g$}
@@ -623,7 +599,7 @@ In other words, f is the same function as previously shown in \ref{f_function}.\
 
 \textbf{Example 1}\\
 
-A call to $g(t)$ is returning a vector $\vec{v}$ passed to $f(\vec{x})$ by using the composition $f \circ g$ :  $f(g(t)) = \vec{w}$\\
+A call to $g(t)$ is returning a vector $\vec{x}$ passed to $f(\vec{x})$ by using the composition $f \circ g$ :  $f(g(t)) = \vec{y}$\\
 
 \begin{displaymath}
 \label{g_of_t_code}
@@ -640,7 +616,7 @@ This is a 2-D image of a conical helix. You can look at Figure 14 how this looks
 
 \begin{figure}
 \label{g_of_t_figure}
-\includegraphics[scale=0.5]{conicalhelix2.png}
+\includegraphics[scale=0.5]{figures/conicalhelix2.png}
 \caption{This is $g(t)$ from \ref{g_of_t_code} in implement.html where implement.js from the repository is used once.}
 \end{figure}
 
@@ -664,7 +640,7 @@ That will be brought by $\vec{f}(\vec{x})$ into the following context. A functio
 
 \begin{figure}
 \label{g_of_x_y_figure}
-\includegraphics[scale=0.5]{expfunction.png}
+\includegraphics[scale=0.5]{figures/expfunction.png}
 \caption{This is $\exp -x^{2}-y{2}$ from \ref{g_of_x_y_code} plotted with the cheap3danimate.html code within $[-2,2] \times [-2,2]$.}
 \end{figure}
 
@@ -689,7 +665,7 @@ Which will become this kind of function. $(\vec{f}\circ g)(x,y,z) : E\times E \t
 The vector field of this formula is shown in figure \ref{vector_field_image}.
 
 \begin{figure}
-\includegraphics[scale=0.5]{vectorfield.png}
+\includegraphics[scale=0.5]{figures/vectorfield.png}
 \label{vector_field_image}
 \caption{A 3-D vector field of a cubic section, this time of some random formula.}
 \end{figure}
@@ -802,7 +778,7 @@ let examplePoints = transform2dAll([[1,2,3], [3,4,5], [14,24,15]]);
 \fbox{ This is the realistic amount of code to write to transform all points from 3-D to 2-D.\\}
 
 \begin{figure}[ht]
-\includegraphics[scale=0.5]{conicalhelix.png}
+\includegraphics[scale=0.5]{figures/conicalhelix.png}
 \caption{A conical helix (t/2*Math.cos(t), t*Math.sin(t), t) shown as (x,y,z)=f(t) with implement.html on a Canvas2DRenderingContext testing the javascript example code.}
 \end{figure}
 
@@ -860,7 +836,7 @@ Another trivial proof is to show, that $\boldsymbol{A}(\lambda\vec{x}) = \lambda
     &= \lambda\left(\begin{array}{1}xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \end{array}\right)\\
-    &= \lambda\left(\begin{array}{1}x'\\y'\end{array}\right)\\
+    &= \lambda\left(\begin{array}{1}x\\y\end{array}\right)\\
     &= \lambda\boldsymbol{A}\vec{x}
 \end{align*}
 \end{equation*}
@@ -869,7 +845,7 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 
 \subsection{Additions and subtractions}
 
-Another trivial proof is to show, that $\boldsymbol{A}(\vec{v} + \vec{w}) = \boldsymbol{A}\vec{v} + \boldsymbol{A}\vec{w}$. 
+Another trivial proof is to show, that $\boldsymbol{A}(\vec{x} + \vec{y}) = \boldsymbol{A}\vec{x} + \boldsymbol{A}\vec{y}$. 
 It does not matter, if you add the original or the results . The outcome is the same point, the same vector.\\
  
 \textbf{Proof}:\\
@@ -885,7 +861,7 @@ xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\\
 \end{array}\right) + \left(\begin{array}{1}ur_x\cos(\varphi_x) + vr_y\cos(\varphi_y) + wr_z\cos(\varphi_z)\\
 ur_x\sin(\varphi_x) + vr_y\sin(\varphi_y) + wr_z\sin(\varphi_z)\\
 \end{array}\right)\\    
-    &= \left(\begin{array}{1}x'\\y'\end{array}\right) + \left(\begin{array}{1}u'\\v'\end{array}\right)\\
+    &= \left(\begin{array}{1}x\\y\end{array}\right) + \left(\begin{array}{1}u'\\v'\end{array}\right)\\
     &= \boldsymbol{A}\left(\begin{array}{1}x\\y\\z\end{array}\right) + \boldsymbol{A}\left(\begin{array}{1}u\\v\\w\end{array}\right)
 \end{align*}
 \end{equation*}
@@ -894,7 +870,7 @@ ur_x\sin(\varphi_x) + vr_y\sin(\varphi_y) + wr_z\sin(\varphi_z)\\
 
 \textbf{Corollary} From the previous two proofs, it is obvious to see, that
 \begin{displaymath}
-\boldsymbol{A}(\lambda\vec{v} + \kappa\vec{w}) = \lambda\boldsymbol{A}\vec{v} + \kappa\boldsymbol{A}\vec{w} = \lambda\left(\begin{array}{1}x'\\y'\end{array}\right) + \kappa\left(\begin{array}{1}u'\\v'\end{array}\right)\\
+\boldsymbol{A}(\lambda\vec{x} + \kappa\vec{y}) = \lambda\boldsymbol{A}\vec{x} + \kappa\boldsymbol{A}\vec{y} = \lambda\left(\begin{array}{1}x\\y\end{array}\right) + \kappa\left(\begin{array}{1}u'\\v'\end{array}\right)\\
 \end{displaymath}
 which is a standard formulation of the rule of linearity. For example, you can find this rule in the form $\boldsymbol{A}(c\vec{x} + d\vec{y}) = c\boldsymbol{A}\vec{x} + d\boldsymbol{A}\vec{y}$ in \cite{Strang1}, but also in every linear algebra 1 lecture script.\\
 
@@ -922,7 +898,7 @@ of the fourth basis vector. \\
 Here the basis is four times of two dimensions. A 2x4 matrix with four two dimensional basis vectors, one for each axis.\\
 
 \begin{displaymath}
-\boldsymbol{A}\left(\begin{array}{1}x\\y\\z\\t\end{array}\right) = \sum_{n} \vec{e}_{n}\vec{x}_{n} = \left(\begin{array}{1}x'\\y'\end{array}\right)\\
+\boldsymbol{A}\left(\begin{array}{1}x\\y\\z\\t\end{array}\right) = \sum_{n} \vec{e}_{n}\vec{x}_{n} = \left(\begin{array}{1}x\\y\end{array}\right)\\
 \end{displaymath}
 
 \textbf{Proof}:
@@ -933,7 +909,7 @@ xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z) + zr_t\cos(\varp
 xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)+ zr_t\sin(\varphi_t)\end{array}\right)\\
 \end{displaymath}
 \begin{displaymath}
-&= x\vec{e}_x + y\vec{e}_y + z\vec{e}_z + t\vec{e}_t &= \sum_{n} \vec{e}_{n}\vec{x}_{n} &= \left(\begin{array}{1}x'\\y'\end{array}\right)
+&= x\vec{e}_x + y\vec{e}_y + z\vec{e}_z + t\vec{e}_t &= \sum_{n} \vec{e}_{n}\vec{x}_{n} &= \left(\begin{array}{1}x\\y\end{array}\right)
 \end{displaymath}\\
 
 The same method can be used, to convert points or vectors from any other number of dimensions, down to the $xy$-plane. 
@@ -945,27 +921,27 @@ Underways, i came to another conclusion. If i pull the two row vectors out of th
 then i can dot each with the coordinate vector and write the dot product into the component of the resulting vector.\\
 
 \begin{displaymath}
-    \vec{v} = \left(\begin{array}{1}x\\y\\z\end{array}\right)       \vec{c} = \left(\begin{array}{1}r_x\cos\varphi_x\\r_y\cos\varphi_y\\r_z\cos\varphi_z\end{array}\right)            \vec{s} = \left(\begin{array}{1}r_x\sin\varphi_x\\r_y\sin\varphi_y\\r_z\sin\varphi_z\end{array}\right)
+    \vec{x} = \left(\begin{array}{1}x\\y\\z\end{array}\right)       \vec{c} = \left(\begin{array}{1}r_x\cos\varphi_x\\r_y\cos\varphi_y\\r_z\cos\varphi_z\end{array}\right)            \vec{s} = \left(\begin{array}{1}r_x\sin\varphi_x\\r_y\sin\varphi_y\\r_z\sin\varphi_z\end{array}\right)
 \end{displaymath}
  
 \begin{displaymath}
-    \vec{w} = \left(\begin{array}{1}\vec{v}\cdot\vec{c}\\\vec{v}\cdot\vec{s}\end{array}\right)
+    \vec{y} = \left(\begin{array}{1}\vec{x}\cdot\vec{c}\\\vec{x}\cdot\vec{s}\end{array}\right)
 \end{displaymath}
 
-The result is $\vec{w} \in W$, $W \subset R^2$.\\
+The result is $\vec{y} \in W$, $W \subset R^2$.\\
 
-This operation can also be extended into any finite number of dimensions, and will result in two coordinates then. Just add the dimensions to $\vec{v}, \vec{c}, \vec{s}$ and see.\\
+This operation can also be extended into any finite number of dimensions, and will result in two coordinates then. Just add the dimensions to $\vec{x}, \vec{c}, \vec{s}$ and see.\\
 
 \textbf{Proof}:
 
 \begin{displaymath}
-\left(\begin{array}{1}\vec{v}\cdot\vec{c}\\\vec{v}\cdot\vec{s}\end{array}\right) = \left(\begin{array}{1}
+\left(\begin{array}{1}\vec{x}\cdot\vec{c}\\\vec{x}\cdot\vec{s}\end{array}\right) = \left(\begin{array}{1}
 xr_x\cos(\varphi_x) + yr_y\cos(\varphi_y) + zr_z\cos(\varphi_z)\\
-xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right)
+xr_x\sin(\varphi_x) + yr_y\sin(\varphi_y) + zr_z\sin(\varphi_z)\end{array}\right) = \left(\begin{array}{1}x\\y\end{array}\right)
 \end{displaymath}
 
 
-Meanwhile it is clear, that this operation is the same as $\nabla\vec{f}(\vec{x}) \cdot \vec{v}$, which is the natural dot product of the gradient vector of our linear functional $\vec{f}(\vec{x})$ with the coordinate vector.
+Meanwhile it is clear, that this operation is the same as $\nabla\vec{f}(\vec{x}) \cdot \vec{x}$, which is the natural dot product of the gradient vector of our linear function $\vec{f}(\vec{x})$ with the coordinate vector.
 
 \section{Derivatives of $\vec{f}(\vec{x}) : V \rightarrow W$ }
 \subsection{Derivative}
@@ -998,6 +974,24 @@ $\partial_{1}(\vec{f}(\vec{x})) = \vec{e}_{x}$\\
 $\partial_{2}(\vec{f}(\vec{x})) = \vec{e}_{y}$\\
 $\partial_{3}(\vec{f}(\vec{x})) = \vec{e}_{z}$\\
 \end{center}
+
+With the difference quotient i can show a proof for the derivative, which i previously calculated from the product and chain rules.
+
+\textbf{Proof:}\\
+
+\begin{displaymath}
+\begin{align}
+    \frac{\partial f}{\partial x} =& \lim_{h\rightarrow 0}\frac{f(x+h,y,z)-f(x,y,z)}{h}\\
+    =& \lim_{h\rightarrow 0}\frac{1}{h}(((x+h)\vec{e}_x + y\vec{e}_y + z\vec{e}_z) - (x\vec{e}_x + y\vec{e}_y + z\vec{e}_z))\\
+    =& \lim_{h\rightarrow 0}\frac{1}{h}((x+h)\vec{e}_x - x\vec{e}_x) \\
+    =& \lim_{h\rightarrow 0}\frac{1}{h}h\vec{e}_x\\
+    =& \lim_{h\rightarrow 0}\vec{e}_x\\
+    =& \vec{e}_x
+\end{align}
+\end{displaymath}
+
+The proof for the y and z coordinate is identical. The other vectors cancel each other by subtraction and the h, which goes to zero, cancels itself.\\
+
 
 The second derivatives are already zero, because the returned vectors are constants with respect to the taken input variable.\\
 
@@ -1033,17 +1027,17 @@ Now we could reuse the vector of vectors (the matrix) and multiply again with co
 
 The transposed gradient of the vector function $\vec{f}(\vec{x}) : V \rightarrow W$ is the Jacobi Matrix, which is equal to the matrix, i discussed already. This possibly makes another re-ordering neccessary. But first look yourself.\\
 
-I have set up a corollary earlier (\ref{alternative_def_using_dot}), which uses the two row vectors with the three cosines and the three sines for a dot product with the coordinate each. In the order of the gradient $\nabla\vec{f}(\vec{x})$, the axis vectors are column vectors themselves. The vector $\begin{pmatrix}x'\\y'\end{pmatrix}$ is a natural result of a dot product with the them.\\
+I have set up a corollary earlier (\ref{alternative_def_using_dot}), which uses the two row vectors with the three cosines and the three sines for a dot product with the coordinate each. In the order of the gradient $\nabla\vec{f}(\vec{x})$, the axis vectors are column vectors themselves. The vector $\begin{pmatrix}x\\y\end{pmatrix}$ is a natural result of a dot product with the them.\\
 
 \begin{displaymath}
 \begin{align}
-\nabla\vec{f}(\vec{x}) \cdot \begin{pmatrix}x\\y\\z\end{pmatrix} &= \begin{pmatrix}\sum_{i=1}^{3}(\nabla\vec{f}_{1})_{i}\vec{v}_{i}\\\sum_{i=1}^{3}(\nabla\vec{f}_{2})_{i}\vec{v}_{i}\end{pmatrix}\\ 
-&= \sum_{i=1}^{3}(\nabla\vec{f})_{i}\vec{v}_{i}\\
-&= \begin{pmatrix}x'\\y'\end{pmatrix}
+\nabla\vec{f}(\vec{x}) \cdot \begin{pmatrix}x\\y\\z\end{pmatrix} &= \begin{pmatrix}\sum_{i=1}^{3}(\nabla\vec{f}_{1})_{i}\vec{x}_{i}\\\sum_{i=1}^{3}(\nabla\vec{f}_{2})_{i}\vec{x}_{i}\end{pmatrix}\\ 
+&= \sum_{i=1}^{3}(\nabla\vec{f})_{i}\vec{x}_{i}\\
+&= \begin{pmatrix}x\\y\end{pmatrix}
 \end{align}
 \end{displaymath}
 
-Which is equal to \ref{alternative_def_using_dot} and of course the formula $\vec{w} = x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}$ again. You see some natural connections between the basic functional, our formula, the derivatives, other formulas and our other methods which result in the same planar projection.\\
+Which is equal to \ref{alternative_def_using_dot} and of course the formula $\vec{y} = x\vec{e}_{x}+y\vec{e}_{y}+z\vec{e}_{z}$ again. You see some natural connections between the basic function, our formula, the derivatives, other formulas and our other methods which result in the same planar projection.\\
 
 \subsection{Integral}
 
@@ -1073,17 +1067,17 @@ What about the vector of the integration constants, $\vec{C}$? We can solve easi
 
 %\newtheorem{CorollaryConstant}{Corollary. $\vec{f}(\vec{0})$ equals the summed integration constant $\vec{f}(\vec{0})=\vec{C}$.}
 %\begin{CorollaryConstant}
-%Corollary. If the result of $\vec{f}({\vec{0}})=\vec{w}$ does not equal zero ($\vec{0}$), one can solve for the constant $\vec{C}$, which is the translation from the origin. If the normal result of $\vec{f}({\vec{0}})$ is $\vec{f}({\vec{0}})=\vec{0}$ then $\vec{f}({\vec{0}})=\vec{C}$.
+%Corollary. If the result of $\vec{f}({\vec{0}})=\vec{y}$ does not equal zero ($\vec{0}$), one can solve for the constant $\vec{C}$, which is the translation from the origin. If the normal result of $\vec{f}({\vec{0}})$ is $\vec{f}({\vec{0}})=\vec{0}$ then $\vec{f}({\vec{0}})=\vec{C}$.
 %\end{CorollaryConstant}
 
-The constant looks like a translation. In our functional the result is always zero. To add additional translation, you have to add the translation vector to the translation or the input. By the rule of linearity it is your choice, where to add the translation.\\
+The constant looks like a translation. In our function the result is always zero. To add additional translation, you have to add the translation vector to the translation or the input. By the rule of linearity it is your choice, where to add the translation.\\
 
 %But if some similar function got also this result when asking for the zero vector transformation, you get the translation vector %back, which will be applied to each point.
 
 
 %\begin{displaymath}
 %\begin{align}
-%\vec{f}(\vec{x}) &= x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} + \vec{C}\\ &= \vec{w} = \begin{pmatrix}a\\b\end{pmatrix}\\
+%\vec{f}(\vec{x}) &= x\vec{e}_{x} + y\vec{e}_{y} + z\vec{e}_{z} + \vec{C}\\ &= \vec{y} = \begin{pmatrix}a\\b\end{pmatrix}\\
 %\vec{f}(\vec{0}) &= 0\vec{e}_{x} + 0\vec{e}_{y} + 0\vec{e}_{z} + \vec{C} = \begin{pmatrix}12\\7\end{pmatrix}\\
 %\vec{C} &= \begin{pmatrix}12\\7\end{pmatrix}\\
 %\end{align}
@@ -1158,7 +1152,7 @@ I_{n}(x) := \left\{\begin{array}{1}
 \end{array}\\
 \end{displaymath}
 \begin{displaymath}
-I(\vec{v}) := I_{x}(\vec{v}_{1}) + I_{y}(\vec{v}_{2}) + I_{z}(\vec{v}_{3})
+I(\vec{x}) := I_{x}(\vec{x}_{1}) + I_{y}(\vec{x}_{2}) + I_{z}(\vec{x}_{3})
 \end{displaymath}
 
 We can fix the integral another way. By using $sign(x)$ in front of and $abs(x)$ in the upper limit of the integral.\\
@@ -1211,7 +1205,7 @@ What i did not get before was the projection onto a vector. I wondered about how
 
 \begin{displaymath}
 \begin{align}
-\begin{pmatrix}x\\y\end{pmatrix} + z\begin{pmatrix}r_z\cos\varphi_z\\r_z\sin\varphi_z\end{pmatrix} &= \begin{pmatrix}x+zr_{z}\cos\varphi_z\\y+zr_{z}\sin\varphi_z\end{pmatrix}\\ &= \begin{pmatrix}x'\\y'\end{pmatrix}\\ &= \vec{w}
+\begin{pmatrix}x\\y\end{pmatrix} + z\begin{pmatrix}r_z\cos\varphi_z\\r_z\sin\varphi_z\end{pmatrix} &= \begin{pmatrix}x+zr_{z}\cos\varphi_z\\y+zr_{z}\sin\varphi_z\end{pmatrix}\\ &= \begin{pmatrix}x\\y\end{pmatrix}\\ &= \vec{y}
 \end{align}
 \end{displaymath}
 
@@ -1255,7 +1249,7 @@ there is the possibility, that a constant $c \in \mathbb{R}$ exists, such that $
 
 \begin{displaymath}
 \begin{align}
-\exists c \in \mathbb{R}: \|\boldsymbol{A}\vec{v}\| \leq c\|\vec{v}\|
+\exists c \in \mathbb{R}: \|\boldsymbol{A}\vec{x}\| \leq c\|\vec{x}\|
 \end{align}
 \end{displaymath}
 
@@ -1263,7 +1257,7 @@ I tried to choose the constant, for the first time, and thought it could be the 
 
 \begin{displaymath}
 \begin{align}
-c := \max_{\vec{v} \in V}\{ \frac{\|\boldsymbol{A}\vec{v}\|}{\|\vec{v}\|} \} = \frac{\max\{\|\boldsymbol{A}\vec{v}\|\}}{\|\vec{v}\|}
+c := \max_{\vec{x} \in V}\{ \frac{\|\boldsymbol{A}\vec{x}\|}{\|\vec{x}\|} \} = \frac{\max\{\|\boldsymbol{A}\vec{x}\|\}}{\|\vec{x}\|}
 \end{align}
 \end{displaymath}
 
@@ -1271,9 +1265,9 @@ If i use this c, i get that the norm of any Av is less than or equal to the maxi
 
 \begin{displaymath}
 \begin{align}
-\|\boldsymbol{A}\vec{v}\| \leq \frac{\max\{\|\boldsymbol{A}\vec{v}\|\}}{\|\vec{v}\|}\|\vec{v}\| \\
-&= \|\boldsymbol{A}\vec{v}\| \leq \max\{\|\boldsymbol{A}\vec{v}\|\}\\
-&= \|\vec{w}\| \leq c\|\vec{v}\| \\
+\|\boldsymbol{A}\vec{x}\| \leq \frac{\max\{\|\boldsymbol{A}\vec{x}\|\}}{\|\vec{x}\|}\|\vec{x}\| \\
+&= \|\boldsymbol{A}\vec{x}\| \leq \max\{\|\boldsymbol{A}\vec{x}\|\}\\
+&= \|\vec{y}\| \leq c\|\vec{x}\| \\
 \end{align}
 \end{displaymath}
 
@@ -1305,7 +1299,7 @@ Norms are said to be equal if there are two constant $c$,$C$ such that
 
 \begin{displaymath}
 \begin{align}
-    c\|\vec{v}\| \leq \|\boldsymbol{A}\vec{v}\| \leq C\|\vec{v}\|
+    c\|\vec{x}\| \leq \|\boldsymbol{A}\vec{x}\| \leq C\|\vec{x}\|
 \end{align}
 \end{displaymath}
 
@@ -1330,7 +1324,7 @@ but is the first n, where the distance of the sequence vector compared to the fo
 The limit goes to some value, if the series converges.\\
 
 \begin{center}
-$\lim\nolimits_{n\rightarrow\infty} v_{n} \rightarrow \vec{v}$\\
+$\lim\nolimits_{n\rightarrow\infty} v_{n} \rightarrow \vec{x}$\\
 \end{center}
 
 The norm or the distance goes to zero, after going under epsilon at some point $n_{0}$.
@@ -1342,15 +1336,15 @@ $(\|v_{n}-v_{m}\| = d(v_{n},v_{m})) \rightarrow 0$
 
 In three dimensions, all vector components of the sequence have to converge to some value. It depends on your sequence, whether it returns one vector with three components or is a vector build by three sequences.\\
 
- Anyways, $(\vec{v}_{n})_{n \in \mathbb{N}^{+} }$ has to follow the ordinary rules, that $\lim_{n\rightarrow\infty}(\vec{v}_{n}) = \vec{v}$. In shorthand, the sequence has to converge against the limit $\lim_{n\rightarrow\infty}v_{n}\rightarrow\vec{v}$. Or even shorter, that $(\vec{v}_{n}) \rightarrow \vec{v}$\\
+ Anyways, $(\vec{x}_{n})_{n \in \mathbb{N}^{+} }$ has to follow the ordinary rules, that $\lim_{n\rightarrow\infty}(\vec{x}_{n}) = \vec{x}$. In shorthand, the sequence has to converge against the limit $\lim_{n\rightarrow\infty}v_{n}\rightarrow\vec{x}$. Or even shorter, that $(\vec{x}_{n}) \rightarrow \vec{x}$\\
 
 For my 3-D to 2-D transformation, the following propositions are made by me.\\
 
-First. If the sequence $(v_{n})$ converges to $\vec{v}$. Then $(\boldsymbol{A}\vec{v})$ converges to $\boldsymbol{A}\vec{v}$.\\
+First. If the sequence $(v_{n})$ converges to $\vec{x}$. Then $(\boldsymbol{A}\vec{x})$ converges to $\boldsymbol{A}\vec{x}$.\\
 
 \begin{center}
-$(v_{n})_{n\in\mathbb{N}^{+}} \rightarrow \vec{v}$\\
-$(\boldsymbol{A}v_{n})_{n\in\mathbb{N}^{+}} \rightarrow \boldsymbol{A}\vec{v}$
+$(v_{n})_{n\in\mathbb{N}^{+}} \rightarrow \vec{x}$\\
+$(\boldsymbol{A}v_{n})_{n\in\mathbb{N}^{+}} \rightarrow \boldsymbol{A}\vec{x}$
 \end{center}
 
 Second. It is better to put the matrix outside of the parens, if you let a computer calculate this.\\
@@ -1358,19 +1352,19 @@ Second. It is better to put the matrix outside of the parens, if you let a compu
 For the proof it is maybe neccessary, to put the $\boldsymbol{A}$ back into the parens. But practically i would like to know the rule and then take the smallest calculation.\\
 
 \begin{center}
-$(\boldsymbol{A}v_{n}) = \boldsymbol{A}\vec{v} = \boldsymbol{A}(v_{n})$\\
+$(\boldsymbol{A}v_{n}) = \boldsymbol{A}\vec{x} = \boldsymbol{A}(v_{n})$\\
 \end{center}
 
 If i write the matrix in the parens of the sequence, i state, that the matrix is a part of the formula of the sequence. I think i may use this notation, as long as i explain it here. 
 
 \begin{center}
-$\boldsymbol{A}(v_{n})} \rightarrow \boldsymbol{A}\vec{v}$
+$\boldsymbol{A}(v_{n})} \rightarrow \boldsymbol{A}\vec{x}$
 \end{center}
 
 Doesnt this also imply that the matrix times the limit yields the right values?\\
 
 \begin{center}
-$\boldsymbol{A}\lim_{n\rightarrow\infty} (v_{n}) = \boldsymbol{A}\vec{v} = \vec{w}$
+$\boldsymbol{A}\lim_{n\rightarrow\infty} (v_{n}) = \boldsymbol{A}\vec{x} = \vec{y}$
 \end{center}
 
 So we got to show, that there is a $n_{0}$ and that some series converges.\\
@@ -1413,7 +1407,7 @@ Remark. To be continued.
 \item Lay out the three basis vectors around a circle and write down the angles $\varphi_{n}$. Programmers have to write down a variable for anyways.
 \item Write down the basis vectors $\vec{e}_{n}$ as $r_{n} \cos \varphi_{n}$ and $r_{n} \sin \varphi_{n}$ (two dimensional). Don´t multiply with $r_{n}$ for a unit length of $1$ or multiply with $r_{n}$ to change the length of the basis vector.
 \item Put the three basis vectors $\vec{e}_{n}$ into a matrix $\boldsymbol{A}$. Programmers can directly code the two lines of multiplication and forget the formal rest.
-\item Iterate over your points and multiply each $(x,y,z)$ with the matrix $\boldsymbol{A}$, which acts as a linear mapping operator, and put $(x',y')$ into your new set.
+\item Iterate over your points and multiply each $(x,y,z)$ with the matrix $\boldsymbol{A}$, which acts as a linear mapping operator, and put $(x,y)$ into your new set.
 \end{enumerate}
 
 \textbf{Remark}\\
@@ -1484,8 +1478,8 @@ In this document, unless edited and stated, we speak about a vector space of rea
 
 Written as ring it is written as $(V, +, \cdot)$. The vector space possesses two operations.\\
 
-Addition: $+: V \times V \rightarrow V, (\vec{v},\vec{w}) \mapsto \vec{v}+\vec{w}$\\
-Scalar multiplication: $\cdot: K \times V \rightarrow V, (\lambda, \vec{v}) \mapsto \lambda\vec{v}$.\\
+Addition: $+: V \times V \rightarrow V, (\vec{x},\vec{y}) \mapsto \vec{x}+\vec{y}$\\
+Scalar multiplication: $\cdot: K \times V \rightarrow V, (\lambda, \vec{x}) \mapsto \lambda\vec{x}$.\\
 
 A K vector space V must fulfill the following axioms.\\
 
@@ -1524,48 +1518,48 @@ In linear algebra, functional analysis and topology lectures there are three fun
     \|a\vec{x}\| = \sqrt{|a\vec{x}_1|^{2} + |a\vec{x}_2|^{2}} = \sqrt{|a|^{2}(|\vec{x}_1|^{2} + |\vec{x}_2|^{2})} = |a|\sqrt{|\vec{x}_1|^{2} + |\vec{x}_2|^{2}} = |a|\|\vec{x}\|
 \end{displaymath}\\
 
-\textbf{Triangle inequality} Show that $ \|\boldsymbol{A}(\vec{v} + \vec{w})\| \leq \|\boldsymbol{A}\vec{v}\| + \|\boldsymbol{A}\vec{w}\|$\\
+\textbf{Triangle inequality} Show that $ \|\boldsymbol{A}(\vec{x} + \vec{y})\| \leq \|\boldsymbol{A}\vec{x}\| + \|\boldsymbol{A}\vec{y}\|$\\
 
 This means, the path over two sides of the triangle is longer, than the side left over, no matter which way you turn. And it is a triangle, because the three points in the space are by at least one unit.
 
 \begin{displaymath}
-    \sqrt{\sum_{i=1}^{n}|\vec{v}_{i} + \vec{w}_{i}|^{2}} \leq \sqrt{\sum_{i=1}^{n}|\vec{v}_{i}|^{2}} + \sqrt{\sum_{i=1}^{n}|\vec{w}_{i}|^{2}} 
+    \sqrt{\sum_{i=1}^{n}|\vec{x}_{i} + \vec{y}_{i}|^{2}} \leq \sqrt{\sum_{i=1}^{n}|\vec{x}_{i}|^{2}} + \sqrt{\sum_{i=1}^{n}|\vec{y}_{i}|^{2}} 
 \end{displaymath}\\
 
 Ok here we go again.
 
 \begin{displaymath}
-(\vec{v}+\vec{w}, \vec{v}+\vec{w})^{\frac{1}{2}} \leq (\vec{v},\vec{v})^{\frac{1}{2}}+(\vec{w},\vec{w})^{\frac{1}{2}}
+(\vec{x}+\vec{y}, \vec{x}+\vec{y})^{\frac{1}{2}} \leq (\vec{x},\vec{x})^{\frac{1}{2}}+(\vec{y},\vec{y})^{\frac{1}{2}}
 \end{displaymath}
 
  This time i tried it algebraically, to first remove the root by squaring both sides. 
 
 \begin{displaymath}
-(\vec{v}+\vec{w}, \vec{v}+\vec{w}) \leq (\vec{v},\vec{v}) + 2(\vec{v},\vec{v})^{\frac{1}{2}}(\vec{w},\vec{w})^{\frac{1}{2}} + (\vec{w},\vec{w})
+(\vec{x}+\vec{y}, \vec{x}+\vec{y}) \leq (\vec{x},\vec{x}) + 2(\vec{x},\vec{x})^{\frac{1}{2}}(\vec{y},\vec{y})^{\frac{1}{2}} + (\vec{y},\vec{y})
 \end{displaymath}
 Written as sum this is
 
 \begin{displaymath}
-\sum_{i=1}^{n}\vec{v}_{i}^{2}+2\vec{v}_{i}\vec{w}_{i}+\vec{w}_{i}^{2} \leq \sum_{i=1}\vec{v}_{i}^{2}+2(\sum_{i=1}^{n}\vec{v}_{i}\vec{v}_{i})^{\frac{1}{2}}(\sum_{i=1}^{n}\vec{w}_{i}\vec{w}_{i})^{\frac{1}{2}}+\sum_{i=1}^{n}\vec{w}_{i}^{2}
+\sum_{i=1}^{n}\vec{x}_{i}^{2}+2\vec{x}_{i}\vec{y}_{i}+\vec{y}_{i}^{2} \leq \sum_{i=1}\vec{x}_{i}^{2}+2(\sum_{i=1}^{n}\vec{x}_{i}\vec{x}_{i})^{\frac{1}{2}}(\sum_{i=1}^{n}\vec{y}_{i}\vec{y}_{i})^{\frac{1}{2}}+\sum_{i=1}^{n}\vec{y}_{i}^{2}
 \end{displaymath}
 
 This can be simplified. Now assume i split the left side up into three sums. And for more simplification i leave the equal (v,v) and (w,w) on both sides away, since they are summed, not multiplied (this is the same as subtracting it from both sides, just with one thought ahead, that it can be left away with the same meaning). We get
 
 \begin{displaymath}
-2(\vec{v},\vec{w}) \leq 2(\vec{v},\vec{v})^{\frac{1}{2}}(\vec{w},\vec{w})^{\frac{1}{2}}
+2(\vec{x},\vec{y}) \leq 2(\vec{x},\vec{x})^{\frac{1}{2}}(\vec{y},\vec{y})^{\frac{1}{2}}
 \end{displaymath}
 
 Now i divide the two out. 
 
 \begin{displaymath}
-(\vec{v},\vec{w}) \leq (\vec{v},\vec{v})^{\frac{1}{2}}(\vec{w},\vec{w})^{\frac{1}{2}}
+(\vec{x},\vec{y}) \leq (\vec{x},\vec{x})^{\frac{1}{2}}(\vec{y},\vec{y})^{\frac{1}{2}}
 \end{displaymath}
 
 Now get rid of the square root by squaring it again. This is the Cauchy Schwarz inequality. (The abs bars are missing, but since the dot product on the left is squared, the result is identical, and we can continue with the CS inequality.)
 
 
 \begin{displaymath}
-(\vec{v},\vec{w})^{2} \leq (\vec{v},\vec{v})(\vec{w},\vec{w})
+(\vec{x},\vec{y})^{2} \leq (\vec{x},\vec{x})(\vec{y},\vec{y})
 \end{displaymath}
 
 
@@ -1574,13 +1568,13 @@ Now get rid of the square root by squaring it again. This is the Cauchy Schwarz 
 The Cauchy-Schwarz inequality is saying, that the absolute value of the dot product of two vectors is less or equal to the two norms of the two vectors multiplied. The sum of the component products left is smaller than or equal to the product of the two norms.\\
 
 \begin{displaymath}
-    |\vec{v}\cdot\vec{w}| \leq \|\vec{v}\|\|\vec{w}\|
+    |\vec{x}\cdot\vec{y}| \leq \|\vec{x}\|\|\vec{y}\|
 \end{displaymath}
 
 is often simplified to
 
 \begin{displaymath}
-    |\vec{v}\cdot\vec{w}|^{2} \leq \|\vec{v}\|^{2}\|\vec{w}\|^{2}
+    |\vec{x}\cdot\vec{y}|^{2} \leq \|\vec{x}\|^{2}\|\vec{y}\|^{2}
 \end{displaymath}
 
 Let´s decode. The left side is inside bars. This is a real absolute value. Inside of the bars is the dot product of v and w. It returns a scalar, which could be positive or negative. The bars ensure, that the value is positive.\\
@@ -1593,10 +1587,10 @@ The product on the right side is larger. Or equal.
 
 \begin{displaymath}
 \begin{align}    
-    |\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}|^{2} \leq ((\sum_{i=1}^{n}|\vec{v}_{i}|^{2})^{\frac{1}{2}})^{2}((\sum_{i=1}^{n}|\vec{w}_{i}|^{2})^{\frac{1}{2}})^{2}\\
-    &= |\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}| \leq (\sum_{j=1}^{n}\sum_{i=1}^{n}|\vec{v}_{i}|^{2}|\vec{w}_{i}|^{2})^{\frac{1}{2}}\\
+    |\sum_{i=1}^{n}\vec{x}_{i}\vec{y}_{i}|^{2} \leq ((\sum_{i=1}^{n}|\vec{x}_{i}|^{2})^{\frac{1}{2}})^{2}((\sum_{i=1}^{n}|\vec{y}_{i}|^{2})^{\frac{1}{2}})^{2}\\
+    &= |\sum_{i=1}^{n}\vec{x}_{i}\vec{y}_{i}| \leq (\sum_{j=1}^{n}\sum_{i=1}^{n}|\vec{x}_{i}|^{2}|\vec{y}_{i}|^{2})^{\frac{1}{2}}\\
 &=
-|\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}|^{2} \leq \sum_{j=1}^{n}\sum_{i=1}^{n}(|\vec{v}_{i}||\vec{w}_{i}|)^{2}
+|\sum_{i=1}^{n}\vec{x}_{i}\vec{y}_{i}|^{2} \leq \sum_{j=1}^{n}\sum_{i=1}^{n}(|\vec{x}_{i}||\vec{y}_{i}|)^{2}
 \end{align}
 \end{displaymath}
 
@@ -1612,10 +1606,10 @@ This equation says, that "the square sum of the parallelogram", on the left side
 
 \begin{displaymath}
 \begin{align}
-2(\sum_{i=1}^{n}\vec{v}_{i}^{2} + \sum_{i=1}^{n}\vec{w}_{i}^{2}) &= \sum_{i=1}^{n}\vec{v}_{i}^{2}+2\vec{v}_{i}\vec{w}_{i}+\vec{w}_{i}^{2}+\vec{v}_{i}^{2}-2\vec{v}_{i}\vec{w}_{i}+\vec{w}_{i}^{2}\\
-&= \sum_{i=1}^{n}2\vec{v}_{i}^{2}+2\vec{w}_{i}^2\\ 
-&= 2\sum_{i=1}^{n}\vec{v}_{i}^{2}+\vec{w}_{i}^{2} \\
-&= 2(\sum_{i=1}^{n}\vec{v}_{i}^{2} + \sum_{i=1}^{n}\vec{w}_{i}^{2})
+2(\sum_{i=1}^{n}\vec{x}_{i}^{2} + \sum_{i=1}^{n}\vec{y}_{i}^{2}) &= \sum_{i=1}^{n}\vec{x}_{i}^{2}+2\vec{x}_{i}\vec{y}_{i}+\vec{y}_{i}^{2}+\vec{x}_{i}^{2}-2\vec{x}_{i}\vec{y}_{i}+\vec{y}_{i}^{2}\\
+&= \sum_{i=1}^{n}2\vec{x}_{i}^{2}+2\vec{y}_{i}^2\\ 
+&= 2\sum_{i=1}^{n}\vec{x}_{i}^{2}+\vec{y}_{i}^{2} \\
+&= 2(\sum_{i=1}^{n}\vec{x}_{i}^{2} + \sum_{i=1}^{n}\vec{y}_{i}^{2})
 \end{align}
 \end{displaymath}
 
@@ -1633,11 +1627,11 @@ It must have a simple meaning.
 
 \begin{displaymath}
 \begin{align}
-\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} &= \frac{1}{4}(\sum_{i=1}^{n}(\vec{v}_{i}+\vec{w}_{i})^{2} - \sum_{i=1}^{n}(\vec{v}_{i}-\vec{w}_{i})^{2}) \\
-\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} &= \frac{1}{4}(\sum_{i=1}^{n}(\vec{v}_{i}^{2}+2\vec{v}_{i}\vec{w}_{i}+\vec{w}_{i}^{2})-\sum_{i=1}^{n}(\vec{v}_{i}^{2}-2\vec{v}_{i}\vec{w}_{i}+\vec{w}_{i}^{2}))\\
-&= \frac{1}{4}(\sum_{i=1}^{n}4\vec{v}_{i}\vec{w}_{i})\\
-&= \frac{1}{4}(4\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i})\\
-&= \sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}\\
+\sum_{i=1}^{n}\vec{x}_{i}\vec{y}_{i} &= \frac{1}{4}(\sum_{i=1}^{n}(\vec{x}_{i}+\vec{y}_{i})^{2} - \sum_{i=1}^{n}(\vec{x}_{i}-\vec{y}_{i})^{2}) \\
+\sum_{i=1}^{n}\vec{x}_{i}\vec{y}_{i} &= \frac{1}{4}(\sum_{i=1}^{n}(\vec{x}_{i}^{2}+2\vec{x}_{i}\vec{y}_{i}+\vec{y}_{i}^{2})-\sum_{i=1}^{n}(\vec{x}_{i}^{2}-2\vec{x}_{i}\vec{y}_{i}+\vec{y}_{i}^{2}))\\
+&= \frac{1}{4}(\sum_{i=1}^{n}4\vec{x}_{i}\vec{y}_{i})\\
+&= \frac{1}{4}(4\sum_{i=1}^{n}\vec{x}_{i}\vec{y}_{i})\\
+&= \sum_{i=1}^{n}\vec{x}_{i}\vec{y}_{i}\\
 \end{align}
 \end{displaymath}
 
@@ -1650,28 +1644,28 @@ Remark. The Parallelogram Equation and the Polarisationformula hold both for Hil
 \label{normalizing_a_vector}
 \subsubsection{The normalization formula}
 
-If you wish to take the length of the vector, you take the norm $\|\vec{v}\|_{V}$ in three dimensions. Or $\|\vec{w}\|_{W}$ in two dimensions. Whenever you wish or need to reduce or enlarge a vector to unit length, that $\|\vec{v}\|=1$ or $\|\vec{w}\|=1$.\\
+If you wish to take the length of the vector, you take the norm $\|\vec{x}\|_{V}$ in three dimensions. Or $\|\vec{y}\|_{W}$ in two dimensions. Whenever you wish or need to reduce or enlarge a vector to unit length, that $\|\vec{x}\|=1$ or $\|\vec{y}\|=1$.\\
 you can do this yourself,too.                     \\
 
 \begin{displaymath}
-    \vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|} \implies \|\vec{w}_{normalized}\| = 1
+    \vec{y}_{normalized} = \frac{\vec{y}}{\|\vec{y}\|} \implies \|\vec{y}_{normalized}\| = 1
 \end{displaymath}
 
 Together with updating the vector or creating a new vector, you just have to divide the old vector components by the old vectors length. See the proof for details Taking the norm then, results in 1.\\                                                                     
 \textbf{Proof}:
 
 \begin{displaymath}
-\vec{w}  = \left(\begin{array}{1}a\\b\end{array}\right)
+\vec{y}  = \left(\begin{array}{1}a\\b\end{array}\right)
 \end{displaymath}
 \begin{displaymath}
     \|\left(\begin{array}{1}a\\b\end{array}\right)\| = \sqrt{a^{2}+b^{2}}\\
 \end{displaymath}
 \begin{displaymath}
-    \vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|} 
+    \vec{y}_{normalized} = \frac{\vec{y}}{\|\vec{y}\|} 
     = \left(\begin{array}{1}\frac{a}{\sqrt{a^{2}+b^{2}}}\\\frac{b}{\sqrt{a^{2}+b^{2}}}\end{array}\right)
 \end{displaymath}
 \begin{displaymath}
-    \|\vec{w}_{normalized}\| = \sqrt{\left(\frac{a}{\sqrt{a^{2}+b^{2}}}\right)^{2}+\left(\frac{b}{\sqrt{a^{2}+b^{2}}}\right)^{2}} = \sqrt{\frac{a^{2}+b^{2}}{a^{2}+b^{2}}} = \sqrt{1} = 1
+    \|\vec{y}_{normalized}\| = \sqrt{\left(\frac{a}{\sqrt{a^{2}+b^{2}}}\right)^{2}+\left(\frac{b}{\sqrt{a^{2}+b^{2}}}\right)^{2}} = \sqrt{\frac{a^{2}+b^{2}}{a^{2}+b^{2}}} = \sqrt{1} = 1
 \end{displaymath}
 
 
@@ -1772,21 +1766,21 @@ TODO. The Frobenius norm is $\sqrt{3}$ for $r_n = 1$ summing up 6 squares of thr
 
 \begin{displaymath}
 \|A\|_{Frobenius} = (\sum_{i=1..2,j=1..3}A_{ij}^{2})^{\frac12}
-\|A\circ\vec{v}\|_{Frobenius} = (\sum_{i=1..2,j=1..3}\vec{v}_{i}^{2}A_{ij}^{2})^{\frac12}
+\|A\circ\vec{x}\|_{Frobenius} = (\sum_{i=1..2,j=1..3}\vec{x}_{i}^{2}A_{ij}^{2})^{\frac12}
 \end{displaymath}
 
 
 \newtheorem{PropositionMatrixNorm}{Proposition. The matrix norms of the coordinate systems matrix.}
 \begin{PropositionMatrixNorm}
 \label{proposition_matrix_norm}
-The euclidean norm of our matrix, the Frobenius Norm, counting together the rows and columns, componentwise and squared, then pulling the root out of the whole sum, is, without $\vec{v}$ the square root $\sqrt{r_{x}^{2}+r_{y}^{2}+r_{z}^{2}}$. The sines squared and cosines squared add up to $1$ each, and are a factor for the $r_{n}^{2}$. Each $r_{n}^{2}$ belongs to pair of sine and cosine. When sine and cosine squares are added, the $r_{n}^{2}$ has to be factored out first, it can not add up to two, what could be miscounted easily. If the coordinates $x,y,z$, say, the vector $\vec{w}$, are applied to the matrix and the Frobenius Norm is taken, the norm for $\|Av\|$ is $\sqrt{x^{2}r_{x}^{2}+y^{2}r_{y}^{2}+z^{2}r_{z}^{2}}$. The Frobenius norm is like the $\|\cdot\|_{2}$ norm taken, but counts matrix elements instead of vector elements.\\
+The euclidean norm of our matrix, the Frobenius Norm, counting together the rows and columns, componentwise and squared, then pulling the root out of the whole sum, is, without $\vec{x}$ the square root $\sqrt{r_{x}^{2}+r_{y}^{2}+r_{z}^{2}}$. The sines squared and cosines squared add up to $1$ each, and are a factor for the $r_{n}^{2}$. Each $r_{n}^{2}$ belongs to pair of sine and cosine. When sine and cosine squares are added, the $r_{n}^{2}$ has to be factored out first, it can not add up to two, what could be miscounted easily. If the coordinates $x,y,z$, say, the vector $\vec{y}$, are applied to the matrix and the Frobenius Norm is taken, the norm for $\|Av\|$ is $\sqrt{x^{2}r_{x}^{2}+y^{2}r_{y}^{2}+z^{2}r_{z}^{2}}$. The Frobenius norm is like the $\|\cdot\|_{2}$ norm taken, but counts matrix elements instead of vector elements.\\
 
 Remark. Needs definitly new formulation and not the algebraic simplification as the proposition.\\
 
 \begin{displaymath}
 \begin{align}
 \|\boldsymbol{A}\|_{Frobenius} = (r_{x}^{2}+r_{y}^{2}+r_{z}^{2})^{\frac{1}{2}}\\
-\|\boldsymbol{A}\circ\vec{v}\|_{Frobenius} = (x^{2}r_{x}^{2}+y^{2}r_{y}^{2}+z^{2}r_{z}^{2})^{\frac{1}{2}}
+\|\boldsymbol{A}\circ\vec{x}\|_{Frobenius} = (x^{2}r_{x}^{2}+y^{2}r_{y}^{2}+z^{2}r_{z}^{2})^{\frac{1}{2}}
 \end{align}
 \end{displaymath}
 \end{PropositionMatrixNorm}
@@ -1804,9 +1798,9 @@ Without the elements of a vector
 And with applying the vector to A
 \begin{displaymath}
 \begin{align}
-\|\boldsymbol{A}\circ\vec{v}\|_{Frobenius} = (\sum_{i=1,2;j=x,y,z}\vec{v}_{i}^{2}\vec{e}_{ij}^{2})^{\frac{1}{2}} \\
-&= (\sum_{n=1}^{3}\vec{v}_{n}^{2}r_{n}^{2}\cos\varphi_n^{2} + \sum_{n=1}^{3}\vec{v}_{n}^{2}r_{n}^{2}\sin\varphi_n^{2})^{\frac{1}{2}}\\
-&= (\sum_{n=1}^{3}\vec{v}_{n}^{2}r_{n}^{2}(\cos\varphi_n^{2} + \sin\varphi_n^{2}))^{\frac{1}{2}}\\
+\|\boldsymbol{A}\circ\vec{x}\|_{Frobenius} = (\sum_{i=1,2;j=x,y,z}\vec{x}_{i}^{2}\vec{e}_{ij}^{2})^{\frac{1}{2}} \\
+&= (\sum_{n=1}^{3}\vec{x}_{n}^{2}r_{n}^{2}\cos\varphi_n^{2} + \sum_{n=1}^{3}\vec{x}_{n}^{2}r_{n}^{2}\sin\varphi_n^{2})^{\frac{1}{2}}\\
+&= (\sum_{n=1}^{3}\vec{x}_{n}^{2}r_{n}^{2}(\cos\varphi_n^{2} + \sin\varphi_n^{2}))^{\frac{1}{2}}\\
 &= \sqrt{x^{2}r_{x}^{2}+y^{2}r_{y}^{2}+z^{2}r_{z}^{2}}\\
 \end{align}
 \end{displaymath}
@@ -1835,7 +1829,7 @@ With this formula you can not only measure the length of the basis vectors, but 
 More advanced measurements include the p-Norm, which is $\sqrt[p]{\sum_{i=1}^{n}|\vec{x}_{i}|^{p}} 1 \leq p \leq \infty$ and $\sup_{i=1..n} |\vec{x}_{i}|$ for $p=\infty}$ and the max-Norm $\|\vec{x}\|_{\infty}$= $\sup_{} \{|\vec{x}_{i}| \}$. There are matrix norms like $\|A\| = \max_{i=1..m} \sum_{j=1}^{n}A_{ij}$, which for example yields the largest row of a m by n matrix. Norms are used everywhere ing mathematics for measuring the lenghts or getting the absolut values of the vectors and matrices. And the distance function $d(\vec{x},\vec{y}) = \|\vec{x}-\vec{y}\|$ is used to measure the distance between to points or two vector tips. A vector space V with a distance function $d(x,y)=\|x-y\|$. 
   is called a metric space $(V,d)$. And a complete metric space with a norm, written $(V, \|\cdot\|)$, is a Banach space. \\
 
-A vector can be normalized to give $\|\vec{x}\| = 1$, by dividing the vector components by the length, say $\vec{w}_{normalized} = \frac{\vec{w}}{\|\vec{w}\|}$. See the appendix for more on norms and for example for a proof of the normalization.\\
+A vector can be normalized to give $\|\vec{x}\| = 1$, by dividing the vector components by the length, say $\vec{y}_{normalized} = \frac{\vec{y}}{\|\vec{y}\|}$. See the appendix for more on norms and for example for a proof of the normalization.\\
 
 
 
@@ -1852,46 +1846,46 @@ If you pull the square root out of the dot product with a vector and itself, you
 Dividing the vector by it`s length will normalize the vector to a length of $1$. $\|\vec{x}\| = 1$ is called the unit length.
 The formula and proof of the normalization of a vector is in \ref{normalizing_a_vector}\\
 
-$(\vec{v}, \vec{w})$ is $\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}$.  \\
+$(\vec{x}, \vec{y})$ is $\sum_{i=1}^{n}\vec{x}_{i}\vec{y}_{i}$.  \\
 
-$\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} = 0$ means, that $\vec{v} \perp \vec{w}$ \\
+$\sum_{i=1}^{n}\vec{x}_{i}\vec{y}_{i} = 0$ means, that $\vec{x} \perp \vec{y}$ \\
 
 The basis formula is this
 
 \begin{displaymath}
-    (v,w) = \sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}
+    (v,w) = \sum_{i=1}^{n}\vec{x}_{i}\vec{y}_{i}
 \end{displaymath}
 
 A product with the zero vector.
 
 \begin{displaymath}
-    (\vec{0},w) = \sum_{i=1}^{n}\vec{0}_{i}\vec{w}_{i} = 0
+    (\vec{0},w) = \sum_{i=1}^{n}\vec{0}_{i}\vec{y}_{i} = 0
 \end{displaymath}
 
 Algebraic simplifications and linear combinations.
 
 \begin{displaymath}
-    (\lambda\vec{v},\vec{w}) = \sum_{i=1}^{n}\lambda\vec{v}_{i}\vec{w}_{i}
-    = \lambda\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} = \lambda(\vec{v}, \vec{w})
+    (\lambda\vec{x},\vec{y}) = \sum_{i=1}^{n}\lambda\vec{x}_{i}\vec{y}_{i}
+    = \lambda\sum_{i=1}^{n}\vec{x}_{i}\vec{y}_{i} = \lambda(\vec{x}, \vec{y})
 \end{displaymath}
 
 \begin{displaymath}
-    (\lambda\vec{v},\vec{w}+\vec{x}) = \sum_{i=1}^{n}\lambda\vec{v}_{i}(\vec{w}_{i}+\vec{x}_{i})
-    = \lambda(\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i}+\sum_{i=1}^{n}\vec{v}_{i}\vec{x}_{i})
-    = \lambda((\vec{v},\vec{w})+(\vec{v},\vec{x}))
+    (\lambda\vec{x},\vec{y}+\vec{x}) = \sum_{i=1}^{n}\lambda\vec{x}_{i}(\vec{y}_{i}+\vec{x}_{i})
+    = \lambda(\sum_{i=1}^{n}\vec{x}_{i}\vec{y}_{i}+\sum_{i=1}^{n}\vec{x}_{i}\vec{x}_{i})
+    = \lambda((\vec{x},\vec{y})+(\vec{x},\vec{x}))
 \end{displaymath}
 
 \begin{displaymath}
-    (\lambda\vec{v},\kappa\vec{w}) = \sum_{i=1}^{n}\lambda\vec{v}_{i}\kappa\vec{w}_{i}
-    = \lambda\kappa\sum_{i=1}^{n}\vec{v}_{i}\vec{w}_{i} = \lambda\kappa(\vec{v}, \vec{w})
+    (\lambda\vec{x},\kappa\vec{y}) = \sum_{i=1}^{n}\lambda\vec{x}_{i}\kappa\vec{y}_{i}
+    = \lambda\kappa\sum_{i=1}^{n}\vec{x}_{i}\vec{y}_{i} = \lambda\kappa(\vec{x}, \vec{y})
 \end{displaymath}
 
 \begin{displaymath}
 \begin{center}
-    (\lambda\vec{v}+\mu\vec{x},\kappa\vec{w}+\nu\vec{y})\\
-    = \sum_{i=1}^{n}(\lambda\vec{v}_{i}+\mu\vec{x}_{i})(\kappa\vec{w}_{i}+\nu\vec{y}_{i})\\
-    = (\lambda\vec{v},\kappa\vec{w}) + (\lambda\vec{v},\nu\vec{y}) + (\kappa\vec{w},\mu\vec{x}) + (\kappa\vec{w},\nu\vec{y})\\
-    = \lambda(\kappa(\vec{v},\vec{w}) + \nu(\vec{v},\vec{y})) + \kappa(\mu(\vec{w},\vec{x}) + \nu(\vec{w},\vec{y}))\\
+    (\lambda\vec{x}+\mu\vec{x},\kappa\vec{y}+\nu\vec{y})\\
+    = \sum_{i=1}^{n}(\lambda\vec{x}_{i}+\mu\vec{x}_{i})(\kappa\vec{y}_{i}+\nu\vec{y}_{i})\\
+    = (\lambda\vec{x},\kappa\vec{y}) + (\lambda\vec{x},\nu\vec{y}) + (\kappa\vec{y},\mu\vec{x}) + (\kappa\vec{y},\nu\vec{y})\\
+    = \lambda(\kappa(\vec{x},\vec{y}) + \nu(\vec{x},\vec{y})) + \kappa(\mu(\vec{y},\vec{x}) + \nu(\vec{y},\vec{y}))\\
 \end{center}    
 \end{displaymath}
 
@@ -1950,7 +1944,7 @@ $\boldsymbol{N}_{\mathbb{R}^{2}} := \begin{pmatrix}0 & -1 \\ 1 & 0\end{pmatrix}$
 You should multiply the 2x2 matrix with some vector and you will get a perpendicular vector back.
 
 \begin{center}
-$\vec{n} = \boldsymbol{N}\vec{w} = \begin{pmatrix}0 & -1 \\ 1 & 0\end{pmatrix} \cdot \begin{pmatrix}a\\b\end{pmatrix} = \begin{pmatrix}-b\\a\end{pmatrix}$
+$\vec{n} = \boldsymbol{N}\vec{y} = \begin{pmatrix}0 & -1 \\ 1 & 0\end{pmatrix} \cdot \begin{pmatrix}a\\b\end{pmatrix} = \begin{pmatrix}-b\\a\end{pmatrix}$
 \end{center}
 
 Proof. The resulting normal vector has to be perpendicular to the source vector, so their dot product must be zero.\\
@@ -1958,7 +1952,7 @@ Proof. The resulting normal vector has to be perpendicular to the source vector,
 
 
 \begin{displaymath}
-\vec{n} \cdot \vec{w} = \sum_{i=1}^{2}\vec{n}_{i}\vec{w}_i = -ab + ab = 0
+\vec{n} \cdot \vec{y} = \sum_{i=1}^{2}\vec{n}_{i}\vec{y}_i = -ab + ab = 0
 \end{displaymath}
 
 For three dimensional vectors the proof is similar, and the dot product should also return zero for a proof. A perpendicular vector is obtained by permuting the identity matrix (standard basis) and changing sign.
@@ -1972,7 +1966,7 @@ For three dimensional vectors the proof is similar, and the dot product should a
 \begin{flushleft}
 \begin{figure}[ht]
 
-\includegraphics[scale=0.5]{filling.png}
+\includegraphics[scale=0.5]{figures/filling.png}
 \caption{TODO. Can we find a simple triangulation or just simplification to use the fill() method on strictly convex sets?}
 
 \end{figure}
@@ -2020,13 +2014,13 @@ The $\mathbb{R}^{2\times3}$ is a K-vectorspace. \\
 It has scalar multiplication
 
 \begin{displaymath}
-(\lambda, \vec{v}) \mapsto \lambda\vec{v} 
+(\lambda, \vec{x}) \mapsto \lambda\vec{x} 
 \end{displaymath}
 
 It has addition.
 
 \begin{displaymath}
-(\vec{u}, \vec{w}) \mapsto \vec{u} + \vec{v}
+(\vec{u}, \vec{y}) \mapsto \vec{u} + \vec{x}
 \end{displaymath}
 
 You can add 2x3 matrices to 2x3, subtract 2x3 matrices from 2x3 matrices.
@@ -2226,14 +2220,14 @@ Gram Schmidt gave us these vectors.
 I decided to take the 45 degree perspective projection of a cube. I patched the code and the implement.js\\
 
 \begin{figure}[ht]
-\includegraphics[scale=0.5]{b4ortho.png}
+\includegraphics[scale=0.5]{figures/b4ortho.png}
 \caption{Before Gram Schmidt. This is the 45 degree lefthand basis.}
 \end{figure}
 
 I do not know how big the error of the used source code is. My second screenshot, typing handwritten results in, is not there yet.\\
 
 \begin{figure}[ht]
-\includegraphics[scale=0.5]{afterortho.png}
+\includegraphics[scale=0.5]{figures/afterortho.png}
 \caption{After Gram Schmidt. It seems very fine for this experiment. The angles have changed. But it is very fine when rotated. }
 \end{figure}
 
@@ -3098,11 +3092,11 @@ v = (x,y,z)^T, w = (v_1, v_2)^T = (x,y)^T\\
 \end{displaymath}
 Now we rotate each point containing only the x,y coordinate of the triple v.
 \begin{displaymath}
-\boldsymbol{R}\left(\begin{array}{1}x\\y\end{array}\right) = \left(\begin{array}{1}x'\\y'\end{array}\right) = \vec{w}'\\
+\boldsymbol{R}\left(\begin{array}{1}x\\y\end{array}\right) = \left(\begin{array}{1}x\\y\end{array}\right) = \vec{y}'\\
 \end{displaymath}
 The x,y image is pointing downwards. I add each point it`s z coordinate now to y. That moves the point upwards by the amount of z.
 \begin{displaymath}
-\left(\begin{array}{1}x'\\y'+z\end{array}\right) = \vec{w}''
+\left(\begin{array}{1}x\\y+z\end{array}\right) = \vec{y}''
 \end{displaymath}
 After this i discovered adding three proportional parts. One for each coordinate. And decided quickly, to use cos and sin and the circle, to create axes by angles.\\
 
@@ -3146,7 +3140,7 @@ function transform(points3) {
 
 \section{Declaration of authorship}
 
-German.
+German.\\
 
 Ich habe dieses Koordinatensystem selbst entwickelt. Es ist keine Formel aus einem Buch oder einer Lehrveranstaltung.
 Ob es irgendwo eine identische Formel oder eine vergleichbare Definition gibt, ist mir nicht bekannt.
@@ -3186,12 +3180,34 @@ wie auch das Koordinatensystem selbst und die dazugeh\"origen Definitionen, die 
 Es ist erlaubt, mir daf\"ur Anerkennung zu gew\"ahren, es ist aber nicht zwingend n\"otig, mich daf\"ur im
 eigenen Projekt zu nennen. Allerdings mag auch ich keine Menschen, die diese Arbeit f\"ur ihre eigene ausgeben.\\
 
-English.
+English.\\
 
 The produced source code, to show the coordinate system and a few maps, is free for all, like the coordinate
 sytem itself and the related definitions, i created myself. It is allowed to give me respect for, but it is 
 not absolutly neccessary, to put my name into your own projects. Of course i don´t like people, who pretend 
 this is already their work.\\
+
+\section{Third-Party Software}
+
+\begin{enumerate}
+\item The document has been written for and compiled with pdf\LaTeX.  The tex source is compiled by hitting Strg-B
+in SublimeText3 to start a buildscript i have written for.
+
+\item The document source code is part of the zip from the github repository https://github.com/edwardgerhold/paper-pen-3D
+The repository name may have changed to /pen-and-paper-3-D or to /2x3-D, if it is no longer reachable under paper-pen-3D.
+Until then, it is not sure, that i will change the name, it is in /paper-pen-3D. 
+
+\item For the figures i used the free and platform-independent mathematical software GeoGebra (http://geogebra.org). GeoGebra has much more to give, than the little figures i have drawn with. Incorrect labels on the pictures are due to the novice experience with GeoGebra.
+
+\item The text has been written with a unregistered version of SublimeText, which is one of the great text editors 
+available, if you do not directly use a full-featured integrated development environment.
+
+\item The demo implementations use JavaScript and HTML5 and should run in almost all browsers on all platforms having the 
+2-D Canvas  available. No WebGL required to show the 3-D transformation. Possibly you see, why the coordinate system
+is less known. In my opinion, because computer graphics went a slightly different way, the coordinate system has not
+been noticed anymore.
+\end{enumerate}
+
 
 \begin{thebibliography}
 
