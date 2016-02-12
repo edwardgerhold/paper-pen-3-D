@@ -1,3 +1,33 @@
+----- REMARK about a new corrected version
+
+Feb 11, 2016: My computer is defect and turns off for two days after warming up.
+Beetween my occupations i can not work concretly on the document in various cases
+nor implement my recent research and favorite ideas. But...
+
+I think i have generalised this to a meaningful mapping theorem and will introduce
+the term of non-orthogonal bases. With the 2x3 formula we can describe the whole 2x3
+matrix space, since we can generate all possible combinations of the 2x3 matrix with 
+the three canonical vectors.
+
+I can derive from vector calculus, from linear algebra, from functional analysis,
+to explain.
+
+And i will give a new approach to explain the Fourier coefficients by extending the
+2x3 form to a continuous form representing the integral for the coefficients. This is
+easy to understand, because R^2 is isomorphic to the complex C plane.
+
+Because of the defect computer writing the new document will take a few more days
+than it would if i could turn it off now and turn it on again in an hour or two. When
+i turn it off, it will be available tomorrow, or a day later, so i am a little bit
+restricted in typing the stuff down.
+
+But i will release it in the near future. My method is to delete any paragraph and write
+down a shorter version or to delete the whole approach when wrong or useless and also
+to make it more mathematician like using defs, lemmata and theorems which i will prove by
+myself.
+
+------- Original README
+
 # paper-pen-3-D
 Repository name may move to a new name 2x3-D or be corrected for pen-and-paper-3-D.
 
@@ -78,3 +108,34 @@ unit, we can see the thing really moving.
 x_ = x*r*Math.cos(a) + y*r*Math.cos(b) + z*r*Math.cos(g) + t*rt*Math.cos(d);
 y_ = x*r*Math.sin(a) + y*r*Math.sin(b) + z*r*Math.sin(g) + t*rt*Math.sin(d);
 ```
+
+----------- MORE from the latest results Feb 11 2016
+
+Corollary 
+
+Generalisation with m-dimensional spherical coordinates and n axes possible.
+
+To make this transformation in arbitrary dimensions, meaning, you map the
+points to a lower dimensional plane or sphere, you create n axes with m 
+components. Spherical coordinates can be used for creating a set of basis
+vectors. You will not have linear independence, and this is not a mistake,
+but the property different from the nxn case with orthogonal and independent
+axes to be scaled before summed for the right point.
+
+Corollary
+
+Generally, the vector (cos x-Angle, cos y-Angle, cos z-Angle) is a linear 
+functional in the dual space of R^3 and is combined with the coordinates
+(x1,x2,x3) to return a real number. This is a component of a new coordinate
+vector. So the cos vector is the x-coordinate functional, the sin vector is
+the y-coordinate functional, and so on.
+
+
+
+Remark 
+
+Half a year ago, when i started the document, i had not the insight i have
+today. I worked hard for teaching myself mathematics, and i continue on, but
+certain things i was not able to write down half a year ago, are now clear.
+Will inform you via the updates as soon as concretly possible. I am hot for
+repeating the paper in a better form.
